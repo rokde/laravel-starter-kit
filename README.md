@@ -18,4 +18,4 @@ A customized version with the following things:
 ### Format your code
 
 - during github workflows a new commit will handle this
-- or: `composer format`
+- or: `composer format` and `npm run format`
