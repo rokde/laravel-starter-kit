@@ -7,9 +7,18 @@ A customized version with the following things:
   - using [Inertia](https://inertiajs.com/) and [shadcn-vue](https://www.shadcn-vue.com/) components
 - [x] [barryvdh/laravel-ide-helper](https://github.com/barryvdh/laravel-ide-helper)
 - [x] pint.json with strict rules
-
+- [ ] internationalization (en, de)
+- [ ] notification in app
+  - [ ] preference in user profile to handle preferred by mail or in-app
+- [ ] modules supported for domain driven design
+  - like [avosalmon/artisan-airlines](https://github.com/avosalmon/artisan-airlines) and [article](https://pacific-nymphea-e41.notion.site/Modularizing-Inertia-Laracon-India-2025-1a6320a6974e8014b91ec08cc6b79c4e)
+  - example modules
 
 ## Features
+
+### Laravel Features and Configuration
+
+- [User must verify email](https://laravel.com/docs/verification#model-preparation)
 
 ### Creating model documentation
 
@@ -18,4 +27,4 @@ A customized version with the following things:
 ### Format your code
 
 - during github workflows a new commit will handle this
-- or: `composer format` and `npm run format`
+- or: `composer run format` and `npm run format`
