@@ -18,12 +18,14 @@ A customized version with the following things:
 
 ### Laravel Features and Configuration
 
+- Register a user
+- Login a user
 - [User must verify email](https://laravel.com/docs/verification#model-preparation)
 - various settings configured in the [AppServiceProvider::boot()](./blob/main/app/Providers/AppServiceProvider.php#L20) method
 
 ### Creating model documentation
 
-`composer ide-helper`
+`composer run ide-helper`
 
 ### Format your code
 
