@@ -8,6 +8,8 @@ A customized version with the following things:
 - [x] [barryvdh/laravel-ide-helper](https://github.com/barryvdh/laravel-ide-helper)
 - [x] pint.json with strict rules
 - [ ] internationalization (en, de)
+  - [ ] laravel
+  - [ ] vue
 - [ ] notification in app
   - [ ] preference in user profile to handle preferred by mail or in-app
 - [ ] modules supported for domain driven design
