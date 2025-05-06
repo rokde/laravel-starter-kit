@@ -1,8 +1,11 @@
 <?php
 
-use App\Models\User;
+declare(strict_types=1);
 
-uses(\Illuminate\Foundation\Testing\RefreshDatabase::class);
+use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+
+uses(RefreshDatabase::class);
 
 test('guests are redirected to the login page', function () {
     $response = $this->get('/dashboard');
