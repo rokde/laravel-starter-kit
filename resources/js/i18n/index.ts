@@ -5,7 +5,7 @@ const i18n = createI18n({
     locale: 'en',
     fallbackLocale: 'en',
     messages: translations,
-})
+});
 
 export const setLocale = (locale: string): void => {
     if (translations[locale]) {
@@ -13,7 +13,7 @@ export const setLocale = (locale: string): void => {
     } else {
         console.error(`Locale ${locale} not found.`);
     }
-}
+};
 
 export default i18n;
 
