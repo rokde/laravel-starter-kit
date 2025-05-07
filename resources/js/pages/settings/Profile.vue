@@ -7,9 +7,12 @@ import InputError from '@/components/InputError.vue';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { getI18n } from '@/i18n';
 import AppLayout from '@/layouts/AppLayout.vue';
 import SettingsLayout from '@/layouts/settings/Layout.vue';
 import { type BreadcrumbItem, type SharedData, type User } from '@/types';
+
+const { t } = getI18n();
 
 interface Props {
     mustVerifyEmail: boolean;
@@ -20,7 +23,7 @@ defineProps<Props>();
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
-        title: 'Profile settings',
+        title: t('Profile settings'),
         href: '/settings/profile',
     },
 ];
@@ -42,21 +45,21 @@ const submit = () => {
 
 <template>
     <AppLayout :breadcrumbs="breadcrumbs">
-        <Head title="Profile settings" />
+        <Head :title="$t('Profile settings')" />
 
         <SettingsLayout>
             <div class="flex flex-col space-y-6">
-                <HeadingSmall title="Profile information" description="Update your name and email address" />
+                <HeadingSmall :title="$t('Profile information')" :description="$t('Update your name and email address')" />
 
                 <form @submit.prevent="submit" class="space-y-6">
                     <div class="grid gap-2">
-                        <Label for="name">Name</Label>
-                        <Input id="name" class="mt-1 block w-full" v-model="form.name" required autocomplete="name" placeholder="Full name" />
+                        <Label for="name">{{ $t('Name') }}</Label>
+                        <Input id="name" class="mt-1 block w-full" v-model="form.name" required autocomplete="name" :placeholder="$t('Full name')" />
                         <InputError class="mt-2" :message="form.errors.name" />
                     </div>
 
                     <div class="grid gap-2">
-                        <Label for="email">Email address</Label>
+                        <Label for="email">{{ $t('Email address') }}</Label>
                         <Input
                             id="email"
                             type="email"
@@ -64,21 +67,21 @@ const submit = () => {
                             v-model="form.email"
                             required
                             autocomplete="username"
-                            placeholder="Email address"
+                            :placeholder="$t('Email address')"
                         />
                         <InputError class="mt-2" :message="form.errors.email" />
                     </div>
 
                     <div v-if="mustVerifyEmail && !user.email_verified_at">
                         <p class="text-muted-foreground -mt-4 text-sm">
-                            Your email address is unverified.
+                            {{ $t('Your email address is unverified.') }}
                             <Link
                                 :href="route('verification.send')"
                                 method="post"
                                 as="button"
                                 class="text-foreground underline decoration-neutral-300 underline-offset-4 transition-colors duration-300 ease-out hover:decoration-current! dark:decoration-neutral-500"
                             >
-                                Click here to resend the verification email.
+                                {{ $t('Click here to re-send the verification email.') }}
                             </Link>
                         </p>
 
@@ -88,7 +91,7 @@ const submit = () => {
                     </div>
 
                     <div class="flex items-center gap-4">
-                        <Button :disabled="form.processing">Save</Button>
+                        <Button :disabled="form.processing">{{ $t('Save') }}</Button>
 
                         <Transition
                             enter-active-class="transition ease-in-out"
@@ -96,7 +99,7 @@ const submit = () => {
                             leave-active-class="transition ease-in-out"
                             leave-to-class="opacity-0"
                         >
-                            <p v-show="form.recentlySuccessful" class="text-sm text-neutral-600">Saved.</p>
+                            <p v-show="form.recentlySuccessful" class="text-sm text-neutral-600">{{ $t('Saved.') }}</p>
                         </Transition>
                     </div>
                 </form>
