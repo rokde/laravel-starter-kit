@@ -1,5 +1,11 @@
 # Laravel Starter Kit
 
+## Usage
+
+`laravel new --using=rokde/laravel-starter-kit`
+
+## What is inside?
+
 A customized version with the following things:
 
 - [x] PHP 8.4
