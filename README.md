@@ -30,6 +30,7 @@ A customized version with the following things:
 - various settings configured in the [AppServiceProvider::boot()](./blob/main/app/Providers/AppServiceProvider.php#L20) method
 - Localized views in english and german
 - [database notifications](https://laravel.com/docs/notifications#database-prerequisites) already set up
+- Profile settings including locale settings
 
 ### Transfer localization
 
