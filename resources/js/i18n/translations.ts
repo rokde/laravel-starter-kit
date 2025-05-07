@@ -65,7 +65,7 @@ const translations: Translations = {
         'Saved.': 'Gespeichert.',
         Search: 'Suche',
         Settings: 'Einstellungen',
-        'Sign up': 'Anmelden',
+        'Sign up': 'Registrieren',
         status: 'Status',
         System: 'System',
         'This is a secure area of the application. Please confirm your password before continuing.':
