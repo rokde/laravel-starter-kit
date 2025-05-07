@@ -14,6 +14,7 @@ A customized version with the following things:
 - [x] [barryvdh/laravel-ide-helper](https://github.com/barryvdh/laravel-ide-helper)
 - [x] pint.json with strict rules
 - [x] internationalization (en, de)
+- [x] static pages based on CommonMark Markdown files, with FrontMatter support and localized
 - [ ] notification in app
   - [ ] preference in user profile to handle preferred by mail or in-app
 - [ ] modules supported for domain driven design
@@ -31,6 +32,7 @@ A customized version with the following things:
 - Localized views in english and german
 - [database notifications](https://laravel.com/docs/notifications#database-prerequisites) already set up
 - Profile settings including locale settings
+- Imprint, Terms and Policy templates supported
 
 ### Transfer localization
 
