@@ -92,6 +92,10 @@ const translations: Translations = {
             password: 'Das eingegebene Passwort ist nicht korrekt.',
             throttle: 'Zu viele Loginversuche. Versuchen Sie es bitte in {seconds} Sekunden nochmal.',
         },
+        locales: {
+            de: 'Deutsch',
+            en: 'English',
+        },
         pagination: {
             next: 'Weiter &raquo;',
             previous: '&laquo; Zurück',
@@ -327,6 +331,10 @@ const translations: Translations = {
             failed: 'These credentials do not match our records.',
             password: 'The provided password is incorrect.',
             throttle: 'Too many login attempts. Please try again in {seconds} seconds.',
+        },
+        locales: {
+            de: 'Deutsch',
+            en: 'English',
         },
         pagination: {
             previous: '&laquo; Previous',

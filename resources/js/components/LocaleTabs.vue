@@ -27,7 +27,7 @@ const emits = defineEmits<{
             ]"
         >
             <component :is="locale === props.currentLocale ? Check : Globe" class="-ml-1 size-4" />
-            <span class="ml-1.5 text-sm">{{ locale }}</span>
+            <span class="ml-1.5 text-sm">{{ $t('locales.' + locale) }}</span>
         </button>
     </div>
 </template>
