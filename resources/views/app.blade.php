@@ -17,7 +17,16 @@
                     }
                 }
             })();
-            window.locale = '{{ app()->getLocale() }}';
+
+            @auth
+                window.locale = @json(auth()->user()->preferredLocale() ?? app()->getLocale());
+            @endauth
+            @guest
+                const navigatorLanguage = navigator.language.substring(0, 2);
+                window.locale = (@json(config('app.locales')).includes(navigatorLanguage))
+                    ? navigatorLanguage
+                    : @json(app()->getLocale());
+            @endguest
         </script>
 
         {{-- Inline style to set the HTML background color based on our theme in app.css --}}
