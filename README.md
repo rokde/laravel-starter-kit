@@ -29,6 +29,7 @@ A customized version with the following things:
 - [User must verify email](https://laravel.com/docs/verification#model-preparation)
 - various settings configured in the [AppServiceProvider::boot()](./blob/main/app/Providers/AppServiceProvider.php#L20) method
 - Localized views in english and german
+- [database notifications](https://laravel.com/docs/notifications#database-prerequisites) already set up
 
 ### Transfer localization
 
