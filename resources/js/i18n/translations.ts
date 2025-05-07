@@ -38,6 +38,7 @@ const translations: Translations = {
         'Forgot password': 'Passwort vergessen',
         'Forgot your password?': 'Passwort vergessen?',
         'Full name': 'Vollständiger Name',
+        Imprint: 'Impressum',
         Light: 'Hell',
         Locale: 'Lokalisierung',
         'Locale settings': 'Lokalisierungseinstellungen',
@@ -61,6 +62,7 @@ const translations: Translations = {
         'Please proceed with caution, this cannot be undone.': 'Bitte seien Sie vorsichtig, dies kann nicht rückgängig gemacht werden.',
         'Please verify your email address by clicking on the link we just emailed to you.':
             'Bitte bestätigen Sie Ihre E-Mail-Adresse, indem Sie auf den Link klicken, den wir Ihnen gerade per E-Mail gesendet haben.',
+        Policy: 'Datenschutz',
         Profile: 'Profil',
         'Profile information': 'Profilinformationen',
         'Profile settings': 'Profileinstellungen',
@@ -75,6 +77,7 @@ const translations: Translations = {
         'Sign up': 'Registrieren',
         status: 'Status',
         System: 'System',
+        Terms: 'AGB',
         'This is a secure area of the application. Please confirm your password before continuing.':
             'Dies ist ein sicherer Bereich der Anwendung. Bitte bestätigen Sie Ihr Passwort, bevor Sie fortfahren.',
         'Update password': 'Passwort aktualisieren',
@@ -271,6 +274,7 @@ const translations: Translations = {
         'Forgot password': 'Forgot password',
         'Forgot your password?': 'Forgot your password?',
         'Full name': 'Full name',
+        Imprint: 'Imprint',
         Light: 'Light',
         Locale: 'Locale',
         'Locale settings': 'Locale settings',
@@ -294,6 +298,7 @@ const translations: Translations = {
         'Please proceed with caution, this cannot be undone.': 'Please proceed with caution, this cannot be undone.',
         'Please verify your email address by clicking on the link we just emailed to you.':
             'Please verify your email address by clicking on the link we just emailed to you.',
+        Policy: 'Policy',
         Profile: 'Profile',
         'Profile information': 'Profile information',
         'Profile settings': 'Profile settings',
@@ -308,6 +313,7 @@ const translations: Translations = {
         'Sign up': 'Sign up',
         status: 'status',
         System: 'System',
+        Terms: 'Terms',
         'This is a secure area of the application. Please confirm your password before continuing.':
             'This is a secure area of the application. Please confirm your password before continuing.',
         'Update password': 'Update password',
