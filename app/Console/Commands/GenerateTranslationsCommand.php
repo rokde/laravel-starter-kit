@@ -151,9 +151,9 @@ class GenerateTranslationsCommand extends Command
         }
 
         return Str::of($content)
-            ->pipe(fn ($line): string => $this->transformPluralization($line))
-            ->pipe(fn ($line): string => $this->transformColonsToBraces($line))
-            ->pipe(fn ($line): string => $this->removeEscapeCharacter($line))
+            ->pipe(fn ($line): string => $this->transformPluralization((string) $line))
+            ->pipe(fn ($line): string => $this->transformColonsToBraces((string) $line))
+            ->pipe(fn ($line): string => $this->removeEscapeCharacter((string) $line))
             ->value();
     }
 
