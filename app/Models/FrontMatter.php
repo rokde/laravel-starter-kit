@@ -1,8 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
-class FrontMatter implements \ArrayAccess
+use ArrayAccess;
+
+class FrontMatter implements ArrayAccess
 {
     public function __construct(private array $data = []) {}
 

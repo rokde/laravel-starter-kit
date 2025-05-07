@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Services\StaticPageFileService;
 use Inertia\Inertia;
 
@@ -15,11 +17,11 @@ collect([
         'terms' => resource_path('markdown/terms.de.md'),
     ]),
 ])->get(auth()->user()?->preferredLocale() ?? app()->getLocale(), collect([]))
-    ->each(function ($markdownFile, $path) {
+    ->each(function ($markdownFile, $path): void {
         Route::get($path, function (StaticPageFileService $pageFileService) use ($path, $markdownFile) {
             try {
                 $staticPage = $pageFileService->parseFile($markdownFile);
-            } catch (\Throwable $e) {
+            } catch (Throwable $e) {
                 abort(404);
             }
 
@@ -27,5 +29,5 @@ collect([
                 'title' => $staticPage->get('title', Str::title($path)),
                 'content' => $staticPage->getHtml(),
             ]);
-        })->name('static.' . $path);
+        })->name('static.'.$path);
     });
