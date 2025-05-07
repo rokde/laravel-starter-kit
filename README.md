@@ -9,7 +9,7 @@ A customized version with the following things:
 - [x] pint.json with strict rules
 - [ ] internationalization (en, de)
   - [ ] laravel
-  - [ ] vue
+  - [x] vue
 - [ ] notification in app
   - [ ] preference in user profile to handle preferred by mail or in-app
 - [ ] modules supported for domain driven design
