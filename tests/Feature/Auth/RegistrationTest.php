@@ -12,7 +12,7 @@ test('registration screen can be rendered', function (): void {
     $response->assertStatus(200);
 });
 
-test('new users can register', function (): void {
+test('new users can register with apps locale', function (): void {
     $response = $this->post('/register', [
         'name' => 'Test User',
         'email' => 'test@example.com',
@@ -22,4 +22,27 @@ test('new users can register', function (): void {
 
     $this->assertAuthenticated();
     $response->assertRedirect(route('dashboard', absolute: false));
+
+    $this->assertDatabaseHas('users', [
+        'email' => 'test@example.com',
+        'locale' => config('app.locale', 'en'),
+    ]);
+});
+
+test('new users can register with their preferred locale', function (): void {
+    $response = $this->post('/register', [
+        'name' => 'Test User',
+        'email' => 'test2@example.com',
+        'password' => 'password',
+        'password_confirmation' => 'password',
+        'locale' => 'en',
+    ]);
+
+    $this->assertAuthenticated();
+    $response->assertRedirect(route('dashboard', absolute: false));
+
+    $this->assertDatabaseHas('users', [
+        'email' => 'test2@example.com',
+        'locale' => 'en',
+    ]);
 });

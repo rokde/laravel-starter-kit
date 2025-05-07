@@ -13,6 +13,7 @@ const form = useForm({
     email: '',
     password: '',
     password_confirmation: '',
+    locale: window.locale,
 });
 
 const submit = () => {

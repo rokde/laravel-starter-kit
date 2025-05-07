@@ -9,6 +9,7 @@ use Illuminate\Contracts\Translation\HasLocalePreference;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Stringable;
 
 class User extends Authenticatable implements HasLocalePreference, MustVerifyEmail
 {
@@ -39,6 +40,10 @@ class User extends Authenticatable implements HasLocalePreference, MustVerifyEma
 
     public function preferredLocale(): string
     {
+        if ($this->locale instanceof Stringable) {
+            return $this->locale->toString();
+        }
+
         return $this->locale ?? config('app.fallback_locale', 'en');
     }
 
