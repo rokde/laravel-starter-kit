@@ -32,6 +32,8 @@
     "Forgot your password?": "Passwort vergessen?",
     "Full name": "Vollständiger Name",
     "Light": "Hell",
+    "Locale": "Lokalisierung",
+    "Locale settings": "Lokalisierungseinstellungen",
     "log in": "anmelden",
     "Log in": "Anmelden",
     "Log in to your account": "Melden Sie sich bei Ihrem Konto an",
@@ -66,6 +68,7 @@
     "Update password": "Passwort aktualisieren",
     "Update the appearance settings for your account": "Aktualisieren Sie die Darstellungseinstellungen für Ihr Konto",
     "Update your account's appearance settings": "Aktualisieren Sie die Darstellungseinstellungen Ihres Kontos",
+    "Update your account's locale settings": "Aktualisieren Sie die Lokalisierungseinstellungen Ihres Kontos",
     "Update your name and email address": "Aktualisieren Sie Ihren Namen und Ihre E-Mail-Adresse",
     "Warning": "Achtung",
     "Your email address is unverified.": "Ihre E-Mail-Adresse ist nicht verifiziert."
