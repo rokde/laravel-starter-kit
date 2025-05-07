@@ -24,7 +24,7 @@ const submit = () => {
 
 <template>
     <AuthBase :title="$t('Create an account')" :description="$t('Enter your details below to create your account')">
-        <Head :title="$t('Register')" />
+        <Head :title="$t('Sign up')" />
 
         <form @submit.prevent="submit" class="flex flex-col gap-6">
             <div class="grid gap-6">
