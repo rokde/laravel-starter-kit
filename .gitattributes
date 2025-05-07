@@ -8,3 +8,5 @@
 
 CHANGELOG.md export-ignore
 README.md export-ignore
+composer.lock export-ignore
+package-lock.json export-ignore
