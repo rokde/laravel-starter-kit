@@ -17,6 +17,6 @@ export const setLocale = (locale: string): void => {
 
 export default i18n;
 
-export function getI18n(): unknown {
+export function getI18n(): typeof i18n.global {
     return i18n.global;
 }
