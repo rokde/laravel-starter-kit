@@ -45,6 +45,7 @@
     "Password": "Password",
     "Platform": "Platform",
     "Please enter your new password below": "Please enter your new password below",
+    "Please proceed with caution, this cannot be undone.": "Please proceed with caution, this cannot be undone.",
     "Please verify your email address by clicking on the link we just emailed to you.": "Please verify your email address by clicking on the link we just emailed to you.",
     "Profile": "Profile",
     "Remember me": "Remember me",
@@ -63,5 +64,6 @@
     "Update the appearance settings for your account": "Update the appearance settings for your account",
     "Update your account's appearance settings": "Update your account's appearance settings",
     "Update your name and email address": "Update your name and email address",
+    "Warning": "Warning",
     "Your email address is unverified.": "Your email address is unverified."
 }

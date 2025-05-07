@@ -45,6 +45,7 @@
     "Password": "Passwort",
     "Platform": "Plattform",
     "Please enter your new password below": "Bitte geben Sie nachstehend Ihr neues Passwort ein.",
+    "Please proceed with caution, this cannot be undone.": "Bitte seien Sie vorsichtig, dies kann nicht rückgängig gemacht werden.",
     "Please verify your email address by clicking on the link we just emailed to you.": "Bitte bestätigen Sie Ihre E-Mail-Adresse, indem Sie auf den Link klicken, den wir Ihnen gerade per E-Mail gesendet haben.",
     "Profile": "Profil",
     "Remember me": "Angemeldet bleiben",
@@ -63,5 +64,6 @@
     "Update the appearance settings for your account": "Aktualisieren Sie die Darstellungseinstellungen für Ihr Konto",
     "Update your account's appearance settings": "Aktualisieren Sie die Darstellungseinstellungen Ihres Kontos",
     "Update your name and email address": "Aktualisieren Sie Ihren Namen und Ihre E-Mail-Adresse",
+    "Warning": "Achtung",
     "Your email address is unverified.": "Ihre E-Mail-Adresse ist nicht verifiziert."
 }

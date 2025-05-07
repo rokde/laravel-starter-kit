@@ -54,6 +54,7 @@ const translations: Translations = {
         Password: 'Passwort',
         Platform: 'Plattform',
         'Please enter your new password below': 'Bitte geben Sie nachstehend Ihr neues Passwort ein.',
+        'Please proceed with caution, this cannot be undone.': 'Bitte seien Sie vorsichtig, dies kann nicht rückgängig gemacht werden.',
         'Please verify your email address by clicking on the link we just emailed to you.':
             'Bitte bestätigen Sie Ihre E-Mail-Adresse, indem Sie auf den Link klicken, den wir Ihnen gerade per E-Mail gesendet haben.',
         Profile: 'Profil',
@@ -74,6 +75,7 @@ const translations: Translations = {
         'Update the appearance settings for your account': 'Aktualisieren Sie die Darstellungseinstellungen für Ihr Konto',
         "Update your account's appearance settings": 'Aktualisieren Sie die Darstellungseinstellungen Ihres Kontos',
         'Update your name and email address': 'Aktualisieren Sie Ihren Namen und Ihre E-Mail-Adresse',
+        Warning: 'Achtung',
         'Your email address is unverified.': 'Ihre E-Mail-Adresse ist nicht verifiziert.',
         auth: {
             failed: 'Diese Kombination aus Zugangsdaten wurde nicht in unserer Datenbank gefunden.',
@@ -278,6 +280,7 @@ const translations: Translations = {
         Password: 'Password',
         Platform: 'Platform',
         'Please enter your new password below': 'Please enter your new password below',
+        'Please proceed with caution, this cannot be undone.': 'Please proceed with caution, this cannot be undone.',
         'Please verify your email address by clicking on the link we just emailed to you.':
             'Please verify your email address by clicking on the link we just emailed to you.',
         Profile: 'Profile',
@@ -298,6 +301,7 @@ const translations: Translations = {
         'Update the appearance settings for your account': 'Update the appearance settings for your account',
         "Update your account's appearance settings": "Update your account's appearance settings",
         'Update your name and email address': 'Update your name and email address',
+        Warning: 'Warning',
         'Your email address is unverified.': 'Your email address is unverified.',
         auth: {
             failed: 'These credentials do not match our records.',
