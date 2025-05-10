@@ -1,0 +1,22 @@
+{
+	"name": "modules/foundation-layout",
+	"description": "The foundation layout domain handles configuration stuff regarding the used layout variant.",
+	"type": "library",
+	"version": "1.0",
+	"license": "proprietary",
+	"require": {},
+	"autoload": {
+		"psr-4": {
+			"Modules\\FoundationLayout\\": "src/",
+			"Modules\\FoundationLayout\\Tests\\": "tests/"
+		}
+	},
+	"minimum-stability": "stable",
+	"extra": {
+		"laravel": {
+			"providers": [
+				"Modules\\FoundationLayout\\Providers\\FoundationLayoutServiceProvider"
+			]
+		}
+	}
+}

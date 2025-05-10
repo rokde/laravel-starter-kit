@@ -17,7 +17,7 @@ A customized version with the following things:
 - [x] static pages based on CommonMark Markdown files, with FrontMatter support and localized
 - [ ] notification in app
   - [ ] preference in user profile to handle preferred by mail or in-app
-- [ ] modules supported for domain driven design
+- [ ] [modules](https://github.com/InterNACHI/modular) supported for domain driven design
   - like [avosalmon/artisan-airlines](https://github.com/avosalmon/artisan-airlines) and [article](https://pacific-nymphea-e41.notion.site/Modularizing-Inertia-Laracon-India-2025-1a6320a6974e8014b91ec08cc6b79c4e)
   - example modules
 
