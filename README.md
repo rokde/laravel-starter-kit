@@ -15,12 +15,11 @@ A customized version with the following things:
 - [x] pint.json with strict rules
 - [x] internationalization (en, de)
 - [x] static pages based on CommonMark Markdown files, with FrontMatter support and localized
-- [ ] notification in app
-  - [ ] preference in user profile to handle preferred by mail or in-app
 - [x] [modules](https://github.com/InterNACHI/modular) supported for domain driven design
   - with the `foundation-layout` module to switch configured layouts
-  - like [avosalmon/artisan-airlines](https://github.com/avosalmon/artisan-airlines) and [article](https://pacific-nymphea-e41.notion.site/Modularizing-Inertia-Laracon-India-2025-1a6320a6974e8014b91ec08cc6b79c4e)
-  - example modules
+  - with a "workspace" terminology to handle a working context like a team or project - you can invite other users to work with in the same workspace.
+- [ ] notification in app
+    - [ ] preference in user profile to handle preferred by mail or in-app
 
 ## Features
 
@@ -34,6 +33,12 @@ A customized version with the following things:
 - [database notifications](https://laravel.com/docs/notifications#database-prerequisites) already set up
 - Profile settings including locale settings
 - Imprint, Terms and Policy templates supported
+
+### Build with DDD
+
+`php artisan make:module [MODULE_NAME]`
+
+This generates the whole module stub. Use contracts and dtos to communicate between domain boundaries as described in [Modularizing Inertia](https://pacific-nymphea-e41.notion.site/Modularizing-Inertia-Laracon-India-2025-1a6320a6974e8014b91ec08cc6b79c4e). An [example repository](https://github.com/avosalmon/artisan-airlines) describes it better. It supports also the module-based loading and providing of typescript code for inertia.
 
 ### Configure the used layouts with a console command (provided by the foundation-layout module)
 
