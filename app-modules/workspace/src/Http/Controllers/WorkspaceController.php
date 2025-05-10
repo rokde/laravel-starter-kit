@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\Workspace\Http\Controllers;
 
 use Illuminate\Http\RedirectResponse;
@@ -14,8 +16,7 @@ class WorkspaceController
         StoreWorkspaceRequest $request,
         CreateWorkspace $createWorkspace,
         SetCurrentWorkspace $setCurrentWorkspace,
-    ): RedirectResponse
-    {
+    ): RedirectResponse {
         $workspaceId = $createWorkspace->handle($request->userId(), $request->validated('name'));
 
         $setCurrentWorkspace->handle($request->userId(), $workspaceId);
@@ -28,8 +29,7 @@ class WorkspaceController
     public function setCurrent(
         SwitchWorkspaceRequest $request,
         SetCurrentWorkspace $setCurrentWorkspace,
-    ): RedirectResponse
-    {
+    ): RedirectResponse {
         $setCurrentWorkspace->handle($request->userId(), $request->workspaceId());
 
         return redirect()

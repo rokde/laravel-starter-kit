@@ -7,7 +7,6 @@ namespace Modules\Workspace\Listeners;
 use App\ValueObjects\Id;
 use Illuminate\Auth\Events\Authenticated;
 use Illuminate\Auth\Events\Login;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Modules\Workspace\Actions\SetCurrentWorkspace;
 use Modules\Workspace\Models\Workspace;
 

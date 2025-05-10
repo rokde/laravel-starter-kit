@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\Workspace\Http\Requests;
 
 use App\ValueObjects\Id;
@@ -9,7 +11,7 @@ class StoreWorkspaceRequest extends FormRequest
 {
     public function authorize(): bool
     {
-        return auth()->check();;
+        return auth()->check();
     }
 
     /**
