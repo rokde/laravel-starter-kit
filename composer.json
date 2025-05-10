@@ -15,6 +15,7 @@
         "laravel/framework": "^12.0",
         "laravel/tinker": "^2.10.1",
         "modules/foundation-layout": "*",
+        "modules/workspace": "*",
         "tightenco/ziggy": "^2.4"
     },
     "require-dev": {
@@ -93,7 +94,7 @@
             "php-http/discovery": true
         }
     },
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "prefer-stable": true,
     "repositories": [
         {

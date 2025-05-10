@@ -1,0 +1,24 @@
+{
+	"name": "modules/workspace",
+	"description": "This module supports a workspace concept to form smaller tribes to collaborate in.",
+	"type": "library",
+	"version": "1.0",
+	"license": "proprietary",
+	"require": {},
+	"autoload": {
+		"psr-4": {
+			"Modules\\Workspace\\": "src/",
+			"Modules\\Workspace\\Tests\\": "tests/",
+			"Modules\\Workspace\\Database\\Factories\\": "database/factories/",
+			"Modules\\Workspace\\Database\\Seeders\\": "database/seeders/"
+		}
+	},
+	"minimum-stability": "stable",
+	"extra": {
+		"laravel": {
+			"providers": [
+				"Modules\\Workspace\\Providers\\WorkspaceServiceProvider"
+			]
+		}
+	}
+}
