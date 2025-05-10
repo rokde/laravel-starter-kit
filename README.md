@@ -17,7 +17,8 @@ A customized version with the following things:
 - [x] static pages based on CommonMark Markdown files, with FrontMatter support and localized
 - [ ] notification in app
   - [ ] preference in user profile to handle preferred by mail or in-app
-- [ ] [modules](https://github.com/InterNACHI/modular) supported for domain driven design
+- [x] [modules](https://github.com/InterNACHI/modular) supported for domain driven design
+  - with the `foundation-layout` module to switch configured layouts
   - like [avosalmon/artisan-airlines](https://github.com/avosalmon/artisan-airlines) and [article](https://pacific-nymphea-e41.notion.site/Modularizing-Inertia-Laracon-India-2025-1a6320a6974e8014b91ec08cc6b79c4e)
   - example modules
 
@@ -33,6 +34,12 @@ A customized version with the following things:
 - [database notifications](https://laravel.com/docs/notifications#database-prerequisites) already set up
 - Profile settings including locale settings
 - Imprint, Terms and Policy templates supported
+
+### Configure the used layouts with a console command (provided by the foundation-layout module)
+
+`php artisan app:configure-layouts`
+
+Then you can switch between all the provided layouts within the [starter kits](https://laravel.com/docs/starter-kits#vue-available-layouts).
 
 ### Transfer localization
 
