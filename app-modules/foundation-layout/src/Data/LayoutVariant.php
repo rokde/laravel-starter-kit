@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\FoundationLayout\Data;
 
 class LayoutVariant
@@ -18,6 +20,7 @@ class LayoutVariant
 
     /**
      * returns the files to modify
+     *
      * @return array<int, LayoutFile>
      */
     public function filesToModify(): array

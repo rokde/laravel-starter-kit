@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\FoundationLayout\Data;
 
 class LayoutFile
@@ -8,9 +10,7 @@ class LayoutFile
         private readonly string $filename,
         private readonly string $pattern,
         private readonly string $replacement,
-    )
-    {
-    }
+    ) {}
 
     public function canBeModified(): bool
     {

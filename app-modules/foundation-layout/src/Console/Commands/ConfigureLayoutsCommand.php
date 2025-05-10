@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\FoundationLayout\Console\Commands;
 
 use Illuminate\Console\Command;
@@ -36,7 +38,7 @@ class ConfigureLayoutsCommand extends Command
 
         // write authentication layout changes
         $layoutService->configureAuthenticationLayout($authenticationLayoutSelected);
-        $this->info($authenticationLayoutSelected . ' configured.');
+        $this->info($authenticationLayoutSelected.' configured.');
 
         $applicationLayoutSelected = $this->choice(
             question: 'Which layout do you want to use for the application?',
@@ -46,7 +48,7 @@ class ConfigureLayoutsCommand extends Command
 
         // write application layout changes
         $layoutService->configureApplicationLayout($applicationLayoutSelected);
-        $this->info($applicationLayoutSelected . ' configured.');
+        $this->info($applicationLayoutSelected.' configured.');
 
         return self::SUCCESS;
     }

@@ -1,8 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\FoundationLayout\Service;
 
 use Illuminate\Support\Arr;
+use InvalidArgumentException;
 use Modules\FoundationLayout\Variants\ApplicationHeaderLayout;
 use Modules\FoundationLayout\Variants\ApplicationSidebarFloatingLayout;
 use Modules\FoundationLayout\Variants\ApplicationSidebarInsetLayout;
@@ -48,8 +51,8 @@ class LayoutService
 
     public function configureAuthenticationLayout(string $variant): void
     {
-        if (!array_key_exists($variant, $this->authenticationLayoutVariants)) {
-            throw new \InvalidArgumentException('Invalid variant');
+        if (! array_key_exists($variant, $this->authenticationLayoutVariants)) {
+            throw new InvalidArgumentException('Invalid variant');
         }
 
         $this->authenticationLayoutVariants[$variant]->proceed();
@@ -70,8 +73,8 @@ class LayoutService
 
     public function configureApplicationLayout(string $variant): void
     {
-        if (!array_key_exists($variant, $this->applicationLayoutVariants)) {
-            throw new \InvalidArgumentException('Invalid variant');
+        if (! array_key_exists($variant, $this->applicationLayoutVariants)) {
+            throw new InvalidArgumentException('Invalid variant');
         }
 
         $this->applicationLayoutVariants[$variant]->proceed();
