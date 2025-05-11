@@ -13,6 +13,11 @@ Route::middleware(['web', 'auth', 'verified'])
         Route::post('/', [WorkspaceController::class, 'store'])
             ->name('store');
 
+        Route::get('/current', [WorkspaceController::class, 'show'])
+            ->name('show');
+        Route::patch('/current', [WorkspaceController::class, 'update'])
+            ->name('update');
+
         Route::put('/set-current', [WorkspaceController::class, 'setCurrent'])
             ->name('set-current');
     });
