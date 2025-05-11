@@ -510,6 +510,11 @@ const translations: Translations = {
             },
             attributes: [],
         },
+        'Add workspace': 'Add workspace',
+        'Current workspace changed.': 'Current workspace changed.',
+        'No workspace selected': 'No workspace selected',
+        'Workspace created.': 'Workspace created.',
+        Workspaces: 'Workspaces',
     },
 };
 export default translations;
