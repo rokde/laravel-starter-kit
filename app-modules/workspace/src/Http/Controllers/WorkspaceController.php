@@ -27,7 +27,7 @@ class WorkspaceController
         $setCurrentWorkspace->handle($request->userId(), $workspaceId);
 
         return redirect()
-            ->back()
+            ->route('workspaces.show')
             ->with('message', __('workspace::Workspace created.'));
     }
 
