@@ -54,8 +54,7 @@ class WorkspaceController
     public function update(
         ModifyWorkspaceRequest $request,
         UpdateWorkspaceName $updateWorkspaceName,
-    ): RedirectResponse
-    {
+    ): RedirectResponse {
         $workspace = $request->user()->currentWorkspace;
         abort_if($workspace === null, 404);
 
