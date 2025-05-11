@@ -10,6 +10,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
 import { useAuth } from '@/composables/useAuth';
+import { Link } from '@inertiajs/vue3';
 import { Workspace } from '@workspace/index';
 import { Briefcase, ChevronDown, Cog, Plus } from 'lucide-vue-next';
 import { computed, onMounted, ref } from 'vue';
@@ -42,10 +43,12 @@ onMounted(() => {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent class="w-64 rounded-lg" align="start" side="bottom" :side-offset="4">
                     <DropdownMenuItem v-if="activeWorkspace" class="ga-2 p-2">
-                        <div class="bg-background flex size-6 items-center justify-center rounded-md border">
-                            <Cog class="size-4" />
-                        </div>
-                        <div class="text-muted-foreground font-medium">{{ $t('Configure {name}', { name: activeWorkspace.name }) }}</div>
+                        <Link :href="route('workspaces.show')" class="flex items-center gap-2">
+                            <div class="bg-background flex size-6 items-center justify-center rounded-md border">
+                                <Cog class="size-4" />
+                            </div>
+                            <div class="text-muted-foreground font-medium">{{ $t('Configure {name}', { name: activeWorkspace.name }) }}</div>
+                        </Link>
                     </DropdownMenuItem>
                     <DropdownMenuSeparator v-if="activeWorkspace" />
                     <DropdownMenuLabel class="text-muted-foreground text-xs">
