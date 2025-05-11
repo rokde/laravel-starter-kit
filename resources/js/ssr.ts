@@ -2,7 +2,7 @@ import { createInertiaApp } from '@inertiajs/vue3';
 import createServer from '@inertiajs/vue3/server';
 import { renderToString } from '@vue/server-renderer';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
-import { createSSRApp, h } from 'vue';
+import { createSSRApp, type DefineComponent, h } from 'vue';
 import { route as ziggyRoute } from 'ziggy-js';
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
@@ -12,7 +12,19 @@ createServer((page) =>
         page,
         render: renderToString,
         title: (title) => `${title} - ${appName}`,
-        resolve: (name) => resolvePageComponent(`./pages/${name}.vue`, import.meta.glob('./pages/**/*.vue')),
+        resolve: (name) => {
+            // If `name` is a `module::page`, return the page from the module
+            if (name.includes('::')) {
+                const [module, page] = name.split('::');
+
+                return resolvePageComponent(
+                    `../../app-modules/${module}/resources/js/pages/${page}.tsx`,
+                    import.meta.glob<DefineComponent>('../../app-modules/*/resources/js/pages/**/*.vue'),
+                );
+            } else {
+                return resolvePageComponent(`./pages/${name}.vue`, import.meta.glob<DefineComponent>('./pages/**/*.vue'));
+            }
+        },
         setup({ App, props, plugin }) {
             const app = createSSRApp({ render: () => h(App, props) });
 
