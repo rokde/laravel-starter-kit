@@ -25,7 +25,19 @@ const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,
-    resolve: (name) => resolvePageComponent(`./pages/${name}.vue`, import.meta.glob<DefineComponent>('./pages/**/*.vue')),
+    resolve: (name) => {
+        // If `name` is a `module::page`, return the page from the module
+        if (name.includes('::')) {
+            const [module, page] = name.split('::');
+
+            return resolvePageComponent(
+                `../../app-modules/${module}/resources/js/pages/${page}.tsx`,
+                import.meta.glob<DefineComponent>('../../app-modules/*/resources/js/pages/**/*.vue'),
+            );
+        } else {
+            return resolvePageComponent(`./pages/${name}.vue`, import.meta.glob<DefineComponent>('./pages/**/*.vue'));
+        }
+    },
     setup({ el, App, props, plugin }) {
         const currentLocale = window.locale || 'en';
         setLocale(currentLocale);

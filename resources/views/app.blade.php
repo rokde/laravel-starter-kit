@@ -50,7 +50,14 @@
         <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
 
         @routes
-        @vite(['resources/js/app.ts', "resources/js/pages/{$page['component']}.vue"])
+        @if(str_contains($page['component'], '::'))
+            @php
+                [$module, $path] = explode('::', $page['component']);
+            @endphp
+            @vite(['resources/js/app.ts', "app-modules/{$module}/resources/js/pages/{$path}.vue"])
+        @else
+            @vite(['resources/js/app.ts', "resources/js/pages/{$page['component']}.vue"])
+        @endif
         @inertiaHead
     </head>
     <body class="font-sans antialiased">
