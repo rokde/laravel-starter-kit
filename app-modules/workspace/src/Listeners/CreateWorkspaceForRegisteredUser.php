@@ -6,10 +6,9 @@ namespace Modules\Workspace\Listeners;
 
 use App\ValueObjects\Id;
 use Illuminate\Auth\Events\Registered;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Modules\Workspace\Actions\CreateWorkspace;
 
-class CreateWorkspaceForRegisteredUser implements ShouldQueue
+class CreateWorkspaceForRegisteredUser
 {
     public function __construct(
         private readonly CreateWorkspace $createWorkspace,
