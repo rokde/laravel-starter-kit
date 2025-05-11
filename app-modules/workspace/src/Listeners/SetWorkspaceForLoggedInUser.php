@@ -24,10 +24,14 @@ class SetWorkspaceForLoggedInUser
 
         $userId = new Id($event->user->getAuthIdentifier());
 
-        $workspace = Workspace::query()
-            ->where('user_id', $userId)
-            ->oldest('id')
-            ->firstOrFail();
+        try {
+            $workspace = Workspace::query()
+                ->where('user_id', $userId)
+                ->oldest('id')
+                ->firstOrFail();
+        } catch (\Exception) {
+            return;
+        }
 
         $this->setCurrentWorkspace->handle(
             userId: $userId,
