@@ -246,8 +246,18 @@ const translations: Translations = {
         'Add workspace': 'Workspace anlegen',
         'Configure {name}': '{name} konfigurieren',
         'Current workspace changed.': 'Aktuellen workspace gewechselt.',
+        'For caching reasons, the workspace changer retains the previous name for a further 10 minutes.':
+            'Aus Gründen des Cachings behält der Workspace-Wechsler den vorherigen Namen für weitere 10 Minuten bei.',
+        Invitations: 'Einladungen',
+        'Manage your workspace and the acting members': 'Verwalten Sie Ihren Arbeitsbereich und die handelnden Personen',
+        Members: 'Mitglieder',
         'No workspace selected': 'Kein Workspace gewählt',
+        Owner: 'Eigentümer',
+        'The workspace name and owner information.': 'Der Name des Arbeitsbereichs und die Eigentümerinformationen.',
+        Workspace: 'Workspace',
         'Workspace created.': 'Workspace erstellt.',
+        'Workspace updated.': 'Workspace aktualisiert.',
+        'Workspace settings': 'Workspace-Einstellungen',
         Workspaces: 'Workspaces',
     },
     en: {
