@@ -21,7 +21,7 @@ test('owned workspaces can be switched', function (): void {
     $workspace1 = Workspace::query()->where('name', 'Test Workspace 1')->first();
     $workspace2 = Workspace::query()->where('name', 'Test Workspace 2')->first();
 
-    $this->put('/workspaces/current', [
+    $this->put('/workspaces/set-current', [
         'workspace_id' => $workspace2->id,
     ]);
 
@@ -29,7 +29,7 @@ test('owned workspaces can be switched', function (): void {
         'workspace_id' => $workspace2->id,
     ]);
 
-    $this->put('/workspaces/current', [
+    $this->put('/workspaces/set-current', [
         'workspace_id' => $workspace1->id,
     ]);
 

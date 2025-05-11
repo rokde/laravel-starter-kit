@@ -16,7 +16,7 @@ Route::middleware(['web', 'auth', 'verified'])
         Route::post('/', [WorkspaceController::class, 'store'])
             ->name('store');
 
-        Route::put('/current', [WorkspaceController::class, 'setCurrent'])
+        Route::put('/set-current', [WorkspaceController::class, 'setCurrent'])
             ->name('set-current');
     });
 
