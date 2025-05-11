@@ -53,7 +53,7 @@ class GenerateTranslationsCommand extends Command
         }
 
         // load app specific language files
-        $appLanguagePaths = $this->resolveAppLanguagePaths(app_path());
+        $appLanguagePaths = $this->resolveAppLanguagePaths(base_path(config('app-modules.modules_directory', 'app-modules')));
 
         // Parse Laravel translations.
         $translations = $this->getTranslations([$languagePath, ...$appLanguagePaths]);
@@ -232,6 +232,6 @@ class GenerateTranslationsCommand extends Command
      */
     private function resolveAppLanguagePaths(string $app_path, string $languageFoldername = 'Lang'): array
     {
-        return glob($app_path.'/**/**/'.$languageFoldername, GLOB_ONLYDIR);
+        return glob($app_path.'/**/'.$languageFoldername, GLOB_ONLYDIR);
     }
 }
