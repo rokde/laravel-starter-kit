@@ -18,6 +18,7 @@
                 }
             })();
 
+            {{-- Set the current locale globally --}}
             @auth
                 window.locale = @json(auth()->user()->preferredLocale() ?? app()->getLocale());
             @endauth
