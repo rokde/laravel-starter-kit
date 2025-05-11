@@ -69,8 +69,11 @@ onMounted(() => {
                         class="gap-2 p-2"
                         @click="switchActiveWorkspace(workspace)"
                     >
-                        <div class="flex size-6 items-center justify-center rounded-sm border">
-                            <Briefcase class="size-4 shrink-0" />
+                        <div
+                            class="flex size-6 items-center justify-center rounded-sm border"
+                            :class="{ 'bg-muted-foreground border-muted': activeWorkspace?.id === workspace.id }"
+                        >
+                            <Briefcase class="size-4 shrink-0" :class="{ 'text-white': activeWorkspace?.id === workspace.id }" />
                         </div>
                         {{ workspace.name }}
                         <DropdownMenuShortcut>⌘{{ index + 1 }}</DropdownMenuShortcut>
