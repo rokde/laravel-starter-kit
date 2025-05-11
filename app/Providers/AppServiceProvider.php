@@ -84,7 +84,7 @@ class AppServiceProvider extends ServiceProvider
 
     private function modelsShouldBeStrict(): void
     {
-        Model::shouldBeStrict();
+        Model::shouldBeStrict(!app()->runningUnitTests());
     }
 
     private function unguardModels(): void

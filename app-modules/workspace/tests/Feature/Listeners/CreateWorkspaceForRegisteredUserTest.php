@@ -17,7 +17,7 @@ test('it creates a workspace when user is registered', function (): void {
 
     $user = User::query()->where('email', 'test@example.com')->first();
 
-    $this->assertNull($user->workspace_id);
+    $this->assertNotNull($user->workspace_id);
     $this->assertDatabaseHas('workspaces', [
         'name' => 'My workspace',
         'user_id' => $user->id,
