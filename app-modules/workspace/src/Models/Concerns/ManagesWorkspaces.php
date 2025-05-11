@@ -28,7 +28,7 @@ trait ManagesWorkspaces
             $this->switchWorkspace($this->fallbackWorkspace());
         }
 
-        return $this->belongsTo(Workspace::class);
+        return $this->belongsTo(Workspace::class, 'workspace_id');
     }
 
     /**
