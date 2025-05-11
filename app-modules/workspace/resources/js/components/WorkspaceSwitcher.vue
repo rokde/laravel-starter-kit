@@ -10,7 +10,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
 import { useAuth } from '@/composables/useAuth';
-import { Link } from '@inertiajs/vue3';
+import { Link, router } from '@inertiajs/vue3';
 import { Workspace } from '@workspace/index';
 import { Briefcase, ChevronDown, Cog, Plus } from 'lucide-vue-next';
 import { computed, onMounted, ref } from 'vue';
@@ -20,7 +20,16 @@ const user = useAuth();
 const activeWorkspace = computed<Workspace | null>(() => workspaces.value.find((w: Workspace) => w.id === user.workspace_id));
 
 const switchActiveWorkspace = (workspace: Workspace) => {
-    console.log(workspace);
+    router.put(
+        route('workspaces.set-current'),
+        { workspace_id: workspace.id },
+        {
+            preserveScroll: true,
+            onSuccess: () => {
+                setTimeout(() => location.reload(), 10);
+            },
+        },
+    );
 };
 
 onMounted(() => {
@@ -42,7 +51,7 @@ onMounted(() => {
                     </SidebarMenuButton>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent class="w-64 rounded-lg" align="start" side="bottom" :side-offset="4">
-                    <DropdownMenuItem v-if="activeWorkspace" class="ga-2 p-2">
+                    <DropdownMenuItem v-if="activeWorkspace" class="gap-2 p-2">
                         <Link :href="route('workspaces.show')" class="flex items-center gap-2">
                             <div class="bg-background flex size-6 items-center justify-center rounded-md border">
                                 <Cog class="size-4" />
@@ -67,10 +76,12 @@ onMounted(() => {
                         <DropdownMenuShortcut>⌘{{ index + 1 }}</DropdownMenuShortcut>
                     </DropdownMenuItem>
                     <DropdownMenuItem class="ga-2 p-2">
-                        <div class="bg-background flex size-6 items-center justify-center rounded-md border">
-                            <Plus class="size-4" />
-                        </div>
-                        <div class="text-muted-foreground font-medium">{{ $t('Add workspace') }}</div>
+                        <Link :href="route('workspaces.create')" class="flex items-center gap-2">
+                            <div class="bg-background flex size-6 items-center justify-center rounded-md border">
+                                <Plus class="size-4" />
+                            </div>
+                            <div class="text-muted-foreground font-medium">{{ $t('Add workspace') }}</div>
+                        </Link>
                     </DropdownMenuItem>
                 </DropdownMenuContent>
             </DropdownMenu>
