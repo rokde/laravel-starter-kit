@@ -1,4 +1,7 @@
 {
+    "Add workspace": "Workspace anlegen",
     "Current workspace changed.": "Aktuellen workspace gewechselt.",
-    "Workspace created.": "Workspace erstellt."
+    "No workspace selected": "Kein Workspace gewählt",
+    "Workspace created.": "Workspace erstellt.",
+    "Workspaces": "Workspaces"
 }

@@ -243,6 +243,11 @@ const translations: Translations = {
                 phone_number: 'Telefonnummer',
             },
         },
+        'Add workspace': 'Workspace anlegen',
+        'Current workspace changed.': 'Aktuellen workspace gewechselt.',
+        'No workspace selected': 'Kein Workspace gewählt',
+        'Workspace created.': 'Workspace erstellt.',
+        Workspaces: 'Workspaces',
     },
     en: {
         'A new verification link has been sent to the email address you provided during registration.':
