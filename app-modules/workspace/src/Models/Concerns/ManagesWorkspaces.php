@@ -34,7 +34,7 @@ trait ManagesWorkspaces
     /**
      * Determine if the given workspace is the current workspace.
      */
-    public function isCurrentTeam(Workspace $workspace): bool
+    public function isCurrentWorkspace(Workspace $workspace): bool
     {
         return $workspace->id === $this->currentWorkspace->id;
     }
@@ -122,7 +122,7 @@ trait ManagesWorkspaces
     /**
      * Get the role that the user has on the workspace.
      */
-    public function teamRole(Workspace $workspace): ?Role
+    public function workspaceRole(Workspace $workspace): ?Role
     {
         if ($this->ownsWorkspace($workspace)) {
             return new OwnerRole();
