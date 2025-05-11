@@ -31,7 +31,7 @@ createInertiaApp({
             const [module, page] = name.split('::');
 
             return resolvePageComponent(
-                `../../app-modules/${module}/resources/js/pages/${page}.tsx`,
+                `../../app-modules/${module}/resources/js/pages/${page}.vue`,
                 import.meta.glob<DefineComponent>('../../app-modules/*/resources/js/pages/**/*.vue'),
             );
         } else {
