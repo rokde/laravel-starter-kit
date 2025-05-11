@@ -1,5 +1,6 @@
 {
     "Add workspace": "Workspace anlegen",
+    "Configure {name}": "{name} konfigurieren",
     "Current workspace changed.": "Aktuellen workspace gewechselt.",
     "No workspace selected": "Kein Workspace gewählt",
     "Workspace created.": "Workspace erstellt.",
