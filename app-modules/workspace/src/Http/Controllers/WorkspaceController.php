@@ -17,6 +17,13 @@ use Modules\Workspace\Http\Requests\SwitchWorkspaceRequest;
 
 class WorkspaceController
 {
+    public function create(Request $request): Response
+    {
+        return Inertia::render('workspace::Create', [
+            'owner' => $request->user(),
+        ]);
+    }
+
     public function store(
         StoreWorkspaceRequest $request,
         CreateWorkspace $createWorkspace,
