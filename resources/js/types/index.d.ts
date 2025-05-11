@@ -35,6 +35,7 @@ export interface User {
     locale: 'de' | 'en';
     created_at: string;
     updated_at: string;
+    workspace_id: number;
 }
 
 export type BreadcrumbItemType = BreadcrumbItem;
