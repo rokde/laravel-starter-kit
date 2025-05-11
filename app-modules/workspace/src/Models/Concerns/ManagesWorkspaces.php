@@ -89,7 +89,7 @@ trait ManagesWorkspaces
      */
     public function fallbackWorkspace(): Workspace
     {
-        return $this->ownedWorkspaces->latest('id')->first();
+        return $this->ownedWorkspaces->first();
     }
 
     /**

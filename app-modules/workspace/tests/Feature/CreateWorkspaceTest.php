@@ -7,7 +7,17 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 uses(RefreshDatabase::class);
 
-test('workspaces can be created', function (): void {
+test('workspace creation page is displayed', function (): void {
+    $user = User::factory()->create();
+
+    $response = $this
+        ->actingAs($user)
+        ->get('/workspaces/new');
+
+    $response->assertOk();
+});
+
+test('workspace can be created', function (): void {
     $this->actingAs($user = User::factory()->create());
 
     $this->post('/workspaces', [
