@@ -10,9 +10,6 @@ Route::middleware(['web', 'auth', 'verified'])
     ->prefix('workspaces')
     ->name('workspaces.')
     ->group(function (): void {
-        Route::get('/', [WorkspaceController::class, 'index'])
-            ->name('index');
-
         Route::post('/', [WorkspaceController::class, 'store'])
             ->name('store');
 
