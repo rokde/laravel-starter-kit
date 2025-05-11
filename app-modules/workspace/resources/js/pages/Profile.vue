@@ -26,7 +26,10 @@ const breadcrumbs: BreadcrumbItem[] = [
         title: t('Workspace settings'),
         href: '/workspaces/current',
     },
-    // current workspace name
+    {
+        title: props.workspace.name,
+        href: '/workspaces/current',
+    },
 ];
 
 const form = useForm({
