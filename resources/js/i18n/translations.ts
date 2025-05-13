@@ -251,27 +251,41 @@ const translations: Translations = {
         'For caching reasons, the workspace changer retains the previous name for a further 10 minutes.':
             'Aus Gründen des Cachings behält der Workspace-Wechsler den vorherigen Namen für weitere 10 Minuten bei.',
         Invitations: 'Einladungen',
-        'Invited.': 'Eingeladen.',
-        Role: 'Rolle',
-        'Send invite': 'Einladung verschicken',
         'Invite members': 'Mitglieder einladen',
-        'Work together with other users by inviting them to your workspace. Invitations can be sent to email addresses. Invitations can be revoked at any time.':
-            'Arbeiten Sie mit anderen Benutzern zusammen, indem Sie sie zu Ihrem Workspace einladen. Einladungen können an E-Mail-Adressen gesendet und  jederzeit widerrufen werden.',
+        'Invited.': 'Eingeladen.',
         'Manage your workspace and the acting members': 'Verwalten Sie Ihren Arbeitsbereich und die handelnden Personen',
         Members: 'Mitglieder',
         'No members yet.': 'Noch keine Mitglieder.',
         'No workspace selected': 'Kein Workspace gewählt',
         Owner: 'Eigentümer',
+        Role: 'Rolle',
         'Select a role': 'Bitte wählen Sie eine Rolle',
+        'Send invite': 'Einladung verschicken',
         'The workspace name and owner information.': 'Der Name des Arbeitsbereichs und die Eigentümerinformationen.',
         'This user already belongs to the workspace.': 'Dieser Benutzer gehört bereits zum Workspace.',
         'This user has already been invited to the workspace.': 'Dieser Benutzer wurde bereits zum Workspace eingeladen.',
-        Workspace: 'Workspace',
+        'Work together with other users by inviting them to your workspace. Invitations can be sent to email addresses. Invitations can be revoked at any time.':
+            'Arbeiten Sie mit anderen Benutzern zusammen, indem Sie sie zu Ihrem Workspace einladen. Einladungen können an E-Mail-Adressen gesendet und  jederzeit widerrufen werden.',
         'Workspace created.': 'Workspace erstellt.',
         'Workspace members': 'Workspace-Mitglieder',
         'Workspace settings': 'Workspace-Einstellungen',
         'Workspace updated.': 'Workspace aktualisiert.',
+        Workspace: 'Workspace',
         Workspaces: 'Workspaces',
+        roles: {
+            admin: {
+                name: 'Administrator',
+                description: 'Der Administrator hat alle Rechte.',
+            },
+            editor: {
+                name: 'Bearbeiter',
+                description: 'Der normale Mitarbeiter kann mitarbeiten im Workspace.',
+            },
+            visitor: {
+                name: 'Besucher',
+                description: 'Der Besucher kann nur lesend zugreifen.',
+            },
+        },
     },
     en: {
         'A new verification link has been sent to the email address you provided during registration.':
@@ -541,6 +555,20 @@ const translations: Translations = {
         'No workspace selected': 'No workspace selected',
         'Workspace created.': 'Workspace created.',
         Workspaces: 'Workspaces',
+        roles: {
+            admin: {
+                name: 'Administrator',
+                description: 'The admin of the workspace.',
+            },
+            editor: {
+                name: 'Editor',
+                description: 'The normal co-working user of the workspace.',
+            },
+            visitor: {
+                name: 'Visitor',
+                description: 'A readonly user of the workspace.',
+            },
+        },
     },
 };
 export default translations;
