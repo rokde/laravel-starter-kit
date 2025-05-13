@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import HeadingSmall from '@/components/HeadingSmall.vue';
-import UserInfo from '@/components/UserInfo.vue';
 import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
 import { getI18n } from '@/i18n';
@@ -8,16 +7,16 @@ import AppLayout from '@/layouts/AppLayout.vue';
 import type { BreadcrumbItem, User } from '@/types';
 import { Head } from '@inertiajs/vue3';
 import WorkspaceSettingsLayout from '@workspace/layouts/WorkspaceSettingsLayout.vue';
+import InvitationsManager from '@workspace/pages/invitations/components/InvitationsManager.vue';
 import InviteMemberForm from '@workspace/pages/members/components/InviteMemberForm.vue';
-import { Role, Workspace } from '@workspace/types';
-import MemberManager from './components/MemberManager.vue';
+import { Invitation, Role, Workspace } from '@workspace/types';
 
 const { t } = getI18n();
 
 interface Props {
     workspace: Workspace;
     owner: User;
-    members: Array<User & { role: string }>;
+    invitations: Invitation[];
     roles: { [key: string]: Role };
 }
 
@@ -33,35 +32,27 @@ const breadcrumbs: BreadcrumbItem[] = [
         href: '/workspaces/current',
     },
     {
-        title: t('Members'),
-        href: '/workspace/current/members',
+        title: t('Invitations'),
+        href: '/workspace/current/invitations',
     },
 ];
 </script>
 
 <template>
     <AppLayout :breadcrumbs="breadcrumbs">
-        <Head :title="$t('Workspace members')" />
+        <Head :title="$t('Workspace invitations')" />
 
         <WorkspaceSettingsLayout>
-            <HeadingSmall :title="props.workspace.name" :description="$t('All members of the workspace.')" />
+            <HeadingSmall :title="props.workspace.name" :description="$t('All invitations of the workspace.')" />
 
             <div class="space-y-6">
                 <div class="grid gap-2">
-                    <Label>{{ $t('Owner') }}</Label>
+                    <Label>{{ $t('Invitations') }}</Label>
 
-                    <div class="flex space-x-2">
-                        <UserInfo :user="props.owner" show-email />
+                    <div v-if="!props.invitations.length">
+                        {{ $t('No invitations yet.') }}
                     </div>
-                </div>
-
-                <div class="grid gap-2">
-                    <Label>{{ $t('Members') }}</Label>
-
-                    <div v-if="!props.members.length">
-                        {{ $t('No members yet.') }}
-                    </div>
-                    <MemberManager v-else :members="props.members" />
+                    <InvitationsManager v-else :invitations="props.invitations" :roles="props.roles" />
                 </div>
             </div>
 
