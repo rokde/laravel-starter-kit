@@ -27,7 +27,7 @@ class WorkspaceInvitationsController
         return Inertia::render('workspace::invitations/Index', [
             'workspace' => $workspace->only('id', 'name'),
             'owner' => $workspace->owner,
-            'invitations' => $workspace->invitations->map(fn($invitation) => $invitation->only('id', 'email', 'role',
+            'invitations' => $workspace->invitations->map(fn ($invitation) => $invitation->only('id', 'email', 'role',
                 'created_at')),
             'roles' => RoleRegistry::$roles,
         ]);
@@ -56,7 +56,7 @@ class WorkspaceInvitationsController
     ): RedirectResponse {
         abort_unless($request->hasValidSignature(), Response::HTTP_FORBIDDEN);
 
-        if (!$request->user()) {
+        if (! $request->user()) {
             return redirect()->route('login');
         }
 
