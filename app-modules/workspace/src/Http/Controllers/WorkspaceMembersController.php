@@ -7,6 +7,7 @@ namespace Modules\Workspace\Http\Controllers;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
+use Modules\Workspace\Models\RoleRegistry;
 
 class WorkspaceMembersController
 {
@@ -20,6 +21,7 @@ class WorkspaceMembersController
             'workspace' => $workspace->only('id', 'name'),
             'owner' => $workspace->owner,
             'members' => $workspace->users,
+            'roles' => RoleRegistry::$roles,
         ]);
     }
 }
