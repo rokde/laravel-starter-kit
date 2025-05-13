@@ -7,8 +7,8 @@ import { getI18n } from '@/i18n';
 import AppLayout from '@/layouts/AppLayout.vue';
 import type { BreadcrumbItem, User } from '@/types';
 import { Head } from '@inertiajs/vue3';
-import { Workspace } from '@workspace/index';
 import WorkspaceSettingsLayout from '@workspace/layouts/WorkspaceSettingsLayout.vue';
+import { Workspace } from '@workspace/types';
 import MemberManager from './MemberManager.vue';
 
 const { t } = getI18n();
