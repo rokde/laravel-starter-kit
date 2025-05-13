@@ -22,7 +22,8 @@ class InternalApiWorkspaceController
                         'id' => $workspace->id,
                         'name' => $workspace->name,
                     ];
-                }),
+                })
+                ->values(),
         ], JsonResponse::HTTP_OK, [
             'Cache-Control' => 'max-age=600, public, stale-while-revalidate=86400, stale-if-error=604800s',
         ]);
