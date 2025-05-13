@@ -5,6 +5,7 @@ declare(strict_types=1);
 use Illuminate\Support\Facades\Route;
 use Modules\Workspace\Http\Controllers\Api\InternalApiWorkspaceController;
 use Modules\Workspace\Http\Controllers\WorkspaceController;
+use Modules\Workspace\Http\Controllers\WorkspaceInvitationsController;
 use Modules\Workspace\Http\Controllers\WorkspaceMembersController;
 
 Route::middleware(['web', 'auth', 'verified'])
@@ -30,6 +31,16 @@ Route::middleware(['web', 'auth', 'verified'])
             ->group(function (): void {
                 Route::get('/', [WorkspaceMembersController::class, 'index'])
                     ->name('index');
+            });
+
+        Route::prefix('current/invitations')
+            ->name('invitations.')
+            ->group(function (): void {
+                Route::get('/', [WorkspaceInvitationsController::class, 'index'])
+                    ->name('index');
+
+                Route::post('/', [WorkspaceInvitationsController::class, 'store'])
+                    ->name('store');
             });
     });
 
