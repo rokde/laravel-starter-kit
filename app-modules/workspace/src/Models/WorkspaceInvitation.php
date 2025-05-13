@@ -10,7 +10,7 @@ use Illuminate\Support\Str;
 
 class WorkspaceInvitation extends Model
 {
-    protected string $table = 'workspace_member_invitations';
+    protected $table = 'workspace_member_invitations';
 
     /**
      * The attributes that are mass assignable.
