@@ -2,8 +2,9 @@
 
 declare(strict_types=1);
 
-use Modules\Workspace\Models\Workspace;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Modules\Workspace\Models\Workspace;
 
 uses(RefreshDatabase::class);
 
@@ -19,8 +20,8 @@ test('workspace has expected attributes', function (): void {
     // Assert
     expect($workspace->name)->toBe($name);
     expect($workspace->owner)->not()->toBeNull();
-    expect($workspace->users)->toBeInstanceOf(\Illuminate\Database\Eloquent\Collection::class);
-    expect($workspace->invitations)->toBeInstanceOf(\Illuminate\Database\Eloquent\Collection::class);
+    expect($workspace->users)->toBeInstanceOf(Collection::class);
+    expect($workspace->invitations)->toBeInstanceOf(Collection::class);
 });
 
 test('workspace can be retrieved by id', function (): void {
