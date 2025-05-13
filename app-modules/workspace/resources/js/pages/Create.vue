@@ -3,11 +3,11 @@ import InputError from '@/components/InputError.vue';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import UserInfo from '@/components/UserInfo.vue';
 import { getI18n } from '@/i18n';
 import AppLayout from '@/layouts/AppLayout.vue';
 import type { BreadcrumbItem, User } from '@/types';
 import { Head, useForm } from '@inertiajs/vue3';
-import { SquareUserRound } from 'lucide-vue-next';
 
 const { t } = getI18n();
 
@@ -43,14 +43,8 @@ const submit = () => {
                 <div class="grid gap-2">
                     <Label for="owner_id">{{ $t('Owner') }}</Label>
 
-                    <div class="mt-2 flex items-center">
-                        <SquareUserRound class="text-muted-foreground size-8" />
-                        <div class="ms-4 leading-tight">
-                            <div class="text-gray-900 dark:text-white">{{ props.owner.name }}</div>
-                            <div class="text-sm text-gray-700 dark:text-gray-300">
-                                {{ props.owner.email }}
-                            </div>
-                        </div>
+                    <div class="flex space-x-2">
+                        <UserInfo :user="props.owner" show-email />
                     </div>
                 </div>
 
