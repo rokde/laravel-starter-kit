@@ -12,7 +12,7 @@ import { SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui
 import { useAuth } from '@/composables/useAuth';
 import { useInitials } from '@/composables/useInitials';
 import { Link, router } from '@inertiajs/vue3';
-import { Workspace } from '@workspace/index';
+import type { Workspace } from '@workspace/types';
 import { ChevronDown, Cog, Plus } from 'lucide-vue-next';
 import { computed, onMounted, ref } from 'vue';
 
