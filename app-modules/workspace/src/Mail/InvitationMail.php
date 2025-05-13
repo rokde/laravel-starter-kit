@@ -34,7 +34,7 @@ class InvitationMail extends Mailable implements ShouldQueue
     public function content(): Content
     {
         return new Content(
-            markdown: 'mail.invitation',
+            markdown: 'workspace::mail.invitation',
             with: [
                 'acceptUrl' => $this->invitation->getAcceptUrl(),
             ],
