@@ -58,15 +58,15 @@ const submit = () => {
                     <Select v-model="form.role">
                         <SelectTrigger class="w-[180px]">
                             <SelectValue :placeholder="$t('Select a role')">{{
-                                form.role ? props.roles[form.role]?.name : $t('Select a role')
+                                form.role ? $t(`roles.${form.role}.name`) : $t('Select a role')
                             }}</SelectValue>
                         </SelectTrigger>
                         <SelectContent>
                             <SelectGroup>
                                 <SelectItem v-for="role of props.roles" :key="role.key" :value="role.key">
                                     <div class="flex flex-col items-start">
-                                        <span>{{ role.name }}</span>
-                                        <span class="text-muted-foreground">{{ role.description }}</span>
+                                        <span>{{ $t(`roles.${role.key}.name`) }}</span>
+                                        <span class="text-muted-foreground">{{ $t(`roles.${role.key}.description`) }}</span>
                                     </div>
                                 </SelectItem>
                             </SelectGroup>
