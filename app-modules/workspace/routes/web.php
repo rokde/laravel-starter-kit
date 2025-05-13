@@ -25,9 +25,9 @@ Route::middleware(['web', 'auth', 'verified'])
         Route::put('/set-current', [WorkspaceController::class, 'setCurrent'])
             ->name('set-current');
 
-            Route::prefix('current/members')
-                ->name('members.')
-                ->group(function () {
+        Route::prefix('current/members')
+            ->name('members.')
+            ->group(function (): void {
                 Route::get('/', [WorkspaceMembersController::class, 'index'])
                     ->name('index');
             });
