@@ -6,6 +6,7 @@ namespace Modules\Workspace\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Str;
 
 class WorkspaceInvitation extends Model
@@ -38,5 +39,12 @@ class WorkspaceInvitation extends Model
             ->replace('.', ' ')
             ->title()
             ->toString();
+    }
+
+    public function getAcceptUrl(): string
+    {
+        return URL::signedRoute('public.api.invitations.accept', [
+            'invitation' => $this,
+        ]);
     }
 }

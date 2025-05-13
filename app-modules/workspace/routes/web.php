@@ -44,6 +44,15 @@ Route::middleware(['web', 'auth', 'verified'])
             });
     });
 
+Route::middleware(['web'])
+    ->prefix('link')
+    ->name('public.api.')
+    ->group(function (): void {
+        Route::get('/{invitation}/accept', [WorkspaceInvitationsController::class, 'acceptInvitation'])
+            ->whereNumber('invitation')
+            ->name('invitations.accept');
+    });
+
 Route::middleware(['web', 'auth', 'verified'])
     ->prefix('internal-api/workspaces')
     ->name('internal.api.workspaces.')

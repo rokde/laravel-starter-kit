@@ -7,6 +7,8 @@ namespace Modules\Workspace\Actions;
 use App\ValueObjects\Id;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Mail;
+use Modules\Workspace\Mail\InvitationMail;
 use Modules\Workspace\Models\Workspace;
 use Modules\Workspace\Models\WorkspaceInvitation;
 
@@ -28,7 +30,8 @@ class InviteMember
             ]);
         });
 
-        // defer mail or notification sending
+        Mail::to($email)
+            ->send(new InvitationMail($invitation));
 
         return $invitation;
     }
