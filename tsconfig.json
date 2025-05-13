@@ -44,6 +44,7 @@
             "vite/client",
             // "vue/tsx",
             "./resources/js/types",
+            "./app-modules/workspace/resources/js/types",
             "vue-i18n/dist/vue-i18n.d.ts"
         ] /* Specify type package names to be included without being referenced in a source file. */,
         // "allowUmdGlobalAccess": true,                     /* Allow accessing UMD globals from modules. */
