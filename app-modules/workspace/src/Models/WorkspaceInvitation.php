@@ -6,9 +6,12 @@ namespace Modules\Workspace\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Str;
 
 class WorkspaceInvitation extends Model
 {
+    protected string $table = 'workspace_member_invitations';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -25,5 +28,15 @@ class WorkspaceInvitation extends Model
     public function workspace(): BelongsTo
     {
         return $this->belongsTo(Workspace::class);
+    }
+
+    public function generateNameFromEmail(): string
+    {
+        return Str::of($this->email)
+            ->before('@')
+            ->before('+')
+            ->replace('.', ' ')
+            ->title()
+            ->toString();
     }
 }
