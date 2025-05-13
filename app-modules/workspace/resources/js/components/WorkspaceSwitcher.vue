@@ -10,14 +10,17 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
 import { useAuth } from '@/composables/useAuth';
+import { useInitials } from '@/composables/useInitials';
 import { Link, router } from '@inertiajs/vue3';
 import { Workspace } from '@workspace/index';
-import { Briefcase, ChevronDown, Cog, Plus } from 'lucide-vue-next';
+import { ChevronDown, Cog, Plus } from 'lucide-vue-next';
 import { computed, onMounted, ref } from 'vue';
 
 const workspaces = ref<Workspace[]>([]);
 const user = useAuth();
 const activeWorkspace = computed<Workspace | null>(() => workspaces.value.find((w: Workspace) => w.id === user.workspace_id));
+
+const { getInitials } = useInitials();
 
 const switchActiveWorkspace = (workspace: Workspace) => {
     router.put(
@@ -73,7 +76,9 @@ onMounted(() => {
                             class="flex size-6 items-center justify-center rounded-sm border"
                             :class="{ 'bg-muted-foreground border-muted': activeWorkspace?.id === workspace.id }"
                         >
-                            <Briefcase class="size-4 shrink-0" :class="{ 'text-white': activeWorkspace?.id === workspace.id }" />
+                            <span class="size-4 shrink-0 overflow-hidden text-xs" :class="{ 'text-white': activeWorkspace?.id === workspace.id }">{{
+                                getInitials(activeWorkspace.name)
+                            }}</span>
                         </div>
                         {{ workspace.name }}
                         <DropdownMenuShortcut>⌘{{ index + 1 }}</DropdownMenuShortcut>
