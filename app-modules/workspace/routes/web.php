@@ -5,6 +5,7 @@ declare(strict_types=1);
 use Illuminate\Support\Facades\Route;
 use Modules\Workspace\Http\Controllers\Api\InternalApiWorkspaceController;
 use Modules\Workspace\Http\Controllers\WorkspaceController;
+use Modules\Workspace\Http\Controllers\WorkspaceMembersController;
 
 Route::middleware(['web', 'auth', 'verified'])
     ->prefix('workspaces')
@@ -23,6 +24,13 @@ Route::middleware(['web', 'auth', 'verified'])
 
         Route::put('/set-current', [WorkspaceController::class, 'setCurrent'])
             ->name('set-current');
+
+            Route::prefix('current/members')
+                ->name('members.')
+                ->group(function () {
+                Route::get('/', [WorkspaceMembersController::class, 'index'])
+                    ->name('index');
+            });
     });
 
 Route::middleware(['web', 'auth', 'verified'])
