@@ -6,7 +6,7 @@
         "build:ssr": "vite build && vite build --ssr",
         "dev": "vite",
         "format": "prettier --write resources/ && prettier --write app-modules/**/resources/",
-        "format:check": "prettier --check resources/",
+        "format:check": "prettier --check resources/ && prettier --check app-modules/**/resources/",
         "lint": "eslint . --fix"
     },
     "devDependencies": {
