@@ -74,4 +74,12 @@ class Workspace extends Model
     {
         return $this->hasMany(WorkspaceInvitation::class);
     }
+
+    /**
+     * Determine if the given email address belongs to a user on the team.
+     */
+    public function hasUserWithEmail(string $email): bool
+    {
+        return $this->allUsers()->contains(fn ($user): bool => $user->email === $email);
+    }
 }
