@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import HeadingSmall from '@/components/HeadingSmall.vue';
-import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
 import { getI18n } from '@/i18n';
 import AppLayout from '@/layouts/AppLayout.vue';
@@ -47,8 +46,6 @@ const breadcrumbs: BreadcrumbItem[] = [
 
             <div class="space-y-6">
                 <div class="grid gap-2">
-                    <Label>{{ $t('Invitations') }}</Label>
-
                     <div v-if="!props.invitations.length">
                         {{ $t('No invitations yet.') }}
                     </div>
