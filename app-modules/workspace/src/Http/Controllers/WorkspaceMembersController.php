@@ -16,11 +16,9 @@ class WorkspaceMembersController
         $workspace = $request->user()->currentWorkspace;
         abort_if($workspace === null, 404);
 
-        $owner = $workspace->owner;
-
         return Inertia::render('workspace::members/Index', [
             'workspace' => $workspace->only('id', 'name'),
-            'owner' => $owner,
+            'owner' => $workspace->owner,
             'members' => $workspace->users,
         ]);
     }
