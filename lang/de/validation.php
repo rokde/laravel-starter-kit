@@ -125,6 +125,7 @@ return [
     'required_with_all' => ':attribute muss ausgefüllt werden, wenn :values ausgefüllt wurde.',
     'required_without' => ':attribute muss ausgefüllt werden, wenn :values nicht ausgefüllt wurde.',
     'required_without_all' => ':attribute muss ausgefüllt werden, wenn keines der Felder :values ausgefüllt wurde.',
+    'role' => ':attribute muss eine gültige Rolle sein.',
     'same' => ':attribute und :other müssen übereinstimmen.',
     'size' => [
         'array' => ':attribute muss genau :size Elemente haben.',
