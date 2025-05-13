@@ -219,6 +219,7 @@ const translations: Translations = {
             required_with_all: '{attribute} muss ausgefüllt werden, wenn {values} ausgefüllt wurde.',
             required_without: '{attribute} muss ausgefüllt werden, wenn {values} nicht ausgefüllt wurde.',
             required_without_all: '{attribute} muss ausgefüllt werden, wenn keines der Felder {values} ausgefüllt wurde.',
+            role: '{attribute} muss eine gültige Rolle sein.',
             same: '{attribute} und {other} müssen übereinstimmen.',
             size: {
                 array: '{attribute} muss genau {size} Elemente haben.',
@@ -250,12 +251,21 @@ const translations: Translations = {
         'For caching reasons, the workspace changer retains the previous name for a further 10 minutes.':
             'Aus Gründen des Cachings behält der Workspace-Wechsler den vorherigen Namen für weitere 10 Minuten bei.',
         Invitations: 'Einladungen',
+        'Invited.': 'Eingeladen.',
+        Role: 'Rolle',
+        'Send invite': 'Einladung verschicken',
+        'Invite members': 'Mitglieder einladen',
+        'Work together with other users by inviting them to your workspace. Invitations can be sent to email addresses. Invitations can be revoked at any time.':
+            'Arbeiten Sie mit anderen Benutzern zusammen, indem Sie sie zu Ihrem Workspace einladen. Einladungen können an E-Mail-Adressen gesendet und  jederzeit widerrufen werden.',
         'Manage your workspace and the acting members': 'Verwalten Sie Ihren Arbeitsbereich und die handelnden Personen',
         Members: 'Mitglieder',
         'No members yet.': 'Noch keine Mitglieder.',
         'No workspace selected': 'Kein Workspace gewählt',
         Owner: 'Eigentümer',
+        'Select a role': 'Bitte wählen Sie eine Rolle',
         'The workspace name and owner information.': 'Der Name des Arbeitsbereichs und die Eigentümerinformationen.',
+        'This user already belongs to the workspace.': 'Dieser Benutzer gehört bereits zum Workspace.',
+        'This user has already been invited to the workspace.': 'Dieser Benutzer wurde bereits zum Workspace eingeladen.',
         Workspace: 'Workspace',
         'Workspace created.': 'Workspace erstellt.',
         'Workspace members': 'Workspace-Mitglieder',
@@ -501,6 +511,7 @@ const translations: Translations = {
             required_with_all: 'The {attribute} field is required when {values} are present.',
             required_without: 'The {attribute} field is required when {values} is not present.',
             required_without_all: 'The {attribute} field is required when none of {values} are present.',
+            role: 'The {attribute} field has to be a valid role.',
             same: 'The {attribute} field must match {other}.',
             size: {
                 array: 'The {attribute} field must contain {size} items.',
