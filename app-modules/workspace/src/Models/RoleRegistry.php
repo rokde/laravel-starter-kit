@@ -38,4 +38,12 @@ final class RoleRegistry
             static::$roles[$key] = $role;
         });
     }
+
+    /**
+     * @return array<array-key, string>
+     */
+    public static function roleKeys(): array
+    {
+        return array_keys(self::$roles);
+    }
 }
