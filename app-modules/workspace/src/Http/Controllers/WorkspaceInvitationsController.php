@@ -30,6 +30,9 @@ class WorkspaceInvitationsController
             'invitations' => $workspace->invitations->map(fn ($invitation) => $invitation->only('id', 'email', 'role',
                 'created_at')),
             'roles' => RoleRegistry::$roles,
+            'abilities' => [
+                'members.create' => $request->user()->can('addWorkspaceMember', $workspace),
+            ],
         ]);
     }
 
