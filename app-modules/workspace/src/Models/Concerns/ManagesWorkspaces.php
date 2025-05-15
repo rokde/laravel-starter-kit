@@ -116,7 +116,7 @@ trait ManagesWorkspaces
             return true;
         }
 
-        return (bool) $this->workspaces->contains(fn ($t): bool => $t->id === $workspace->id);
+        return $this->workspaces->contains(fn ($t): bool => $t->id === $workspace->id);
     }
 
     /**
