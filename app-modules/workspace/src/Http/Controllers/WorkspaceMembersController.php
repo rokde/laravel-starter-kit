@@ -25,6 +25,9 @@ class WorkspaceMembersController
             'owner' => $workspace->owner,
             'members' => $workspace->users,
             'roles' => RoleRegistry::$roles,
+            'abilities' => [
+                'members.update' => $request->user()->can('updateWorkspaceMember', $workspace),
+            ],
         ]);
     }
 
