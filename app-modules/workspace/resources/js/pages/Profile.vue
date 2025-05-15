@@ -17,6 +17,9 @@ const { t } = getI18n();
 interface Props {
     workspace: Workspace;
     owner: User;
+    abilities: {
+        'workspace.update': boolean;
+    };
 }
 
 const props = defineProps<Props>();
@@ -60,12 +63,20 @@ const submit = () => {
 
                 <div class="grid gap-2">
                     <Label for="name">{{ $t('Name') }}</Label>
-                    <Input id="name" class="mt-1 block w-full" v-model="form.name" required autocomplete="off" :placeholder="$t('Full name')" />
+                    <Input
+                        id="name"
+                        class="mt-1 block w-full"
+                        v-model="form.name"
+                        required
+                        autocomplete="off"
+                        :placeholder="$t('Full name')"
+                        :disabled="!props.abilities['workspace.update']"
+                    />
                     <InputError class="mt-2" :message="form.errors.name" />
                 </div>
 
                 <div class="flex items-center gap-4">
-                    <Button :disabled="form.processing">{{ $t('Save') }}</Button>
+                    <Button :disabled="!props.abilities['workspace.update'] || form.processing">{{ $t('Save') }}</Button>
 
                     <Transition
                         enter-active-class="transition ease-in-out"

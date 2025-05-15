@@ -48,6 +48,9 @@ class WorkspaceController
         return Inertia::render('workspace::Profile', [
             'workspace' => $workspace->only('id', 'name'),
             'owner' => $owner,
+            'abilities' => [
+                'workspace.update' => $request->user()->can('update', $workspace),
+            ],
         ]);
     }
 
