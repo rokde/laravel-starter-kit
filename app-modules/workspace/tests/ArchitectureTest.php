@@ -8,5 +8,6 @@ arch('Test the domain module boundaries for the workspace module.')
     ->ignoring([
         'Modules\Workspace\Contracts',
         'Modules\Workspace\DataTransferObjects',
+        'Modules\Workspace\Events',
         'Modules\Workspace\Models\Concerns\ManagesWorkspaces',
     ]);
