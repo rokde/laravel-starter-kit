@@ -20,6 +20,7 @@ interface Props {
     members: Array<User & { role: string }>;
     roles: { [key: string]: Role };
     abilities: {
+        'members.create': boolean;
         'members.update': boolean;
     };
 }
@@ -68,9 +69,11 @@ const breadcrumbs: BreadcrumbItem[] = [
                 </div>
             </div>
 
-            <Separator />
+            <template v-if="props.abilities['members.create']">
+                <Separator />
 
-            <InviteMemberForm :roles="props.roles" />
+                <InviteMemberForm :roles="props.roles" />
+            </template>
         </WorkspaceSettingsLayout>
     </AppLayout>
 </template>

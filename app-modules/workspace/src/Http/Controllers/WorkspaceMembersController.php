@@ -26,6 +26,7 @@ class WorkspaceMembersController
             'members' => $workspace->users,
             'roles' => RoleRegistry::$roles,
             'abilities' => [
+                'members.create' => $request->user()->can('addWorkspaceMember', $workspace),
                 'members.update' => $request->user()->can('updateWorkspaceMember', $workspace),
             ],
         ]);
