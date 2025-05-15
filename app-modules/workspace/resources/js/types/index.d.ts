@@ -15,3 +15,14 @@ export interface Invitation {
     role: string;
     created_at: string;
 }
+
+export interface WorkspaceOwner {
+    id: number;
+    name: string;
+    email: string;
+}
+
+export interface WorkspaceInfo extends Workspace {
+    currentWorkspace: boolean;
+    owner: WorkspaceOwner;
+}
