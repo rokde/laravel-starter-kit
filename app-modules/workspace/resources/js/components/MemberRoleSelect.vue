@@ -5,8 +5,11 @@ import { Role } from '@workspace/types';
 interface Props {
     modelValue: string;
     roles: { [key: string]: Role };
+    disabled?: boolean;
 }
-const props = defineProps<Props>();
+const props = withDefaults(defineProps<Props>(), {
+    disabled: false,
+});
 
 const emits = defineEmits<{
     (e: 'update:modelValue', value: string): void;
@@ -14,7 +17,7 @@ const emits = defineEmits<{
 </script>
 
 <template>
-    <Select :model-value="props.modelValue" @update:modelValue="emits('update:modelValue', $event)">
+    <Select :model-value="props.modelValue" @update:modelValue="emits('update:modelValue', $event)" :disabled="props.disabled">
         <SelectTrigger class="w-[180px]">
             <SelectValue :placeholder="$t('Select a role')">
                 {{ props.modelValue ? $t(`roles.${props.modelValue}.name`) : $t('Select a role') }}
