@@ -9,9 +9,12 @@ import { ref } from 'vue';
 interface Props {
     members: Array<User & { role: string; membership: { role: string } }>;
     roles: { [key: string]: Role };
+    disabled?: boolean;
 }
 
-const props = defineProps<Props>();
+const props = withDefaults(defineProps<Props>(), {
+    disabled: false,
+});
 
 const currentId = ref<number | null>(null);
 const form = useForm({
@@ -46,6 +49,7 @@ const modifyRoleForMember = (id: number, role: string) => {
                 :model-value="member.membership.role"
                 @update:model-value="modifyRoleForMember(member.id, $event)"
                 :roles="props.roles"
+                :disabled="props.disabled"
             />
         </div>
     </div>
