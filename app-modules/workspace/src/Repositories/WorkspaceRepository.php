@@ -34,6 +34,7 @@ class WorkspaceRepository implements WorkspaceRepositoryContract
                     ),
                     currentWorkspace: $this->user->isCurrentWorkspace($workspace),
                 );
-            });
+            })
+            ->values();
     }
 }
