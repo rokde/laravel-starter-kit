@@ -30,6 +30,9 @@ Route::middleware(['web', 'auth', 'verified'])
             ->group(function (): void {
                 Route::get('/', [WorkspaceMembersController::class, 'index'])
                     ->name('index');
+
+                Route::patch('/', [WorkspaceMembersController::class, 'update'])
+                    ->name('update');
             });
 
         Route::prefix('current/invitations')
