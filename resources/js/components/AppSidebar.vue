@@ -46,7 +46,11 @@ const footerNavItems: NavItem[] = [
                     </SidebarMenuButton>
                 </SidebarMenuItem>
             </SidebarMenu>
-            <WorkspaceSwitcher />
+            <SidebarMenu>
+                <SidebarMenuItem>
+                    <WorkspaceSwitcher />
+                </SidebarMenuItem>
+            </SidebarMenu>
         </SidebarHeader>
 
         <SidebarContent>
