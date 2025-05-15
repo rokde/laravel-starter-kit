@@ -9,11 +9,11 @@ import { ref } from 'vue';
 interface Props {
     members: Array<User & { role: string; membership: { role: string } }>;
     roles: { [key: string]: Role };
-    disabled?: boolean;
+    readonly?: boolean;
 }
 
 const props = withDefaults(defineProps<Props>(), {
-    disabled: false,
+    readonly: false,
 });
 
 const currentId = ref<number | null>(null);
@@ -49,7 +49,7 @@ const modifyRoleForMember = (id: number, role: string) => {
                 :model-value="member.membership.role"
                 @update:model-value="modifyRoleForMember(member.id, $event)"
                 :roles="props.roles"
-                :disabled="props.disabled"
+                :disabled="props.readonly"
             />
         </div>
     </div>

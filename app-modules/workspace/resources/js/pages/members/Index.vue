@@ -64,7 +64,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                     <div v-if="!props.members.length">
                         {{ $t('No members yet.') }}
                     </div>
-                    <MemberManager v-else :members="props.members" :roles="props.roles" :disabled="!props.abilities['members.update']" />
+                    <MemberManager v-else :members="props.members" :roles="props.roles" :readonly="!props.abilities['members.update']" />
                 </div>
             </div>
 
