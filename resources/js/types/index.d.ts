@@ -1,4 +1,5 @@
 import type { PageProps } from '@inertiajs/core';
+import { WorkspaceInfo } from '@workspace/resources/js/types';
 import type { LucideIcon } from 'lucide-vue-next';
 import type { Config } from 'ziggy-js';
 
@@ -24,6 +25,7 @@ export interface SharedData extends PageProps {
     auth: Auth;
     ziggy: Config & { location: string };
     sidebarOpen: boolean;
+    knownWorkspaces: WorkspaceInfo[];
 }
 
 export interface User {
