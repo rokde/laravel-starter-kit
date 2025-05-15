@@ -19,6 +19,7 @@ import { getInitials } from '@/composables/useInitials';
 import { getI18n } from '@/i18n';
 import type { BreadcrumbItem, NavItem } from '@/types';
 import { Link, usePage } from '@inertiajs/vue3';
+import WorkspaceSwitcher from '@workspace/components/WorkspaceSwitcher.vue';
 import { BookOpen, Folder, LayoutGrid, Menu, Search } from 'lucide-vue-next';
 import { computed } from 'vue';
 
@@ -164,6 +165,7 @@ const rightNavItems: NavItem[] = [
                         </div>
                     </div>
 
+                    <WorkspaceSwitcher align="end" />
                     <DropdownMenu>
                         <DropdownMenuTrigger :as-child="true">
                             <Button
