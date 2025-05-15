@@ -19,6 +19,9 @@ interface Props {
     owner: User;
     members: Array<User & { role: string }>;
     roles: { [key: string]: Role };
+    abilities: {
+        'members.update': boolean;
+    };
 }
 
 const props = defineProps<Props>();
@@ -61,7 +64,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                     <div v-if="!props.members.length">
                         {{ $t('No members yet.') }}
                     </div>
-                    <MemberManager v-else :members="props.members" :roles="props.roles" />
+                    <MemberManager v-else :members="props.members" :roles="props.roles" :disabled="!props.abilities['members.update']" />
                 </div>
             </div>
 
