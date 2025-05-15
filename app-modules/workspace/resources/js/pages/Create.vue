@@ -51,9 +51,6 @@ const submit = () => {
                 <div class="grid gap-2">
                     <Label for="name">{{ $t('Name') }}</Label>
                     <Input id="name" class="mt-1 block w-full" v-model="form.name" required autocomplete="off" :placeholder="$t('Name')" autofocus />
-                    <p class="text-muted-foreground text-sm dark:text-red-500">
-                        {{ $t('For caching reasons, the workspace changer retains the previous name for a further 10 minutes.') }}
-                    </p>
                     <InputError class="mt-2" :message="form.errors.name" />
                 </div>
 
