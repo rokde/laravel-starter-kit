@@ -9,20 +9,20 @@ import {
     DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
-import { useAuth } from '@/composables/useAuth';
 import { useInitials } from '@/composables/useInitials';
 import { Link, router } from '@inertiajs/vue3';
-import type { Workspace } from '@workspace/types';
+import { useKnownWorkspaces } from '@workspace/composables/useKnownWorkspaces';
+import type { WorkspaceInfo } from '@workspace/types';
 import { ChevronDown, Cog, Plus } from 'lucide-vue-next';
-import { computed, onMounted, ref } from 'vue';
+import { computed } from 'vue';
 
-const workspaces = ref<Workspace[]>([]);
-const user = useAuth();
-const activeWorkspace = computed<Workspace | null>(() => workspaces.value.find((w: Workspace) => w.id === user.workspace_id));
+const workspaces = useKnownWorkspaces();
+
+const activeWorkspace = computed<WorkspaceInfo>(() => workspaces.find((w: WorkspaceInfo) => w.currentWorkspace));
 
 const { getInitials } = useInitials();
 
-const switchActiveWorkspace = (workspace: Workspace) => {
+const switchActiveWorkspace = (workspace: WorkspaceInfo) => {
     router.put(
         route('workspaces.set-current'),
         { workspace_id: workspace.id },
@@ -34,13 +34,6 @@ const switchActiveWorkspace = (workspace: Workspace) => {
         },
     );
 };
-
-onMounted(() => {
-    fetch(route('internal.api.workspaces.index'))
-        .then((response) => response.json())
-        .then((data: { workspaces: Workspace[] }) => (workspaces.value = data.workspaces))
-        .catch((error) => console.error('Error:', error));
-});
 </script>
 
 <template>
@@ -74,9 +67,9 @@ onMounted(() => {
                     >
                         <div
                             class="flex size-6 items-center justify-center rounded-sm border"
-                            :class="{ 'bg-muted-foreground border-muted': activeWorkspace?.id === workspace.id }"
+                            :class="{ 'bg-muted-foreground border-muted': workspace.currentWorkspace }"
                         >
-                            <span class="size-4 shrink-0 overflow-hidden text-xs" :class="{ 'text-white': activeWorkspace?.id === workspace.id }">{{
+                            <span class="size-4 shrink-0 overflow-hidden text-xs" :class="{ 'text-white': workspace.currentWorkspace }">{{
                                 getInitials(activeWorkspace.name)
                             }}</span>
                         </div>
