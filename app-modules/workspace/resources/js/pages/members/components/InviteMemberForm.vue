@@ -4,8 +4,8 @@ import InputError from '@/components/InputError.vue';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useForm } from '@inertiajs/vue3';
+import MemberRoleSelect from '@workspace/components/MemberRoleSelect.vue';
 import { Role } from '@workspace/types';
 
 interface Props {
@@ -55,23 +55,7 @@ const submit = () => {
 
                 <div class="grid gap-2">
                     <Label for="role">{{ $t('Role') }}</Label>
-                    <Select v-model="form.role">
-                        <SelectTrigger class="w-[180px]">
-                            <SelectValue :placeholder="$t('Select a role')">{{
-                                form.role ? $t(`roles.${form.role}.name`) : $t('Select a role')
-                            }}</SelectValue>
-                        </SelectTrigger>
-                        <SelectContent>
-                            <SelectGroup>
-                                <SelectItem v-for="role of props.roles" :key="role.key" :value="role.key">
-                                    <div class="flex flex-col items-start">
-                                        <span>{{ $t(`roles.${role.key}.name`) }}</span>
-                                        <span class="text-muted-foreground">{{ $t(`roles.${role.key}.description`) }}</span>
-                                    </div>
-                                </SelectItem>
-                            </SelectGroup>
-                        </SelectContent>
-                    </Select>
+                    <MemberRoleSelect v-model="form.role" :roles="props.roles" />
                     <InputError class="mt-2" :message="form.errors.role" />
                 </div>
             </div>
