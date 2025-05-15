@@ -4,6 +4,7 @@ import type { User } from '@/types';
 import { useForm } from '@inertiajs/vue3';
 import MemberRoleSelect from '@workspace/components/MemberRoleSelect.vue';
 import { Role } from '@workspace/types';
+import { Check } from 'lucide-vue-next';
 import { ref } from 'vue';
 
 interface Props {
@@ -43,7 +44,7 @@ const modifyRoleForMember = (id: number, role: string) => {
                 leave-active-class="transition ease-in-out"
                 leave-to-class="opacity-0"
             >
-                <p v-show="form.recentlySuccessful && currentId === member.id" class="text-sm text-neutral-600">{{ $t('Saved.') }}</p>
+                <Check v-show="form.recentlySuccessful && currentId === member.id" class="size-4 text-green-600" />
             </Transition>
             <MemberRoleSelect
                 :model-value="member.membership.role"
