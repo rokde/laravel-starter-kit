@@ -41,6 +41,9 @@ const form = useForm({
 const submit = () => {
     form.patch(route('workspaces.update'), {
         preserveScroll: true,
+        onSuccess: () => {
+            setTimeout(() => location.reload(), 1000);
+        },
     });
 };
 </script>
