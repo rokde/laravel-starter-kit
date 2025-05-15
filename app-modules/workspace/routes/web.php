@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 use Illuminate\Support\Facades\Route;
-use Modules\Workspace\Http\Controllers\Api\InternalApiWorkspaceController;
 use Modules\Workspace\Http\Controllers\WorkspaceController;
 use Modules\Workspace\Http\Controllers\WorkspaceInvitationsController;
 use Modules\Workspace\Http\Controllers\WorkspaceMembersController;
@@ -51,12 +50,4 @@ Route::middleware(['web'])
         Route::get('/{invitation}/accept', [WorkspaceInvitationsController::class, 'acceptInvitation'])
             ->whereNumber('invitation')
             ->name('invitations.accept');
-    });
-
-Route::middleware(['web', 'auth', 'verified'])
-    ->prefix('internal-api/workspaces')
-    ->name('internal.api.workspaces.')
-    ->group(function (): void {
-        Route::get('/', [InternalApiWorkspaceController::class, 'index'])
-            ->name('index');
     });
