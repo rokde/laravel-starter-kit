@@ -24,7 +24,7 @@ class ModifyMemberRequest extends FormRequest
     {
         return [
             'id' => ['required', Rule::exists('workspace_members', 'user_id')],
-            'role' => ['required', 'string', 'in:' . implode(',', RoleRegistry::roleKeys())],
+            'role' => ['required', 'string', 'in:'.implode(',', RoleRegistry::roleKeys())],
         ];
     }
 }

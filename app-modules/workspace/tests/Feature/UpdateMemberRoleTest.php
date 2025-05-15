@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 use App\Models\User;
@@ -26,7 +27,6 @@ test('member roles can be updated', function (): void {
         'id' => $otherUser->id,
         'role' => 'editor',
     ])->assertRedirect();
-
 
     // @TODO test does not work, but action works fine
     // $this->assertTrue($otherUser->fresh()->hasWorkspaceRole($user->currentWorkspace, 'editor'));

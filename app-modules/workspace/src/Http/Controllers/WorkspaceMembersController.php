@@ -35,13 +35,12 @@ class WorkspaceMembersController
     public function update(
         Request $request,
         UpdateMember $updateMember,
-    ): RedirectResponse
-    {
+    ): RedirectResponse {
         /** @var \Modules\Workspace\Models\Workspace */
         $workspace = $request->user()->currentWorkspace;
         abort_if($workspace === null, 404);
 
-        $updateMember->handle($workspace, new Id($request->integer('id')), (string)$request->string('role'));
+        $updateMember->handle($workspace, new Id($request->integer('id')), (string) $request->string('role'));
 
         return redirect()
             ->back()
