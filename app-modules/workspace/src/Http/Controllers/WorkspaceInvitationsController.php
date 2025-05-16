@@ -12,6 +12,7 @@ use Inertia\Inertia;
 use Modules\Workspace\Actions\AcceptTeamInvitation;
 use Modules\Workspace\Actions\InviteMember;
 use Modules\Workspace\Actions\RevokeTeamInvitation;
+use Modules\Workspace\DataTransferObjects\Invitation;
 use Modules\Workspace\Http\Requests\StoreInvitationRequest;
 use Modules\Workspace\Models\RoleRegistry;
 use Modules\Workspace\Models\WorkspaceInvitation;
@@ -28,8 +29,15 @@ class WorkspaceInvitationsController
         return Inertia::render('workspace::invitations/Index', [
             'workspace' => $workspace->only('id', 'name'),
             'owner' => $workspace->owner,
-            'invitations' => $workspace->invitations->map(fn ($invitation) => $invitation->only('id', 'email', 'role',
-                'created_at')),
+            'invitations' => $workspace->invitations->map(function ($invitation) use ($request, $workspace): Invitation {
+                return new Invitation(
+                    id: $invitation->id,
+                    email: $invitation->email,
+                    role: $invitation->role,
+                    created_at: $invitation->created_at->toDateTimeString(),
+                    link: $request->user()->can('addMember', $workspace) ? $invitation->getAcceptUrl() : null,
+                );
+            }),
             'roles' => RoleRegistry::$roles,
             'abilities' => [
                 'members.create' => $request->user()->can('addMember', $workspace),
