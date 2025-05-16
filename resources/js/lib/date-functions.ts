@@ -1,8 +1,12 @@
 /**
  * returns the localized date
  */
-export function localeDate(date: string | null | undefined, type: 'date' | 'time' | 'datetime' = 'date'): string {
+export function localeDate(date: string | null | undefined, type: 'date' | 'time' | 'datetime' | 'ISO8601' = 'date'): string {
     if (!date) return '';
+
+    if (type === 'ISO8601') {
+        return new Date(Date.parse(date)).toISOString();
+    }
 
     const options: { [key: string]: Intl.DateTimeFormatOptions } = {};
 
