@@ -22,6 +22,7 @@ interface Props {
     abilities: {
         'members.create': boolean;
         'members.update': boolean;
+        'members.remove': boolean;
     };
 }
 
@@ -65,7 +66,13 @@ const breadcrumbs: BreadcrumbItem[] = [
                     <div v-if="!props.members.length">
                         {{ $t('No members yet.') }}
                     </div>
-                    <MemberManager v-else :members="props.members" :roles="props.roles" :readonly="!props.abilities['members.update']" />
+                    <MemberManager
+                        v-else
+                        :members="props.members"
+                        :roles="props.roles"
+                        :remove="props.abilities['members.remove']"
+                        :readonly="!props.abilities['members.update']"
+                    />
                 </div>
             </div>
 

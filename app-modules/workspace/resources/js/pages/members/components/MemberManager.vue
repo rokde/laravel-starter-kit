@@ -1,7 +1,8 @@
 <script setup lang="ts">
+import ConfirmButton from '@/components/ConfirmButton.vue';
 import UserInfo from '@/components/UserInfo.vue';
 import type { User } from '@/types';
-import { useForm } from '@inertiajs/vue3';
+import { router, useForm } from '@inertiajs/vue3';
 import MemberRoleSelect from '@workspace/components/MemberRoleSelect.vue';
 import { Role } from '@workspace/types';
 import { Check } from 'lucide-vue-next';
@@ -10,6 +11,7 @@ import { ref } from 'vue';
 interface Props {
     members: Array<User & { role: string; membership: { role: string } }>;
     roles: { [key: string]: Role };
+    remove: boolean;
     readonly?: boolean;
 }
 
@@ -30,6 +32,15 @@ const modifyRoleForMember = (id: number, role: string) => {
 
     form.patch(route('workspaces.members.update'), {
         preserveScroll: true,
+    });
+};
+
+const removeMember = (member: User) => {
+    router.delete(route('workspaces.members.delete', member.id), {
+        preserveScroll: true,
+        onSuccess: () => {
+            router.reload();
+        },
     });
 };
 </script>
@@ -53,5 +64,12 @@ const modifyRoleForMember = (id: number, role: string) => {
                 :disabled="props.readonly"
             />
         </div>
+        <ConfirmButton
+            as="icon"
+            :title="$t('Remove member?')"
+            :confirmation="$t('If you remove the member, they will no longer have access to the workspace.')"
+            :disabled="!props.remove"
+            @confirmed="removeMember(member)"
+        />
     </div>
 </template>
