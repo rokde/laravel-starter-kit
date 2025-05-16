@@ -54,8 +54,7 @@ class WorkspaceMembersController
         Request $request,
         User $member,
         RemoveMember $removeMember,
-    ): RedirectResponse
-    {
+    ): RedirectResponse {
         /** @var \Modules\Workspace\Models\Workspace */
         $workspace = $request->user()->currentWorkspace;
         abort_if($workspace === null, 404);
