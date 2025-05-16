@@ -19,5 +19,8 @@ const props = defineProps<Props>();
             >
         </div>
         <span>{{ localeDate(invitation.created_at) }}</span>
+        <time :datetime="localeDate(invitation.created_at, 'ISO8601')" :title="localeDate(invitation.created_at, 'time')">{{
+            localeDate(invitation.created_at)
+        }}</time>
     </div>
 </template>
