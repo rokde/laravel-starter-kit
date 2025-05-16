@@ -74,7 +74,13 @@ class WorkspacePolicy
      */
     public function removeMember(User $user, Workspace $workspace, User|null $member = null): bool
     {
+        // do not remove the owner
         if ($member && $member->id === $workspace->user_id) {
+            return false;
+        }
+
+        // member has to be on the workspace
+        if ($member && !$member->belongsToWorkspace($workspace)) {
             return false;
         }
 

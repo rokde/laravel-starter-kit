@@ -36,7 +36,7 @@ trait ManagesWorkspaces
      */
     public function isCurrentWorkspace(Workspace $workspace): bool
     {
-        return $workspace->id === $this->currentWorkspace->id;
+        return $workspace->id === $this->currentWorkspace?->id;
     }
 
     /**
