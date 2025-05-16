@@ -19,7 +19,7 @@ test('member roles can be updated', function (): void {
     $otherUser->switchWorkspace($workspace);
 
     $eventWasCalled = false;
-    \Illuminate\Support\Facades\Event::listen(MemberUpdated::class, function (MemberUpdated $event) use ($otherUser, &$eventWasCalled): void {
+    Illuminate\Support\Facades\Event::listen(MemberUpdated::class, function (MemberUpdated $event) use ($otherUser, &$eventWasCalled): void {
         $this->assertTrue($event->user->id === $otherUser->id);
         $eventWasCalled = true;
     });
