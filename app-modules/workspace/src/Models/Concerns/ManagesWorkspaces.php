@@ -89,7 +89,14 @@ trait ManagesWorkspaces
      */
     public function fallbackWorkspace(): Workspace
     {
-        return $this->ownedWorkspaces->first();
+        $firstOwnedWorkspace = $this->ownedWorkspaces->first();
+        if ($firstOwnedWorkspace) {
+            return $firstOwnedWorkspace;
+        }
+
+        return $this->ownedWorkspaces()->create([
+            'name' => 'My workspace',
+        ]);
     }
 
     /**
