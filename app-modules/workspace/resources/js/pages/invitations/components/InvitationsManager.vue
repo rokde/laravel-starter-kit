@@ -1,5 +1,7 @@
 <script setup lang="ts">
+import ConfirmButton from '@/components/ConfirmButton.vue';
 import { localeDate } from '@/lib/date-functions';
+import { router } from '@inertiajs/vue3';
 import { Invitation, Role } from '@workspace/types';
 
 interface Props {
@@ -8,6 +10,15 @@ interface Props {
 }
 
 const props = defineProps<Props>();
+
+const revokeInvitation = (invitation: Invitation) => {
+    router.delete(route('workspaces.invitations.revoke', invitation.id), {
+        preserveScroll: true,
+        onSuccess: () => {
+            router.reload();
+        },
+    });
+};
 </script>
 
 <template>
