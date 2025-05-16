@@ -11,7 +11,7 @@ use Modules\Workspace\Models\WorkspaceInvitation;
 
 uses(RefreshDatabase::class);
 
-test('workspace team page is displayed', function (): void {
+test('workspace member page is displayed', function (): void {
     $user = User::factory()->create();
     $user->switchWorkspace(Workspace::factory()->create(['user_id' => $user->id]));
 
@@ -26,11 +26,26 @@ test('workspace invitation page is displayed', function (): void {
     $user = User::factory()->create();
     $user->switchWorkspace(Workspace::factory()->create(['user_id' => $user->id]));
 
-    $response = $this
+    $this
         ->actingAs($user)
-        ->get('/workspaces/current/invitations');
+        ->get('/workspaces/current/invitations')
+        ->assertOk();
+});
 
-    $response->assertOk();
+test('workspace member can access invitation page', function (): void {
+    // Arrange
+    $owner = User::factory()->create();
+    $workspace = Workspace::factory()->create(['user_id' => $owner->id]);
+
+    // Create a regular member
+    $member = User::factory()->create();
+    $workspace->users()->attach($member, ['role' => current(RoleRegistry::roleKeys())]);
+    $member->switchWorkspace($workspace);
+
+    $this
+        ->actingAs($member)
+        ->get('/workspaces/current/invitations')
+        ->assertOk();
 });
 
 test('a user can be invited to a workspace', function (): void {
