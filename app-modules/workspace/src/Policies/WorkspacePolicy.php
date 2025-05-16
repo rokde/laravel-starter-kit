@@ -72,7 +72,7 @@ class WorkspacePolicy
     /**
      * Determine whether the user can remove workspace members.
      */
-    public function removeMember(User $user, Workspace $workspace, User|null $member = null): bool
+    public function removeMember(User $user, Workspace $workspace, ?User $member = null): bool
     {
         // do not remove the owner
         if ($member && $member->id === $workspace->user_id) {
@@ -80,14 +80,14 @@ class WorkspacePolicy
         }
 
         // member has to be on the workspace
-        if ($member && !$member->belongsToWorkspace($workspace)) {
+        if ($member && ! $member->belongsToWorkspace($workspace)) {
             return false;
         }
 
         return $user->ownsWorkspace($workspace) || $user->hasWorkspaceRole($workspace, 'admin');
     }
 
-    public function revokeInvitation(User $user, Workspace $workspace, WorkspaceInvitation|null $invitation = null): bool
+    public function revokeInvitation(User $user, Workspace $workspace, ?WorkspaceInvitation $invitation = null): bool
     {
         if ($invitation && $invitation->email === $workspace->owner->email) {
             return false;
