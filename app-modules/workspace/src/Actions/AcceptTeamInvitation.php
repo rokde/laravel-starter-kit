@@ -46,7 +46,7 @@ class AcceptTeamInvitation
             // switch user to workspace
             $user->switchWorkspace($workspace);
 
-            event(new MemberAttached($workspace, $user));
+            MemberAttached::dispatch($workspace, $user);
 
             return $workspace;
         });
