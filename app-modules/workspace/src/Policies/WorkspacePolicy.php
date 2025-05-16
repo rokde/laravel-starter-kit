@@ -55,7 +55,7 @@ class WorkspacePolicy
     /**
      * Determine whether the user can add workspace members.
      */
-    public function addWorkspaceMember(User $user, Workspace $workspace): bool
+    public function addMember(User $user, Workspace $workspace): bool
     {
         return $user->ownsWorkspace($workspace);
     }
@@ -63,7 +63,7 @@ class WorkspacePolicy
     /**
      * Determine whether the user can update workspace member.
      */
-    public function updateWorkspaceMember(User $user, Workspace $workspace): bool
+    public function updateMember(User $user, Workspace $workspace): bool
     {
         return $user->ownsWorkspace($workspace);
     }
@@ -71,7 +71,7 @@ class WorkspacePolicy
     /**
      * Determine whether the user can remove workspace members.
      */
-    public function removeWorkspaceMember(User $user, Workspace $workspace): bool
+    public function removeMember(User $user, Workspace $workspace): bool
     {
         return $user->ownsWorkspace($workspace);
     }

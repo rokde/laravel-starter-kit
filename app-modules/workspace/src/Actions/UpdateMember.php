@@ -18,7 +18,7 @@ class UpdateMember
             $workspace = Workspace::query()->findOrFail($workspaceId->value());
         }
 
-        Gate::authorize('updateWorkspaceMember', $workspace);
+        Gate::authorize('updateMember', $workspace);
 
         DB::transaction(function () use ($workspace, $memberUserId, $role): void {
             $workspace->users()->updateExistingPivot($memberUserId->value(), [

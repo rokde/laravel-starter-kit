@@ -31,7 +31,7 @@ class WorkspaceInvitationsController
                 'created_at')),
             'roles' => RoleRegistry::$roles,
             'abilities' => [
-                'members.create' => $request->user()->can('addWorkspaceMember', $workspace),
+                'members.create' => $request->user()->can('addMember', $workspace),
             ],
         ]);
     }

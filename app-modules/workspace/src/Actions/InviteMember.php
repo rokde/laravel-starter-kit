@@ -21,7 +21,7 @@ class InviteMember
             $workspace = Workspace::query()->findOrFail($workspaceId->value());
         }
 
-        Gate::authorize('addWorkspaceMember', $workspace);
+        Gate::authorize('addMember', $workspace);
 
         $invitation = DB::transaction(function () use ($workspace, $email, $role): WorkspaceInvitation {
             return $workspace->invitations()->create([
