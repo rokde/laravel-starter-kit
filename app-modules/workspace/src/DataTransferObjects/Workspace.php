@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Modules\Workspace\DataTransferObjects;
 
-class Workspace
+final readonly class Workspace
 {
     public function __construct(
-        public readonly int $id,
-        public readonly string $name,
-        public readonly Owner $owner,
-        public readonly bool $currentWorkspace,
+        public int $id,
+        public string $name,
+        public Owner $owner,
+        public bool $currentWorkspace,
     ) {}
 }
