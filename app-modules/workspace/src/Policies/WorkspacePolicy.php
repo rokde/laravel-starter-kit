@@ -77,9 +77,9 @@ class WorkspacePolicy
         return $user->ownsWorkspace($workspace) || $user->hasWorkspaceRole($workspace, 'admin');
     }
 
-    public function revokeInvitation(User $user, Workspace $workspace, WorkspaceInvitation $invitation): bool
+    public function revokeInvitation(User $user, Workspace $workspace, WorkspaceInvitation|null $invitation = null): bool
     {
-        if ($invitation->email === $workspace->owner->email) {
+        if ($invitation && $invitation->email === $workspace->owner->email) {
             return false;
         }
 

@@ -33,6 +33,7 @@ class WorkspaceInvitationsController
             'roles' => RoleRegistry::$roles,
             'abilities' => [
                 'members.create' => $request->user()->can('addMember', $workspace),
+                'invitations.revoke' => $request->user()->can('revokeInvitation', $workspace),
             ],
         ]);
     }
