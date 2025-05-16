@@ -19,6 +19,7 @@ interface Props {
     roles: { [key: string]: Role };
     abilities: {
         'members.create': boolean;
+        'invitations.revoke': boolean;
     };
 }
 
@@ -52,7 +53,12 @@ const breadcrumbs: BreadcrumbItem[] = [
                     <div v-if="!props.invitations.length">
                         {{ $t('No invitations yet.') }}
                     </div>
-                    <InvitationsManager v-else :invitations="props.invitations" :roles="props.roles" />
+                    <InvitationsManager
+                        v-else
+                        :invitations="props.invitations"
+                        :roles="props.roles"
+                        :revoke="props.abilities['invitations.revoke']"
+                    />
                 </div>
             </div>
 

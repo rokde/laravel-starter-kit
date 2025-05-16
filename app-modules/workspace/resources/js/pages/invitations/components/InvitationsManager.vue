@@ -7,6 +7,7 @@ import { Invitation, Role } from '@workspace/types';
 interface Props {
     invitations: Invitation[];
     roles: { [key: string]: Role };
+    revoke: boolean;
 }
 
 const props = defineProps<Props>();
@@ -37,6 +38,7 @@ const revokeInvitation = (invitation: Invitation) => {
             :title="$t('Revoke invitation?')"
             :confirmation="$t('If you revoke the invitation, the user will not be able to access the workspace.')"
             @confirmed="revokeInvitation(invitation)"
+            :disabled="!props.revoke"
         />
     </div>
 </template>
