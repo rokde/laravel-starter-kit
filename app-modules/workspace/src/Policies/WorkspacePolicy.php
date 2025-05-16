@@ -72,8 +72,12 @@ class WorkspacePolicy
     /**
      * Determine whether the user can remove workspace members.
      */
-    public function removeMember(User $user, Workspace $workspace): bool
+    public function removeMember(User $user, Workspace $workspace, User|null $member = null): bool
     {
+        if ($member && $member->id === $workspace->user_id) {
+            return false;
+        }
+
         return $user->ownsWorkspace($workspace) || $user->hasWorkspaceRole($workspace, 'admin');
     }
 
