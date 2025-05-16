@@ -66,12 +66,7 @@ const switchActiveWorkspace = (workspace: WorkspaceInfo) => {
             <DropdownMenuLabel class="text-muted-foreground text-xs">
                 {{ $t('Workspaces') }}
             </DropdownMenuLabel>
-            <DropdownMenuItem
-                v-for="(workspace, index) in workspaces"
-                :key="workspace.name"
-                class="gap-2 p-2"
-                @click="switchActiveWorkspace(workspace)"
-            >
+            <DropdownMenuItem v-for="workspace in workspaces" :key="workspace.name" class="gap-2 p-2" @click="switchActiveWorkspace(workspace)">
                 <div
                     class="flex size-6 items-center justify-center rounded-sm border"
                     :class="{ 'bg-muted-foreground border-muted': workspace.currentWorkspace }"
@@ -83,7 +78,6 @@ const switchActiveWorkspace = (workspace: WorkspaceInfo) => {
                     >
                 </div>
                 {{ workspace.name }}
-                <!-- DropdownMenuShortcut>⌘{{ index + 1 }}</DropdownMenuShortcut -->
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem class="ga-2 p-2">
