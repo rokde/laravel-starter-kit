@@ -14,6 +14,7 @@ export interface Invitation {
     email: string;
     role: string;
     created_at: string;
+    link: string | null;
 }
 
 export interface WorkspaceOwner {
