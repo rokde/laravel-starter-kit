@@ -52,7 +52,7 @@ const mainNavItems: NavItem[] = [
 
 const rightNavItems: NavItem[] = [
     {
-        title: t('Repository'),
+        title: 'Repository',
         href: 'https://github.com/rokde/laravel-starter-kit',
         icon: Folder,
     },

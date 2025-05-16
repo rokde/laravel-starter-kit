@@ -22,7 +22,7 @@ const mainNavItems: NavItem[] = [
 
 const footerNavItems: NavItem[] = [
     {
-        title: t('Github Repo'),
+        title: 'Github Repo',
         href: 'https://github.com/rokde/laravel-starter-kit',
         icon: Folder,
     },
