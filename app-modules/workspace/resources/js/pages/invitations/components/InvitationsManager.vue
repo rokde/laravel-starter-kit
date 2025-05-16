@@ -18,9 +18,14 @@ const props = defineProps<Props>();
                 >({{ props.roles[invitation.role]?.name }})</span
             >
         </div>
-        <span>{{ localeDate(invitation.created_at) }}</span>
         <time :datetime="localeDate(invitation.created_at, 'ISO8601')" :title="localeDate(invitation.created_at, 'time')">{{
             localeDate(invitation.created_at)
         }}</time>
+        <ConfirmButton
+            as="icon"
+            :title="$t('Revoke invitation?')"
+            :confirmation="$t('If you revoke the invitation, the user will not be able to access the workspace.')"
+            @confirmed="revokeInvitation(invitation)"
+        />
     </div>
 </template>
