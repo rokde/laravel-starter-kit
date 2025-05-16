@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Modules\Workspace\Events\MemberUpdated;
 use Modules\Workspace\Models\Workspace;
 
 uses(RefreshDatabase::class);
@@ -14,20 +15,29 @@ test('member roles can be updated', function (): void {
     $user->switchWorkspace($workspace);
 
     $otherUser = User::factory()->create();
-    $otherWorkspace = Workspace::factory()->create(['user_id' => $otherUser->id]);
+    Workspace::factory()->create(['user_id' => $otherUser->id]);
     $otherUser->switchWorkspace($workspace);
 
+    $eventWasCalled = false;
+    \Illuminate\Support\Facades\Event::listen(MemberUpdated::class, function (MemberUpdated $event) use ($otherUser, &$eventWasCalled): void {
+        $this->assertTrue($event->user->id === $otherUser->id);
+        $eventWasCalled = true;
+    });
+
     $user->currentWorkspace->users()->attach(
-        $otherUser = User::factory()->create(),
+        $otherUser,
         ['role' => 'admin'],
     );
-    $this->assertTrue($otherUser->belongsToWorkspace($user->currentWorkspace));
+    $this->assertTrue($otherUser->fresh()->belongsToWorkspace($workspace));
 
-    $this->patch('/workspaces/current/members', [
-        'id' => $otherUser->id,
-        'role' => 'editor',
-    ])->assertRedirect();
+    $this
+        ->actingAs($user)
+        ->withoutExceptionHandling()
+        ->patch(route('workspaces.members.update'), [
+            'id' => $otherUser->id,
+            'role' => 'editor',
+        ])->assertRedirect();
 
-    // @TODO test does not work, but action works fine
-    // $this->assertTrue($otherUser->fresh()->hasWorkspaceRole($user->currentWorkspace, 'editor'));
+    $this->assertTrue($otherUser->fresh()->hasWorkspaceRole($user->currentWorkspace, 'editor'));
+    $this->assertTrue($eventWasCalled);
 });
