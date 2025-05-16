@@ -12,6 +12,7 @@ use Inertia\Inertia;
 use Inertia\Response;
 use Modules\Workspace\Actions\RemoveMember;
 use Modules\Workspace\Actions\UpdateMember;
+use Modules\Workspace\DataTransferObjects\Owner;
 use Modules\Workspace\Models\RoleRegistry;
 
 class WorkspaceMembersController
@@ -24,7 +25,11 @@ class WorkspaceMembersController
 
         return Inertia::render('workspace::members/Index', [
             'workspace' => $workspace->only('id', 'name'),
-            'owner' => $workspace->owner,
+            'owner' => new Owner(
+                id: $workspace->owner->id,
+                name: $workspace->owner->name,
+                email: $workspace->owner->email,
+            ),
             'members' => $workspace->users,
             'roles' => RoleRegistry::$roles,
             'abilities' => [

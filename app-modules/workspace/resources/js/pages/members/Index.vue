@@ -9,14 +9,14 @@ import type { BreadcrumbItem, User } from '@/types';
 import { Head } from '@inertiajs/vue3';
 import WorkspaceSettingsLayout from '@workspace/layouts/WorkspaceSettingsLayout.vue';
 import InviteMemberForm from '@workspace/pages/members/components/InviteMemberForm.vue';
-import { Role, Workspace } from '@workspace/types';
+import { Role, Workspace, WorkspaceOwner } from '@workspace/types';
 import MemberManager from './components/MemberManager.vue';
 
 const { t } = getI18n();
 
 interface Props {
     workspace: Workspace;
-    owner: User;
+    owner: WorkspaceOwner;
     members: Array<User & { role: string }>;
     roles: { [key: string]: Role };
     abilities: {
