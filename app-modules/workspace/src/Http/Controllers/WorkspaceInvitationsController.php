@@ -13,6 +13,7 @@ use Modules\Workspace\Actions\AcceptTeamInvitation;
 use Modules\Workspace\Actions\InviteMember;
 use Modules\Workspace\Actions\RevokeTeamInvitation;
 use Modules\Workspace\DataTransferObjects\Invitation;
+use Modules\Workspace\DataTransferObjects\Owner;
 use Modules\Workspace\Http\Requests\StoreInvitationRequest;
 use Modules\Workspace\Models\RoleRegistry;
 use Modules\Workspace\Models\WorkspaceInvitation;
@@ -28,7 +29,11 @@ class WorkspaceInvitationsController
 
         return Inertia::render('workspace::invitations/Index', [
             'workspace' => $workspace->only('id', 'name'),
-            'owner' => $workspace->owner,
+            'owner' => new Owner(
+                id: $workspace->owner->id,
+                name: $workspace->owner->name,
+                email: $workspace->owner->email,
+            ),
             'invitations' => $workspace->invitations->map(function ($invitation) use ($request, $workspace): Invitation {
                 return new Invitation(
                     id: $invitation->id,
