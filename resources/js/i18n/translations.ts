@@ -249,6 +249,7 @@ const translations: Translations = {
         'All invitations of the workspace.': 'Ausstehende Einladungen im Workspace.',
         'All members of the workspace.': 'Alle Mitglieder des Workspaces.',
         'Configure {name}': '{name} konfigurieren',
+        'Copy invitation link to clipboard': 'Einladungslink in die Zwischenablage kopieren',
         'Current workspace changed.': 'Aktuellen workspace gewechselt.',
         'If you revoke the invitation, the user will not be able to access the workspace.':
             'Wenn Sie die Einladung widerrufen, kann der Benutzer nicht mehr auf den Workspace zugreifen.',
