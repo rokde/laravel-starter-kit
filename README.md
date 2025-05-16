@@ -13,6 +13,7 @@ A customized version with the following things:
   - using [Inertia](https://inertiajs.com/) and [shadcn-vue](https://www.shadcn-vue.com/) components
 - [x] [barryvdh/laravel-ide-helper](https://github.com/barryvdh/laravel-ide-helper)
 - [x] pint.json with strict rules
+- [x] repository health with dependabot
 - [x] internationalization (en, de)
 - [x] static pages based on CommonMark Markdown files, with FrontMatter support and localized
 - [x] [modules](https://github.com/InterNACHI/modular) supported for domain driven design
@@ -64,3 +65,7 @@ With `php artisan translations:generate` the php stored translations get transfe
 ### Run the test suite
 
 `composer run test`
+
+### Dependabot
+
+Weekly updates for npm and php dependencies.
