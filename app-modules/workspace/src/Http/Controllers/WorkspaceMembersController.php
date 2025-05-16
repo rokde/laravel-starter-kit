@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace Modules\Workspace\Http\Controllers;
 
+use App\Models\User;
 use App\ValueObjects\Id;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
+use Modules\Workspace\Actions\RemoveMember;
 use Modules\Workspace\Actions\UpdateMember;
 use Modules\Workspace\Models\RoleRegistry;
 
@@ -28,6 +30,7 @@ class WorkspaceMembersController
             'abilities' => [
                 'members.create' => $request->user()->can('addMember', $workspace),
                 'members.update' => $request->user()->can('updateMember', $workspace),
+                'members.remove' => $request->user()->can('removeMember', $workspace),
             ],
         ]);
     }
@@ -45,5 +48,22 @@ class WorkspaceMembersController
         return redirect()
             ->back()
             ->with('message', __('Member updated.'));
+    }
+
+    public function destroy(
+        Request $request,
+        User $member,
+        RemoveMember $removeMember,
+    ): RedirectResponse
+    {
+        /** @var \Modules\Workspace\Models\Workspace */
+        $workspace = $request->user()->currentWorkspace;
+        abort_if($workspace === null, 404);
+
+        $removeMember->handle($workspace, $member);
+
+        return redirect()
+            ->back()
+            ->with('message', __('Member removed.'));
     }
 }

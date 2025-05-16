@@ -33,6 +33,10 @@ Route::middleware(['web', 'auth', 'verified'])
 
                 Route::patch('/', [WorkspaceMembersController::class, 'update'])
                     ->name('update');
+
+                Route::delete('/{member}', [WorkspaceMembersController::class, 'destroy'])
+                    ->whereNumber('member')
+                    ->name('delete');
             });
 
         Route::prefix('current/invitations')
