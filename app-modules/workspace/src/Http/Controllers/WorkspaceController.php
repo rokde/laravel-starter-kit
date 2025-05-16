@@ -52,7 +52,11 @@ class WorkspaceController
 
         return Inertia::render('workspace::Profile', [
             'workspace' => $workspace->only('id', 'name'),
-            'owner' => $owner,
+            'owner' => new Owner(
+                id: $owner->id,
+                name: $owner->name,
+                email: $owner->email,
+            ),
             'abilities' => [
                 'workspace.update' => $request->user()->can('update', $workspace),
             ],

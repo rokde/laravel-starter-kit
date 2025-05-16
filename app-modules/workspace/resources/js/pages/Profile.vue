@@ -7,16 +7,16 @@ import { Label } from '@/components/ui/label';
 import UserInfo from '@/components/UserInfo.vue';
 import { getI18n } from '@/i18n';
 import AppLayout from '@/layouts/AppLayout.vue';
-import type { BreadcrumbItem, User } from '@/types';
+import type { BreadcrumbItem } from '@/types';
 import { Head, useForm } from '@inertiajs/vue3';
 import WorkspaceSettingsLayout from '@workspace/layouts/WorkspaceSettingsLayout.vue';
-import { Workspace } from '@workspace/types';
+import { Workspace, WorkspaceOwner } from '@workspace/types';
 
 const { t } = getI18n();
 
 interface Props {
     workspace: Workspace;
-    owner: User;
+    owner: WorkspaceOwner;
     abilities: {
         'workspace.update': boolean;
     };
