@@ -23,6 +23,7 @@ const props = withDefaults(
         submitLabel?: string;
         as?: 'link' | 'icon';
         withoutConfirmation?: boolean;
+        disabled?: boolean;
     }>(),
     {
         label: 'Delete',
@@ -30,6 +31,7 @@ const props = withDefaults(
         submitLabel: 'Delete',
         as: 'link',
         withoutConfirmation: false,
+        disabled: false,
     },
 );
 
@@ -81,7 +83,7 @@ const enterKeyHandler = (event: KeyboardEvent) => {
                 variant="link"
                 class="text-red-500 hover:text-red-600 dark:text-red-700 dark:hover:text-red-600"
                 :class="{ 'opacity-25': confirming }"
-                :disabled="confirming"
+                :disabled="props.disabled || confirming"
                 @click="askForConfirmation"
             >
                 {{ $t(props.label) }}
@@ -92,7 +94,7 @@ const enterKeyHandler = (event: KeyboardEvent) => {
                 variant="ghost"
                 class="group text-red-300 hover:text-red-600 dark:text-red-800 dark:hover:text-red-600"
                 :class="{ 'opacity-25': confirming }"
-                :disabled="confirming"
+                :disabled="props.disabled || confirming"
                 :title="$t(props.label)"
                 @click="askForConfirmation"
             >
