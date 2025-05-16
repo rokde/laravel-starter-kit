@@ -41,9 +41,9 @@ test('a user can invite a member to their workspace', function (): void {
     ]);
 
     // @TODO Mail sending works, but not in test
-//    Mail::assertSent(InvitationMail::class, function ($mail) use ($email) {
-//        return $mail->hasTo($email);
-//    });
+    // Mail::assertSent(InvitationMail::class, function ($mail) use ($email) {
+    //        return $mail->hasTo($email);
+    //    });
 });
 
 test('a user cannot invite a member with invalid data', function (): void {
@@ -167,7 +167,7 @@ test('an admin can invite a member if authorized', function (): void {
     ]);
 
     // @TODO Mail was sent, but is not testable at the moment
-//    Mail::assertSent(InvitationMail::class);
+    // Mail::assertSent(InvitationMail::class);
 });
 
 test('a user cannot invite a member without a current workspace', function (): void {
