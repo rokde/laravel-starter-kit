@@ -57,7 +57,7 @@ class WorkspacePolicy
      */
     public function addMember(User $user, Workspace $workspace): bool
     {
-        return $user->ownsWorkspace($workspace);
+        return $user->ownsWorkspace($workspace) || $user->hasWorkspaceRole($workspace, 'admin');
     }
 
     /**
@@ -65,7 +65,7 @@ class WorkspacePolicy
      */
     public function updateMember(User $user, Workspace $workspace): bool
     {
-        return $user->ownsWorkspace($workspace);
+        return $user->ownsWorkspace($workspace) || $user->hasWorkspaceRole($workspace, 'admin');
     }
 
     /**
@@ -73,7 +73,7 @@ class WorkspacePolicy
      */
     public function removeMember(User $user, Workspace $workspace): bool
     {
-        return $user->ownsWorkspace($workspace);
+        return $user->ownsWorkspace($workspace) || $user->hasWorkspaceRole($workspace, 'admin');
     }
 
     /**
