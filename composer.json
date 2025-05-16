@@ -69,7 +69,7 @@
         ],
         "test": [
             "@php artisan config:clear --ansi",
-            "@php artisan test"
+            "@php artisan test --parallel"
         ],
         "format": [
             "@php vendor/bin/pint"
