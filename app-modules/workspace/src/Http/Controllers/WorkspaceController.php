@@ -11,6 +11,7 @@ use Inertia\Response;
 use Modules\Workspace\Actions\CreateWorkspace;
 use Modules\Workspace\Actions\SetCurrentWorkspace;
 use Modules\Workspace\Actions\UpdateWorkspaceName;
+use Modules\Workspace\DataTransferObjects\Owner;
 use Modules\Workspace\Http\Requests\ModifyWorkspaceRequest;
 use Modules\Workspace\Http\Requests\StoreWorkspaceRequest;
 use Modules\Workspace\Http\Requests\SwitchWorkspaceRequest;
@@ -20,7 +21,11 @@ class WorkspaceController
     public function create(Request $request): Response
     {
         return Inertia::render('workspace::Create', [
-            'owner' => $request->user(),
+            'owner' => new Owner(
+                id: $request->user()->id,
+                name: $request->user()->name,
+                email: $request->user()->email,
+            ),
         ]);
     }
 
