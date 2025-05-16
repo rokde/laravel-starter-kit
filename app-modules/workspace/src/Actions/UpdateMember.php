@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace Modules\Workspace\Actions;
 
+use App\Models\User;
 use App\ValueObjects\Id;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
+use Modules\Workspace\Events\MemberUpdated;
 use Modules\Workspace\Models\Workspace;
 
 class UpdateMember
@@ -25,6 +27,9 @@ class UpdateMember
                 'role' => $role,
             ]);
         });
+
+        $member = User::find($memberUserId->value());
+        event(new MemberUpdated($workspace, $member));
 
         return $workspace;
     }

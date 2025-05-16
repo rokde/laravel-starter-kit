@@ -8,6 +8,7 @@ use App\Models\User;
 use App\ValueObjects\Id;
 use Exception;
 use Illuminate\Support\Facades\DB;
+use Modules\Workspace\Events\MemberAttached;
 use Modules\Workspace\Models\Workspace;
 use Modules\Workspace\Models\WorkspaceInvitation;
 
@@ -44,6 +45,8 @@ class AcceptTeamInvitation
 
             // switch user to workspace
             $user->switchWorkspace($workspace);
+
+            event(new MemberAttached($workspace, $user));
 
             return $workspace;
         });
