@@ -5,7 +5,6 @@ import {
     DropdownMenuItem,
     DropdownMenuLabel,
     DropdownMenuSeparator,
-    DropdownMenuShortcut,
     DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { SidebarMenuButton } from '@/components/ui/sidebar';
@@ -77,13 +76,16 @@ const switchActiveWorkspace = (workspace: WorkspaceInfo) => {
                     class="flex size-6 items-center justify-center rounded-sm border"
                     :class="{ 'bg-muted-foreground border-muted': workspace.currentWorkspace }"
                 >
-                    <span class="size-4 shrink-0 overflow-hidden text-xs" :class="{ 'text-white': workspace.currentWorkspace }">{{
-                        getInitials(activeWorkspace.name)
-                    }}</span>
+                    <span
+                        class="flex size-4 shrink-0 items-center justify-center overflow-hidden rounded-full text-xs"
+                        :class="{ 'text-white': workspace.currentWorkspace }"
+                        >{{ getInitials(workspace.name) }}</span
+                    >
                 </div>
                 {{ workspace.name }}
-                <DropdownMenuShortcut>⌘{{ index + 1 }}</DropdownMenuShortcut>
+                <!-- DropdownMenuShortcut>⌘{{ index + 1 }}</DropdownMenuShortcut -->
             </DropdownMenuItem>
+            <DropdownMenuSeparator />
             <DropdownMenuItem class="ga-2 p-2">
                 <Link :href="route('workspaces.create')" class="flex items-center gap-2">
                     <div class="bg-background flex size-6 items-center justify-center rounded-md border">
