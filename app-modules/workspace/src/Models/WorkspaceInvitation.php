@@ -44,7 +44,7 @@ class WorkspaceInvitation extends Model
     public function getAcceptUrl(): string
     {
         return URL::signedRoute('public.api.invitations.accept', [
-            'invitation' => $this,
+            'invitation' => $this->id,
         ]);
     }
 }
