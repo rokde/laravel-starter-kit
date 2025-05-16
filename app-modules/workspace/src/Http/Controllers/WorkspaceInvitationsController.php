@@ -11,6 +11,7 @@ use Illuminate\Http\Response;
 use Inertia\Inertia;
 use Modules\Workspace\Actions\AcceptTeamInvitation;
 use Modules\Workspace\Actions\InviteMember;
+use Modules\Workspace\Actions\RevokeTeamInvitation;
 use Modules\Workspace\Http\Requests\StoreInvitationRequest;
 use Modules\Workspace\Models\RoleRegistry;
 use Modules\Workspace\Models\WorkspaceInvitation;
@@ -22,7 +23,7 @@ class WorkspaceInvitationsController
     {
         /** @var \Modules\Workspace\Models\Workspace */
         $workspace = $request->user()->currentWorkspace;
-        abort_if($workspace === null, 404);
+        abort_if($workspace === null, Response::HTTP_NOT_FOUND);
 
         return Inertia::render('workspace::invitations/Index', [
             'workspace' => $workspace->only('id', 'name'),
@@ -42,7 +43,7 @@ class WorkspaceInvitationsController
     ): RedirectResponse {
         /** @var \Modules\Workspace\Models\Workspace */
         $workspace = $request->user()->currentWorkspace;
-        abort_if($workspace === null, 404);
+        abort_if($workspace === null, Response::HTTP_FORBIDDEN);
 
         $inviteMember->handle($workspace, $request->getEmail(), $request->validated('role'));
 
@@ -75,5 +76,16 @@ class WorkspaceInvitationsController
         return redirect()
             ->route('dashboard')
             ->with('message', __('You have been added to the workspace.'));
+    }
+
+    public function destroy(Request $request, WorkspaceInvitation $invitation, RevokeTeamInvitation $revokeTeamInvitation): RedirectResponse
+    {
+        abort_unless($request->user()->can('revokeInvitation', [$invitation->workspace, $invitation]), Response::HTTP_FORBIDDEN);
+
+        $revokeTeamInvitation->handle($invitation);
+
+        return redirect()
+            ->back()
+            ->with('message', __('Team invitation revoked.'));
     }
 }

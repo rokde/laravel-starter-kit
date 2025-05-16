@@ -7,6 +7,7 @@ namespace Modules\Workspace\Policies;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Modules\Workspace\Models\Workspace;
+use Modules\Workspace\Models\WorkspaceInvitation;
 
 class WorkspacePolicy
 {
@@ -73,6 +74,15 @@ class WorkspacePolicy
      */
     public function removeMember(User $user, Workspace $workspace): bool
     {
+        return $user->ownsWorkspace($workspace) || $user->hasWorkspaceRole($workspace, 'admin');
+    }
+
+    public function revokeInvitation(User $user, Workspace $workspace, WorkspaceInvitation $invitation): bool
+    {
+        if ($invitation->email === $workspace->owner->email) {
+            return false;
+        }
+
         return $user->ownsWorkspace($workspace) || $user->hasWorkspaceRole($workspace, 'admin');
     }
 

@@ -43,6 +43,10 @@ Route::middleware(['web', 'auth', 'verified'])
 
                 Route::post('/', [WorkspaceInvitationsController::class, 'store'])
                     ->name('store');
+
+                Route::delete('/{invitation}', [WorkspaceInvitationsController::class, 'destroy'])
+                    ->whereNumber('invitation')
+                    ->name('revoke');
             });
     });
 
