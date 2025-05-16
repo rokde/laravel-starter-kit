@@ -245,6 +245,7 @@ const translations: Translations = {
             },
         },
         'Add workspace': 'Workspace anlegen',
+        'All invitations of the workspace.': 'Ausstehende Einladungen im Workspace.',
         'All members of the workspace.': 'Alle Mitglieder des Workspaces.',
         'Configure {name}': '{name} konfigurieren',
         'Current workspace changed.': 'Aktuellen workspace gewechselt.',
@@ -265,6 +266,7 @@ const translations: Translations = {
         'Work together with other users by inviting them to your workspace. Invitations can be sent to email addresses. Invitations can be revoked at any time.':
             'Arbeiten Sie mit anderen Benutzern zusammen, indem Sie sie zu Ihrem Workspace einladen. Einladungen können an E-Mail-Adressen gesendet und  jederzeit widerrufen werden.',
         'Workspace created.': 'Workspace erstellt.',
+        'Workspace invitations': 'Workspace Einladungen',
         'Workspace members': 'Workspace-Mitglieder',
         'Workspace settings': 'Workspace-Einstellungen',
         'Workspace updated.': 'Workspace aktualisiert.',
