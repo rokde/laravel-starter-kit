@@ -29,7 +29,7 @@ class StoreInvitationRequest extends FormRequest
         $workspace = auth()->user()->currentWorkspace;
 
         return [
-            'email' => ['required', 'string', 'max:255', Rule::unique(WorkspaceInvitation::class)->where(function (Builder $query) use ($workspace): void {
+            'email' => ['required', 'string', 'max:255', 'email', Rule::unique(WorkspaceInvitation::class)->where(function (Builder $query) use ($workspace): void {
                 $query->where('workspace_id', $workspace->id);
             })],
             'role' => ['required', 'string', new KnownRolesRule()],
