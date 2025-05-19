@@ -267,6 +267,7 @@ const translations: Translations = {
         'Invited.': 'Eingeladen.',
         'Manage your workspace and the acting members': 'Verwalten Sie Ihren Workspace und die handelnden Personen',
         Members: 'Mitglieder',
+        'No invitations yet.': 'Noch keine Einladungen.',
         'No members yet.': 'Noch keine Mitglieder.',
         'No workspace selected': 'Kein Workspace gewählt',
         Owner: 'Eigentümer',
