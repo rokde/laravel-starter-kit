@@ -16,7 +16,7 @@ import {
 import { Link, router } from '@inertiajs/vue3';
 import { useNotifications } from '@notification/composables/useNotifications';
 import { Notification } from '@notification/types';
-import { Bell, BellOff } from 'lucide-vue-next';
+import { Bell, Eye } from 'lucide-vue-next';
 import { computed, ref } from 'vue';
 
 const notifications = useNotifications();
@@ -63,8 +63,12 @@ const markAsRead = (notification: Notification) => {
                                     <SidebarMenuButton @click="openNotification(notification)">
                                         <span :class="{ 'text-muted-foreground': notification.read }">{{ notification.title }}</span>
                                     </SidebarMenuButton>
-                                    <SidebarMenuAction v-if="!notification.read" @click="markAsRead(notification)" :title="$t('Mute notification')">
-                                        <BellOff />
+                                    <SidebarMenuAction
+                                        v-if="!notification.read"
+                                        @click="markAsRead(notification)"
+                                        :title="$t('Mark notification as read')"
+                                    >
+                                        <Eye />
                                     </SidebarMenuAction>
                                 </SidebarMenuItem>
                             </SidebarMenu>

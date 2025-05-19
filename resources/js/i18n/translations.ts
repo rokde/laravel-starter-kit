@@ -247,7 +247,7 @@ const translations: Translations = {
         },
         '{member} accepted the invitation to the workspace {workspace}.': '{member} hat die Einladung zum Arbeitsbereich {workspace} angenommen.',
         'All notifications': 'Alle Benachrichtigungen',
-        'Mute notification': 'Benachrichtigung stummschalten',
+        'Mark notification as read': 'Benachrichtigung als gelesen markieren',
         Notifications: 'Benachrichtigungen',
         Off: 'Aus',
         'Add workspace': 'Workspace anlegen',
