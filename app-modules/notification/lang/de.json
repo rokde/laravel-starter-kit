@@ -2,6 +2,8 @@
     ":member accepted the invitation to the workspace :workspace.": ":member hat die Einladung zum Arbeitsbereich :workspace angenommen.",
     "All notifications": "Alle Benachrichtigungen",
     "Mark notification as read": "Benachrichtigung als gelesen markieren",
+    "No notifications yet.": "Noch keine Benachrichtigungen.",
     "Notifications": "Benachrichtigungen",
-    "Off": "Aus"
+    "Off": "Aus",
+    "Update your account's notification settings": "Aktualisieren Sie die Benachrichtigungseinstellungen für Ihr Konto"
 }

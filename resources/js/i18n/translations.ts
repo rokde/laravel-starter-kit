@@ -248,8 +248,10 @@ const translations: Translations = {
         '{member} accepted the invitation to the workspace {workspace}.': '{member} hat die Einladung zum Arbeitsbereich {workspace} angenommen.',
         'All notifications': 'Alle Benachrichtigungen',
         'Mark notification as read': 'Benachrichtigung als gelesen markieren',
+        'No notifications yet.': 'Noch keine Benachrichtigungen.',
         Notifications: 'Benachrichtigungen',
         Off: 'Aus',
+        "Update your account's notification settings": 'Aktualisieren Sie die Benachrichtigungseinstellungen für Ihr Konto',
         'Add workspace': 'Workspace anlegen',
         'All invitations of the workspace.': 'Ausstehende Einladungen im Workspace.',
         'All members of the workspace.': 'Alle Mitglieder des Workspaces.',
@@ -257,7 +259,7 @@ const translations: Translations = {
         'Copy invitation link to clipboard': 'Einladungslink in die Zwischenablage kopieren',
         'Current workspace changed.': 'Aktuellen workspace gewechselt.',
         'Get notified when a member accepts the invitation to any of your workspaces.':
-            'Lassen Sie sich benachrichtigen, wenn ein Mitglied die Einladung zu einem Ihrer Arbeitsbereiche annimmt.',
+            'Lassen Sie sich benachrichtigen, wenn ein Mitglied die Einladung zu einem Ihrer Workspaces annimmt.',
         'If you remove the member, they will no longer have access to the workspace.':
             'Wenn Sie das Mitglied entfernen, hat es keinen Zugriff mehr auf den Workspace.',
         'If you revoke the invitation, the user will not be able to access the workspace.':
