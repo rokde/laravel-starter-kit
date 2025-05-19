@@ -29,7 +29,7 @@ const openNotification = (notification: Notification) => {
     router.get(url);
 };
 
-const muteNotification = (notification: Notification) => {
+const markAsRead = (notification: Notification) => {
     router.patch(
         route('notifications.mark-as-read', notification.id),
         {},
@@ -63,11 +63,7 @@ const muteNotification = (notification: Notification) => {
                                     <SidebarMenuButton @click="openNotification(notification)">
                                         <span :class="{ 'text-muted-foreground': notification.read }">{{ notification.title }}</span>
                                     </SidebarMenuButton>
-                                    <SidebarMenuAction
-                                        v-if="!notification.read"
-                                        @click="muteNotification(notification)"
-                                        :title="$t('Mute notification')"
-                                    >
+                                    <SidebarMenuAction v-if="!notification.read" @click="markAsRead(notification)" :title="$t('Mute notification')">
                                         <BellOff />
                                     </SidebarMenuAction>
                                 </SidebarMenuItem>
