@@ -11,6 +11,10 @@ Route::middleware(['web', 'auth', 'verified'])
     ->group(function (): void {
         Route::get('/', [NotificationController::class, 'index'])
             ->name('index');
+
+        Route::patch('/{notification}', [NotificationController::class, 'markAsRead'])
+            ->whereUuid('notification')
+            ->name('mark-as-read');
     });
 
 Route::middleware(['web', 'auth', 'verified'])->group(function (): void {
