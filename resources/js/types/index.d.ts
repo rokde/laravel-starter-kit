@@ -12,6 +12,13 @@ export interface BreadcrumbItem {
     href: string;
 }
 
+export interface PageActionItem {
+    label: string;
+    icon?: LucideIcon;
+    onClick?: () => void;
+    disabled?: boolean;
+}
+
 export interface NavItem {
     title: string;
     href: string;
@@ -41,3 +48,4 @@ export interface User {
 }
 
 export type BreadcrumbItemType = BreadcrumbItem;
+export type PageActionItemType = PageActionItem;
