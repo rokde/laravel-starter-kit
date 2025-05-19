@@ -17,18 +17,30 @@ import { Link, router } from '@inertiajs/vue3';
 import { useNotifications } from '@notification/composables/useNotifications';
 import { Notification } from '@notification/types';
 import { Bell, BellOff } from 'lucide-vue-next';
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 
 const notifications = useNotifications();
 
 const isOpen = ref(false);
+const unreadNotifications = computed<number>(() => notifications.filter((n) => !n.read).length);
+
 const openNotification = (notification: Notification) => {
     const url = notification.url ?? route('notifications.index');
     router.get(url);
 };
 
 const muteNotification = (notification: Notification) => {
-    console.log('mute', notification.id);
+    router.patch(
+        route('notifications.mark-as-read', notification.id),
+        {},
+        {
+            preserveScroll: true,
+            onSuccess: () => {
+                isOpen.value = false;
+                setTimeout(() => location.reload(), 10);
+            },
+        },
+    );
 };
 </script>
 
@@ -36,8 +48,8 @@ const muteNotification = (notification: Notification) => {
     <Popover v-model:open="isOpen">
         <PopoverTrigger as-child>
             <Button variant="ghost" size="icon">
-                <NotificationBadge :label="notifications.length">
-                    <Bell :fill="notifications.length > 0 ? 'black' : 'white'" />
+                <NotificationBadge :label="unreadNotifications">
+                    <Bell :fill="unreadNotifications > 0 ? 'black' : 'white'" />
                 </NotificationBadge>
             </Button>
         </PopoverTrigger>
