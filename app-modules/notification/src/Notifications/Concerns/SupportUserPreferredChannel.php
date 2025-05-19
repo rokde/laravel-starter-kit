@@ -22,15 +22,11 @@ trait SupportUserPreferredChannel
             return ['mail'];
         }
 
-        // always add 'database' as first notification channel
-        $preferredNotificationChannel = ['database'];
         if ($notifiable instanceof User) {
-//            if ($notifiable->preferred_notification_channels && $notifiable->preferred_notification_channels !== 'database') {
-//                $preferredNotificationChannel[] = $notifiable->preferred_notification_channels;
-//            }
+            return $notifiable->preferred_notification_channels[static::class] ?? ['database'];
         }
 
-        return $preferredNotificationChannel;
+        return ['database'];
     }
 
     /**
