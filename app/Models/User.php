@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\DataTransferObjects\User as UserDto;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Contracts\Translation\HasLocalePreference;
 use Illuminate\Database\Eloquent\Casts\AsArrayObject;
@@ -47,6 +48,17 @@ class User extends Authenticatable implements HasLocalePreference, MustVerifyEma
         }
 
         return $this->locale ?? config('app.fallback_locale', 'en');
+    }
+
+    public function toDto(): UserDto
+    {
+        return new UserDto(
+            id: $this->id,
+            name: $this->name,
+            email: $this->email,
+            verified: $this->hasVerifiedEmail(),
+            locale: $this->preferredLocale(),
+        );
     }
 
     /**
