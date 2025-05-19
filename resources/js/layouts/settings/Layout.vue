@@ -25,6 +25,10 @@ const sidebarNavItems: NavItem[] = [
         title: t('Locale'),
         href: '/settings/locale',
     },
+    {
+        title: t('Notifications'),
+        href: '/settings/notifications',
+    },
 ];
 
 const page = usePage();
