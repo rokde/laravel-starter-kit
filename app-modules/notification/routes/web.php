@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Modules\Notification\Http\Controllers\NotificationController;
 use Modules\Notification\Http\Controllers\NotificationSettingsController;
 
