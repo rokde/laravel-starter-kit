@@ -245,16 +245,23 @@ const translations: Translations = {
                 phone_number: 'Telefonnummer',
             },
         },
+        '{member} accepted the invitation to the workspace {workspace}.': '{member} hat die Einladung zum Arbeitsbereich {workspace} angenommen.',
+        'All notifications': 'Alle Benachrichtigungen',
+        'Mute notification': 'Benachrichtigung stummschalten',
+        Notifications: 'Benachrichtigungen',
+        Off: 'Aus',
         'Add workspace': 'Workspace anlegen',
         'All invitations of the workspace.': 'Ausstehende Einladungen im Workspace.',
         'All members of the workspace.': 'Alle Mitglieder des Workspaces.',
         'Configure {name}': '{name} konfigurieren',
         'Copy invitation link to clipboard': 'Einladungslink in die Zwischenablage kopieren',
         'Current workspace changed.': 'Aktuellen workspace gewechselt.',
-        'If you revoke the invitation, the user will not be able to access the workspace.':
-            'Wenn Sie die Einladung widerrufen, kann der Benutzer nicht mehr auf den Workspace zugreifen.',
+        'Get notified when a member accepts the invitation to any of your workspaces.':
+            'Lassen Sie sich benachrichtigen, wenn ein Mitglied die Einladung zu einem Ihrer Arbeitsbereiche annimmt.',
         'If you remove the member, they will no longer have access to the workspace.':
             'Wenn Sie das Mitglied entfernen, hat es keinen Zugriff mehr auf den Workspace.',
+        'If you revoke the invitation, the user will not be able to access the workspace.':
+            'Wenn Sie die Einladung widerrufen, kann der Benutzer nicht mehr auf den Workspace zugreifen.',
         Invitations: 'Einladungen',
         'Invite members': 'Mitglieder einladen',
         'Invited.': 'Eingeladen.',
@@ -557,6 +564,7 @@ const translations: Translations = {
             },
             attributes: [],
         },
+        '{member} accepted the invitation to the workspace {workspace}.': '{member} accepted the invitation to the workspace {workspace}.',
         'Add workspace': 'Add workspace',
         'Configure {name}': 'Configure {name}',
         'Current workspace changed.': 'Current workspace changed.',
