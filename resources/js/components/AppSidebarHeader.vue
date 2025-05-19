@@ -1,14 +1,17 @@
 <script setup lang="ts">
 import Breadcrumbs from '@/components/Breadcrumbs.vue';
+import NavActions from '@/components/NavActions.vue';
 import { SidebarTrigger } from '@/components/ui/sidebar';
-import type { BreadcrumbItemType } from '@/types';
+import { BreadcrumbItemType, PageActionItemType } from '@/types';
 
 withDefaults(
     defineProps<{
         breadcrumbs?: BreadcrumbItemType[];
+        pageActions?: Array<PageActionItemType[]>;
     }>(),
     {
         breadcrumbs: () => [],
+        pageActions: () => [],
     },
 );
 </script>
@@ -22,6 +25,9 @@ withDefaults(
             <template v-if="breadcrumbs && breadcrumbs.length > 0">
                 <Breadcrumbs :breadcrumbs="breadcrumbs" />
             </template>
+        </div>
+        <div class="ml-auto pl-3">
+            <NavActions :page-actions="pageActions" />
         </div>
     </header>
 </template>
