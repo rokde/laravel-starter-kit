@@ -7,4 +7,5 @@ export interface Notification {
         [key: string]: unknown;
     };
     read: boolean;
+    created_at: string;
 }

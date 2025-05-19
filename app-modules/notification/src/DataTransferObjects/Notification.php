@@ -13,5 +13,6 @@ final readonly class Notification
         public ?string $url,
         public array $data,
         public bool $read,
+        public string $created_at,
     ) {}
 }
