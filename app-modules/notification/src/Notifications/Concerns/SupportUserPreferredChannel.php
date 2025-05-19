@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\Notification\Notifications\Concerns;
 
 use App\Models\User;
@@ -11,7 +13,7 @@ trait SupportUserPreferredChannel
     /**
      * Get the notification's delivery channels.
      *
-     * @param \Illuminate\Notifications\AnonymousNotifiable|\App\Models\User $notifiable
+     * @param  AnonymousNotifiable|User  $notifiable
      * @return array<int, string>
      */
     public function via(object $notifiable): array
@@ -34,7 +36,7 @@ trait SupportUserPreferredChannel
     /**
      * Get the databse representation of the notification.
      *
-     * @param \Illuminate\Notifications\AnonymousNotifiable|\App\Models\User $notifiable
+     * @param  AnonymousNotifiable|User  $notifiable
      * @return array<string, mixed>
      */
     public function toDatabase(object $notifiable): array
