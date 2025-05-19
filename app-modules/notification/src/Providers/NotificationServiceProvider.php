@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\Notification\Providers;
 
 use Illuminate\Foundation\Application;
@@ -16,7 +18,5 @@ class NotificationServiceProvider extends ServiceProvider
         });
     }
 
-    public function boot(): void
-    {
-    }
+    public function boot(): void {}
 }
