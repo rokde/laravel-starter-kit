@@ -28,7 +28,7 @@ const revokeInvitation = (invitation: Invitation) => {
         <div class="flex flex-1 items-center gap-2 text-left leading-tight">
             <span class="truncate">{{ invitation.email }}</span>
             <span class="text-muted-foreground text-sm" :title="props.roles[invitation.role]?.description"
-                >({{ props.roles[invitation.role]?.name }})</span
+                >({{ $t(`roles.${props.roles[invitation.role]?.key}.name`) }})</span
             >
         </div>
         <time :datetime="localeDate(invitation.created_at, 'ISO8601')" :title="localeDate(invitation.created_at, 'time')">{{

@@ -2,6 +2,7 @@
 import AppLogo from '@/components/AppLogo.vue';
 import AppLogoIcon from '@/components/AppLogoIcon.vue';
 import Breadcrumbs from '@/components/Breadcrumbs.vue';
+import NavActions from '@/components/NavActions.vue';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
@@ -17,7 +18,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/comp
 import UserMenuContent from '@/components/UserMenuContent.vue';
 import { getInitials } from '@/composables/useInitials';
 import { getI18n } from '@/i18n';
-import type { BreadcrumbItem, NavItem } from '@/types';
+import type { BreadcrumbItem, NavItem, PageActionItemType } from '@/types';
 import { Link, usePage } from '@inertiajs/vue3';
 import WorkspaceSwitcher from '@workspace/components/WorkspaceSwitcher.vue';
 import { BookOpen, Folder, LayoutGrid, Menu, Search } from 'lucide-vue-next';
@@ -27,10 +28,12 @@ const { t } = getI18n();
 
 interface Props {
     breadcrumbs?: BreadcrumbItem[];
+    pageActions?: Array<PageActionItemType[]>;
 }
 
 const props = withDefaults(defineProps<Props>(), {
     breadcrumbs: () => [],
+    pageActions: () => [],
 });
 
 const page = usePage();
@@ -166,6 +169,7 @@ const rightNavItems: NavItem[] = [
                     </div>
 
                     <WorkspaceSwitcher align="end" />
+                    <NavActions :page-actions="props.pageActions" />
                     <DropdownMenu>
                         <DropdownMenuTrigger :as-child="true">
                             <Button

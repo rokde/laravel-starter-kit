@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "de442704940c8b51bc67e9b0ae893d66",
+    "content-hash": "90cb22da689f0aaacc98f64f0fee9ca7",
     "packages": [
         {
             "name": "brick/math",
@@ -2956,6 +2956,38 @@
                 "proprietary"
             ],
             "description": "The foundation layout domain handles configuration stuff regarding the used layout variant.",
+            "transport-options": {
+                "symlink": true,
+                "relative": true
+            }
+        },
+        {
+            "name": "modules/notification",
+            "version": "1.0",
+            "dist": {
+                "type": "path",
+                "url": "app-modules/notification",
+                "reference": "270b6f3f303d999234ee951fcdb9282768ec16f5"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Modules\\Notification\\Providers\\NotificationServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Modules\\Notification\\": "src/",
+                    "Modules\\Notification\\Tests\\": "tests/",
+                    "Modules\\Notification\\Database\\Factories\\": "database/factories/",
+                    "Modules\\Notification\\Database\\Seeders\\": "database/seeders/"
+                }
+            },
+            "license": [
+                "proprietary"
+            ],
             "transport-options": {
                 "symlink": true,
                 "relative": true

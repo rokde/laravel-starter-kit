@@ -11,6 +11,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Collection;
+use Modules\Workspace\DataTransferObjects\Owner as OwnerDto;
+use Modules\Workspace\DataTransferObjects\Workspace as WorkspaceDto;
 use Modules\Workspace\Events\WorkspaceCreated;
 use Modules\Workspace\Events\WorkspaceDeleted;
 use Modules\Workspace\Events\WorkspaceUpdated;
@@ -81,5 +83,19 @@ class Workspace extends Model
     public function hasUserWithEmail(string $email): bool
     {
         return $this->allUsers()->contains(fn ($user): bool => $user->email === $email);
+    }
+
+    public function toDto(): WorkspaceDto
+    {
+        return new WorkspaceDto(
+            id: $this->id,
+            name: $this->name,
+            owner: new OwnerDto(
+                id: $this->owner->id,
+                name: $this->owner->name,
+                email: $this->owner->email,
+            ),
+            currentWorkspace: false,
+        );
     }
 }

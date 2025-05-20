@@ -1,4 +1,5 @@
 import type { PageProps } from '@inertiajs/core';
+import { Notification } from '@notification/resources/js/types';
 import { WorkspaceInfo } from '@workspace/resources/js/types';
 import type { LucideIcon } from 'lucide-vue-next';
 import type { Config } from 'ziggy-js';
@@ -10,6 +11,13 @@ export interface Auth {
 export interface BreadcrumbItem {
     title: string;
     href: string;
+}
+
+export interface PageActionItem {
+    label: string;
+    icon?: LucideIcon;
+    onClick?: () => void;
+    disabled?: boolean;
 }
 
 export interface NavItem {
@@ -26,6 +34,7 @@ export interface SharedData extends PageProps {
     ziggy: Config & { location: string };
     sidebarOpen: boolean;
     knownWorkspaces: WorkspaceInfo[];
+    userNotifications: Notification[];
 }
 
 export interface User {
@@ -41,3 +50,4 @@ export interface User {
 }
 
 export type BreadcrumbItemType = BreadcrumbItem;
+export type PageActionItemType = PageActionItem;

@@ -1,0 +1,22 @@
+{
+	"name": "modules/notification",
+	"description": "Notification module to improve the user notification system.",
+	"type": "library",
+	"version": "1.0",
+	"license": "proprietary",
+	"require": {},
+	"autoload": {
+		"psr-4": {
+			"Modules\\Notification\\": "src/",
+			"Modules\\Notification\\Tests\\": "tests/"
+		}
+	},
+	"minimum-stability": "stable",
+	"extra": {
+		"laravel": {
+			"providers": [
+				"Modules\\Notification\\Providers\\NotificationServiceProvider"
+			]
+		}
+	}
+}

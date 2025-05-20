@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 use Modules\Workspace\Events\MemberAttached;
 use Modules\Workspace\Models\Workspace;
 use Modules\Workspace\Models\WorkspaceInvitation;
+use Modules\Workspace\Notifications\MemberAcceptedNotification;
 
 class AcceptTeamInvitation
 {
@@ -28,7 +29,7 @@ class AcceptTeamInvitation
             $user = User::findOrFail($userId->value());
         }
 
-        return DB::transaction(function () use ($workspaceInvitation, $user): Workspace {
+        $workspace = DB::transaction(function () use ($workspaceInvitation, $user): Workspace {
             $workspace = $workspaceInvitation->workspace;
 
             if ($user->getAuthIdentifier() === $workspace->owner->getAuthIdentifier()) {
@@ -50,5 +51,13 @@ class AcceptTeamInvitation
 
             return $workspace;
         });
+
+        // notify workspace owner
+        $workspace->owner->notify(new MemberAcceptedNotification(
+            workspace: $workspace->toDto(),
+            member: $user->toDto(),
+        ));
+
+        return $workspace;
     }
 }
