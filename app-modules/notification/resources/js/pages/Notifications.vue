@@ -42,7 +42,7 @@ const markAsRead = (notification: Notification) => {
         <div class="px-4 py-6">
             <Heading :title="$t('Notifications')" />
 
-            <div v-if="notifications.length" v-for="notification in notifications" :key="notification.id" class="mb-4 flex items-center gap-4">
+            <div v-for="notification in notifications" :key="notification.id" class="mb-4 flex items-center gap-4">
                 <time :datetime="notification.created_at">{{ localeDate(notification.created_at, 'datetime') }}</time>
                 <Link v-if="notification.url" :href="notification.url">{{ notification.title }}</Link>
                 <span v-else :class="{ 'text-muted-foreground': notification.read }">{{ notification.title }}</span>
@@ -57,7 +57,7 @@ const markAsRead = (notification: Notification) => {
                     {{ $t('Mark notification as read') }}
                 </Button>
             </div>
-            <div v-else>
+            <div v-if="notifications.length <= 0">
                 {{ $t('No notifications yet.') }}
             </div>
         </div>
