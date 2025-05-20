@@ -48,10 +48,15 @@ const markAsRead = (notification: Notification) => {
     <Popover v-model:open="isOpen">
         <PopoverTrigger as-child>
             <Button variant="ghost" size="icon">
-                <NotificationBadge v-if="unreadNotifications > 0" type="pulse" color="green" :title="$t('You have {count} unread messages', { count: unreadNotifications })">
+                <NotificationBadge
+                    v-if="unreadNotifications > 0"
+                    type="pulse"
+                    color="green"
+                    :title="$t('You have {count} unread messages', { count: unreadNotifications })"
+                >
                     <Bell class="fill-black dark:fill-white" />
                 </NotificationBadge>
-                <Bell v-else/>
+                <Bell v-else />
             </Button>
         </PopoverTrigger>
         <PopoverContent class="w-80 overflow-hidden rounded-lg p-0" align="end">
