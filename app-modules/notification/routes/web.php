@@ -2,8 +2,10 @@
 
 declare(strict_types=1);
 
+use Illuminate\Http\Request;
 use Modules\Notification\Http\Controllers\NotificationController;
 use Modules\Notification\Http\Controllers\NotificationSettingsController;
+use Modules\Notification\Notifications\TestNotification;
 
 Route::middleware(['web', 'auth', 'verified'])
     ->prefix('notifications')

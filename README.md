@@ -19,8 +19,9 @@ A customized version with the following things:
 - [x] [modules](https://github.com/InterNACHI/modular) supported for domain driven design
   - with the `foundation-layout` module to switch configured layouts
   - with a "workspace" terminology to handle a working context like a team or project - you can invite other users to work with in the same workspace. It includes an architecture test as well.
-- [ ] notification in app
-    - [ ] preference in user profile to handle preferred by mail or in-app
+- [x] notification in app
+    - [x] preference in user profile to handle preferred by mail or in-app
+    - [x] command to purge old notifications: `php artisan notifications:purge [--age=60] [--include-unread]`
 
 ## Features
 
