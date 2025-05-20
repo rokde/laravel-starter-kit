@@ -20,5 +20,4 @@ updates:
     schedule:
       interval: "weekly"
     labels:
-      - "npm"
       - "dependencies"
