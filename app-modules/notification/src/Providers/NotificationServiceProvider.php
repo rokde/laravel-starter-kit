@@ -13,10 +13,22 @@ class NotificationServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
+        $this->mergeConfigFrom(__DIR__.'/../../config/notification.php', 'notification');
+
         $this->app->bind(NotificationRepositoryContract::class, function (Application $app) {
             return new NotificationRepository($app['auth']->user());
         });
     }
 
-    public function boot(): void {}
+    public function boot(): void
+    {
+        $this->loadTranslationsFrom(__DIR__.'/../../lang');
+
+        if ($this->app->runningInConsole()) {
+            $this->publishes([
+                __DIR__.'/../../config/notification.php' => config_path('notification.php'),
+                __DIR__.'/../../lang' => $this->app->langPath('vendor/notification'),
+            ]);
+        }
+    }
 }
