@@ -8,20 +8,12 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
-use Modules\Workspace\Notifications\MemberAcceptedNotification;
+use Modules\Notification\Repositories\InAppNotificationsRepository;
 
 class NotificationSettingsController
 {
-    public function index(Request $request): Response
+    public function index(Request $request, InAppNotificationsRepository $inAppNotificationsRepository): Response
     {
-        $notifications = collect([
-            [
-                'class' => MemberAcceptedNotification::class,
-                'group' => MemberAcceptedNotification::getGroup(),
-                'description' => MemberAcceptedNotification::getDescription(),
-            ],
-        ]);
-
         return Inertia::render('notification::Settings', [
             'channels' => [
                 [
@@ -33,7 +25,7 @@ class NotificationSettingsController
                     'value' => 'mail',
                 ],
             ],
-            'notifications' => $notifications->groupBy('group'),
+            'notifications' => $inAppNotificationsRepository->all()->groupBy('group'),
             'preferred_notification_channels' => $request->user()->preferred_notification_channels ?? [],
         ]);
     }
