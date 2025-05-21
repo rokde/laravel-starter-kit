@@ -7,7 +7,7 @@ import { Label } from '@/components/ui/label';
 import AuthBase from '@/layouts/AuthLayout.vue';
 import { Head, useForm } from '@inertiajs/vue3';
 import { LoaderCircle } from 'lucide-vue-next';
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 
 interface Props {
     appliedRules: {
@@ -33,6 +33,31 @@ const form = useForm({
     password: '',
     password_confirmation: '',
     locale: window.locale,
+});
+
+const checkMinRule = computed<boolean>(() => {
+    if (props.appliedRules.min === null) return true;
+    return form.password.length >= props.appliedRules.min;
+});
+const checkMaxRule = computed<boolean>(() => {
+    if (props.appliedRules.max === null) return true;
+    return form.password !== '' && form.password.length <= props.appliedRules.max;
+});
+const checkLettersRule = computed<boolean>(() => {
+    if (props.appliedRules.letters === null) return true;
+    return form.password.match(/[a-zA-Z]/) !== null;
+});
+const checkMixedCaseRule = computed<boolean>(() => {
+    if (props.appliedRules.mixedCase === null) return true;
+    return form.password.match(/[a-z]+.*[A-Z]+|[A-Z]+.*[a-z]/) !== null;
+});
+const checkNumbersRule = computed<boolean>(() => {
+    if (props.appliedRules.numbers === null) return true;
+    return form.password.match(/[0-9]/) !== null;
+});
+const checkSymbolsRule = computed<boolean>(() => {
+    if (props.appliedRules.symbols === null) return true;
+    return form.password.match(/[^a-zA-Z0-9\ ]/) !== null;
 });
 
 const submit = () => {
@@ -74,12 +99,24 @@ const submit = () => {
                     <div v-if="displayRules" class="text-xs">
                         <p>{{ $t('Password must contain the following') }}:</p>
                         <ul class="ml-5 list-disc">
-                            <li v-if="props.appliedRules.min">{{ $t('At least {min} characters', { min: props.appliedRules.min }) }}</li>
-                            <li v-if="props.appliedRules.max">{{ $t('Up to {max} characters', { max: props.appliedRules.max }) }}</li>
-                            <li v-if="props.appliedRules.letters">{{ $t('Includes at least one letter') }}</li>
-                            <li v-if="props.appliedRules.mixedCase">{{ $t('Contains both uppercase and lowercase letters') }}</li>
-                            <li v-if="props.appliedRules.numbers">{{ $t('Includes at least one number') }}</li>
-                            <li v-if="props.appliedRules.symbols">{{ $t('Contains at least one special character') }}</li>
+                            <li v-if="props.appliedRules.min" :class="{ 'text-green-600 dark:text-green-400': checkMinRule }">
+                                {{ $t('At least {min} characters', { min: props.appliedRules.min }) }}
+                            </li>
+                            <li v-if="props.appliedRules.max" :class="{ 'text-green-600 dark:text-green-400': checkMaxRule }">
+                                {{ $t('Up to {max} characters', { max: props.appliedRules.max }) }}
+                            </li>
+                            <li v-if="props.appliedRules.letters" :class="{ 'text-green-600 dark:text-green-400': checkLettersRule }">
+                                {{ $t('Includes at least one letter') }}
+                            </li>
+                            <li v-if="props.appliedRules.mixedCase" :class="{ 'text-green-600 dark:text-green-400': checkMixedCaseRule }">
+                                {{ $t('Contains both uppercase and lowercase letters') }}
+                            </li>
+                            <li v-if="props.appliedRules.numbers" :class="{ 'text-green-600 dark:text-green-400': checkNumbersRule }">
+                                {{ $t('Includes at least one number') }}
+                            </li>
+                            <li v-if="props.appliedRules.symbols" :class="{ 'text-green-600 dark:text-green-400': checkSymbolsRule }">
+                                {{ $t('Contains at least one special character') }}
+                            </li>
                         </ul>
                     </div>
                     <Input
