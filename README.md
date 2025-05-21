@@ -20,6 +20,7 @@ A customized version with the following things:
 ### IDE support
 
 - [x] [barryvdh/laravel-ide-helper](https://github.com/barryvdh/laravel-ide-helper)
+- [x] JetBrains Junie guidelines
 
 ### Starter Kit features
 
@@ -27,6 +28,7 @@ A customized version with the following things:
 - [x] static pages based on CommonMark Markdown files, with FrontMatter support and localized
   - in `resources/markdown` are the md files located
   - localized version can have a `*.[locale].md` extension (e.g. `.de.md`)
+- [x] using UseFactory class attribute for eloquent models
 - [x] [modules](https://github.com/InterNACHI/modular) supported for domain driven design
   - [x] foundation-layout
     - with the `foundation-layout` module you can switch configured layouts
