@@ -7,6 +7,25 @@ import { Label } from '@/components/ui/label';
 import AuthBase from '@/layouts/AuthLayout.vue';
 import { Head, useForm } from '@inertiajs/vue3';
 import { LoaderCircle } from 'lucide-vue-next';
+import { ref } from 'vue';
+
+interface Props {
+    appliedRules: {
+        min: number | null;
+        max: number | null;
+        mixedCase: boolean;
+        letters: boolean;
+        numbers: boolean;
+        symbols: boolean;
+        uncompromised: boolean;
+        compromisedThreshold: number;
+        customRules: unknown[];
+    };
+}
+
+const props = defineProps<Props>();
+
+const displayRules = ref<boolean>(false);
 
 const form = useForm({
     name: '',
@@ -52,12 +71,24 @@ const submit = () => {
 
                 <div class="grid gap-2">
                     <Label for="password">{{ $t('Password') }}</Label>
+                    <div v-if="displayRules" class="text-xs">
+                        <p>{{ $t('Password must contain the following') }}:</p>
+                        <ul class="ml-5 list-disc">
+                            <li v-if="props.appliedRules.min">{{ $t('At least {min} characters', { min: props.appliedRules.min }) }}</li>
+                            <li v-if="props.appliedRules.max">{{ $t('Up to {max} characters', { max: props.appliedRules.max }) }}</li>
+                            <li v-if="props.appliedRules.letters">{{ $t('Includes at least one letter') }}</li>
+                            <li v-if="props.appliedRules.mixedCase">{{ $t('Contains both uppercase and lowercase letters') }}</li>
+                            <li v-if="props.appliedRules.numbers">{{ $t('Includes at least one number') }}</li>
+                            <li v-if="props.appliedRules.symbols">{{ $t('Contains at least one special character') }}</li>
+                        </ul>
+                    </div>
                     <Input
                         id="password"
                         type="password"
                         required
                         :tabindex="3"
                         autocomplete="new-password"
+                        @focus="displayRules = true"
                         v-model="form.password"
                         :placeholder="$t('Password')"
                     />
