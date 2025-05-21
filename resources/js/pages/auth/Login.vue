@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import InputError from '@/components/InputError.vue';
+import RevealPassword from '@/components/RevealPassword.vue';
 import TextLink from '@/components/TextLink.vue';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
@@ -59,15 +60,18 @@ const submit = () => {
                             {{ $t('Forgot password?') }}
                         </TextLink>
                     </div>
-                    <Input
-                        id="password"
-                        type="password"
-                        required
-                        :tabindex="2"
-                        autocomplete="current-password"
-                        v-model="form.password"
-                        :placeholder="$t('Password')"
-                    />
+                    <div class="with-revealer">
+                        <Input
+                            id="password"
+                            type="password"
+                            required
+                            :tabindex="2"
+                            autocomplete="current-password"
+                            v-model="form.password"
+                            :placeholder="$t('Password')"
+                        />
+                        <RevealPassword ref-id="password" />
+                    </div>
                     <InputError :message="form.errors.password" />
                 </div>
 

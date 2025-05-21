@@ -8,20 +8,36 @@
 
 A customized version with the following things:
 
+### Repository
 - [x] PHP 8.4
 - [x] [laravel/vue-starter-kit](https://github.com/laravel/vue-starter-kit)
   - using [Inertia](https://inertiajs.com/) and [shadcn-vue](https://www.shadcn-vue.com/) components
-- [x] [barryvdh/laravel-ide-helper](https://github.com/barryvdh/laravel-ide-helper)
 - [x] pint.json with strict rules
-- [x] repository health with dependabot
+- [x] repository dependency health with dependabot
+- [x] automatic linting and testing on push
+- [x] automatic CHANGELOG.md update on releases
+
+### IDE support
+
+- [x] [barryvdh/laravel-ide-helper](https://github.com/barryvdh/laravel-ide-helper)
+
+### Starter Kit features
+
 - [x] internationalization (en, de)
 - [x] static pages based on CommonMark Markdown files, with FrontMatter support and localized
+  - in `resources/markdown` are the md files located
+  - localized version can have a `*.[locale].md` extension (e.g. `.de.md`)
 - [x] [modules](https://github.com/InterNACHI/modular) supported for domain driven design
-  - with the `foundation-layout` module to switch configured layouts
-  - with a "workspace" terminology to handle a working context like a team or project - you can invite other users to work with in the same workspace. It includes an architecture test as well.
-- [x] notification in app
-    - [x] preference in user profile to handle preferred by mail or in-app
-    - [x] command to purge old notifications: `php artisan notifications:purge [--age=60] [--include-unread]`
+  - [x] foundation-layout
+    - with the `foundation-layout` module you can switch configured layouts
+    - console command `php artisan app:configure-layouts`
+  - [x] notification
+    - user preferred notification subscription (in-app or mail)
+    - command to purge old notifications: `php artisan notifications:purge [--age=60] [--include-unread]`
+  - [x] workspace
+    - with a "workspace" terminology to handle a working context like a team or project
+    - you can invite other users to work with in the same workspace
+    - includes an architecture test as well
 
 ## Features
 
@@ -35,6 +51,8 @@ A customized version with the following things:
 - [database notifications](https://laravel.com/docs/notifications#database-prerequisites) already set up
 - Profile settings including locale settings
 - Imprint, Terms and Policy templates supported
+- displaying the password rules on registration and password change
+- reveal passwords on password input elements
 
 ### Build with DDD
 
@@ -48,7 +66,7 @@ This generates the whole module stub. Use contracts and dtos to communicate betw
 
 Then you can switch between all the provided layouts within the [starter kits](https://laravel.com/docs/starter-kits#vue-available-layouts).
 
-### Transfer localization
+### Reuse backend localization in frontend
 
 We support localization. If your user implements the `HasLocalePreference` interface we would support that by the `SetLocale` middleware.
 
