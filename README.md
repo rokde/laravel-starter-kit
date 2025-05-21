@@ -40,6 +40,7 @@ A customized version with the following things:
     - with a "workspace" terminology to handle a working context like a team or project
     - you can invite other users to work with in the same workspace
     - includes an architecture test as well
+    - command to purge old invitations: `php artisan workspace:purge-orphaned-invitations [--age=60]`
 
 ## Features
 
