@@ -3,7 +3,7 @@ import InputError from '@/components/InputError.vue';
 import AppLayout from '@/layouts/AppLayout.vue';
 import SettingsLayout from '@/layouts/settings/Layout.vue';
 import { Head, useForm } from '@inertiajs/vue3';
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 
 import HeadingSmall from '@/components/HeadingSmall.vue';
 import { Button } from '@/components/ui/button';
@@ -13,6 +13,22 @@ import { getI18n } from '@/i18n';
 import { type BreadcrumbItem } from '@/types';
 
 const { t } = getI18n();
+
+interface Props {
+    appliedRules: {
+        min: number | null;
+        max: number | null;
+        mixedCase: boolean;
+        letters: boolean;
+        numbers: boolean;
+        symbols: boolean;
+        uncompromised: boolean;
+        compromisedThreshold: number;
+        customRules: unknown[];
+    };
+}
+
+const props = defineProps<Props>();
 
 const breadcrumbItems: BreadcrumbItem[] = [
     {
@@ -24,10 +40,37 @@ const breadcrumbItems: BreadcrumbItem[] = [
 const passwordInput = ref<HTMLInputElement | null>(null);
 const currentPasswordInput = ref<HTMLInputElement | null>(null);
 
+const displayRules = ref<boolean>(false);
+
 const form = useForm({
     current_password: '',
     password: '',
     password_confirmation: '',
+});
+
+const checkMinRule = computed<boolean>(() => {
+    if (props.appliedRules.min === null) return true;
+    return form.password.length >= props.appliedRules.min;
+});
+const checkMaxRule = computed<boolean>(() => {
+    if (props.appliedRules.max === null) return true;
+    return form.password !== '' && form.password.length <= props.appliedRules.max;
+});
+const checkLettersRule = computed<boolean>(() => {
+    if (props.appliedRules.letters === null) return true;
+    return form.password.match(/[a-zA-Z]/) !== null;
+});
+const checkMixedCaseRule = computed<boolean>(() => {
+    if (props.appliedRules.mixedCase === null) return true;
+    return form.password.match(/[a-z]+.*[A-Z]+|[A-Z]+.*[a-z]/) !== null;
+});
+const checkNumbersRule = computed<boolean>(() => {
+    if (props.appliedRules.numbers === null) return true;
+    return form.password.match(/[0-9]/) !== null;
+});
+const checkSymbolsRule = computed<boolean>(() => {
+    if (props.appliedRules.symbols === null) return true;
+    return form.password.match(/[^a-zA-Z0-9\ ]/) !== null;
 });
 
 const updatePassword = () => {
@@ -81,6 +124,29 @@ const updatePassword = () => {
 
                     <div class="grid gap-2">
                         <Label for="password">{{ $t('New password') }}</Label>
+                        <div v-if="displayRules" class="text-xs">
+                            <p>{{ $t('Password must contain the following') }}:</p>
+                            <ul class="ml-5 list-disc">
+                                <li v-if="props.appliedRules.min" :class="{ 'text-green-600 dark:text-green-400': checkMinRule }">
+                                    {{ $t('At least {min} characters', { min: props.appliedRules.min }) }}
+                                </li>
+                                <li v-if="props.appliedRules.max" :class="{ 'text-green-600 dark:text-green-400': checkMaxRule }">
+                                    {{ $t('Up to {max} characters', { max: props.appliedRules.max }) }}
+                                </li>
+                                <li v-if="props.appliedRules.letters" :class="{ 'text-green-600 dark:text-green-400': checkLettersRule }">
+                                    {{ $t('Includes at least one letter') }}
+                                </li>
+                                <li v-if="props.appliedRules.mixedCase" :class="{ 'text-green-600 dark:text-green-400': checkMixedCaseRule }">
+                                    {{ $t('Contains both uppercase and lowercase letters') }}
+                                </li>
+                                <li v-if="props.appliedRules.numbers" :class="{ 'text-green-600 dark:text-green-400': checkNumbersRule }">
+                                    {{ $t('Includes at least one number') }}
+                                </li>
+                                <li v-if="props.appliedRules.symbols" :class="{ 'text-green-600 dark:text-green-400': checkSymbolsRule }">
+                                    {{ $t('Contains at least one special character') }}
+                                </li>
+                            </ul>
+                        </div>
                         <Input
                             id="password"
                             ref="passwordInput"
@@ -88,6 +154,7 @@ const updatePassword = () => {
                             type="password"
                             class="mt-1 block w-full"
                             autocomplete="new-password"
+                            @focus="displayRules = true"
                             :placeholder="$t('New password')"
                         />
                         <InputError :message="form.errors.password" />
