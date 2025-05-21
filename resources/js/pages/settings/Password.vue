@@ -6,6 +6,7 @@ import { Head, useForm } from '@inertiajs/vue3';
 import { computed, ref } from 'vue';
 
 import HeadingSmall from '@/components/HeadingSmall.vue';
+import RevealPassword from '@/components/RevealPassword.vue';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -110,15 +111,18 @@ const updatePassword = () => {
                 <form @submit.prevent="updatePassword" class="space-y-6">
                     <div class="grid gap-2">
                         <Label for="current_password">{{ $t('Current password') }}</Label>
-                        <Input
-                            id="current_password"
-                            ref="currentPasswordInput"
-                            v-model="form.current_password"
-                            type="password"
-                            class="mt-1 block w-full"
-                            autocomplete="current-password"
-                            :placeholder="$t('Current password')"
-                        />
+                        <div class="with-revealer">
+                            <Input
+                                id="current_password"
+                                ref="currentPasswordInput"
+                                v-model="form.current_password"
+                                type="password"
+                                class="block w-full"
+                                autocomplete="current-password"
+                                :placeholder="$t('Current password')"
+                            />
+                            <RevealPassword ref-id="current_password" />
+                        </div>
                         <InputError :message="form.errors.current_password" />
                     </div>
 
@@ -147,29 +151,35 @@ const updatePassword = () => {
                                 </li>
                             </ul>
                         </div>
-                        <Input
-                            id="password"
-                            ref="passwordInput"
-                            v-model="form.password"
-                            type="password"
-                            class="mt-1 block w-full"
-                            autocomplete="new-password"
-                            @focus="displayRules = true"
-                            :placeholder="$t('New password')"
-                        />
+                        <div class="with-revealer">
+                            <Input
+                                id="password"
+                                ref="passwordInput"
+                                v-model="form.password"
+                                type="password"
+                                class="block w-full"
+                                autocomplete="new-password"
+                                @focus="displayRules = true"
+                                :placeholder="$t('New password')"
+                            />
+                            <RevealPassword ref-id="password" />
+                        </div>
                         <InputError :message="form.errors.password" />
                     </div>
 
                     <div class="grid gap-2">
                         <Label for="password_confirmation">{{ $t('Confirm Password') }}</Label>
-                        <Input
-                            id="password_confirmation"
-                            v-model="form.password_confirmation"
-                            type="password"
-                            class="mt-1 block w-full"
-                            autocomplete="new-password"
-                            :placeholder="$t('Confirm Password')"
-                        />
+                        <div class="with-revealer">
+                            <Input
+                                id="password_confirmation"
+                                v-model="form.password_confirmation"
+                                type="password"
+                                class="block w-full"
+                                autocomplete="new-password"
+                                :placeholder="$t('Confirm Password')"
+                            />
+                            <RevealPassword ref-id="password_confirmation" />
+                        </div>
                         <InputError :message="form.errors.password_confirmation" />
                     </div>
 

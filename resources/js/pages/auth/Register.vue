@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import InputError from '@/components/InputError.vue';
+import RevealPassword from '@/components/RevealPassword.vue';
 import TextLink from '@/components/TextLink.vue';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -119,30 +120,36 @@ const submit = () => {
                             </li>
                         </ul>
                     </div>
-                    <Input
-                        id="password"
-                        type="password"
-                        required
-                        :tabindex="3"
-                        autocomplete="new-password"
-                        @focus="displayRules = true"
-                        v-model="form.password"
-                        :placeholder="$t('Password')"
-                    />
+                    <div class="with-revealer">
+                        <Input
+                            id="password"
+                            type="password"
+                            required
+                            :tabindex="3"
+                            autocomplete="new-password"
+                            @focus="displayRules = true"
+                            v-model="form.password"
+                            :placeholder="$t('Password')"
+                        />
+                        <RevealPassword ref-id="password" />
+                    </div>
                     <InputError :message="form.errors.password" />
                 </div>
 
                 <div class="grid gap-2">
                     <Label for="password_confirmation">{{ $t('Confirm password') }}</Label>
-                    <Input
-                        id="password_confirmation"
-                        type="password"
-                        required
-                        :tabindex="4"
-                        autocomplete="new-password"
-                        v-model="form.password_confirmation"
-                        :placeholder="$t('Confirm password')"
-                    />
+                    <div class="with-revealer">
+                        <Input
+                            id="password_confirmation"
+                            type="password"
+                            required
+                            :tabindex="4"
+                            autocomplete="new-password"
+                            v-model="form.password_confirmation"
+                            :placeholder="$t('Confirm password')"
+                        />
+                        <RevealPassword ref-id="password_confirmation" />
+                    </div>
                     <InputError :message="form.errors.password_confirmation" />
                 </div>
 
