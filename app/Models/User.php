@@ -5,8 +5,10 @@ declare(strict_types=1);
 namespace App\Models;
 
 use App\DataTransferObjects\User as UserDto;
+use Database\Factories\UserFactory;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Contracts\Translation\HasLocalePreference;
+use Illuminate\Database\Eloquent\Attributes\UseFactory;
 use Illuminate\Database\Eloquent\Casts\AsArrayObject;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -14,9 +16,9 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Stringable;
 use Modules\Workspace\Models\Concerns\ManagesWorkspaces;
 
+#[UseFactory(UserFactory::class)]
 class User extends Authenticatable implements HasLocalePreference, MustVerifyEmail
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, ManagesWorkspaces, Notifiable;
 
     /**

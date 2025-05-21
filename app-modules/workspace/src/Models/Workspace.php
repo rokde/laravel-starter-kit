@@ -5,21 +5,23 @@ declare(strict_types=1);
 namespace Modules\Workspace\Models;
 
 use App\Models\User;
+use Illuminate\Database\Eloquent\Attributes\UseFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Collection;
+use Modules\Workspace\Database\Factories\WorkspaceFactory;
 use Modules\Workspace\DataTransferObjects\Owner as OwnerDto;
 use Modules\Workspace\DataTransferObjects\Workspace as WorkspaceDto;
 use Modules\Workspace\Events\WorkspaceCreated;
 use Modules\Workspace\Events\WorkspaceDeleted;
 use Modules\Workspace\Events\WorkspaceUpdated;
 
+#[UseFactory(WorkspaceFactory::class)]
 class Workspace extends Model
 {
-    /** @use \Illuminate\Database\Eloquent\Factories\HasFactory<\Modules\Workspace\Database\Factories\WorkspaceFactory> */
     use HasFactory;
 
     /**
