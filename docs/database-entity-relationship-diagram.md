@@ -13,8 +13,8 @@ erDiagram
         email_verified_at timestamp NULL
         password string
         remember_token string NULL
-        locale string "default: 'en'"
-        preferred_notification_channels longtext NULL "default: null"
+        locale string "default en"
+        preferred_notification_channels longtext NULL
         workspace_id bigint FK NULL "current active workspace"
         created_at timestamp
         updated_at timestamp
@@ -77,7 +77,7 @@ erDiagram
         queue text
         payload longtext
         exception longtext
-        failed_at timestamp "default: current timestamp"
+        failed_at timestamp "default current timestamp"
     }
 
     notifications {
@@ -103,7 +103,7 @@ erDiagram
         id bigint PK
         workspace_id bigint FK "cascade on delete"
         email string
-        role string NULL "default: null"
+        role string NULL "default null"
         created_at timestamp
         updated_at timestamp
     }
@@ -112,7 +112,7 @@ erDiagram
         id bigint PK
         workspace_id bigint FK
         user_id bigint FK
-        role string NULL "default: null"
+        role string NULL "default null"
         created_at timestamp
         updated_at timestamp
     }
