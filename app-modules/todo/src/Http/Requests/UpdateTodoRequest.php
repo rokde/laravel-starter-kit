@@ -20,13 +20,8 @@ class UpdateTodoRequest extends FormRequest
             return false;
         }
 
-        $workspace = $this->user()->currentWorkspace;
-
-        if ($workspace === null) {
-            return false;
-        }
-
-        return $todo->workspace_id === $workspace->id;
+        // Check if the user is authorized to update the todo using the policy
+        return $this->user()->can('update', $todo);
     }
 
     /**

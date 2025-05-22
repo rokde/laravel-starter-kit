@@ -71,7 +71,9 @@ class TodoController
     {
         $workspace = $request->user()->currentWorkspace;
         abort_if($workspace === null, 404);
-        abort_if($todo->workspace_id !== $workspace->id, 403);
+
+        // Check if the user is authorized to update the todo
+        $request->user()->can('update', $todo);
 
         $todo->update($request->validated());
 
@@ -87,7 +89,9 @@ class TodoController
     {
         $workspace = $request->user()->currentWorkspace;
         abort_if($workspace === null, 404);
-        abort_if($todo->workspace_id !== $workspace->id, 403);
+
+        // Check if the user is authorized to update the todo
+        $request->user()->can('update', $todo);
 
         $todo->completed = !$todo->completed;
         $todo->save();
@@ -106,7 +110,9 @@ class TodoController
     {
         $workspace = $request->user()->currentWorkspace;
         abort_if($workspace === null, 404);
-        abort_if($todo->workspace_id !== $workspace->id, 403);
+
+        // Check if the user is authorized to delete the todo
+        $request->user()->can('delete', $todo);
 
         $todo->delete();
 

@@ -13,7 +13,18 @@ class StoreTodoRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return $this->user()?->currentWorkspace !== null;
+        $workspace = $this->user()?->currentWorkspace;
+
+        if ($workspace === null) {
+            return false;
+        }
+
+        // Check if the user is authorized to create a todo for the specified user
+        return $this->user()->can('create', [
+            \Modules\Todo\Models\Todo::class,
+            $workspace,
+            $this->input('user_id'),
+        ]);
     }
 
     /**
