@@ -14,8 +14,13 @@ class LayoutFile
 
     public function canBeModified(): bool
     {
-        return file_exists($this->filename)
-            && preg_match($this->pattern, file_get_contents($this->filename)) !== false;
+        if (! file_exists($this->filename)) {
+            return false;
+        }
+
+        $match = preg_match($this->pattern, file_get_contents($this->filename));
+        return $match !== false
+            && $match > 0;
     }
 
     public function modify(): void
