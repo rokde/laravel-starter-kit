@@ -80,11 +80,7 @@ const submit = () => {
                             <SelectValue :placeholder="$t('Select a user')" />
                         </SelectTrigger>
                         <SelectContent>
-                            <SelectItem
-                                v-for="user in props.workspaceUsers"
-                                :key="user.id"
-                                :value="user.id"
-                            >
+                            <SelectItem v-for="user in props.workspaceUsers" :key="user.id" :value="user.id">
                                 {{ user.name }} ({{ user.email }})
                             </SelectItem>
                         </SelectContent>

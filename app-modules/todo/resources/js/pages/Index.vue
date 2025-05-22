@@ -25,9 +25,13 @@ const breadcrumbs: BreadcrumbItem[] = [
 ];
 
 const toggleComplete = (todo: Todo) => {
-    router.patch(route('todos.toggle-complete', todo.id), {}, {
-        preserveScroll: true,
-    });
+    router.patch(
+        route('todos.toggle-complete', todo.id),
+        {},
+        {
+            preserveScroll: true,
+        },
+    );
 };
 
 const deleteTodo = (todo: Todo) => {
@@ -60,10 +64,8 @@ const deleteTodo = (todo: Todo) => {
                     <div class="flex items-center space-x-4">
                         <Checkbox :checked="todo.completed" @update:checked="toggleComplete(todo)" />
                         <div>
-                            <p :class="{ 'line-through text-neutral-400': todo.completed }">{{ todo.title }}</p>
-                            <p class="text-sm text-neutral-500" v-if="todo.user">
-                                {{ $t('Assigned to') }}: {{ todo.user.name }}
-                            </p>
+                            <p :class="{ 'text-neutral-400 line-through': todo.completed }">{{ todo.title }}</p>
+                            <p class="text-sm text-neutral-500" v-if="todo.user">{{ $t('Assigned to') }}: {{ todo.user.name }}</p>
                         </div>
                     </div>
                     <div class="flex space-x-2">
