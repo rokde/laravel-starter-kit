@@ -72,6 +72,9 @@
             "@php artisan config:clear --ansi",
             "@php artisan test --parallel"
         ],
+        "test:coverage": [
+            "@php artisan test --coverage"
+        ],
         "format": [
             "@php vendor/bin/pint"
         ],
