@@ -8,7 +8,7 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 
-class GenerateModuleDependencyGraph extends Command
+class GenerateModuleDependencyGraphCommand extends Command
 {
     protected $signature = 'modules:graph {--output=docs/module-dependency-graph.md : The output file path}';
 
