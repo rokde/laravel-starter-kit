@@ -98,6 +98,16 @@ With `php artisan translations:generate` the php stored translations get transfe
 
 `composer run test`
 
+### Code Coverage
+
+To generate a code coverage report, run:
+
+```bash
+composer test:coverage
+```
+
+After the tests complete, you can view the coverage report by opening `./tests/coverage/index.html` in your browser.
+
 ### Dependabot
 
 Weekly updates for npm and php dependencies.
