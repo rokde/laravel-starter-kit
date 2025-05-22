@@ -91,20 +91,20 @@ php artisan test --coverage
 2. Use the Pest syntax for writing tests:
    ```php
    <?php
-   
+
    declare(strict_types=1);
-   
+
    use Illuminate\Foundation\Testing\RefreshDatabase;
-   
+
    uses(RefreshDatabase::class);
-   
+
    test('feature works as expected', function (): void {
        // Arrange
        $data = [...];
-       
+
        // Act
        $result = doSomething($data);
-       
+
        // Assert
        expect($result)->toBe(true);
    });
@@ -139,12 +139,12 @@ uses(RefreshDatabase::class);
 test('workspace has expected attributes', function (): void {
     // Arrange
     $name = 'Test Workspace';
-    
+
     // Act
     $workspace = Workspace::factory()->create([
         'name' => $name,
     ]);
-    
+
     // Assert
     expect($workspace->name)->toBe($name);
     expect($workspace->owner)->not()->toBeNull();
@@ -197,6 +197,45 @@ The project uses a modular structure with modules in the `app-modules` directory
 - Tests
 - Migrations
 - Factories
+
+### Database Entity Relationship Diagrams
+The project maintains a database entity relationship diagram (ERD) to visualize the database schema. The diagram is created using Mermaid syntax and is stored in `docs/database-entity-relationship-diagram.md`.
+
+#### Mermaid ERD Syntax
+The ERD is created using Mermaid's entity-relationship diagram syntax. Here's an example of the syntax:
+
+```mermaid
+erDiagram
+    TABLE_NAME {
+        column_name data_type PK "optional comment"
+        another_column data_type FK "optional comment"
+    }
+
+    ANOTHER_TABLE {
+        id bigint PK
+        name string
+        foreign_key bigint FK
+    }
+
+    TABLE_NAME ||--o{ ANOTHER_TABLE : "relationship description"
+```
+
+Key points about the syntax:
+- Each table is defined with its name followed by columns in curly braces
+- Columns include name, data type, and optional attributes (PK, FK)
+- Comments can be added in quotes after the column definition
+- Relationships are defined using crow's foot notation
+- Avoid using "NULL" in attribute definitions as it causes parsing errors
+
+#### Updating the ERD
+When making changes to the database schema (adding tables, columns, or relationships), follow these steps to update the ERD:
+
+1. Open `docs/database-entity-relationship-diagram.md`
+2. Update the Mermaid diagram to reflect the changes
+3. Add or modify table descriptions as needed
+4. Update the relationships section if necessary
+
+The ERD should be kept in sync with the migration files to ensure it accurately represents the current database schema.
 
 ### Frontend
 - Vue.js 3 with TypeScript

@@ -17,7 +17,7 @@ use Tests\TestCase;
 
 pest()->extend(TestCase::class)
  // ->use(Illuminate\Foundation\Testing\RefreshDatabase::class)
-    ->in('Feature', '../app-modules/*/tests');
+    ->in('Feature', 'Unit', '../app-modules/*/tests');
 
 /*
 |--------------------------------------------------------------------------

@@ -27,6 +27,6 @@ class StaticPage
      */
     public function getHtml(array $options = ['allow_unsafe_links' => false], array $extensions = []): string
     {
-        return Str::of($this->content)->markdown($options, $extensions);
+        return Str::of($this->content)->markdown($options, $extensions)->value();
     }
 }

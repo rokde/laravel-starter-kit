@@ -30,17 +30,9 @@ A customized version with the following things:
   - localized version can have a `*.[locale].md` extension (e.g. `.de.md`)
 - [x] using UseFactory class attribute for eloquent models
 - [x] [modules](https://github.com/InterNACHI/modular) supported for domain driven design
-  - [x] foundation-layout
-    - with the `foundation-layout` module you can switch configured layouts
-    - console command `php artisan app:configure-layouts`
-  - [x] notification
-    - user preferred notification subscription (in-app or mail)
-    - command to purge old notifications: `php artisan notifications:purge [--age=60] [--include-unread]`
-  - [x] workspace
-    - with a "workspace" terminology to handle a working context like a team or project
-    - you can invite other users to work with in the same workspace
-    - includes an architecture test as well
-    - command to purge old invitations: `php artisan workspace:purge-orphaned-invitations [--age=60]`
+  - [x] [foundation-layout](app-modules/foundation-layout/README.md) - Configure and switch between different layout styles
+  - [x] [notification](app-modules/notification/README.md) - Manage user notification preferences and delivery methods
+  - [x] [workspace](app-modules/workspace/README.md) - Create and manage workspaces for team collaboration
 
 ## Features
 
@@ -63,7 +55,25 @@ A customized version with the following things:
 
 This generates the whole module stub. Use contracts and dtos to communicate between domain boundaries as described in [Modularizing Inertia](https://pacific-nymphea-e41.notion.site/Modularizing-Inertia-Laracon-India-2025-1a6320a6974e8014b91ec08cc6b79c4e). An [example repository](https://github.com/avosalmon/artisan-airlines) describes it better. It supports also the module-based loading and providing of typescript code for inertia.
 
-### Configure the used layouts with a console command (provided by the foundation-layout module)
+#### Module Dependency Graph
+
+You can generate a [visual representation](docs/module-dependency-graph.md) of module dependencies with:
+
+`php artisan modules:graph`
+
+This command analyzes the codebase and creates a dependency graph using Mermaid, which is supported by GitHub Markdown. The graph shows which modules depend on each other and provides detailed information about each module.
+
+The generated graph is saved to `docs/module-dependency-graph.md` by default, but you can specify a custom output path:
+
+`php artisan modules:graph --output=custom/path/graph.md`
+
+#### Database Entity Relationship Diagram
+
+A [visual representation](docs/database-entity-relationship-diagram.md) of the database schema is available, showing all tables, columns, relationships, and indexes used in the project.
+
+### Configure the used layouts with a console command
+
+(provided by the [foundation-layout](app-modules/foundation-layout/README.md) module)
 
 `php artisan app:configure-layouts`
 
@@ -87,6 +97,16 @@ With `php artisan translations:generate` the php stored translations get transfe
 ### Run the test suite
 
 `composer run test`
+
+### Code Coverage
+
+To generate a code coverage report, run:
+
+```bash
+composer test:coverage
+```
+
+After the tests complete, you can view the coverage report by opening `./tests/coverage/index.html` in your browser.
 
 ### Dependabot
 

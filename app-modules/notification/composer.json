@@ -8,7 +8,8 @@
 	"autoload": {
 		"psr-4": {
 			"Modules\\Notification\\": "src/",
-			"Modules\\Notification\\Tests\\": "tests/"
+			"Modules\\Notification\\Tests\\": "tests/",
+			"Modules\\Notification\\Database\\Factories\\": "database/factories/"
 		}
 	},
 	"minimum-stability": "stable",

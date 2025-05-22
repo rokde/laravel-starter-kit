@@ -2967,7 +2967,7 @@
             "dist": {
                 "type": "path",
                 "url": "app-modules/notification",
-                "reference": "270b6f3f303d999234ee951fcdb9282768ec16f5"
+                "reference": "53ce53ab4ae99859e44f666e2214921cb0a419be"
             },
             "type": "library",
             "extra": {
@@ -2981,13 +2981,13 @@
                 "psr-4": {
                     "Modules\\Notification\\": "src/",
                     "Modules\\Notification\\Tests\\": "tests/",
-                    "Modules\\Notification\\Database\\Factories\\": "database/factories/",
-                    "Modules\\Notification\\Database\\Seeders\\": "database/seeders/"
+                    "Modules\\Notification\\Database\\Factories\\": "database/factories/"
                 }
             },
             "license": [
                 "proprietary"
             ],
+            "description": "Notification module to improve the user notification system.",
             "transport-options": {
                 "symlink": true,
                 "relative": true
@@ -10708,12 +10708,12 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {},
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
         "php": "^8.2"
     },
-    "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "platform-dev": {},
+    "plugin-api-version": "2.6.0"
 }
