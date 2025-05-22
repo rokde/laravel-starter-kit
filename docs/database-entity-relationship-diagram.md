@@ -117,14 +117,26 @@ erDiagram
         updated_at timestamp
     }
 
+    todos {
+        id bigint PK
+        workspace_id bigint FK "index"
+        user_id bigint FK "index"
+        title string
+        completed boolean "default false"
+        created_at timestamp
+        updated_at timestamp
+    }
+
     users ||--o{ sessions : "has many"
     users ||--o{ notifications : "has many"
     users ||--o{ workspaces : "owns many"
     users ||--o{ workspace_members : "belongs to many workspaces"
     users }|--o| workspaces : "has current active workspace"
+    users ||--o{ todos : "is assigned to many todos"
 
     workspaces ||--o{ workspace_members : "has many members"
     workspaces ||--o{ workspace_member_invitations : "has many invitations"
+    workspaces ||--o{ todos : "has many todos"
 ```
 
 ## Table Descriptions
@@ -149,6 +161,9 @@ erDiagram
 - **workspace_members**: Manages workspace membership
 - **workspace_member_invitations**: Manages invitations to workspaces
 
+### Todo Tables
+- **todos**: Stores todo items with title, completion status, and relationships to workspaces and users
+
 ## Relationships
 
 - A user can own many workspaces
@@ -156,5 +171,7 @@ erDiagram
 - A user can have a current active workspace
 - A workspace can have many members through workspace_members
 - A workspace can have many invitations through workspace_member_invitations
+- A workspace can have many todos
 - A user can have many sessions
 - A user can have many notifications
+- A user can be assigned to many todos

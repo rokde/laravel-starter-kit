@@ -1,0 +1,21 @@
+{
+    "Todos": "Todos",
+    "Create Todo": "Create Todo",
+    "No todos found. Create your first todo!": "No todos found. Create your first todo!",
+    "Assigned to": "Assigned to",
+    "Mark as Complete": "Mark as Complete",
+    "Mark as Incomplete": "Mark as Incomplete",
+    "Delete": "Delete",
+    "Are you sure you want to delete this todo?": "Are you sure you want to delete this todo?",
+    "Title": "Title",
+    "Todo title": "Todo title",
+    "Assign to": "Assign to",
+    "Select a user": "Select a user",
+    "Save": "Save",
+    "Saved.": "Saved.",
+    "Todo created.": "Todo created.",
+    "Todo updated.": "Todo updated.",
+    "Todo deleted.": "Todo deleted.",
+    "Todo marked as completed.": "Todo marked as completed.",
+    "Todo marked as incomplete.": "Todo marked as incomplete."
+}

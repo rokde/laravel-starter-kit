@@ -1,0 +1,23 @@
+{
+	"name": "modules/todo",
+	"description": "This module provides todo functionality for workspaces.",
+	"type": "library",
+	"version": "1.0",
+	"license": "proprietary",
+	"require": {},
+	"autoload": {
+		"psr-4": {
+			"Modules\\Todo\\": "src/",
+			"Modules\\Todo\\Tests\\": "tests/",
+			"Modules\\Todo\\Database\\Factories\\": "database/factories/"
+		}
+	},
+	"minimum-stability": "stable",
+	"extra": {
+		"laravel": {
+			"providers": [
+				"Modules\\Todo\\Providers\\TodoServiceProvider"
+			]
+		}
+	}
+}

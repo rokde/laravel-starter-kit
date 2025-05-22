@@ -32,6 +32,7 @@ A customized version with the following things:
 - [x] [modules](https://github.com/InterNACHI/modular) supported for domain driven design
   - [x] [foundation-layout](app-modules/foundation-layout/README.md) - Configure and switch between different layout styles
   - [x] [notification](app-modules/notification/README.md) - Manage user notification preferences and delivery methods
+  - [x] [todo](app-modules/todo/README.md) - Create, manage, and track todos within workspaces
   - [x] [workspace](app-modules/workspace/README.md) - Create and manage workspaces for team collaboration
 
 ## Features
@@ -52,6 +53,8 @@ A customized version with the following things:
 ### Build with DDD
 
 `php artisan make:module [MODULE_NAME]`
+
+For detailed instructions on creating modules, including backend implementation, Vue.js frontend, and Pest testing, see the [Module Development Guide](docs/module-development-guide.md).
 
 This generates the whole module stub. Use contracts and dtos to communicate between domain boundaries as described in [Modularizing Inertia](https://pacific-nymphea-e41.notion.site/Modularizing-Inertia-Laracon-India-2025-1a6320a6974e8014b91ec08cc6b79c4e). An [example repository](https://github.com/avosalmon/artisan-airlines) describes it better. It supports also the module-based loading and providing of typescript code for inertia.
 

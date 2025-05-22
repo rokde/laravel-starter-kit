@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "90cb22da689f0aaacc98f64f0fee9ca7",
+    "content-hash": "c56cde04734d3e430aae414c752e9d50",
     "packages": [
         {
             "name": "brick/math",
@@ -2967,7 +2967,7 @@
             "dist": {
                 "type": "path",
                 "url": "app-modules/notification",
-                "reference": "53ce53ab4ae99859e44f666e2214921cb0a419be"
+                "reference": "0983fd88b5dbb9108c35c54339785edfef262c92"
             },
             "type": "library",
             "extra": {
@@ -2988,6 +2988,39 @@
                 "proprietary"
             ],
             "description": "Notification module to improve the user notification system.",
+            "transport-options": {
+                "symlink": true,
+                "relative": true
+            }
+        },
+        {
+            "name": "modules/todo",
+            "version": "1.0",
+            "dist": {
+                "type": "path",
+                "url": "app-modules/todo",
+                "reference": "29b747eb907f696bc4f8c7efa5585714c142a2c7"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Modules\\Todo\\Providers\\TodoServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Modules\\Todo\\": "src/",
+                    "Modules\\Todo\\Tests\\": "tests/",
+                    "Modules\\Todo\\Database\\Factories\\": "database/factories/",
+                    "Modules\\Todo\\Database\\Seeders\\": "database/seeders/"
+                }
+            },
+            "license": [
+                "proprietary"
+            ],
+            "description": "This module provides todo functionality for workspaces.",
             "transport-options": {
                 "symlink": true,
                 "relative": true
