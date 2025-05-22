@@ -367,4 +367,88 @@ When integrating a module with the workspace concept:
 3. Filter queries by the current workspace's ID
 4. Ensure that users can only access resources that belong to their current workspace
 
+### Authorization and Policies
+Always implement policies for verifying actions on resources:
+
+1. Create a policy class in the `src/Policies` directory
+2. Register the policy in the module's service provider
+3. Implement methods for each action (create, view, update, delete)
+4. Use the policy in controllers and form requests
+
+Example of a policy class:
+
+```php
+<?php
+
+declare(strict_types=1);
+
+namespace Modules\YourModule\Policies;
+
+use App\Models\User;
+use Modules\YourModule\Models\YourModel;
+
+class YourModelPolicy
+{
+    /**
+     * Determine whether the user can view the model.
+     */
+    public function view(User $user, YourModel $model): bool
+    {
+        return $user->belongsToWorkspace($model->workspace);
+    }
+
+    /**
+     * Determine whether the user can create models.
+     */
+    public function create(User $user): bool
+    {
+        return $user->currentWorkspace !== null;
+    }
+
+    /**
+     * Determine whether the user can update the model.
+     */
+    public function update(User $user, YourModel $model): bool
+    {
+        // Check if user belongs to the workspace and has appropriate permissions
+        return $user->belongsToWorkspace($model->workspace) && 
+            ($user->ownsWorkspace($model->workspace) || 
+             $user->hasWorkspaceRole($model->workspace, 'admin'));
+    }
+}
+```
+
+Example of registering the policy in the service provider:
+
+```php
+use Illuminate\Support\Facades\Gate;
+use Modules\YourModule\Models\YourModel;
+use Modules\YourModule\Policies\YourModelPolicy;
+
+// In the boot method
+Gate::policy(YourModel::class, YourModelPolicy::class);
+```
+
+Example of using the policy in a controller:
+
+```php
+public function update(Request $request, YourModel $model)
+{
+    $this->authorize('update', $model);
+
+    // Update the model
+}
+```
+
+Example of using the policy in a form request:
+
+```php
+public function authorize(): bool
+{
+    $model = $this->route('model');
+
+    return $this->user()->can('update', $model);
+}
+```
+
 For more detailed information, refer to the comprehensive guide in `docs/module-development-guide.md`.
