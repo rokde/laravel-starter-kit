@@ -15,7 +15,7 @@ erDiagram
         remember_token string NULL
         locale string "default en"
         preferred_notification_channels longtext NULL
-        workspace_id bigint FK NULL "current active workspace"
+        workspace_id bigint FK NULL
         created_at timestamp
         updated_at timestamp
     }
@@ -83,8 +83,8 @@ erDiagram
     notifications {
         id uuid PK
         type string
-        notifiable_type string "polymorphic"
-        notifiable_id bigint "polymorphic"
+        notifiable_type string
+        notifiable_id bigint
         data text
         read_at timestamp NULL
         created_at timestamp
@@ -93,7 +93,7 @@ erDiagram
 
     workspaces {
         id bigint PK
-        user_id bigint FK "index, owner of the workspace"
+        user_id bigint FK "index"
         name string
         created_at timestamp
         updated_at timestamp
@@ -101,7 +101,7 @@ erDiagram
 
     workspace_member_invitations {
         id bigint PK
-        workspace_id bigint FK "cascade on delete"
+        workspace_id bigint FK
         email string
         role string NULL "default null"
         created_at timestamp
