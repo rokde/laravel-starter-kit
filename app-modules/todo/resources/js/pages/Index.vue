@@ -14,7 +14,7 @@ interface Props {
 }
 
 const props = defineProps<Props>();
- 
+
 const { todos } = props;
 
 const breadcrumbs: BreadcrumbItem[] = [
