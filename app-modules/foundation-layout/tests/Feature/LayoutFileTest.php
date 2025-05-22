@@ -38,8 +38,8 @@ test('layout file cannot be modified when file does not exist', function (): voi
 test('layout file cannot be modified when pattern does not match', function (): void {
     $layoutFile = new LayoutFile(
         filename: $this->tempFile,
-        pattern: "~non matching pattern~",
-        replacement: "replacement",
+        pattern: '~non matching pattern~',
+        replacement: 'replacement',
     );
 
     expect($layoutFile->canBeModified())->toBeFalse();

@@ -11,7 +11,8 @@ use Modules\Notification\Notifications\Concerns\SupportUserPreferredChannel;
 uses(RefreshDatabase::class);
 
 test('via method returns mail for anonymous notifiable', function (): void {
-    $notification = new class {
+    $notification = new class
+    {
         use SupportUserPreferredChannel;
     };
 
@@ -21,7 +22,8 @@ test('via method returns mail for anonymous notifiable', function (): void {
 });
 
 test('via method returns database by default for user', function (): void {
-    $notification = new class {
+    $notification = new class
+    {
         use SupportUserPreferredChannel;
     };
 
@@ -31,7 +33,8 @@ test('via method returns database by default for user', function (): void {
 });
 
 test('via method returns user preferred channels when set', function (): void {
-    $notificationClass = new class {
+    $notificationClass = new class
+    {
         use SupportUserPreferredChannel;
     };
 
@@ -47,13 +50,9 @@ test('via method returns user preferred channels when set', function (): void {
 });
 
 test('toDatabase method adds url and title for InAppNotification', function (): void {
-    $notification = new class implements InAppNotification {
+    $notification = new class implements InAppNotification
+    {
         use SupportUserPreferredChannel;
-
-        public function toArray(object $notifiable): array
-        {
-            return ['data' => 'test'];
-        }
 
         public static function getDescription(): string
         {
@@ -63,6 +62,11 @@ test('toDatabase method adds url and title for InAppNotification', function (): 
         public static function getGroup(): string
         {
             return 'Test Group';
+        }
+
+        public function toArray(object $notifiable): array
+        {
+            return ['data' => 'test'];
         }
 
         public function getUrl(): ?string
@@ -88,7 +92,8 @@ test('toDatabase method adds url and title for InAppNotification', function (): 
 });
 
 test('toDatabase method does not add url and title for non-InAppNotification', function (): void {
-    $notification = new class {
+    $notification = new class
+    {
         use SupportUserPreferredChannel;
 
         public function toArray(object $notifiable): array

@@ -14,7 +14,7 @@ test('index method renders the settings page with correct data', function (): vo
     // Mock the InAppNotificationsRepository
     $mockRepository = Mockery::mock(InAppNotificationsRepository::class);
     $mockRepository->shouldReceive('all')->once()->andReturn(collect([
-        ['class' => 'TestNotification', 'group' => 'Test', 'description' => 'Test Notification']
+        ['class' => 'TestNotification', 'group' => 'Test', 'description' => 'Test Notification'],
     ]));
 
     $this->app->instance(InAppNotificationsRepository::class, $mockRepository);

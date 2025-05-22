@@ -27,7 +27,7 @@ test('it can get front matter data using get method', function (): void {
     $content = '# Test Content';
     $frontMatter = new FrontMatter([
         'title' => 'Test Title',
-        'meta' => ['description' => 'Test Description']
+        'meta' => ['description' => 'Test Description'],
     ]);
 
     $staticPage = new StaticPage($content, $frontMatter);

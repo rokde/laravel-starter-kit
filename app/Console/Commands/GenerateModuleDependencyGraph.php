@@ -11,9 +11,11 @@ use Illuminate\Support\Str;
 class GenerateModuleDependencyGraph extends Command
 {
     protected $signature = 'modules:graph {--output=docs/module-dependency-graph.md : The output file path}';
+
     protected $description = 'Generate a module dependency graph';
 
     private array $modules = [];
+
     private array $dependencies = [];
 
     public function handle(): int
@@ -25,6 +27,7 @@ class GenerateModuleDependencyGraph extends Command
         $this->generateGraph();
 
         $this->info('Module dependency graph generated successfully!');
+
         return self::SUCCESS;
     }
 
@@ -70,7 +73,7 @@ class GenerateModuleDependencyGraph extends Command
     private function analyzePhpFiles(string $module): void
     {
         $srcPath = base_path("app-modules/{$module}/src");
-        if (!File::exists($srcPath)) {
+        if (! File::exists($srcPath)) {
             return;
         }
 
@@ -89,8 +92,8 @@ class GenerateModuleDependencyGraph extends Command
                 }
 
                 $moduleNamespace = $this->getModuleNamespace($otherModule);
-                if (preg_match('/use\s+' . preg_quote($moduleNamespace, '/') . '\\\\/', $content)) {
-                    if (!in_array($otherModule, $this->dependencies[$module])) {
+                if (preg_match('/use\s+'.preg_quote($moduleNamespace, '/').'\\\\/', $content)) {
+                    if (! in_array($otherModule, $this->dependencies[$module])) {
                         $this->dependencies[$module][] = $otherModule;
                         $this->info("Found dependency: {$module} -> {$otherModule} (from PHP imports)");
                     }
@@ -102,7 +105,7 @@ class GenerateModuleDependencyGraph extends Command
     private function getModuleNamespace(string $module): string
     {
         // Convert module name to namespace format (e.g., foundation-layout -> FoundationLayout)
-        return 'Modules\\' . Str::studly($module);
+        return 'Modules\\'.Str::studly($module);
     }
 
     private function generateGraph(): void
@@ -147,7 +150,7 @@ class GenerateModuleDependencyGraph extends Command
             }
 
             // Add dependencies
-            if (!empty($this->dependencies[$module])) {
+            if (! empty($this->dependencies[$module])) {
                 $markdown .= "**Dependencies:**\n\n";
                 foreach ($this->dependencies[$module] as $dependency) {
                     $dependencyName = Str::studly($dependency);
@@ -166,7 +169,7 @@ class GenerateModuleDependencyGraph extends Command
                 }
             }
 
-            if (!empty($dependents)) {
+            if (! empty($dependents)) {
                 $markdown .= "**Used by:**\n\n";
                 foreach ($dependents as $dependent) {
                     $dependentName = Str::studly($dependent);

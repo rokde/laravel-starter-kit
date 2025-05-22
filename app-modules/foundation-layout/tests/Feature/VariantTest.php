@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-use Modules\FoundationLayout\Variants\AuthenticationSimpleLayout;
-use Modules\FoundationLayout\Variants\AuthenticationSplitLayout;
 use Modules\FoundationLayout\Variants\ApplicationHeaderLayout;
 use Modules\FoundationLayout\Variants\ApplicationSidebarFloatingLayout;
 use Modules\FoundationLayout\Variants\ApplicationSidebarInsetLayout;
 use Modules\FoundationLayout\Variants\ApplicationSidebarSidebarLayout;
+use Modules\FoundationLayout\Variants\AuthenticationSimpleLayout;
+use Modules\FoundationLayout\Variants\AuthenticationSplitLayout;
 
 test('authentication simple layout can be instantiated', function (): void {
     $variant = new AuthenticationSimpleLayout();

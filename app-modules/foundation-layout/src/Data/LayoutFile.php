@@ -19,6 +19,7 @@ class LayoutFile
         }
 
         $match = preg_match($this->pattern, file_get_contents($this->filename));
+
         return $match !== false
             && $match > 0;
     }

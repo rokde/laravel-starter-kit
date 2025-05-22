@@ -32,12 +32,12 @@ test('it returns preferred locale', function (): void {
 
     // User with stringable locale
     $user = User::factory()->make();
-    $user->locale = new \Illuminate\Support\Stringable('de');
+    $user->locale = new Illuminate\Support\Stringable('de');
     expect($user->preferredLocale())->toBe('de');
 });
 
 test('it can not set users locale to null', function (): void {
-    $this->expectException(\Illuminate\Database\QueryException::class);
+    $this->expectException(Illuminate\Database\QueryException::class);
     // User with null locale (should use fallback)
     $user = User::factory()->create(['locale' => null]);
 });

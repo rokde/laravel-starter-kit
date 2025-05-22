@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-use App\Models\FrontMatter;
 use App\Models\StaticPage;
 use App\Services\StaticPageFileService;
 use Illuminate\Support\Facades\File;
@@ -21,7 +20,7 @@ test('it can parse content without front matter', function (): void {
 });
 
 test('it can parse content with front matter', function (): void {
-    $content = <<<EOT
+    $content = <<<'EOT'
 ---
 title: Test Title
 description: Test Description
@@ -40,7 +39,7 @@ EOT;
 });
 
 test('it can parse content with multiple front matter delimiters', function (): void {
-    $content = <<<EOT
+    $content = <<<'EOT'
 ---
 title: Test Title
 ---
@@ -64,7 +63,7 @@ EOT;
 test('it can parse file', function (): void {
     // Create a temporary file
     $tempFile = tempnam(sys_get_temp_dir(), 'test_');
-    $content = <<<EOT
+    $content = <<<'EOT'
 ---
 title: Test Title
 description: Test Description
