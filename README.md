@@ -55,6 +55,18 @@ A customized version with the following things:
 
 This generates the whole module stub. Use contracts and dtos to communicate between domain boundaries as described in [Modularizing Inertia](https://pacific-nymphea-e41.notion.site/Modularizing-Inertia-Laracon-India-2025-1a6320a6974e8014b91ec08cc6b79c4e). An [example repository](https://github.com/avosalmon/artisan-airlines) describes it better. It supports also the module-based loading and providing of typescript code for inertia.
 
+#### Module Dependency Graph
+
+You can generate a [visual representation](docs/module-dependency-graph.md) of module dependencies with:
+
+`php artisan modules:graph`
+
+This command analyzes the codebase and creates a dependency graph using Mermaid, which is supported by GitHub Markdown. The graph shows which modules depend on each other and provides detailed information about each module.
+
+The generated graph is saved to `docs/module-dependency-graph.md` by default, but you can specify a custom output path:
+
+`php artisan modules:graph --output=custom/path/graph.md`
+
 ### Configure the used layouts with a console command
 
 (provided by the [foundation-layout](app-modules/foundation-layout/README.md) module)
