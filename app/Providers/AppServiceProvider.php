@@ -8,12 +8,14 @@ use Carbon\CarbonImmutable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Sleep;
 use Illuminate\Validation\Rules\Password;
+use Illuminate\View\FileViewFinder;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -22,7 +24,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->registerTestingInertiaWithModuleSupport();
     }
 
     /**
@@ -92,5 +94,33 @@ class AppServiceProvider extends ServiceProvider
     private function unguardModels(): void
     {
         Model::unguard();
+    }
+
+    private function registerTestingInertiaWithModuleSupport(): void
+    {
+        if (! $this->app->runningUnitTests()) {
+            return;
+        }
+
+        $this->app->bind('inertia.testing.view-finder', function ($app) {
+            $fileViewFinder = new FileViewFinder(
+                $app['files'],
+                [resource_path('js/pages')],
+                ['vue']
+            );
+
+            // we need to add the namespace hints for loading "[module]::[View].vue"
+            collect(File::directories(base_path('app-modules')))
+                ->filter(fn (string $modulePath) => File::exists($modulePath.'/resources/js/pages'))
+                ->map(function (string $modulePath) {
+                    return [
+                        'namespace' => basename($modulePath),
+                        'pages' => $modulePath.'/resources/js/pages',
+                    ];
+                })
+                ->each(fn (array $module) => $fileViewFinder->addNamespace($module['namespace'], $module['pages']));
+
+            return $fileViewFinder;
+        });
     }
 }
