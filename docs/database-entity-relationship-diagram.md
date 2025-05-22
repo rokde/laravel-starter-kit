@@ -10,12 +10,12 @@ erDiagram
         id bigint PK
         name string
         email string UK
-        email_verified_at timestamp NULL
+        email_verified_at timestamp
         password string
-        remember_token string NULL
+        remember_token string
         locale string "default en"
-        preferred_notification_channels longtext NULL
-        workspace_id bigint FK NULL
+        preferred_notification_channels longtext
+        workspace_id bigint FK
         created_at timestamp
         updated_at timestamp
     }
@@ -23,14 +23,14 @@ erDiagram
     password_reset_tokens {
         email string PK
         token string
-        created_at timestamp NULL
+        created_at timestamp
     }
 
     sessions {
         id string PK
-        user_id bigint FK NULL "index"
-        ip_address string NULL
-        user_agent text NULL
+        user_id bigint FK "index"
+        ip_address string
+        user_agent text
         payload longtext
         last_activity integer "index"
     }
@@ -52,7 +52,7 @@ erDiagram
         queue string "index"
         payload longtext
         attempts tinyint
-        reserved_at integer NULL
+        reserved_at integer
         available_at integer
         created_at integer
     }
@@ -64,10 +64,10 @@ erDiagram
         pending_jobs integer
         failed_jobs integer
         failed_job_ids longtext
-        options mediumtext NULL
-        cancelled_at integer NULL
+        options mediumtext
+        cancelled_at integer
         created_at integer
-        finished_at integer NULL
+        finished_at integer
     }
 
     failed_jobs {
@@ -86,7 +86,7 @@ erDiagram
         notifiable_type string
         notifiable_id bigint
         data text
-        read_at timestamp NULL
+        read_at timestamp
         created_at timestamp
         updated_at timestamp
     }
@@ -103,7 +103,7 @@ erDiagram
         id bigint PK
         workspace_id bigint FK
         email string
-        role string NULL "default null"
+        role string "default null"
         created_at timestamp
         updated_at timestamp
     }
@@ -112,7 +112,7 @@ erDiagram
         id bigint PK
         workspace_id bigint FK
         user_id bigint FK
-        role string NULL "default null"
+        role string "default null"
         created_at timestamp
         updated_at timestamp
     }
