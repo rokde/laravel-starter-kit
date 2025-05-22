@@ -248,9 +248,123 @@ The project supports multiple languages using Vue I18n. Translation files are lo
 - `lang/` directory for PHP translations
 - `app-modules/*/lang/` directories for module-specific translations
 
+Always create translation files for both English and German:
+- `en.json` - English translations
+- `de.json` - German translations
+
+This ensures that the application is fully accessible to users in both languages.
+
 ### Workspace Module
 The Workspace module provides multi-tenancy features:
 - Users can create and manage workspaces
 - Users can be invited to workspaces
 - Users can switch between workspaces
 - Resources can be scoped to workspaces
+
+## Module Development
+
+A comprehensive guide for creating new modules is available in `docs/module-development-guide.md`. This section provides a summary of the key points.
+
+### Module Structure
+Each module should follow this directory structure:
+
+```
+app-modules/
+└── your-module/
+    ├── README.md
+    ├── composer.json
+    ├── database/
+    │   ├── factories/
+    │   ├── migrations/
+    │   └── seeders/
+    ├── lang/
+    ├── resources/
+    │   ├── js/
+    │   │   ├── pages/
+    │   │   ├── plugin.ts
+    │   │   └── types.ts
+    │   └── views/
+    ├── routes/
+    │   └── web.php
+    ├── src/
+    │   ├── Http/
+    │   │   ├── Controllers/
+    │   │   └── Requests/
+    │   ├── Models/
+    │   └── Providers/
+    └── tests/
+        ├── Feature/
+        └── Unit/
+```
+
+### Creating a New Module
+1. Create the module directory structure
+2. Create a `composer.json` file with the module's namespace and service provider
+3. Implement the backend components (models, controllers, requests, routes, migrations)
+4. Create Vue.js frontend components
+5. Write Pest tests for the module
+6. Document the module in a README.md file
+
+### Vue.js Views
+When creating Vue.js views for a module:
+
+1. Create components in the `resources/js/pages/` directory
+2. Use TypeScript for type safety
+3. Use shadcn-vue components for UI elements
+4. Register components in the module's `plugin.ts` file
+5. Create translations in the module's `lang/` directory
+
+Example of a Vue.js component registration in `plugin.ts`:
+
+```typescript
+export default definePlugin(({ app, route }) => {
+    // Register components
+    app.component('your-module::Index', () => import('./pages/Index.vue'));
+    app.component('your-module::Create', () => import('./pages/Create.vue'));
+
+    // Register routes
+    route('your-module.index', (): RouteLocationRaw => {
+        return { name: 'your-module.index' };
+    });
+});
+```
+
+### Pest Tests
+When writing tests for a module, use Pest PHP for a more expressive syntax:
+
+1. Create unit tests in `tests/Unit/` directory
+2. Create feature tests in `tests/Feature/` directory
+3. Use the `expect()` function for assertions
+4. Use the `uses()` function to apply traits like `RefreshDatabase`
+
+Example of a Pest test:
+
+```php
+<?php
+
+declare(strict_types=1);
+
+use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Modules\YourModule\Models\YourModel;
+
+uses(RefreshDatabase::class);
+
+test('it can be instantiated using factory', function (): void {
+    $item = YourModel::factory()->create();
+
+    expect($item)->toBeInstanceOf(YourModel::class)
+        ->and($item->id)->toBeInt()
+        ->and($item->title)->toBeString();
+});
+```
+
+### Integration with Workspace
+When integrating a module with the workspace concept:
+
+1. Add a `workspace_id` foreign key to your model's table
+2. Add a relationship to the Workspace model in your model
+3. Filter queries by the current workspace's ID
+4. Ensure that users can only access resources that belong to their current workspace
+
+For more detailed information, refer to the comprehensive guide in `docs/module-development-guide.md`.
