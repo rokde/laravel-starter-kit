@@ -79,7 +79,9 @@ class AppServiceProvider extends ServiceProvider
 
     private function useStrongPassword(): void
     {
-        Password::defaults(fn (): ?Password => app()->isProduction() ? Password::min(12)->max(255)->uncompromised() : null);
+        Password::defaults(
+            fn (): ?Password => app()->isProduction() ? Password::min(12)->max(255)->uncompromised() : null
+        );
     }
 
     private function modelsShouldBeStrict(): void
