@@ -16,6 +16,7 @@
         "laravel/tinker": "^2.10.1",
         "modules/foundation-layout": "*",
         "modules/notification": "*",
+        "modules/todo": "^1.0",
         "modules/workspace": "*",
         "tightenco/ziggy": "^2.4"
     },
