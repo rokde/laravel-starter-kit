@@ -67,6 +67,10 @@ The generated graph is saved to `docs/module-dependency-graph.md` by default, bu
 
 `php artisan modules:graph --output=custom/path/graph.md`
 
+#### Database Entity Relationship Diagram
+
+A [visual representation](docs/database-entity-relationship-diagram.md) of the database schema is available, showing all tables, columns, relationships, and indexes used in the project.
+
 ### Configure the used layouts with a console command
 
 (provided by the [foundation-layout](app-modules/foundation-layout/README.md) module)
