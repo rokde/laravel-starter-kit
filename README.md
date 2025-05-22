@@ -53,6 +53,8 @@ A customized version with the following things:
 
 `php artisan make:module [MODULE_NAME]`
 
+For detailed instructions on creating modules, including backend implementation, Vue.js frontend, and Pest testing, see the [Module Development Guide](docs/module-development-guide.md).
+
 This generates the whole module stub. Use contracts and dtos to communicate between domain boundaries as described in [Modularizing Inertia](https://pacific-nymphea-e41.notion.site/Modularizing-Inertia-Laracon-India-2025-1a6320a6974e8014b91ec08cc6b79c4e). An [example repository](https://github.com/avosalmon/artisan-airlines) describes it better. It supports also the module-based loading and providing of typescript code for inertia.
 
 #### Module Dependency Graph

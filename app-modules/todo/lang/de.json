@@ -1,0 +1,21 @@
+{
+    "Todos": "Aufgaben",
+    "Create Todo": "Aufgabe erstellen",
+    "No todos found. Create your first todo!": "Keine Aufgaben gefunden. Erstellen Sie Ihre erste Aufgabe!",
+    "Assigned to": "Zugewiesen an",
+    "Mark as Complete": "Als erledigt markieren",
+    "Mark as Incomplete": "Als unerledigt markieren",
+    "Delete": "Löschen",
+    "Are you sure you want to delete this todo?": "Sind Sie sicher, dass Sie diese Aufgabe löschen möchten?",
+    "Title": "Titel",
+    "Todo title": "Aufgabentitel",
+    "Assign to": "Zuweisen an",
+    "Select a user": "Benutzer auswählen",
+    "Save": "Speichern",
+    "Saved.": "Gespeichert.",
+    "Todo created.": "Aufgabe erstellt.",
+    "Todo updated.": "Aufgabe aktualisiert.",
+    "Todo deleted.": "Aufgabe gelöscht.",
+    "Todo marked as completed.": "Aufgabe als erledigt markiert.",
+    "Todo marked as incomplete.": "Aufgabe als unerledigt markiert."
+}
