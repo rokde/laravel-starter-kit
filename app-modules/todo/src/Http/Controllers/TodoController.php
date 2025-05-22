@@ -93,7 +93,7 @@ class TodoController
         // Check if the user is authorized to update the todo
         $request->user()->can('update', $todo);
 
-        $todo->completed = !$todo->completed;
+        $todo->completed = ! $todo->completed;
         $todo->save();
 
         return redirect()

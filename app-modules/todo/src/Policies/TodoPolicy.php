@@ -19,7 +19,7 @@ class TodoPolicy
     public function create(User $user, Workspace $workspace, int $forUserId): bool
     {
         // Check if the user belongs to the workspace
-        if (!$user->belongsToWorkspace($workspace)) {
+        if (! $user->belongsToWorkspace($workspace)) {
             return false;
         }
 
@@ -51,7 +51,7 @@ class TodoPolicy
         $workspace = $todo->workspace;
 
         // Check if the user belongs to the workspace
-        if (!$user->belongsToWorkspace($workspace)) {
+        if (! $user->belongsToWorkspace($workspace)) {
             return false;
         }
 
@@ -72,7 +72,7 @@ class TodoPolicy
         $workspace = $todo->workspace;
 
         // Check if the user belongs to the workspace
-        if (!$user->belongsToWorkspace($workspace)) {
+        if (! $user->belongsToWorkspace($workspace)) {
             return false;
         }
 

@@ -16,7 +16,7 @@ class UpdateTodoRequest extends FormRequest
     {
         $todo = $this->route('todo');
 
-        if (!$todo instanceof Todo) {
+        if (! $todo instanceof Todo) {
             return false;
         }
 
