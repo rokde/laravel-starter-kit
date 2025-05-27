@@ -1,11 +1,21 @@
 <?php
 
-// use Modules\Passkey\Http\Controllers\PasskeyController;
+declare(strict_types=1);
 
-// Route::get('/passkeys', [PasskeyController::class, 'index'])->name('passkeys.index');
-// Route::get('/passkeys/create', [PasskeyController::class, 'create'])->name('passkeys.create');
-// Route::post('/passkeys', [PasskeyController::class, 'store'])->name('passkeys.store');
-// Route::get('/passkeys/{passkey}', [PasskeyController::class, 'show'])->name('passkeys.show');
-// Route::get('/passkeys/{passkey}/edit', [PasskeyController::class, 'edit'])->name('passkeys.edit');
-// Route::put('/passkeys/{passkey}', [PasskeyController::class, 'update'])->name('passkeys.update');
-// Route::delete('/passkeys/{passkey}', [PasskeyController::class, 'destroy'])->name('passkeys.destroy');
+use Illuminate\Support\Facades\Route;
+use Modules\Passkey\Http\Controllers\PasskeysController;
+
+Route::passkeys();
+
+Route::middleware(['web', 'auth', 'verified'])
+    ->group(function (): void {
+        Route::get('settings/passkeys', [PasskeysController::class, 'index'])
+            ->name('settings.passkeys.edit');
+
+        Route::post('settings/passkeys', [PasskeysController::class, 'store'])
+            ->name('settings.passkeys.store');
+
+        Route::delete('settings/passkeys/{passkey}', [PasskeysController::class, 'destroy'])
+            ->whereNumber('passkey')
+            ->name('settings.passkeys.destroy');
+    });
