@@ -5,9 +5,11 @@ declare(strict_types=1);
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Contracts\Translation\Loader;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
+use Illuminate\Translation\FileLoader;
 
 class GenerateTranslationsCommand extends Command
 {
@@ -17,7 +19,6 @@ class GenerateTranslationsCommand extends Command
      * @var string
      */
     protected $signature = 'translations:generate
-                            {--path= : Laravel language source path (defaults to Laravel language path)}
                             {--output= : vue-i18n output file (defaults to resources/js/i18n/translations.js)}
                             {--type=typescript : The type of the output (typescript or javascript)}';
 
@@ -29,18 +30,22 @@ class GenerateTranslationsCommand extends Command
     protected $description = 'Generates translation file usable by vue-i18n';
 
     /**
+     * @var array<string, string>
+     */
+    private array $namespaces = [];
+
+    /**
      * Execute the console command.
      */
     public function handle(): int
     {
-        $languagePath = $this->option('path')
-            ? base_path($this->option('path'))
-            : lang_path();
-
-        if (! is_dir($languagePath)) {
-            $this->error("\"{$languagePath}\" does not exist");
-
-            return self::FAILURE;
+        /** @var \Illuminate\Translation\Translator */
+        $translator = trans();
+        $loader = $translator->getLoader();
+        foreach ($loader->namespaces() as $namespace => $hintFolder) {
+            if (realpath($hintFolder)) {
+                $this->namespaces[$namespace] = realpath($hintFolder);
+            }
         }
 
         $outputFile = $this->option('output') ?
@@ -53,10 +58,10 @@ class GenerateTranslationsCommand extends Command
         }
 
         // load app specific language files
-        $appLanguagePaths = $this->resolveAppLanguagePaths(base_path(config('app-modules.modules_directory', 'app-modules')));
+        $appLanguagePaths = $this->resolveAppLanguagePaths($loader);
 
         // Parse Laravel translations.
-        $translations = $this->getTranslations([$languagePath, ...$appLanguagePaths]);
+        $translations = $this->getTranslations($appLanguagePaths);
 
         // Write translation to Vue-i18n file.
         $size = $this->generateVue18nFile($outputFile, $translations, $outputType);
@@ -117,9 +122,17 @@ class GenerateTranslationsCommand extends Command
      */
     private function readTranslationFile(string $filename): array
     {
+        $prefix = '';
+        foreach ($this->namespaces as $namespace => $path) {
+            if (substr(realpath($filename), 0, strlen($path)) === $path) {
+                $prefix = $namespace . '!@!';
+                break;
+            }
+        }
+
         return match (pathinfo($filename, PATHINFO_EXTENSION)) {
             'json' => json_decode(file_get_contents($filename), true),
-            'php' => [basename($filename, '.php') => include ($filename)],
+            'php' => [$prefix . basename($filename, '.php') => include ($filename)],
         };
     }
 
@@ -154,6 +167,7 @@ class GenerateTranslationsCommand extends Command
             ->pipe(fn ($line): string => $this->transformPluralization((string) $line))
             ->pipe(fn ($line): string => $this->transformColonsToBraces((string) $line))
             ->pipe(fn ($line): string => $this->removeEscapeCharacter((string) $line))
+            ->pipe(fn ($line): string => $this->replaceTemporaryGroupPlaceholder((string) $line))
             ->value();
     }
 
@@ -189,6 +203,15 @@ class GenerateTranslationsCommand extends Command
         return preg_replace_callback(
             '/'.preg_quote('!', '/')."(:\w+)/",
             fn ($matches): string => '{'.mb_substr($matches[0], 1).'}',
+            $line
+        );
+    }
+
+    private function replaceTemporaryGroupPlaceholder(string $line): string
+    {
+        return preg_replace(
+            '/'.preg_quote('!@!')."/",
+            '::',
             $line
         );
     }
@@ -230,8 +253,20 @@ class GenerateTranslationsCommand extends Command
     /**
      * @return array<int, string>
      */
-    private function resolveAppLanguagePaths(string $app_path, string $languageFoldername = 'Lang'): array
+    private function resolveAppLanguagePaths(Loader $loader): array
     {
-        return glob($app_path.'/**/'.$languageFoldername, GLOB_ONLYDIR);
+        $paths = [];
+        if ($loader instanceof FileLoader) {
+            $paths = [
+                ...$loader->paths(),
+                ...$loader->jsonPaths(),
+            ];
+
+            foreach ($loader->namespaces() as $namespace => $path) {
+                $paths[] = /*$namespace . '::' . */ $path;
+            }
+        }
+
+        return $paths;
     }
 }
