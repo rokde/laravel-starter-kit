@@ -124,15 +124,15 @@ class GenerateTranslationsCommand extends Command
     {
         $prefix = '';
         foreach ($this->namespaces as $namespace => $path) {
-            if (substr(realpath($filename), 0, strlen($path)) === $path) {
-                $prefix = $namespace . '!@!';
+            if (mb_substr(realpath($filename), 0, mb_strlen($path)) === $path) {
+                $prefix = $namespace.'!@!';
                 break;
             }
         }
 
         return match (pathinfo($filename, PATHINFO_EXTENSION)) {
             'json' => json_decode(file_get_contents($filename), true),
-            'php' => [$prefix . basename($filename, '.php') => include ($filename)],
+            'php' => [$prefix.basename($filename, '.php') => include ($filename)],
         };
     }
 
@@ -210,7 +210,7 @@ class GenerateTranslationsCommand extends Command
     private function replaceTemporaryGroupPlaceholder(string $line): string
     {
         return preg_replace(
-            '/'.preg_quote('!@!')."/",
+            '/'.preg_quote('!@!').'/',
             '::',
             $line
         );
@@ -263,7 +263,7 @@ class GenerateTranslationsCommand extends Command
             ];
 
             foreach ($loader->namespaces() as $namespace => $path) {
-                $paths[] = /*$namespace . '::' . */ $path;
+                $paths[] = /* $namespace . '::' . */ $path;
             }
         }
 
