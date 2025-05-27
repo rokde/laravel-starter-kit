@@ -26,6 +26,7 @@ export default defineConfig({
         alias: {
             '@': path.resolve(__dirname, './resources/js'),
             '@notification': path.resolve(__dirname, './app-modules/notification/resources/js'),
+            '@passkey': path.resolve(__dirname, './app-modules/passkey/resources/js'),
             '@todo': path.resolve(__dirname, './app-modules/todo/resources/js'),
             '@workspace': path.resolve(__dirname, './app-modules/workspace/resources/js'),
             'ziggy-js': resolve(__dirname, 'vendor/tightenco/ziggy'),
