@@ -1,0 +1,24 @@
+{
+    "name": "modules/passkey",
+    "description": "",
+    "type": "library",
+    "version": "1.0",
+    "license": "proprietary",
+    "require": {
+        "spatie/laravel-passkeys": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\Passkey\\": "src/",
+            "Modules\\Passkey\\Tests\\": "tests/"
+        }
+    },
+    "minimum-stability": "stable",
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Modules\\Passkey\\Providers\\PasskeyServiceProvider"
+            ]
+        }
+    }
+}
