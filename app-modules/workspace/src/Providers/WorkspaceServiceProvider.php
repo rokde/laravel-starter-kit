@@ -21,6 +21,9 @@ class WorkspaceServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
+        $this->loadJsonTranslationsFrom(__DIR__.'/../../lang');
+        $this->loadTranslationsFrom(__DIR__.'/../../lang');
+
         RoleRegistry::role('admin', 'Admin', 'The admin of the workspace.');
         RoleRegistry::role('editor', 'Editor', 'The normal co-working user of the workspace.');
         RoleRegistry::role('visitor', 'Visitor', 'A readonly user of the workspace.');
