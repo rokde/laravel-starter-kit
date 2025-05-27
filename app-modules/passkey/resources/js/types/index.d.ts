@@ -9,7 +9,7 @@ export interface PasskeyOptions {
         extensions: unknown[];
     };
     challenge: string;
-    timeout: number|null;
+    timeout: number | null;
     rp: {
         icon: null;
         id: string;

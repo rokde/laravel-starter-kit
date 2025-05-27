@@ -1,13 +1,13 @@
 <script lang="ts" setup>
-import InputError from '@/components/InputError.vue';
 import ConfirmButton from '@/components/ConfirmButton.vue';
+import InputError from '@/components/InputError.vue';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { getI18n } from '@/i18n';
 import AppLayout from '@/layouts/AppLayout.vue';
 import SettingsLayout from '@/layouts/settings/Layout.vue';
 import type { BreadcrumbItem } from '@/types';
-import { router, Head, useForm } from '@inertiajs/vue3';
+import { Head, router, useForm } from '@inertiajs/vue3';
 import { Passkey, PasskeyOptions } from '@passkey/types';
 
 import HeadingSmall from '@/components/HeadingSmall.vue';
@@ -29,14 +29,14 @@ const form = useForm({
 });
 
 const submit = async () => {
-    const passkey = await startRegistration({ optionsJSON: props.passkeyOptions })
+    const passkey = await startRegistration({ optionsJSON: props.passkeyOptions });
     form.passkey = JSON.stringify(passkey);
 
     form.post(route('settings.passkeys.store'));
 };
 
 const deletePasskey = (passkey: Passkey) => {
-    router.delete(route('settings.passkeys.destroy', {passkey: passkey.id}))
+    router.delete(route('settings.passkeys.destroy', { passkey: passkey.id }));
 };
 
 const breadcrumbItems: BreadcrumbItem[] = [
@@ -77,7 +77,8 @@ const breadcrumbItems: BreadcrumbItem[] = [
                                     :label="$t('passkeys::passkeys.delete')"
                                     :title="$t('Delete Passkey?')"
                                     :confirmation="$t('If you remove the passkey, you can not login again with the passkey.')"
-                                    @confirmed="deletePasskey(passkey)" />
+                                    @confirmed="deletePasskey(passkey)"
+                                />
                             </div>
                         </li>
                     </ul>
