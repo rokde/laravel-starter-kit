@@ -1,6 +1,6 @@
 {
     "name": "modules/passkey",
-    "description": "",
+    "description": "This module supports the passkey login option.",
     "type": "library",
     "version": "1.0",
     "license": "proprietary",
