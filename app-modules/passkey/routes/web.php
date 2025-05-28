@@ -5,8 +5,6 @@ declare(strict_types=1);
 use Illuminate\Support\Facades\Route;
 use Modules\Passkey\Http\Controllers\PasskeysController;
 
-Route::passkeys();
-
 Route::middleware(['web', 'auth', 'verified'])
     ->group(function (): void {
         Route::get('settings/passkeys', [PasskeysController::class, 'index'])
@@ -18,4 +16,9 @@ Route::middleware(['web', 'auth', 'verified'])
         Route::delete('settings/passkeys/{passkey}', [PasskeysController::class, 'destroy'])
             ->whereNumber('passkey')
             ->name('settings.passkeys.destroy');
+    });
+
+Route::middleware(['web', 'guest'])
+    ->group(function (): void {
+        Route::passkeys();
     });
