@@ -8,8 +8,6 @@ import { ZiggyVue } from 'ziggy-js';
 import { initializeTheme } from './composables/useAppearance';
 import i18n, { setLocale } from './i18n';
 
-import '@passkey/bootstrap';
-
 // Extend ImportMeta interface for Vite...
 declare module 'vite/client' {
     interface ImportMetaEnv {
