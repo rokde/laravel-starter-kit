@@ -68,17 +68,17 @@ const breadcrumbItems: BreadcrumbItem[] = [
                             :key="passkey.id"
                             class="flex items-center justify-between rounded-lg bg-gray-100 p-4 shadow-sm"
                         >
-                            <div class="text-gray-700">
+                            <div class="text-accent-foreground w-1/2">
                                 {{ passkey.name }}
                             </div>
-                            <div class="ml-2">
-                                {{ $t('passkeys::passkeys.last_used') }}:
-                                <TimeAgoDisplay :date="passkey.last_used_at" :nullable-label="$t('passkeys::passkeys.not_used_yet')" />
-                            </div>
+                            <div class="flex w-1/2 items-center justify-between">
+                                <div class="">
+                                    <span class="text-muted-foreground text-sm">{{ $t('passkeys::passkeys.last_used') }}:</span><br />
+                                    <TimeAgoDisplay :date="passkey.last_used_at" :nullable-label="$t('passkeys::passkeys.not_used_yet')" />
+                                </div>
 
-                            <div>
                                 <ConfirmButton
-                                    :label="$t('passkeys::passkeys.delete')"
+                                    label="passkeys::passkeys.delete"
                                     :title="$t('Delete Passkey?')"
                                     :confirmation="$t('If you remove the passkey, you can not login again with the passkey.')"
                                     @confirmed="deletePasskey(passkey)"
