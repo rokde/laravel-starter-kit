@@ -7,16 +7,21 @@ import { getI18n } from '@/i18n';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/vue3';
 import WorkspaceSwitcher from '@workspace/components/WorkspaceSwitcher.vue';
-import { BookOpen, Folder, LayoutGrid } from 'lucide-vue-next';
+import { BookOpen, CheckCheck, Folder, LayoutGrid } from 'lucide-vue-next';
 import AppLogo from './AppLogo.vue';
 
 const { t } = getI18n();
 
 const mainNavItems: NavItem[] = [
     {
-        title: 'Dashboard',
+        title: t('Dashboard'),
         href: '/dashboard',
         icon: LayoutGrid,
+    },
+    {
+        title: t('Todos'),
+        href: '/todos',
+        icon: CheckCheck,
     },
 ];
 
