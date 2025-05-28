@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script setup lang="ts">
 import ConfirmButton from '@/components/ConfirmButton.vue';
 import InputError from '@/components/InputError.vue';
 import { Button } from '@/components/ui/button';
@@ -58,6 +58,8 @@ const breadcrumbItems: BreadcrumbItem[] = [
                     :description="$t('Update your account\'s passkeys to use a more secure way to login')"
                 />
 
+                <div v-if="props.passkeys.length < 1" class="mt-6">{{ $t('passkeys::passkeys.no_passkeys_registered') }}</div>
+
                 <div class="mt-6">
                     <ul class="space-y-4">
                         <li
@@ -87,7 +89,13 @@ const breadcrumbItems: BreadcrumbItem[] = [
                 <form @submit.prevent="submit" class="space-y-6">
                     <div class="grid gap-2">
                         <Label for="name">{{ $t('passkeys::passkeys.name') }}</Label>
-                        <Input id="name" v-model="form.name" class="block w-full" autocomplete="off" />
+                        <Input
+                            id="name"
+                            v-model="form.name"
+                            :placeholder="$t('passkeys::passkeys.name_placeholder')"
+                            class="block w-full"
+                            autocomplete="off"
+                        />
                         <InputError :message="form.errors.name" />
                     </div>
 
