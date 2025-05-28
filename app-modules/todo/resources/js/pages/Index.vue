@@ -25,6 +25,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 ];
 
 const toggleComplete = (todo: Todo) => {
+    console.log('toggle', todo);
     router.patch(
         route('todos.toggle-complete', todo.id),
         {},
@@ -62,7 +63,7 @@ const deleteTodo = (todo: Todo) => {
             <div v-else class="space-y-4">
                 <div v-for="todo in todos" :key="todo.id" class="flex items-center justify-between rounded-md border border-neutral-200 p-4">
                     <div class="flex items-center space-x-4">
-                        <Checkbox :checked="todo.completed" @update:checked="toggleComplete(todo)" />
+                        <Checkbox :checked="todo.completed" @update:modelValue="toggleComplete(todo)" />
                         <div>
                             <p :class="{ 'text-neutral-400 line-through': todo.completed }">{{ todo.title }}</p>
                             <p class="text-sm text-neutral-500" v-if="todo.user">{{ $t('Assigned to') }}: {{ todo.user.name }}</p>
