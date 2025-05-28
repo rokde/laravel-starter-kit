@@ -304,6 +304,10 @@ const translations: Translations = {
         'This is a test translation: {word}.': 'This is a test translation: {word}.',
         'You have {count} unread messages': 'You have {count} unread messages',
         '{member} accepted the invitation to the workspace {workspace}.': '{member} accepted the invitation to the workspace {workspace}.',
+        'Delete Passkey?': 'Delete Passkey?',
+        'If you remove the passkey, you can not login again with the passkey.':
+            'If you remove the passkey, you can not login again with the passkey.',
+        "Update your account's passkeys to use a more secure way to login": "Update your account's passkeys to use a more secure way to login",
         'passkeys::passkeys': {
             authenticate_using_passkey: 'Authenticate using Passkey',
             create: 'Create',
@@ -663,6 +667,11 @@ const translations: Translations = {
         'This is a test translation: {word}.': 'Das ist ein Test: {word}',
         'You have {count} unread messages': 'Sie haben {count} ungelesene Benachrichtigungen',
         "Update your account's notification settings": 'Aktualisieren Sie die Benachrichtigungseinstellungen für Ihr Konto',
+        'Delete Passkey?': 'Passkey löschen?',
+        'If you remove the passkey, you can not login again with the passkey.':
+            'Wenn Sie den Passkey entfernen, können Sie sich nicht mehr mit dem Passkey anmelden.',
+        "Update your account's passkeys to use a more secure way to login":
+            'Aktualisieren Sie die Passkeys Ihres Kontos, um eine sicherere Art der Anmeldung zu verwenden',
         'passkeys::passkeys': {
             authenticate_using_passkey: 'Mit Passkey authentifizieren',
             create: 'Erstellen',
