@@ -1,5 +1,5 @@
 export interface Passkey {
-    id: string;
+    id: number;
     name: string;
     last_used_at: string | null;
 }
