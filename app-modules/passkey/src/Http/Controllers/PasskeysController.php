@@ -27,12 +27,11 @@ class PasskeysController
             'passkeys' => $request->user()
                 ->passkeys()
                 ->get(['id', 'name', 'last_used_at'])
-                ->map(fn (Passkey $passkey) =>
-                    new \Modules\Passkey\DataTransferObjects\Passkey(
-                        id: $passkey->id,
-                        name: $passkey->name,
-                        last_used_at: $passkey->last_used_at?->toDateTimeString(),
-                    ))
+                ->map(fn (Passkey $passkey) => new \Modules\Passkey\DataTransferObjects\Passkey(
+                    id: $passkey->id,
+                    name: $passkey->name,
+                    last_used_at: $passkey->last_used_at?->toDateTimeString(),
+                ))
                 ->all(),
             'passkeyOptions' => json_decode($this->generatePasskeyOptions($request->user())),
         ]);

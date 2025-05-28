@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\Passkey\DataTransferObjects;
 
-final readonly class Passkey {
+final readonly class Passkey
+{
     public function __construct(
         public int $id,
         public string $name,
