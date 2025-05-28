@@ -1,4 +1,5 @@
 {
+    ":interval :unit ago": ":interval :unit ago",
     "A new verification link has been sent to the email address you provided during registration.": "A new verification link has been sent to the email address you provided during registration.",
     "A new verification link has been sent to your email address.": "A new verification link has been sent to your email address.",
     "A reset link will be sent if the account exists.": "A reset link will be sent if the account exists.",

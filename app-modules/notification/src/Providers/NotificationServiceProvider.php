@@ -22,7 +22,7 @@ class NotificationServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        $this->loadTranslationsFrom(__DIR__.'/../../lang');
+        $this->loadJsonTranslationsFrom(__DIR__.'/../../lang');
 
         if ($this->app->runningInConsole()) {
             $this->publishes([

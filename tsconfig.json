@@ -45,6 +45,7 @@
             // "vue/tsx",
             "./resources/js/types",
             "./app-modules/notification/resources/js/types",
+            "./app-modules/passkey/resources/js/types",
             "./app-modules/todo/resources/js/types",
             "./app-modules/workspace/resources/js/types",
             "vue-i18n/dist/vue-i18n.d.ts"

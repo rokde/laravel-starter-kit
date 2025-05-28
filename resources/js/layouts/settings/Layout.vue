@@ -29,6 +29,10 @@ const sidebarNavItems: NavItem[] = [
         title: t('Notifications'),
         href: '/settings/notifications',
     },
+    {
+        title: t('passkeys::passkeys.passkeys'),
+        href: '/settings/passkeys',
+    },
 ];
 
 const page = usePage();
@@ -50,7 +54,7 @@ const currentPath = page.props.ziggy?.location ? new URL(page.props.ziggy.locati
                         :class="['w-full justify-start', { 'bg-muted': currentPath === item.href }]"
                         as-child
                     >
-                        <Link :href="item.href">
+                        <Link :href="item.href" class="overflow-hidden">
                             {{ item.title }}
                         </Link>
                     </Button>

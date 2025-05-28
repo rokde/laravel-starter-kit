@@ -8,6 +8,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import AuthBase from '@/layouts/AuthLayout.vue';
 import { Head, useForm } from '@inertiajs/vue3';
+import SignInWithPasskey from '@passkey/components/SignInWithPasskey.vue';
 import { LoaderCircle } from 'lucide-vue-next';
 
 defineProps<{
@@ -86,6 +87,8 @@ const submit = () => {
                     <LoaderCircle v-if="form.processing" class="h-4 w-4 animate-spin" />
                     {{ $t('Log in') }}
                 </Button>
+
+                <SignInWithPasskey />
             </div>
 
             <div class="text-muted-foreground text-center text-sm">

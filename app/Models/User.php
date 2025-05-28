@@ -15,11 +15,13 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Stringable;
 use Modules\Workspace\Models\Concerns\ManagesWorkspaces;
+use Spatie\LaravelPasskeys\Models\Concerns\HasPasskeys;
+use Spatie\LaravelPasskeys\Models\Concerns\InteractsWithPasskeys;
 
 #[UseFactory(UserFactory::class)]
-class User extends Authenticatable implements HasLocalePreference, MustVerifyEmail
+class User extends Authenticatable implements HasLocalePreference, HasPasskeys, MustVerifyEmail
 {
-    use HasFactory, ManagesWorkspaces, Notifiable;
+    use HasFactory, InteractsWithPasskeys, ManagesWorkspaces, Notifiable;
 
     /**
      * The attributes that are mass assignable.
