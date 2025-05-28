@@ -11,6 +11,7 @@ import { Head, router, useForm } from '@inertiajs/vue3';
 import { Passkey, PasskeyOptions } from '@passkey/types';
 
 import HeadingSmall from '@/components/HeadingSmall.vue';
+import TimeAgoDisplay from '@/components/TimeAgoDisplay.vue';
 import { Input } from '@/components/ui/input';
 import { startRegistration } from '@simplewebauthn/browser';
 
@@ -71,7 +72,8 @@ const breadcrumbItems: BreadcrumbItem[] = [
                                 {{ passkey.name }}
                             </div>
                             <div class="ml-2">
-                                {{ $t('passkeys::passkeys.last_used') }}: {{ passkey.last_used_at ?? $t('passkeys::passkeys.not_used_yet') }}
+                                {{ $t('passkeys::passkeys.last_used') }}:
+                                <TimeAgoDisplay :date="passkey.last_used_at" :nullable-label="$t('passkeys::passkeys.not_used_yet')" />
                             </div>
 
                             <div>

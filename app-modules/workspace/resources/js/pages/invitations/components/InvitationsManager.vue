@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import ConfirmButton from '@/components/ConfirmButton.vue';
 import CopyToClipboardButton from '@/components/CopyToClipboardButton.vue';
-import { localeDate } from '@/lib/date-functions';
+import TimeAgoDisplay from '@/components/TimeAgoDisplay.vue';
 import { router } from '@inertiajs/vue3';
 import { Invitation, Role } from '@workspace/types';
 
@@ -31,9 +31,7 @@ const revokeInvitation = (invitation: Invitation) => {
                 >({{ $t(`roles.${props.roles[invitation.role]?.key}.name`) }})</span
             >
         </div>
-        <time :datetime="localeDate(invitation.created_at, 'ISO8601')" :title="localeDate(invitation.created_at, 'time')">{{
-            localeDate(invitation.created_at)
-        }}</time>
+        <TimeAgoDisplay :date="invitation.created_at" />
         <CopyToClipboardButton v-if="invitation.link" :text="invitation.link" :title="$t('Copy invitation link to clipboard')" />
         <ConfirmButton
             as="icon"
