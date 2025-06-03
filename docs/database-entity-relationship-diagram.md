@@ -129,12 +129,24 @@ erDiagram
         updated_at timestamp
     }
 
+    passkeys {
+        id bigint PK
+        authenticatable_id bigint FK
+        name text
+        credential_id text
+        data json
+        last_used_at timestamp "nullable"
+        created_at timestamp
+        updated_at timestamp
+    }
+
     users ||--o{ sessions : "has many"
     users ||--o{ notifications : "has many"
     users ||--o{ workspaces : "owns many"
     users ||--o{ workspace_members : "belongs to many workspaces"
     users }|--o| workspaces : "has current active workspace"
     users ||--o{ todos : "is assigned to many todos"
+    users ||--o{ passkeys : "has many"
 
     workspaces ||--o{ workspace_members : "has many members"
     workspaces ||--o{ workspace_member_invitations : "has many invitations"
@@ -166,6 +178,9 @@ erDiagram
 ### Todo Tables
 - **todos**: Stores todo items with title, completion status, and relationships to workspaces and users
 
+### Passkey Tables
+- **passkeys**: Stores passkey authentication credentials for users, enabling passwordless login
+
 ## Relationships
 
 - A user can own many workspaces
@@ -177,3 +192,4 @@ erDiagram
 - A user can have many sessions
 - A user can have many notifications
 - A user can be assigned to many todos
+- A user can have many passkeys for passwordless authentication
