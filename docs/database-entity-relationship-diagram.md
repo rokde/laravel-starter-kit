@@ -28,9 +28,9 @@ erDiagram
 
     sessions {
         id string PK
-        user_id bigint FK "index"
-        ip_address string
-        user_agent text
+        user_id bigint FK "index, nullable"
+        ip_address string "nullable"
+        user_agent text "nullable"
         payload longtext
         last_activity integer "index"
     }
@@ -52,7 +52,7 @@ erDiagram
         queue string "index"
         payload longtext
         attempts tinyint
-        reserved_at integer
+        reserved_at integer "nullable"
         available_at integer
         created_at integer
     }
@@ -64,10 +64,10 @@ erDiagram
         pending_jobs integer
         failed_jobs integer
         failed_job_ids longtext
-        options mediumtext
-        cancelled_at integer
+        options mediumtext "nullable"
+        cancelled_at integer "nullable"
         created_at integer
-        finished_at integer
+        finished_at integer "nullable"
     }
 
     failed_jobs {
@@ -106,6 +106,7 @@ erDiagram
         role string "default null"
         created_at timestamp
         updated_at timestamp
+        UK "workspace_id, email"
     }
 
     workspace_members {
@@ -115,6 +116,7 @@ erDiagram
         role string "default null"
         created_at timestamp
         updated_at timestamp
+        UK "workspace_id, user_id"
     }
 
     todos {
