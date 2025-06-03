@@ -40,9 +40,9 @@ app-modules/
     ├── lang/
     ├── resources/
     │   ├── js/
-    │   │   ├── Pages/
-    │   │   ├── plugin.ts
-    │   │   └── types.ts
+    │   │   ├── pages/
+    │   │   └── types/
+    │   │       └── index.d.ts
     │   └── views/
     ├── routes/
     │   └── web.php
@@ -64,7 +64,7 @@ app-modules/
 1. Create the module directory structure:
 
 ```bash
-mkdir -p app-modules/your-module/{database/{factories,migrations,seeders},lang,resources/{js/Pages,views},routes,src/{Http/{Controllers,Requests},Models,Providers},tests/{Feature,Unit}}
+mkdir -p app-modules/your-module/{database/{factories,migrations,seeders},lang,resources/{js/pages,views},routes,src/{Http/{Controllers,Requests},Models,Providers},tests/{Feature,Unit}}
 ```
 
 2. Create a `composer.json` file:
@@ -536,7 +536,7 @@ class YourModuleServiceProvider extends ServiceProvider
 
 ### Vue.js Components
 
-Create Vue.js components in `resources/js/Pages/`:
+Create Vue.js components in `resources/js/pages/`:
 
 1. `Index.vue` - List view:
 
@@ -808,8 +808,8 @@ declare module '@inertiajs/vue3' {
 
 export default definePlugin(({ app, route }) => {
     // Register components
-    app.component('your-module::Index', () => import('./Pages/Index.vue'));
-    app.component('your-module::Create', () => import('./Pages/Create.vue'));
+    app.component('your-module::Index', () => import('./pages/Index.vue'));
+    app.component('your-module::Create', () => import('./pages/Create.vue'));
 
     // Register routes
     route('your-module.index', (): RouteLocationRaw => {
