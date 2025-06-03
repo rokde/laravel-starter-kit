@@ -15,8 +15,6 @@ interface Props {
 
 const props = defineProps<Props>();
 
-const { todos } = props;
-
 const breadcrumbs: BreadcrumbItem[] = [
     {
         title: t('Todos'),
@@ -56,12 +54,12 @@ const deleteTodo = (todo: Todo) => {
                 </Link>
             </div>
 
-            <div v-if="todos.length === 0" class="rounded-md bg-neutral-50 p-8 text-center">
+            <div v-if="props.todos.length === 0" class="rounded-md bg-neutral-50 p-8 text-center">
                 <p class="text-neutral-600">{{ $t('No todos found. Create your first todo!') }}</p>
             </div>
 
             <div v-else class="space-y-4">
-                <div v-for="todo in todos" :key="todo.id" class="flex items-center justify-between rounded-md border border-neutral-200 p-4">
+                <div v-for="todo in props.todos" :key="todo.id" class="flex items-center justify-between rounded-md border border-neutral-200 p-4">
                     <div class="flex items-center space-x-4">
                         <Checkbox :checked="todo.completed" @update:modelValue="toggleComplete(todo)" />
                         <div>
