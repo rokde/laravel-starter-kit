@@ -375,17 +375,17 @@ class UpdateYourModelRequest extends FormRequest
     public function authorize(): bool
     {
         $item = $this->route('item');
-        
+
         if (!$item instanceof YourModel) {
             return false;
         }
-        
+
         $workspace = $this->user()->currentWorkspace;
-        
+
         if ($workspace === null) {
             return false;
         }
-        
+
         return $item->workspace_id === $workspace->id;
     }
 
@@ -1021,6 +1021,14 @@ public function index(Request $request): Response
 
 ## Documentation
 
+When creating a new module, you must provide comprehensive documentation that includes:
+
+1. A README.md file for your module
+2. Updates to the Entity Relationship Diagram (ERD)
+3. Updates to the Module Dependency Graph
+
+### Module README
+
 Create a README.md file for your module:
 
 ```markdown
@@ -1077,4 +1085,69 @@ The module includes the following form request classes:
 
 - `StoreYourModelRequest` - Validates requests to create a new item
 - `UpdateYourModelRequest` - Validates requests to update an item
+```
+
+### Entity Relationship Diagram (ERD)
+
+Update the Entity Relationship Diagram in `docs/database-entity-relationship-diagram.md` to include your module's database tables and relationships:
+
+1. Add your module's tables to the Mermaid diagram
+2. Add relationships between your tables and existing tables
+3. Add table descriptions in the Table Descriptions section
+4. Add relationship descriptions in the Relationships section
+
+Example:
+
+```markdown
+// In the Mermaid diagram section
+your_models {
+    id bigint PK
+    workspace_id bigint FK "index"
+    user_id bigint FK "index"
+    title string
+    description text "nullable"
+    created_at timestamp
+    updated_at timestamp
+}
+
+// Add relationships
+users ||--o{ your_models : "has many"
+workspaces ||--o{ your_models : "has many"
+
+// In the Table Descriptions section
+### Your Module Tables
+- **your_models**: Stores your module items with title, description, and relationships to workspaces and users
+
+// In the Relationships section
+- A user can have many your_models
+- A workspace can have many your_models
+```
+
+### Module Dependency Graph
+
+Update the Module Dependency Graph in `docs/module-dependency-graph.md` to include your module and its dependencies:
+
+1. Add your module to the Mermaid graph
+2. Add arrows showing dependencies between your module and other modules
+3. Add a section for your module in the Module Details section
+
+Example:
+
+```markdown
+// In the Mermaid graph section
+yourModule["YourModule"];
+yourModule --> workspace;
+
+// In the Module Details section
+### YourModule
+
+This module provides functionality for workspaces.
+
+**Dependencies:**
+
+- Workspace
+
+**Used by:**
+
+- None (or list modules that depend on your module)
 ```
