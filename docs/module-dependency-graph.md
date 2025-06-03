@@ -6,10 +6,11 @@ This graph shows the dependencies between modules in the Laravel Starter Kit.
 graph TD;
     foundationLayout["FoundationLayout"];
     notification["Notification"];
-    workspace["Workspace"];
+    passkey["Passkey"];
     todo["Todo"];
-    workspace --> notification;
+    workspace["Workspace"];
     todo --> workspace;
+    workspace --> notification;
 ```
 
 ## Module Details
@@ -32,6 +33,24 @@ Notification module to improve the user notification system.
 
 - Workspace
 
+### Passkey
+
+This module supports the passkey login option.
+
+**No dependencies**
+
+**Not used by other modules**
+
+### Todo
+
+This module provides todo functionality for workspaces.
+
+**Dependencies:**
+
+- Workspace
+
+**Not used by other modules**
+
 ### Workspace
 
 This module supports a workspace concept to form smaller tribes to collaborate in.
@@ -44,12 +63,3 @@ This module supports a workspace concept to form smaller tribes to collaborate i
 
 - Todo
 
-### Todo
-
-This module provides todo functionality for workspaces, allowing users to create, view, update, and delete todos within their workspaces.
-
-**Dependencies:**
-
-- Workspace
-
-**Not used by other modules**
