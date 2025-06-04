@@ -10,9 +10,11 @@ export interface ITableOptions<T> {
     rowsPerPage?: number;
 }
 
+export type ValueRetriever<T> = string | ((row: T) => string | undefined);
+
 export interface ITableColumnOption<T> {
     key: keyof T | string;
-    value?: string;
+    value?: ValueRetriever<T>;
     label: string;
     class?: string;
     sortable?: boolean;
