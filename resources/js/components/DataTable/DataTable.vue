@@ -60,7 +60,7 @@ function value<TData>(rowData: TData, path: ValueRetriever<TData>): any {
 
     return path.split('.').reduce((acc: TData, key: string) => {
         if (acc && typeof acc === 'object' && key in acc) {
-            // @ts-ignore:next-line
+            // @ts-expect-error:next-line
             return acc[key];
         }
         return undefined;
