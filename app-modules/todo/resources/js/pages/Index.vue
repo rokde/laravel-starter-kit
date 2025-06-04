@@ -98,7 +98,7 @@ const toggleComplete = (todo: Todo) => {
 
                 <template #title="{ row: todo }">
                     <Label :for="`todo${todo.id}`" class="flex flex-nowrap space-x-2">
-                        <Checkbox :id="`todo${todo.id}`" :checked="todo.completed" @update:modelValue="toggleComplete(todo)" />
+                        <Checkbox :id="`todo${todo.id}`" :model-value="todo.completed" @update:modelValue="toggleComplete(todo)" />
                         <span :class="{ 'text-neutral-400 line-through': todo.completed }">{{ todo.title }}</span>
                     </Label>
                 </template>
