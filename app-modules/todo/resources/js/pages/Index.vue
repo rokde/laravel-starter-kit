@@ -59,12 +59,6 @@ const tableOptions: ITableOptions<Todo> = {
     ],
 };
 
-const reload = (data: any): void => {
-    router.reload({
-        data: data,
-    });
-};
-
 const toggleComplete = (todo: Todo) => {
     console.log('toggle', todo);
     router.patch(
@@ -129,7 +123,7 @@ const deleteTodo = (todo: Todo) => {
                 :options="tableOptions"
                 :query="props.query"
                 :facet-filters="props.facets"
-                @reload="reload"
+                @reload="router.reload({ data: $event })"
             >
                 <template #rowActions="{ row }">
                     <DataTableRowActions :row="row">
