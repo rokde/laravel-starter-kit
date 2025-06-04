@@ -1,4 +1,5 @@
 {
+    ":member accepted the invitation to the workspace :workspace.": "«:member» accepted the invitation to the workspace «:workspace».",
     "Add workspace": "Add workspace",
     "Configure :name": "Configure :name",
     "Current workspace changed.": "Current workspace changed.",

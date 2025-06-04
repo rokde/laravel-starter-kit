@@ -1,4 +1,5 @@
 {
+    ":member accepted the invitation to the workspace :workspace.": "«:member» hat die Einladung zum Arbeitsbereich «:workspace» angenommen.",
     "Add workspace": "Workspace anlegen",
     "All invitations of the workspace.": "Ausstehende Einladungen im Workspace.",
     "All members of the workspace.": "Alle Mitglieder des Workspaces.",
