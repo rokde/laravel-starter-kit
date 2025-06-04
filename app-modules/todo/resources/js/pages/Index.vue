@@ -36,6 +36,7 @@ const tableOptions: ITableOptions<Todo> = {
     withRowActions: true,
     withRowSelection: true,
     withTermSearch: true,
+    withToolbar: true,
     columns: [
         {
             key: 'id',
