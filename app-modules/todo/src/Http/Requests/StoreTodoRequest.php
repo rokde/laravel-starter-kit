@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Modules\Todo\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Modules\Todo\Models\Todo;
 
 class StoreTodoRequest extends FormRequest
 {
@@ -21,7 +22,7 @@ class StoreTodoRequest extends FormRequest
 
         // Check if the user is authorized to create a todo for the specified user
         return $this->user()->can('create', [
-            \Modules\Todo\Models\Todo::class,
+            Todo::class,
             $workspace,
             $this->input('user_id'),
         ]);
