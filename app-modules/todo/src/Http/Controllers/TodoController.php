@@ -28,7 +28,7 @@ class TodoController
 
         /** @var Builder $query */
         $query = Todo::query()
-            ->with('user')
+            ->with('user:id,name,email')
             ->where('workspace_id', $workspace->id);
 
         foreach ($request->sort('created_at', SortDirection::DESC) as $sort) {
