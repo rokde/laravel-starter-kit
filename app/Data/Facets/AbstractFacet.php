@@ -20,14 +20,14 @@ abstract class AbstractFacet implements Arrayable, JsonSerializable
         protected readonly string $key,
     ) {}
 
-    public function displaySelectedItems(?int $displaySelectedItems = null): self
+    final public function displaySelectedItems(?int $displaySelectedItems = null): self
     {
         $this->displaySelectedItems = $displaySelectedItems;
 
         return $this;
     }
 
-    public function setCounts(Collection $valueMap): self
+    final public function setCounts(Collection $valueMap): self
     {
         $this->options = collect($this->options)->map(fn (array $option): FacetOption => new FacetOption(
             label: $option['label'],
@@ -38,7 +38,7 @@ abstract class AbstractFacet implements Arrayable, JsonSerializable
         return $this;
     }
 
-    public function toArray(): array
+    final public function toArray(): array
     {
         return array_filter([
             'label' => $this->label,
@@ -48,7 +48,7 @@ abstract class AbstractFacet implements Arrayable, JsonSerializable
         ]);
     }
 
-    public function jsonSerialize(): array
+    final public function jsonSerialize(): array
     {
         return $this->toArray();
     }
