@@ -9,7 +9,7 @@ import type { BreadcrumbItem } from '@/types';
 import { Head, Link, router } from '@inertiajs/vue3';
 import { useNotifications } from '@notification/composables/useNotifications';
 import { Notification } from '@notification/types';
-import { ArrowRight, Check, Mail } from 'lucide-vue-next';
+import { ArrowRight, Check } from 'lucide-vue-next';
 
 const { t } = getI18n();
 
@@ -25,18 +25,6 @@ const breadcrumbItems: BreadcrumbItem[] = [
 const markAsRead = (notification: Notification) => {
     router.patch(
         route('notifications.mark-as-read', notification.id),
-        {},
-        {
-            preserveScroll: true,
-            onSuccess: () => {
-                setTimeout(() => location.reload(), 10);
-            },
-        },
-    );
-};
-const markAsUnread = (notification: Notification) => {
-    router.patch(
-        route('notifications.mark-as-unread', notification.id),
         {},
         {
             preserveScroll: true,
@@ -74,15 +62,13 @@ const markAsUnread = (notification: Notification) => {
                         <TableBody>
                             <TableRow v-for="notification in notifications" :key="notification.id">
                                 <TableCell>
-                                    <TimeAgoDisplay :date="notification.created_at" :class="{ 'text-muted-foreground': notification.read }" />
+                                    <TimeAgoDisplay :date="notification.created_at" />
                                 </TableCell>
                                 <TableCell>
-                                    <Link v-if="notification.url" :href="notification.url" :class="{ 'text-muted-foreground': notification.read }">{{
-                                        notification.title
-                                    }}</Link>
+                                    <Link v-if="notification.url" :href="notification.url">{{ notification.title }}</Link>
                                     <span v-else :class="{ 'text-muted-foreground': notification.read }">{{ notification.title }}</span>
                                 </TableCell>
-                                <TableCell class="text-right">
+                                <TableCell>
                                     <Button v-if="notification.url" type="button" variant="ghost" :title="$t('Follow the link')" as-child>
                                         <Link :href="notification.url"><ArrowRight /></Link>
                                     </Button>
@@ -94,15 +80,6 @@ const markAsUnread = (notification: Notification) => {
                                         :title="$t('Mark notification as read')"
                                     >
                                         <Check />
-                                    </Button>
-                                    <Button
-                                        v-if="notification.read"
-                                        type="button"
-                                        variant="ghost"
-                                        @click="markAsUnread(notification)"
-                                        :title="$t('Mark notification as unread')"
-                                    >
-                                        <Mail />
                                     </Button>
                                 </TableCell>
                             </TableRow>
