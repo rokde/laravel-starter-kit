@@ -60,7 +60,6 @@ const tableOptions: ITableOptions<Todo> = {
 };
 
 const toggleComplete = (todo: Todo) => {
-    console.log('toggle', todo);
     router.patch(
         route('todos.toggle-complete', todo.id),
         {},
