@@ -41,8 +41,8 @@ const columns = computed<ITableColumnOption<TData>[]>(() => props.options.column
                 v-for="column in columns"
                 :key="column.key"
                 class="capitalize"
-                :checked="!props.hiddenColumns.includes(column.key as string)"
-                @update:checked="emits('toggleVisibility', column.key as string)"
+                :model-value="!props.hiddenColumns.includes(column.key as string)"
+                @select="emits('toggleVisibility', column.key as string)"
             >
                 {{ column.label }}
             </DropdownMenuCheckboxItem>
