@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Inertia\Inertia;
 use Inertia\Response;
+use Modules\Todo\Data\Facets\AssignedUserFacet;
 use Modules\Todo\Data\Facets\TodoCompletedFacet;
 use Modules\Todo\Http\Requests\StoreTodoRequest;
 use Modules\Todo\Http\Requests\UpdateTodoRequest;
@@ -47,7 +48,7 @@ class TodoController
                 function (array $values, string $facetKey) use ($query): void {
                     $relation = null;
                     $column = $facetKey;
-                    if (substr_count($facetKey, '.') > 0) {
+                    if (mb_substr_count($facetKey, '.') > 0) {
                         [$relation, $column] = explode('.', $facetKey);
                     }
 
@@ -90,6 +91,9 @@ class TodoController
         )->toArray();
 
         $todoCompletedFacet = new TodoCompletedFacet(__('Completed'));
+        $assignedUserFacet = new AssignedUserFacet(__('Assigned to'), 'user_id')
+            ->setPossibleUsers($workspace->allUsers())
+            ->includeNoUserFilter();
 
         return Inertia::render('todo::Index', [
             'data' => Arr::only($result, ['data'])['data'],
@@ -102,6 +106,7 @@ class TodoController
                 ],
             ],
             'facets' => [
+                $assignedUserFacet,
                 $todoCompletedFacet,
             ],
         ]);
