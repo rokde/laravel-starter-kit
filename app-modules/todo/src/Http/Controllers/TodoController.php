@@ -138,7 +138,7 @@ class TodoController
         $todo->update($request->validated());
 
         return redirect()
-            ->route('todos.index')
+            ->back()
             ->with('message', __('todo::Todo updated.'));
     }
 
