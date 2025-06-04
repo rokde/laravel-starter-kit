@@ -9,6 +9,7 @@ import {
     ITableColumnOption,
     ITableFacetFilterOption,
     ITableOptions,
+    ValueRetriever,
 } from '@/components/DataTable/types';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
@@ -52,7 +53,11 @@ const hasSlot = (column: string): boolean => {
  * @param rowData
  * @param path
  */
-function value<TData>(rowData: TData, path: string): any {
+function value<TData>(rowData: TData, path: ValueRetriever<TData>): any {
+    if (typeof path === 'function') {
+        return path(rowData);
+    }
+
     return path.split('.').reduce((acc: TData, key: string) => {
         if (acc && typeof acc === 'object' && key in acc) {
             // @ts-ignore:next-line
