@@ -1,7 +1,11 @@
 <script setup lang="ts">
+import ConfirmButton from '@/components/ConfirmButton.vue';
+import DataTable from '@/components/DataTable/DataTable.vue';
+import DataTableRowActions from '@/components/DataTable/DataTableRowActions.vue';
 import { IPaginatedMeta, IQuery, ITableFacetFilterOption, ITableOptions } from '@/components/DataTable/types';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
+import { DropdownMenuItem } from '@/components/ui/dropdown-menu';
 import { getI18n } from '@/i18n';
 import AppLayout from '@/layouts/AppLayout.vue';
 import type { BreadcrumbItem } from '@/types';
@@ -25,6 +29,37 @@ const breadcrumbs: BreadcrumbItem[] = [
         href: '/todos',
     },
 ];
+
+const tableOptions: ITableOptions<Todo> = {
+    key: 'id',
+    withRowActions: true,
+    withRowSelection: true,
+    withTermSearch: true,
+    columns: [
+        {
+            key: 'id',
+            label: t('ID'),
+            hideable: true,
+        },
+        {
+            key: 'title',
+            label: t('Title'),
+            hideable: true,
+        },
+        {
+            key: 'assignee',
+            label: t('Assigned to'),
+            value: (row: Todo) => row.user?.name,
+            hideable: true,
+        },
+    ],
+};
+
+const reload = (data: any): void => {
+    router.reload({
+        data: data,
+    });
+};
 
 const toggleComplete = (todo: Todo) => {
     console.log('toggle', todo);
@@ -83,6 +118,31 @@ const deleteTodo = (todo: Todo) => {
                     </div>
                 </div>
             </div>
+
+            <DataTable
+                :rows="props.data"
+                :meta="props.meta"
+                :options="tableOptions"
+                :query="props.query"
+                :facet-filters="props.facets"
+                @reload="reload"
+            >
+                <template #rowActions="{ row }">
+                    <DataTableRowActions :row="row">
+                        <DropdownMenuItem @click.stop="router.patch(route('todos.update', { todo: row }), { completed: !row.completed })">
+                            {{ row.completed ? $t('Mark as Incomplete') : $t('Mark as Complete') }}
+                        </DropdownMenuItem>
+                        <DropdownMenuItem as-child>
+                            <ConfirmButton
+                                as="span"
+                                title="Delete Todo"
+                                confirmation="Do you want to delete todo?"
+                                @confirmed="deleteTodo(row)"
+                            ></ConfirmButton>
+                        </DropdownMenuItem>
+                    </DataTableRowActions>
+                </template>
+            </DataTable>
         </div>
     </AppLayout>
 </template>
