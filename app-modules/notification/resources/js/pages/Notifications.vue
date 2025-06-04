@@ -1,6 +1,8 @@
 <script setup lang="ts">
+import ConfirmButton from '@/components/ConfirmButton.vue';
 import Heading from '@/components/Heading.vue';
 import TimeAgoDisplay from '@/components/TimeAgoDisplay.vue';
+import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { getI18n } from '@/i18n';
@@ -46,6 +48,15 @@ const markAsUnread = (notification: Notification) => {
         },
     );
 };
+
+const deleteNotification = (notification: Notification) => {
+    router.delete(route('notifications.destroy', notification.id), {
+        preserveScroll: true,
+        onSuccess: () => {
+            setTimeout(() => location.reload(), 10);
+        },
+    });
+};
 </script>
 
 <template>
@@ -66,6 +77,9 @@ const markAsUnread = (notification: Notification) => {
                                 <TableHead class="w-fit">
                                     {{ $t('Message') }}
                                 </TableHead>
+                                <TableHead class="w-fit">
+                                    {{ $t('Group') }}
+                                </TableHead>
                                 <TableHead class="w-8">
                                     <span class="sr-only">{{ $t('Actions') }}</span>
                                 </TableHead>
@@ -81,6 +95,9 @@ const markAsUnread = (notification: Notification) => {
                                         notification.title
                                     }}</Link>
                                     <span v-else :class="{ 'text-muted-foreground': notification.read }">{{ notification.title }}</span>
+                                </TableCell>
+                                <TableCell>
+                                    <Badge variant="outline">{{ $t(notification.group) }}</Badge>
                                 </TableCell>
                                 <TableCell class="text-right">
                                     <Button v-if="notification.url" type="button" variant="ghost" :title="$t('Follow the link')" as-child>
@@ -104,6 +121,12 @@ const markAsUnread = (notification: Notification) => {
                                     >
                                         <Mail />
                                     </Button>
+                                    <ConfirmButton
+                                        :title="$t('Delete notification')"
+                                        :confirmation="$t('Are you sure you want to delete this notification?')"
+                                        as="icon"
+                                        @confirmed="deleteNotification(notification)"
+                                    />
                                 </TableCell>
                             </TableRow>
                             <TableRow v-if="notifications.length <= 0">
