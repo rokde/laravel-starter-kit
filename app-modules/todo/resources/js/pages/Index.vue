@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import ConfirmButton from '@/components/ConfirmButton.vue';
 import DataTable from '@/components/DataTable/DataTable.vue';
 import DataTableRowActions from '@/components/DataTable/DataTableRowActions.vue';
 import { IPaginatedMeta, IQuery, ITableFacetFilterOption, ITableOptions } from '@/components/DataTable/types';
@@ -99,13 +98,8 @@ const toggleComplete = (todo: Todo) => {
                         <DropdownMenuItem @click.stop="toggleComplete(todo)">
                             {{ todo.completed ? $t('Mark as Incomplete') : $t('Mark as Complete') }}
                         </DropdownMenuItem>
-                        <DropdownMenuItem as-child>
-                            <ConfirmButton
-                                as="span"
-                                :title="$t('Delete Todo')"
-                                :confirmation="$t('Do you want to delete todo?')"
-                                @confirmed="router.delete(route('todos.destroy', todo.id))"
-                            ></ConfirmButton>
+                        <DropdownMenuItem variant="destructive" @click.stop="router.delete(route('todos.destroy', todo.id))">
+                            <span class="text-red-500 hover:text-red-600 dark:text-red-700 dark:hover:text-red-600">{{ $t('Delete') }}</span>
                         </DropdownMenuItem>
                     </DataTableRowActions>
                 </template>
