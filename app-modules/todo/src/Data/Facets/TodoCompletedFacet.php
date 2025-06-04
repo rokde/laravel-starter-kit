@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\Todo\Data\Facets;
 
 use App\Data\Facets\AbstractFacet;
