@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { IPaginatedMeta, IQuery, ITableFacetFilterOption, ITableOptions } from '@/components/DataTable/types';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { getI18n } from '@/i18n';
@@ -10,7 +11,10 @@ import { Todo } from '../types';
 const { t } = getI18n();
 
 interface Props {
-    todos: Todo[];
+    data: Todo[];
+    meta: IPaginatedMeta;
+    query: IQuery;
+    facets: ITableFacetFilterOption<Todo>[];
 }
 
 const props = defineProps<Props>();
@@ -54,12 +58,12 @@ const deleteTodo = (todo: Todo) => {
                 </Link>
             </div>
 
-            <div v-if="props.todos.length === 0" class="rounded-md bg-neutral-50 p-8 text-center">
+            <div v-if="props.data.length === 0" class="rounded-md bg-neutral-50 p-8 text-center">
                 <p class="text-neutral-600">{{ $t('No todos found. Create your first todo!') }}</p>
             </div>
 
             <div v-else class="space-y-4">
-                <div v-for="todo in props.todos" :key="todo.id" class="flex items-center justify-between rounded-md border border-neutral-200 p-4">
+                <div v-for="todo in props.data" :key="todo.id" class="flex items-center justify-between rounded-md border border-neutral-200 p-4">
                     <div class="flex items-center space-x-4">
                         <Checkbox :checked="todo.completed" @update:modelValue="toggleComplete(todo)" />
                         <div>
@@ -68,7 +72,7 @@ const deleteTodo = (todo: Todo) => {
                         </div>
                     </div>
                     <div class="flex space-x-2">
-                        <Link :href="route('todos.update', todo.id)" method="patch" as="button" :data="{ completed: !todo.completed }">
+                        <Link :href="route('todos.update', todo)" method="patch" as="button" :data="{ completed: !todo.completed }">
                             <Button variant="outline" size="sm">
                                 {{ todo.completed ? $t('Mark as Incomplete') : $t('Mark as Complete') }}
                             </Button>
