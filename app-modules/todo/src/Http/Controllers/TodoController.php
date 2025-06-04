@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Inertia\Inertia;
 use Inertia\Response;
+use Modules\Todo\Data\Facets\TodoCompletedFacet;
 use Modules\Todo\Http\Requests\StoreTodoRequest;
 use Modules\Todo\Http\Requests\UpdateTodoRequest;
 use Modules\Todo\Models\Todo;
@@ -78,6 +79,8 @@ class TodoController
             page: $request->page(),
         )->toArray();
 
+        $todoCompletedFacet = new TodoCompletedFacet(__('Completed'));
+
         return Inertia::render('todo::Index', [
             'data' => Arr::only($result, ['data'])['data'],
             'meta' => Arr::except($result, ['first_page_url', 'last_page_url', 'next_page_url', 'prev_page_url', 'data']),
@@ -88,7 +91,9 @@ class TodoController
                     'facets' => $request->filter(),
                 ],
             ],
-            'facets' => [],
+            'facets' => [
+                $todoCompletedFacet,
+            ],
         ]);
     }
 
