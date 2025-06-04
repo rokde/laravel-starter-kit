@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Modules\Todo\Notifications\TodoAssignedNotification;
 use Modules\Workspace\Notifications\MemberAcceptedNotification;
 
 /**
@@ -12,5 +13,6 @@ use Modules\Workspace\Notifications\MemberAcceptedNotification;
 return [
     'notifications' => [
         MemberAcceptedNotification::class,
+        TodoAssignedNotification::class,
     ],
 ];
