@@ -50,7 +50,7 @@ class PaginationRequest extends FormRequest
     {
         $sortString = $this->input('sort');
         if (! $sortString) {
-            if (!$field) {
+            if (! $field) {
                 return [];
             }
 
@@ -58,15 +58,15 @@ class PaginationRequest extends FormRequest
                 [
                     'field' => $field,
                     'direction' => $direction,
-                ]
+                ],
             ];
         }
 
         $result = [];
         foreach (explode(',', (string) $sortString) as $field) {
-            $field = trim($field);
+            $field = mb_trim($field);
             $result[] = [
-                'field' => ltrim($field, '-'),
+                'field' => mb_ltrim($field, '-'),
                 'direction' => SortDirection::fromString($field),
             ];
         }
