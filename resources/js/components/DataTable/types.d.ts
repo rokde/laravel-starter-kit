@@ -64,6 +64,6 @@ export interface IQuery {
     };
 }
 
-export interface IFilterFacetSelected extends Object {
+export interface IFilterFacetSelected extends object {
     [key: string]: string[] | number[] | undefined;
 }
