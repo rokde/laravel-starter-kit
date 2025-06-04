@@ -43,4 +43,18 @@ class NotificationController
 
         return redirect()->back()->with('message', 'Notification marked as unread.');
     }
+
+    public function destroy(Request $request, $id): RedirectResponse
+    {
+        /** @var \Illuminate\Notifications\DatabaseNotification $notification */
+        $notification = $request->user()->notifications()->find($id);
+
+        if (! $notification) {
+            return redirect()->back();
+        }
+
+        $notification->delete();
+
+        return redirect()->back()->with('message', 'Notification deleted.');
+    }
 }
