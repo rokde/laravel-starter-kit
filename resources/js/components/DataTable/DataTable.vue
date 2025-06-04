@@ -77,6 +77,7 @@ const toggleAllRowsSelection = (): void => {
 
     selectedRows.value = [];
     props.rows.forEach((value: TData, index: number) => {
+        // @ts-expect-error:next-line
         selectedRows.value.push(value[props.options.key] ?? index.toString(10));
     });
 };
@@ -161,10 +162,12 @@ const assembleReloadParameter = (page: number, size: number | undefined): void =
             }
 
             if (!filter.hasOwnProperty(key)) {
+                // ts-expect-error:next-line
                 filter[key] = facets.value?.[key]?.join(',') ?? '';
                 continue;
             }
 
+            // ts-expect-error:next-line
             filter[key] = facets.value?.[key]?.join(',') ?? '';
         }
     }
