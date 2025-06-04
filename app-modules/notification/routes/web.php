@@ -18,6 +18,10 @@ Route::middleware(['web', 'auth', 'verified'])
         Route::patch('/{notification}/unread', [NotificationController::class, 'markAsUnread'])
             ->whereUuid('notification')
             ->name('mark-as-unread');
+
+        Route::delete('/{notification}', [NotificationController::class, 'destroy'])
+            ->whereUuid('notification')
+            ->name('destroy');
     });
 
 Route::middleware(['web', 'auth', 'verified'])->group(function (): void {
