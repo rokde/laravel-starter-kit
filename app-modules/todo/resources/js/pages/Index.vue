@@ -2,6 +2,7 @@
 import DataTable from '@/components/DataTable/DataTable.vue';
 import DataTableRowActions from '@/components/DataTable/DataTableRowActions.vue';
 import { IPaginatedMeta, IQuery, ITableFacetFilterOption, ITableOptions } from '@/components/DataTable/types';
+import Heading from '@/components/Heading.vue';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { DropdownMenuItem } from '@/components/ui/dropdown-menu';
@@ -68,9 +69,7 @@ const toggleComplete = (todo: Todo) => {
         <Head :title="$t('Todos')" />
 
         <div class="mx-auto my-8 flex w-full max-w-5xl flex-col">
-            <div class="mb-6 flex justify-between">
-                <h1 class="text-2xl font-semibold">{{ $t('Todos') }}</h1>
-            </div>
+            <Heading :title="$t('Todos')" />
 
             <DataTable
                 :rows="props.data"
