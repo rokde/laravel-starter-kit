@@ -177,7 +177,7 @@ class TodoController
         $todo->save();
 
         return redirect()
-            ->route('todos.index')
+            ->back()
             ->with('message', $todo->completed
                 ? __('Todo marked as completed.')
                 : __('Todo marked as incomplete.'));
@@ -197,7 +197,7 @@ class TodoController
         $todo->delete();
 
         return redirect()
-            ->route('todos.index')
+            ->back()
             ->with('message', __('Todo deleted.'));
     }
 }
