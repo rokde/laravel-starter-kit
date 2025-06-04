@@ -31,7 +31,10 @@ const emits = defineEmits<{
     (e: 'update:sort', field: { name: string; direction: undefined | 'asc' | 'desc' }): void;
     (e: 'update:term', term: string | undefined): void;
     (e: 'update:facet', facet: { key: string; selected: string[] | undefined }): void;
-    (e: 'reload', data: {}): void;
+    (
+        e: 'reload',
+        data: { page: number; size: number | undefined; sort: string | undefined; term: string | undefined; filter: Record<string, string> },
+    ): void;
 }>();
 
 const slots = useSlots();
