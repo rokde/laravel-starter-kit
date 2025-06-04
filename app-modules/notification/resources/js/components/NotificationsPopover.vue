@@ -16,7 +16,7 @@ import {
 import { Link, router } from '@inertiajs/vue3';
 import { useNotifications } from '@notification/composables/useNotifications';
 import { Notification } from '@notification/types';
-import { Bell, Eye } from 'lucide-vue-next';
+import { Bell, Check } from 'lucide-vue-next';
 import { computed, ref } from 'vue';
 
 const notifications = useNotifications();
@@ -74,7 +74,7 @@ const markAsRead = (notification: Notification) => {
                                         @click="markAsRead(notification)"
                                         :title="$t('Mark notification as read')"
                                     >
-                                        <Eye />
+                                        <Check />
                                     </SidebarMenuAction>
                                 </SidebarMenuItem>
                             </SidebarMenu>
