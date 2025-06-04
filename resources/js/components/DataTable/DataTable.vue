@@ -83,7 +83,7 @@ const toggleAllRowsSelection = (): void => {
 
 const toggleRowsSelection = (key: string | number): void => {
     if (selectedRows.value.includes(key as string)) {
-        selectedRows.value = selectedRows.value.filter((item) => item !== key);
+        selectedRows.value = selectedRows.value.filter((item: string) => item !== key);
         return;
     }
 
@@ -105,7 +105,7 @@ const areAllRowsSelected = computed<boolean | 'indeterminate'>(() => {
 const hiddenColumns = ref<string[]>(props.hiddenColumns ?? []);
 const toggleHiddenColumn = (key: string): void => {
     if (hiddenColumns.value.includes(key)) {
-        hiddenColumns.value = hiddenColumns.value.filter((item) => item !== key);
+        hiddenColumns.value = hiddenColumns.value.filter((item: string) => item !== key);
         return;
     }
 
