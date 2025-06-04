@@ -4,8 +4,12 @@ declare(strict_types=1);
 
 namespace Modules\Todo\Http\Controllers;
 
+use App\Enums\SortDirection;
+use App\Http\Requests\PaginationRequest;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Inertia\Inertia;
 use Inertia\Response;
 use Modules\Todo\Http\Requests\StoreTodoRequest;
@@ -17,18 +21,74 @@ class TodoController
     /**
      * Display a listing of the todos for the current workspace.
      */
-    public function index(Request $request): Response
+    public function index(PaginationRequest $request): Response
     {
         $workspace = $request->user()->currentWorkspace;
         abort_if($workspace === null, 404);
 
-        $todos = Todo::where('workspace_id', $workspace->id)
+        /** @var Builder $query */
+        $query = Todo::query()
             ->with('user')
-            ->orderBy('created_at', 'desc')
-            ->get();
+            ->where('workspace_id', $workspace->id);
+
+        foreach ($request->sort('created_at', SortDirection::DESC) as $sort) {
+            $query->orderBy($sort['field'], $sort['direction']->value);
+        }
+
+        $term = $request->term();
+        $query->when($term, function (Builder $query, string $term): void {
+            $query->where('title', 'LIKE', "%{$term}%");
+        });
+
+        $request->facets()
+            ->each(
+                function (array $values, string $facetKey) use ($query): void {
+                    $relation = null;
+                    $column = $facetKey;
+                    if (substr_count($facetKey, '.') > 0) {
+                        [$relation, $column] = explode('.', $facetKey);
+                    }
+
+                    $query->when($relation, function (Builder $query) use ($relation, $column, $values): void {
+                        $query->whereHas($relation, function (Builder $query) use ($column, $values): void {
+                            $query->whereIn($column, $values);
+                        });
+                    });
+
+                    $query->unless($relation, function (Builder $query) use ($column, $values): void {
+                        $query->where(function (Builder $query) use ($column, $values): void {
+                            $nullValues = array_filter($values, fn ($value): bool => $value === null);
+                            if ($nullValues !== []) {
+                                $query->orWhereNull($column);
+                            }
+
+                            $valueValues = array_filter($values, fn ($value): bool => $value !== null);
+                            if ($valueValues !== []) {
+                                $query->orWhereIn($column, $valueValues);
+                            }
+                        });
+                    });
+                }
+            );
+
+        $result = $query->paginate(
+            perPage: $request->size(50),
+            columns: $request->fields(),
+            pageName: $request->pageName(),
+            page: $request->page(),
+        )->toArray();
 
         return Inertia::render('todo::Index', [
-            'todos' => $todos,
+            'data' => Arr::only($result, ['data'])['data'],
+            'meta' => Arr::except($result, ['first_page_url', 'last_page_url', 'next_page_url', 'prev_page_url', 'data']),
+            'query' => [
+                'sort' => $request->sort(),
+                'filter' => [
+                    'term' => $term,
+                    'facets' => $request->filter(),
+                ],
+            ],
+            'facets' => [],
         ]);
     }
 
