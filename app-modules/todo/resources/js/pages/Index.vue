@@ -86,7 +86,6 @@ const toggleComplete = (todo: Todo) => {
                         <Button>{{ $t('Create Todo') }}</Button>
                     </Link>
                 </template>
-                <template #actions>actios</template>
 
                 <template #title="{ row: todo }">
                     <Label :for="`todo${todo.id}`" class="flex flex-nowrap space-x-2">
