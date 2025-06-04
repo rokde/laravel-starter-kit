@@ -8,6 +8,7 @@ test('notification DTO can be instantiated with correct properties', function ()
     $notification = new Notification(
         id: 'test-id',
         type: 'test-type',
+        group: 'test-group',
         title: 'Test Title',
         url: 'https://example.com',
         data: ['key' => 'value'],
@@ -29,6 +30,7 @@ test('notification DTO can be instantiated with null url', function (): void {
     $notification = new Notification(
         id: 'test-id',
         type: 'test-type',
+        group: 'test-group',
         title: 'Test Title',
         url: null,
         data: ['key' => 'value'],
@@ -44,6 +46,7 @@ test('notification DTO is readonly', function (): void {
     $notification = new Notification(
         id: 'test-id',
         type: 'test-type',
+        group: 'test-group',
         title: 'Test Title',
         url: 'https://example.com',
         data: ['key' => 'value'],

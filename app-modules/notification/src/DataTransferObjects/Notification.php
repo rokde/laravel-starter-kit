@@ -9,6 +9,7 @@ final readonly class Notification
     public function __construct(
         public string $id,
         public string $type,
+        public string $group,
         public string $title,
         public ?string $url,
         public array $data,

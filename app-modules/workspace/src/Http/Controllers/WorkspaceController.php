@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\Workspace\Http\Controllers;
 
+use App\ValueObjects\Id;
+use Illuminate\Container\Attributes\RouteParameter;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -85,6 +87,24 @@ class WorkspaceController
 
         return redirect()
             ->back()
+            ->with('message', __('workspace::Current workspace changed.'));
+    }
+
+    /**
+     * This action sets the requested workspace active and redirects to the intended URL.
+     */
+    public function makeCurrent(
+        Request $request,
+        #[RouteParameter('id')]
+        string $requestedWorkspaceId,
+        SetCurrentWorkspace $setCurrentWorkspace,
+    ): RedirectResponse {
+        $setCurrentWorkspace->handle(new Id($request->user()->id), new Id($requestedWorkspaceId));
+
+        $intended = $request->get('to', route('workspaces.show'));
+
+        return redirect()
+            ->intended($intended)
             ->with('message', __('workspace::Current workspace changed.'));
     }
 }

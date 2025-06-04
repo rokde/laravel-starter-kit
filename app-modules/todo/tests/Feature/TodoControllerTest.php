@@ -25,9 +25,9 @@ test('user can view todos for current workspace', function (): void {
     $response->assertStatus(200);
     $response->assertInertia(fn ($page) => $page
         ->component('todo::Index')
-        ->has('todos', 1)
-        ->where('todos.0.id', $todo->id)
-        ->where('todos.0.title', 'Test Todo')
+        ->has('data', 1)
+        ->where('data.0.id', $todo->id)
+        ->where('data.0.title', 'Test Todo')
     );
 });
 
@@ -79,7 +79,7 @@ test('user can update todo', function (): void {
         'title' => 'Updated Title',
     ]);
 
-    $response->assertRedirect(route('todos.index'));
+    $response->assertRedirectBack();
     expect(Todo::where([
         'id' => $todo->id,
         'title' => 'Updated Title',
@@ -99,7 +99,7 @@ test('user can toggle todo completion', function (): void {
 
     $response = $this->actingAs($user)->patch(route('todos.toggle-complete', $todo));
 
-    $response->assertRedirect(route('todos.index'));
+    $response->assertRedirectBack();
     expect(Todo::where([
         'id' => $todo->id,
         'completed' => true,
@@ -118,6 +118,6 @@ test('user can delete todo', function (): void {
 
     $response = $this->actingAs($user)->delete(route('todos.destroy', $todo));
 
-    $response->assertRedirect(route('todos.index'));
+    $response->assertRedirectBack();
     expect(Todo::where('id', $todo->id)->exists())->toBeFalse();
 });

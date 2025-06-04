@@ -24,6 +24,9 @@ Route::middleware(['web', 'auth', 'verified'])
 
         Route::put('/set-current', [WorkspaceController::class, 'setCurrent'])
             ->name('set-current');
+        Route::get('/{id}', [WorkspaceController::class, 'makeCurrent'])
+            ->whereNumber('id')
+            ->name('make-current');
 
         Route::prefix('current/members')
             ->name('members.')

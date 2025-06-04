@@ -10,6 +10,7 @@ graph TD;
     todo["Todo"];
     workspace["Workspace"];
     todo --> workspace;
+    todo --> notification;
     workspace --> notification;
 ```
 
@@ -31,6 +32,7 @@ Notification module to improve the user notification system.
 
 **Used by:**
 
+- Todo
 - Workspace
 
 ### Passkey
@@ -48,6 +50,7 @@ This module provides todo functionality for workspaces.
 **Dependencies:**
 
 - Workspace
+- Notification
 
 **Not used by other modules**
 

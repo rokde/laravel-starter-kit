@@ -6,6 +6,8 @@
 *.md diff=markdown
 *.php diff=php
 
+.github/FUNDING.yml export-ignore
+.github/SECURITY.md export-ignore
 CHANGELOG.md export-ignore
 README.md export-ignore
 composer.lock export-ignore
