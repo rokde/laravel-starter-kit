@@ -17,6 +17,7 @@ use Modules\Todo\Data\Facets\TodoCompletedFacet;
 use Modules\Todo\Http\Requests\StoreTodoRequest;
 use Modules\Todo\Http\Requests\UpdateTodoRequest;
 use Modules\Todo\Models\Todo;
+use Modules\Todo\Notifications\TodoAssignedNotification;
 
 class TodoController
 {
@@ -138,6 +139,13 @@ class TodoController
         $todo->workspace_id = $workspace->id;
         $todo->user_id = $request->validated('user_id');
         $todo->save();
+
+        if ($todo->user_id !== $request->user()->id) {
+            $todo->user->notify(new TodoAssignedNotification(
+                todo: $todo,
+                user: $request->user()->toDto(),
+            ));
+        }
 
         return redirect()
             ->route('todos.index')
