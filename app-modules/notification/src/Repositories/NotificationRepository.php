@@ -28,6 +28,7 @@ class NotificationRepository implements NotificationRepositoryContract
                 return new Notification(
                     id: $notification->id,
                     type: $notification->type,
+                    group: $notification->type::getGroup(),
                     title: $data['title'] ?? '',
                     url: $data['url'] ?? null,
                     data: Arr::except($data, ['url', 'title']),
