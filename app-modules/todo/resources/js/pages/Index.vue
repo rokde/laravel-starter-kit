@@ -34,17 +34,9 @@ const breadcrumbs: BreadcrumbItem[] = [
 const tableOptions: ITableOptions<Todo> = {
     key: 'id',
     withRowActions: true,
-    withRowSelection: true,
     withTermSearch: true,
     withToolbar: true,
     columns: [
-        {
-            key: 'id',
-            label: t('ID'),
-            hideable: true,
-            sortable: true,
-            class: 'w-16',
-        },
         {
             key: 'title',
             label: t('Title'),
