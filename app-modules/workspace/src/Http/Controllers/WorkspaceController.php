@@ -98,8 +98,7 @@ class WorkspaceController
         #[RouteParameter('id')]
         string $requestedWorkspaceId,
         SetCurrentWorkspace $setCurrentWorkspace,
-    ): RedirectResponse
-    {
+    ): RedirectResponse {
         $setCurrentWorkspace->handle(new Id($request->user()->id), new Id($requestedWorkspaceId));
 
         $intended = $request->get('to', route('workspaces.show'));
