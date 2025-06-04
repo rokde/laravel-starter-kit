@@ -26,6 +26,14 @@ The module is automatically registered through its service provider `Modules\Not
 
 Users can set their preferred notification delivery method (in-app or email) through the application interface.
 
+### Managing Notifications via UI
+
+Users can manage their notifications through the application interface:
+
+- **View Notifications**: Users can view all their notifications in a list.
+- **Mark as Read/Unread**: Users can mark notifications as read or unread.
+- **Delete Notifications**: Users can delete individual notifications.
+
 ### Purging Old Notifications
 
 To purge old notifications from the system, run:
