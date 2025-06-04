@@ -136,7 +136,7 @@ class TodoController
 
         return redirect()
             ->route('todos.index')
-            ->with('message', __('todo::Todo created.'));
+            ->with('message', __('Todo created.'));
     }
 
     /**
@@ -154,7 +154,7 @@ class TodoController
 
         return redirect()
             ->back()
-            ->with('message', __('todo::Todo updated.'));
+            ->with('message', __('Todo updated.'));
     }
 
     /**
@@ -174,8 +174,8 @@ class TodoController
         return redirect()
             ->route('todos.index')
             ->with('message', $todo->completed
-                ? __('todo::Todo marked as completed.')
-                : __('todo::Todo marked as incomplete.'));
+                ? __('Todo marked as completed.')
+                : __('Todo marked as incomplete.'));
     }
 
     /**
@@ -193,6 +193,6 @@ class TodoController
 
         return redirect()
             ->route('todos.index')
-            ->with('message', __('todo::Todo deleted.'));
+            ->with('message', __('Todo deleted.'));
     }
 }
