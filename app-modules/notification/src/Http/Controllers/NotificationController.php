@@ -29,4 +29,18 @@ class NotificationController
 
         return redirect()->back()->with('message', 'Notification marked as read.');
     }
+
+    public function markAsUnread(Request $request, $id): RedirectResponse
+    {
+        /** @var \Illuminate\Notifications\DatabaseNotification $notification */
+        $notification = $request->user()->notifications()->find($id);
+
+        if (! $notification) {
+            return redirect()->back();
+        }
+
+        $notification->markAsUnread();
+
+        return redirect()->back()->with('message', 'Notification marked as unread.');
+    }
 }
