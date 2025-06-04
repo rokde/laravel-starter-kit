@@ -155,7 +155,7 @@ const assembleReloadParameter = (page: number, size: number | undefined): void =
         if (facets.value[key]) {
             if (!filter) {
                 filter = {
-                    key: facets.value[key].join(','),
+                    [key]: facets.value[key].join(','),
                 };
                 continue;
             }
