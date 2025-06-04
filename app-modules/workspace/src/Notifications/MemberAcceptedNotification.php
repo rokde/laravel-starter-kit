@@ -56,7 +56,7 @@ class MemberAcceptedNotification extends Notification implements InAppNotificati
 
     public function getUrl(): ?string
     {
-        return null;
+        return route('workspaces.make-current', ['id' => $this->workspace->id, 'to' => route('workspaces.members.index')]);
     }
 
     public function getTitle(): string
