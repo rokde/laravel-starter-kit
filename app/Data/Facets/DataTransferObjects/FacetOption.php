@@ -10,6 +10,5 @@ final readonly class FacetOption
         public string $label,
         public string $value,
         public int $count = 0,
-    )
-    {}
+    ) {}
 }
