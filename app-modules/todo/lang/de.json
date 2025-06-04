@@ -21,5 +21,6 @@
     "Todo updated.": "Aufgabe aktualisiert.",
     "Todo deleted.": "Aufgabe gelöscht.",
     "Todo marked as completed.": "Aufgabe als erledigt markiert.",
-    "Todo marked as incomplete.": "Aufgabe als unerledigt markiert."
+    "Todo marked as incomplete.": "Aufgabe als unerledigt markiert.",
+    "Unassigned": "Nicht zugewiesen"
 }

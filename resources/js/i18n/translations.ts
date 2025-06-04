@@ -712,6 +712,7 @@ const translations: Translations = {
         'Todo deleted.': 'Aufgabe gelöscht.',
         'Todo marked as completed.': 'Aufgabe als erledigt markiert.',
         'Todo marked as incomplete.': 'Aufgabe als unerledigt markiert.',
+        Unassigned: 'Nicht zugewiesen',
         'passkeys::passkeys': {
             authenticate_using_passkey: 'Mit Passkey authentifizieren',
             create: 'Erstellen',
