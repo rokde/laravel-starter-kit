@@ -6,6 +6,7 @@ import { IPaginatedMeta, IQuery, ITableFacetFilterOption, ITableOptions } from '
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { DropdownMenuItem } from '@/components/ui/dropdown-menu';
+import { Label } from '@/components/ui/label';
 import { getI18n } from '@/i18n';
 import AppLayout from '@/layouts/AppLayout.vue';
 import type { BreadcrumbItem } from '@/types';
@@ -124,20 +125,38 @@ const deleteTodo = (todo: Todo) => {
                 :facet-filters="props.facets"
                 @reload="router.reload({ data: $event })"
             >
-                <template #rowActions="{ row }">
-                    <DataTableRowActions :row="row">
-                        <DropdownMenuItem @click.stop="router.patch(route('todos.update', { todo: row }), { completed: !row.completed })">
-                            {{ row.completed ? $t('Mark as Incomplete') : $t('Mark as Complete') }}
+                <template #primaryAction>
+                    <Link :href="route('todos.create')">
+                        <Button>{{ $t('Create Todo') }}</Button>
+                    </Link>
+                </template>
+                <template #actions>actios</template>
+
+                <template #title="{ row: todo }">
+                    <Label :for="`todo${todo.id}`" class="flex flex-nowrap space-x-2">
+                        <Checkbox :id="`todo${todo.id}`" :checked="todo.completed" @update:modelValue="toggleComplete(todo)" />
+                        <span :class="{ 'text-neutral-400 line-through': todo.completed }">{{ todo.title }}</span>
+                    </Label>
+                </template>
+
+                <template #rowActions="{ row: todo }">
+                    <DataTableRowActions :row="todo">
+                        <DropdownMenuItem @click.stop="toggleComplete(todo)">
+                            {{ todo.completed ? $t('Mark as Incomplete') : $t('Mark as Complete') }}
                         </DropdownMenuItem>
                         <DropdownMenuItem as-child>
                             <ConfirmButton
                                 as="span"
-                                title="Delete Todo"
-                                confirmation="Do you want to delete todo?"
-                                @confirmed="deleteTodo(row)"
+                                :title="$t('Delete Todo')"
+                                :confirmation="$t('Do you want to delete todo?')"
+                                @confirmed="router.delete(route('todos.destroy', todo.id))"
                             ></ConfirmButton>
                         </DropdownMenuItem>
                     </DataTableRowActions>
+                </template>
+
+                <template #empty>
+                    {{ $t('No todos found. Create your first todo!') }}
                 </template>
             </DataTable>
         </div>
