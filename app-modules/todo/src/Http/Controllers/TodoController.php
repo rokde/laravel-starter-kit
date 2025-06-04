@@ -29,6 +29,7 @@ class TodoController
 
         /** @var Builder $query */
         $query = Todo::query()
+            ->select(['id', 'title', 'completed', 'user_id'])
             ->with('user:id,name,email')
             ->where('workspace_id', $workspace->id);
 
