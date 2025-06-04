@@ -29,7 +29,7 @@ class TodoPolicy
         }
 
         // If the user is the owner of the workspace or has admin role, allow creating todos for other users
-        return $user->ownsWorkspace($workspace) || $user->hasWorkspaceRole($workspace, 'admin');
+        return $user->ownsWorkspace($workspace) || $user->hasWorkspaceRole($workspace, 'admin') || $user->hasWorkspaceRole($workspace, 'editor');
     }
 
     /**
