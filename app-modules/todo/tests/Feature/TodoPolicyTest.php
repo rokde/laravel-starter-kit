@@ -18,13 +18,13 @@ test('user can create todo for themselves', function (): void {
     expect($user->can('create', [Todo::class, $workspace, $user->id]))->toBeTrue();
 });
 
-test('user cannot create todo for another user without admin role', function (): void {
+test('user cannot create todo for another user without admin or editor role', function (): void {
     $user = User::factory()->create();
     $anotherUser = User::factory()->create();
     $workspace = Workspace::factory()->create(['user_id' => $anotherUser->id]);
 
     // Add the user to the workspace (not as admin)
-    $workspace->users()->attach($user, ['role' => 'editor']);
+    $workspace->users()->attach($user, ['role' => 'visitor']);
     $user->switchWorkspace($workspace);
 
     // Check if the user can create a todo for another user
