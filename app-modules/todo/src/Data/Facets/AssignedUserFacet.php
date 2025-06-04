@@ -10,14 +10,18 @@ use Illuminate\Support\Collection;
 class AssignedUserFacet extends AbstractFacet
 {
     /**
-     * @param \Illuminate\Support\Collection<\App\Models\User> $users
+     * @param  Collection<\App\Models\User>  $users
      */
     public function setPossibleUsers(Collection $users): self
     {
-        $this->options = $users->map(fn ($user) => [
-            'value' => $user->id,
-            'label' => $user->name,
-        ])->values()->toArray();
+        $this->options = $users
+            ->map(fn ($user) => [
+                'value' => $user->id,
+                'label' => $user->name,
+            ])
+            ->sortBy('label')
+            ->values()
+            ->toArray();
 
         return $this;
     }
