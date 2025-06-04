@@ -207,7 +207,7 @@ const assembleReloadParameter = (page: number, size: number | undefined): void =
                 <TableHeader>
                     <TableRow>
                         <TableHead v-if="props.options.withRowSelection" class="w-8">
-                            <Checkbox :checked="areAllRowsSelected" @update:checked="toggleAllRowsSelection" />
+                            <Checkbox :model-value="areAllRowsSelected" @update:model-value="toggleAllRowsSelection" />
                         </TableHead>
                         <TableHead v-for="(column, index) in visibleColumns" :key="index" :class="column?.class">
                             <DataTableColumnHeader
@@ -226,8 +226,8 @@ const assembleReloadParameter = (page: number, size: number | undefined): void =
                     <TableRow v-for="(row, rowIndex) in props.rows" :key="row[props.options.key] ?? rowIndex">
                         <TableCell v-if="props.options.withRowSelection">
                             <Checkbox
-                                :checked="selectedRows.includes(row[props.options.key] ?? rowIndex)"
-                                @update:checked="toggleRowsSelection(row[props.options.key] ?? rowIndex)"
+                                :model-value="selectedRows.includes(row[props.options.key] ?? rowIndex)"
+                                @update:model-value="toggleRowsSelection(row[props.options.key] ?? rowIndex)"
                             />
                         </TableCell>
                         <TableCell
