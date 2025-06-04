@@ -30,12 +30,12 @@ class PaginationRequest extends FormRequest
 
     public function page(int $default = 1): int
     {
-        return $this->input('page', $default);
+        return $this->integer('page', $default);
     }
 
     public function size(?int $default = null): ?int
     {
-        return $this->input('size', $default);
+        return $this->integer('size', $default);
     }
 
     public function fields(string $default = '*'): array
