@@ -1,4 +1,4 @@
-<script setup lang="ts" generic="TData">
+<script setup lang="ts" generic="TData extends object">
 import DataTableColumnHeader from '@/components/DataTable/DataTableColumnHeader.vue';
 import DataTableToolbar from '@/components/DataTable/DataTableToolbar.vue';
 import SimplePaginator from '@/components/DataTable/SimplePaginator.vue';
