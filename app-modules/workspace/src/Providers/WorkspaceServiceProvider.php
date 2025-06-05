@@ -14,9 +14,7 @@ class WorkspaceServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
-        $this->app->bind(WorkspaceRepositoryContract::class, function (Application $app) {
-            return new WorkspaceRepository($app['auth']->user());
-        });
+        $this->app->bind(WorkspaceRepositoryContract::class, fn (Application $app): WorkspaceRepository => new WorkspaceRepository($app['auth']->user()));
     }
 
     public function boot(): void

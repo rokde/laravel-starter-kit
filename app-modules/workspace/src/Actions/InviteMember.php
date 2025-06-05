@@ -23,12 +23,10 @@ class InviteMember
 
         Gate::authorize('addMember', $workspace);
 
-        $invitation = DB::transaction(function () use ($workspace, $email, $role): WorkspaceInvitation {
-            return $workspace->invitations()->create([
-                'email' => $email,
-                'role' => $role,
-            ]);
-        });
+        $invitation = DB::transaction(fn (): WorkspaceInvitation => $workspace->invitations()->create([
+            'email' => $email,
+            'role' => $role,
+        ]));
 
         Mail::to($email)
             ->send(new InvitationMail($invitation));

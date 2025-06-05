@@ -58,7 +58,11 @@ class WorkspacePolicy
      */
     public function addMember(User $user, Workspace $workspace): bool
     {
-        return $user->ownsWorkspace($workspace) || $user->hasWorkspaceRole($workspace, 'admin');
+        if ($user->ownsWorkspace($workspace)) {
+            return true;
+        }
+
+        return $user->hasWorkspaceRole($workspace, 'admin');
     }
 
     /**
@@ -66,7 +70,11 @@ class WorkspacePolicy
      */
     public function updateMember(User $user, Workspace $workspace): bool
     {
-        return $user->ownsWorkspace($workspace) || $user->hasWorkspaceRole($workspace, 'admin');
+        if ($user->ownsWorkspace($workspace)) {
+            return true;
+        }
+
+        return $user->hasWorkspaceRole($workspace, 'admin');
     }
 
     /**
@@ -83,8 +91,11 @@ class WorkspacePolicy
         if ($member && ! $member->belongsToWorkspace($workspace)) {
             return false;
         }
+        if ($user->ownsWorkspace($workspace)) {
+            return true;
+        }
 
-        return $user->ownsWorkspace($workspace) || $user->hasWorkspaceRole($workspace, 'admin');
+        return $user->hasWorkspaceRole($workspace, 'admin');
     }
 
     public function revokeInvitation(User $user, Workspace $workspace, ?WorkspaceInvitation $invitation = null): bool
@@ -92,8 +103,11 @@ class WorkspacePolicy
         if ($invitation && $invitation->email === $workspace->owner->email) {
             return false;
         }
+        if ($user->ownsWorkspace($workspace)) {
+            return true;
+        }
 
-        return $user->ownsWorkspace($workspace) || $user->hasWorkspaceRole($workspace, 'admin');
+        return $user->hasWorkspaceRole($workspace, 'admin');
     }
 
     /**
