@@ -29,7 +29,7 @@ jobs:
           composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
           npm install
 
-      - name: Run Pint
+      - name: Run PHP Rector and Pint
         run: composer run format
 
       - name: Format Frontend
