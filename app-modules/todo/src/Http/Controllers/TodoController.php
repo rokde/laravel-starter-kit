@@ -69,12 +69,10 @@ class TodoController
                             $valueValues = array_filter($values, fn ($value): bool => $value !== null);
                             if ($valueValues !== []) {
                                 // check bool values
-                                $valueValues = array_map(function (string $value): mixed {
-                                    return match ($value) {
-                                        'true' => true,
-                                        'false' => false,
-                                        default => $value,
-                                    };
+                                $valueValues = array_map(fn (string $value): mixed => match ($value) {
+                                    'true' => true,
+                                    'false' => false,
+                                    default => $value,
                                 }, $valueValues);
 
                                 $query->orWhereIn($column, $valueValues);
