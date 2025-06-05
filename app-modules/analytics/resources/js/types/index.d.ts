@@ -5,3 +5,12 @@ export interface Analytic {
     hovers: number;
     clicks: number;
 }
+
+export interface Flow {
+    name: string;
+    steps: Array<{
+        name: string;
+        clicks: number;
+    }>;
+    clicks: number;
+}

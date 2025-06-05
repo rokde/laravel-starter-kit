@@ -2,11 +2,12 @@
 import Heading from '@/components/Heading.vue';
 import { Button } from '@/components/ui/button';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
+import { Progress } from '@/components/ui/progress';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { getI18n } from '@/i18n';
 import AppLayout from '@/layouts/AppLayout.vue';
 import type { BreadcrumbItem } from '@/types';
-import { Analytic } from '@analytics/types';
+import { Analytic, Flow } from '@analytics/types';
 import { Head, router } from '@inertiajs/vue3';
 import { ArrowDownAzIcon, ArrowDownUpIcon, ArrowUpZaIcon, XIcon } from 'lucide-vue-next';
 import { localePercent } from '../../../../../resources/js/lib/number-functions';
@@ -19,6 +20,7 @@ interface Props {
         column: null | string;
         direction: null | 'asc' | 'desc';
     };
+    flows: Flow[];
 }
 
 const props = defineProps<Props>();
@@ -198,16 +200,49 @@ const doSort = (column: string, direction: undefined | 'asc' | 'desc'): void => 
                                 <TableCell class="text-right slashed-zero tabular-nums">{{ analytic.impressions }}</TableCell>
                                 <TableCell class="text-right slashed-zero tabular-nums">{{ analytic.hovers }}</TableCell>
                                 <TableCell class="text-muted-foreground w-8 text-right text-xs slashed-zero tabular-nums">
-                                    {{ localePercent(analytic.hovers / analytic.impressions) }}
+                                    {{ localePercent(analytic.hovers / analytic.impressions, 2) }}
                                 </TableCell>
                                 <TableCell class="text-right slashed-zero tabular-nums">{{ analytic.clicks }}</TableCell>
                                 <TableCell class="text-muted-foreground w-8 text-right text-xs slashed-zero tabular-nums">
-                                    {{ localePercent(analytic.clicks / analytic.impressions) }}
+                                    {{ localePercent(analytic.clicks / analytic.impressions, 2) }}
                                 </TableCell>
                             </TableRow>
                             <TableRow v-if="props.analytics.length <= 0">
                                 <TableCell colspan="3">
                                     {{ $t('No analytics yet.') }}
+                                </TableCell>
+                            </TableRow>
+                        </TableBody>
+                    </Table>
+                </div>
+            </div>
+
+            <div class="mt-8 flex flex-col gap-y-4">
+                <div class="rounded-md border">
+                    <Table>
+                        <TableHeader>
+                            <TableRow>
+                                <TableHead class="w-32">{{ $t('Name') }}</TableHead>
+                                <TableHead class="w-fit">{{ $t('Flow') }}</TableHead>
+                            </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                            <TableRow v-for="flow in props.flows" :key="flow.name">
+                                <TableCell class="w-64">{{ flow.name }}</TableCell>
+                                <TableCell class="w-fit">
+                                    <template v-for="(step, index) in flow.steps" :key="step.name + index">
+                                        <div class="flex w-full items-center">
+                                            <div class="w-2/3 font-mono">
+                                                <span class="text-muted-foreground text-xs">({{ index + 1 }})</span>
+                                                {{ step.name }}
+                                            </div>
+
+                                            <div class="flex w-1/3 items-center">
+                                                <Progress :model-value="(step.clicks / flow.clicks) * 100" class="w-32 shrink-0" />
+                                                <span class="grow text-right slashed-zero tabular-nums">{{ step.clicks }}</span>
+                                            </div>
+                                        </div>
+                                    </template>
                                 </TableCell>
                             </TableRow>
                         </TableBody>
