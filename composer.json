@@ -86,6 +86,7 @@
             "rector --dry-run"
         ],
         "format": [
+            "rector",
             "@php vendor/bin/pint"
         ],
         "ide-helper": [
