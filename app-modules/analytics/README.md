@@ -80,6 +80,8 @@ Navigate to the analytics dashboard to view the analytics data. The dashboard di
 
 You can sort the data by any column in ascending or descending order.
 
+**Caution**: The analytics data is accessible for every user at the moment. You should add a policy gate or any other restriction for the `analytics.index` route.
+
 ### Tracking Analytics
 
 The module uses the Pan analytics library to track user interactions. You can track impressions, hovers, and clicks by adding the appropriate attributes to your HTML elements.
