@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
+use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\View\FileViewFinder;
@@ -29,7 +30,7 @@ class AppServiceProvider extends ServiceProvider
             return;
         }
 
-        $this->app->bind('inertia.testing.view-finder', function (array $app): FileViewFinder {
+        $this->app->bind('inertia.testing.view-finder', function (Application $app): FileViewFinder {
             $fileViewFinder = new FileViewFinder(
                 $app['files'],
                 [resource_path('js/pages')],
