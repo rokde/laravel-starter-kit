@@ -681,6 +681,7 @@ const translations: Translations = {
         Analytics: 'Analysen',
         Clicks: 'Klicks',
         Flow: 'Ablauf',
+        Flows: 'Abläufe',
         Hovers: 'Hovers',
         Impressions: 'Impressionen',
         'No analytics yet.': 'Es gibt noch keine Analysen.',

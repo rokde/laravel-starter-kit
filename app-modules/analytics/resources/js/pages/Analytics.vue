@@ -6,7 +6,6 @@ import { Progress } from '@/components/ui/progress';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { getI18n } from '@/i18n';
 import AppLayout from '@/layouts/AppLayout.vue';
-import { localePercent } from '@/lib/number-functions';
 import type { BreadcrumbItem } from '@/types';
 import { Analytic, Flow } from '@analytics/types';
 import { Head, router } from '@inertiajs/vue3';
@@ -217,7 +216,9 @@ const doSort = (column: string, direction: undefined | 'asc' | 'desc'): void => 
                 </div>
             </div>
 
-            <div class="mt-8 flex flex-col gap-y-4">
+            <Heading :title="$t('Flows')" class="mt-8" />
+
+            <div class="flex flex-col gap-y-4">
                 <div class="rounded-md border">
                     <Table>
                         <TableHeader>
