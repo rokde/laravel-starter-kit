@@ -44,6 +44,7 @@
             "vite/client",
             // "vue/tsx",
             "./resources/js/types",
+            "./app-modules/analytics/resources/js/types",
             "./app-modules/notification/resources/js/types",
             "./app-modules/passkey/resources/js/types",
             "./app-modules/todo/resources/js/types",
