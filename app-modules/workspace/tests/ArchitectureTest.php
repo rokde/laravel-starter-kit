@@ -11,6 +11,7 @@ arch('Test the domain module boundaries for the workspace module.')
         'Modules\Workspace\Events',
         Modules\Workspace\Models\Concerns\ManagesWorkspaces::class,
         Modules\Workspace\Models\Workspace::class,
+        'Modules\Workspace\Notifications',
     ]);
 
 arch('Test the domain module boundaries for the workspace module (Workspace model).')
