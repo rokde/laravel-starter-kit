@@ -19,6 +19,8 @@ class AnalyticsServiceProvider extends ServiceProvider
     }
 
     public function boot(): void {
+        $this->loadJsonTranslationsFrom(__DIR__.'/../../lang');
+
         if (! $this->app->runningInConsole()) {
             return;
         }
