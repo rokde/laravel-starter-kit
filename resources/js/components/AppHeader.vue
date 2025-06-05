@@ -21,7 +21,7 @@ import { getI18n } from '@/i18n';
 import type { BreadcrumbItem, NavItem, PageActionItemType } from '@/types';
 import { Link, usePage } from '@inertiajs/vue3';
 import WorkspaceSwitcher from '@workspace/components/WorkspaceSwitcher.vue';
-import { BookOpen, Folder, LayoutGrid, Menu, Search } from 'lucide-vue-next';
+import { BookOpen, CheckCheck, Folder, Funnel, LayoutGrid, Menu, Search } from 'lucide-vue-next';
 import { computed } from 'vue';
 
 const { t } = getI18n();
@@ -50,6 +50,16 @@ const mainNavItems: NavItem[] = [
         title: 'Dashboard',
         href: '/dashboard',
         icon: LayoutGrid,
+    },
+    {
+        title: t('Todos'),
+        href: '/todos',
+        icon: CheckCheck,
+    },
+    {
+        title: t('Analytics'),
+        href: '/analytics',
+        icon: Funnel,
     },
 ];
 
