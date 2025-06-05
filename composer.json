@@ -14,6 +14,7 @@
         "internachi/modular": "^2.3",
         "laravel/framework": "^12.0",
         "laravel/tinker": "^2.10.1",
+        "modules/analytics": "*",
         "modules/foundation-layout": "*",
         "modules/notification": "*",
         "modules/passkey": "*",

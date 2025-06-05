@@ -38,7 +38,7 @@ const submit = () => {
                 </div>
 
                 <div class="my-6 flex items-center justify-start">
-                    <Button class="w-full" :disabled="form.processing">
+                    <Button class="w-full" :disabled="form.processing" data-pan="send-reset-password-mail">
                         <LoaderCircle v-if="form.processing" class="h-4 w-4 animate-spin" />
                         {{ $t('Email password reset link') }}
                     </Button>

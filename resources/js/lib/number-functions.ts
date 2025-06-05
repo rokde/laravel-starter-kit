@@ -35,6 +35,8 @@ export function localePercent(number: number | string | null | undefined, fracti
         minimumFractionDigits: fractionDigits,
         minimumSignificantDigits: fractionDigits,
         minimumIntegerDigits: fractionDigits,
+        maximumFractionDigits: fractionDigits,
+        maximumSignificantDigits: fractionDigits,
     };
 
     return value.toLocaleString(window.locale, options[window.locale] ?? options.fallback);

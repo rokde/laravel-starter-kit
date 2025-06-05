@@ -140,6 +140,14 @@ erDiagram
         updated_at timestamp
     }
 
+    pan_analytics {
+        id bigint PK
+        name string
+        impressions unsignedBigInteger "default 0"
+        hovers unsignedBigInteger "default 0"
+        clicks unsignedBigInteger "default 0"
+    }
+
     users ||--o{ sessions : "has many"
     users ||--o{ notifications : "has many"
     users ||--o{ workspaces : "owns many"
@@ -180,6 +188,9 @@ erDiagram
 
 ### Passkey Tables
 - **passkeys**: Stores passkey authentication credentials for users, enabling passwordless login
+
+### Analytics Tables
+- **pan_analytics**: Stores analytics data for tracking user interactions (impressions, hovers, clicks)
 
 ## Relationships
 

@@ -1,0 +1,24 @@
+{
+	"name": "modules/analytics",
+	"description": "This module handles analytics with panphp as the base.",
+	"type": "library",
+	"version": "1.0",
+	"license": "proprietary",
+	"require": {
+		"panphp/pan": "^0.1.8"
+	},
+	"autoload": {
+		"psr-4": {
+			"Modules\\Analytics\\": "src/",
+			"Modules\\Analytics\\Tests\\": "tests/"
+		}
+	},
+	"minimum-stability": "stable",
+	"extra": {
+		"laravel": {
+			"providers": [
+				"Modules\\Analytics\\Providers\\AnalyticsServiceProvider"
+			]
+		}
+	}
+}

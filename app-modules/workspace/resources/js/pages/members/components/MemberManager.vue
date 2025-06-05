@@ -70,6 +70,7 @@ const removeMember = (member: User) => {
             :confirmation="$t('If you remove the member, they will no longer have access to the workspace.')"
             :disabled="!props.remove"
             @confirmed="removeMember(member)"
+            data-pan="remove-workspace-member"
         />
     </div>
 </template>

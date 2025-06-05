@@ -33,7 +33,14 @@ const signInWithPasskey = async () => {
 </script>
 
 <template>
-    <Button v-if="browserSupportsWebAuthn()" type="button" variant="ghost" :disabled="submitting" @click="signInWithPasskey">
+    <Button
+        v-if="browserSupportsWebAuthn()"
+        type="button"
+        variant="ghost"
+        :disabled="submitting"
+        @click="signInWithPasskey"
+        data-pan="login-with-passkey"
+    >
         {{ $t('passkeys::passkeys.authenticate_using_passkey') }}
     </Button>
 </template>

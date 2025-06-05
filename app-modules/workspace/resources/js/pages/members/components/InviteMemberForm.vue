@@ -61,7 +61,7 @@ const submit = () => {
             </div>
 
             <div class="flex items-center gap-4">
-                <Button :disabled="form.processing">{{ $t('Send invite') }}</Button>
+                <Button :disabled="form.processing" data-pan="invite-workspace-member">{{ $t('Send invite') }}</Button>
 
                 <Transition
                     enter-active-class="transition ease-in-out"

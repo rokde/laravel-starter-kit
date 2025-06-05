@@ -4,6 +4,7 @@ This graph shows the dependencies between modules in the Laravel Starter Kit.
 
 ```mermaid
 graph TD;
+    analytics["Analytics"];
     foundationLayout["FoundationLayout"];
     notification["Notification"];
     passkey["Passkey"];
@@ -15,6 +16,14 @@ graph TD;
 ```
 
 ## Module Details
+
+### Analytics
+
+This module provides tracking and visualization of user interactions with elements in the application.
+
+**No dependencies**
+
+**Not used by other modules**
 
 ### FoundationLayout
 
@@ -65,4 +74,3 @@ This module supports a workspace concept to form smaller tribes to collaborate i
 **Used by:**
 
 - Todo
-

@@ -32,6 +32,7 @@ A customized version with the following things:
   - localized version can have a `*.[locale].md` extension (e.g. `.de.md`)
 - [x] using UseFactory class attribute for eloquent models
 - [x] [modules](https://github.com/InterNACHI/modular) supported for domain driven design
+  - [x] [analytics](app-modules/analytics/README.md) - Track and visualize user interactions with elements in the application
   - [x] [foundation-layout](app-modules/foundation-layout/README.md) - Configure and switch between different layout styles
   - [x] [notification](app-modules/notification/README.md) - Manage user notification preferences and delivery methods
   - [x] [passkey](app-modules/passkey/README.md) - Enable secure, passwordless authentication using WebAuthn
