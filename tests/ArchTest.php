@@ -9,6 +9,6 @@ arch('Test the application architecture.')
 
 arch()->preset()->laravel()
     ->ignoring([
-        'App\Models\FrontMatter',
-        'App\Models\StaticPage',
+        App\Models\FrontMatter::class,
+        App\Models\StaticPage::class,
     ]);
