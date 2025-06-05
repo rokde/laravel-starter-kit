@@ -27,7 +27,7 @@ class PasskeysController
             'passkeys' => $request->user()
                 ->passkeys()
                 ->get(['id', 'name', 'last_used_at'])
-                ->map(fn (Passkey $passkey) => new \Modules\Passkey\DataTransferObjects\Passkey(
+                ->map(fn (Passkey $passkey): \Modules\Passkey\DataTransferObjects\Passkey => new \Modules\Passkey\DataTransferObjects\Passkey(
                     id: $passkey->id,
                     name: $passkey->name,
                     last_used_at: $passkey->last_used_at?->toDateTimeString(),
@@ -49,7 +49,7 @@ class PasskeysController
                 $request->getHost(),
                 ['name' => $request->validated('name')]
             );
-        } catch (Throwable $e) {
+        } catch (Throwable) {
             throw ValidationException::withMessages([
                 'name' => __('passkeys::passkeys.error_something_went_wrong_generating_the_passkey'),
             ]);
