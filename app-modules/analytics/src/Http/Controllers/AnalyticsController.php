@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\Analytics\Http\Controllers;
 
 use App\Enums\SortDirection;
@@ -21,7 +23,7 @@ class AnalyticsController
             $sortDirection = SortDirection::fromString($request->get('sort'));
         }
 
-        if ($sortColumn) {
+        if ($sortColumn !== null && $sortColumn !== '' && $sortColumn !== '0') {
             $analytics = $analytics->sortBy($sortColumn, descending: $sortDirection === SortDirection::DESC);
         }
 
@@ -39,12 +41,12 @@ class AnalyticsController
 
             foreach ($steps as $step) {
                 $clicks = 0;
-                foreach ((array)$step as $subStep) {
+                foreach ((array) $step as $subStep) {
                     $clicks += $analytics->pluck('clicks', 'name')->get($subStep, 0);
                 }
 
                 $resultFlow[$index]['steps'][] = [
-                    'name' => implode(', ', (array)$step),
+                    'name' => implode(', ', (array) $step),
                     'clicks' => $clicks,
                 ];
                 $resultFlow[$index]['clicks'] += $clicks;
