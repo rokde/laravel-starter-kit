@@ -37,7 +37,7 @@ class GenerateModuleDependencyGraphCommand extends Command
         $directories = File::directories($modulesPath);
 
         foreach ($directories as $directory) {
-            $moduleName = basename($directory);
+            $moduleName = basename((string) $directory);
             $this->modules[] = $moduleName;
             $this->info("Discovered module: {$moduleName}");
         }
@@ -92,11 +92,9 @@ class GenerateModuleDependencyGraphCommand extends Command
                 }
 
                 $moduleNamespace = $this->getModuleNamespace($otherModule);
-                if (preg_match('/use\s+'.preg_quote($moduleNamespace, '/').'\\\\/', $content)) {
-                    if (! in_array($otherModule, $this->dependencies[$module])) {
-                        $this->dependencies[$module][] = $otherModule;
-                        $this->info("Found dependency: {$module} -> {$otherModule} (from PHP imports)");
-                    }
+                if (preg_match('/use\s+'.preg_quote($moduleNamespace, '/').'\\\\/', $content) && ! in_array($otherModule, $this->dependencies[$module])) {
+                    $this->dependencies[$module][] = $otherModule;
+                    $this->info("Found dependency: {$module} -> {$otherModule} (from PHP imports)");
                 }
             }
         }
@@ -169,7 +167,7 @@ class GenerateModuleDependencyGraphCommand extends Command
                 }
             }
 
-            if (! empty($dependents)) {
+            if ($dependents !== []) {
                 $markdown .= "**Used by:**\n\n";
                 foreach ($dependents as $dependent) {
                     $dependentName = Str::studly($dependent);

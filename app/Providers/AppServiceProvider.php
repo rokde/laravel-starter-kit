@@ -29,7 +29,7 @@ class AppServiceProvider extends ServiceProvider
             return;
         }
 
-        $this->app->bind('inertia.testing.view-finder', function ($app) {
+        $this->app->bind('inertia.testing.view-finder', function (array $app): FileViewFinder {
             $fileViewFinder = new FileViewFinder(
                 $app['files'],
                 [resource_path('js/pages')],
@@ -39,12 +39,10 @@ class AppServiceProvider extends ServiceProvider
             // we need to add the namespace hints for loading "[module]::[View].vue"
             collect(File::directories(base_path('app-modules')))
                 ->filter(fn (string $modulePath) => File::exists($modulePath.'/resources/js/pages'))
-                ->map(function (string $modulePath) {
-                    return [
-                        'namespace' => basename($modulePath),
-                        'pages' => $modulePath.'/resources/js/pages',
-                    ];
-                })
+                ->map(fn (string $modulePath): array => [
+                    'namespace' => basename($modulePath),
+                    'pages' => $modulePath.'/resources/js/pages',
+                ])
                 ->each(fn (array $module) => $fileViewFinder->addNamespace($module['namespace'], $module['pages']));
 
             return $fileViewFinder;

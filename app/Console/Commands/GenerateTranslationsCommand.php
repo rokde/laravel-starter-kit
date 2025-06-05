@@ -262,8 +262,8 @@ class GenerateTranslationsCommand extends Command
                 ...$loader->jsonPaths(),
             ];
 
-            foreach ($loader->namespaces() as $namespace => $path) {
-                $paths[] = /* $namespace . '::' . */ $path;
+            foreach ($loader->namespaces() as $path) {
+                $paths[] = $path;
             }
         }
 
