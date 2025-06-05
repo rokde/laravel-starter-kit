@@ -56,7 +56,7 @@ const submit = () => {
                 </div>
 
                 <div class="flex items-center gap-4">
-                    <Button :disabled="form.processing">{{ $t('Save') }}</Button>
+                    <Button :disabled="form.processing" data-pan="create-workspace">{{ $t('Save') }}</Button>
 
                     <Transition
                         enter-active-class="transition ease-in-out"
