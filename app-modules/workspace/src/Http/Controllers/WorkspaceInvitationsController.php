@@ -34,15 +34,13 @@ class WorkspaceInvitationsController
                 name: $workspace->owner->name,
                 email: $workspace->owner->email,
             ),
-            'invitations' => $workspace->invitations->map(function ($invitation) use ($request, $workspace): Invitation {
-                return new Invitation(
-                    id: $invitation->id,
-                    email: $invitation->email,
-                    role: $invitation->role,
-                    created_at: $invitation->created_at->toDateTimeString(),
-                    link: $request->user()->can('addMember', $workspace) ? $invitation->getAcceptUrl() : null,
-                );
-            }),
+            'invitations' => $workspace->invitations->map(fn ($invitation): Invitation => new Invitation(
+                id: $invitation->id,
+                email: $invitation->email,
+                role: $invitation->role,
+                created_at: $invitation->created_at->toDateTimeString(),
+                link: $request->user()->can('addMember', $workspace) ? $invitation->getAcceptUrl() : null,
+            )),
             'roles' => RoleRegistry::$roles,
             'abilities' => [
                 'members.create' => $request->user()->can('addMember', $workspace),
@@ -83,7 +81,7 @@ class WorkspaceInvitationsController
         // if signed in user is here, then accept the invitation and switch to the workspace
         try {
             $acceptTeamInvitation->handle($invitation, $request->user());
-        } catch (Throwable $e) {
+        } catch (Throwable) {
             abort(Response::HTTP_FORBIDDEN);
         }
 

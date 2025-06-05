@@ -19,7 +19,7 @@ test('it can be instantiated with a string', function (): void {
 });
 
 test('it throws an exception when instantiated with null', function (): void {
-    expect(fn () => new Id(null))->toThrow(InvalidArgumentException::class, 'Id cannot be null');
+    expect(fn (): Id => new Id(null))->toThrow(InvalidArgumentException::class, 'Id cannot be null');
 });
 
 test('it can be converted to a string', function (): void {

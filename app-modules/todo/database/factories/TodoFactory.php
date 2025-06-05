@@ -33,7 +33,7 @@ class TodoFactory extends Factory
      */
     public function completed(): self
     {
-        return $this->state(fn (array $attributes) => [
+        return $this->state(fn (array $attributes): array => [
             'completed' => true,
         ]);
     }
@@ -43,7 +43,7 @@ class TodoFactory extends Factory
      */
     public function incomplete(): self
     {
-        return $this->state(fn (array $attributes) => [
+        return $this->state(fn (array $attributes): array => [
             'completed' => false,
         ]);
     }

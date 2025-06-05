@@ -15,9 +15,7 @@ class NotificationServiceProvider extends ServiceProvider
     {
         $this->mergeConfigFrom(__DIR__.'/../../config/notification.php', 'notification');
 
-        $this->app->bind(NotificationRepositoryContract::class, function (Application $app) {
-            return new NotificationRepository($app['auth']->user());
-        });
+        $this->app->bind(NotificationRepositoryContract::class, fn (Application $app): NotificationRepository => new NotificationRepository($app['auth']->user()));
     }
 
     public function boot(): void

@@ -15,7 +15,7 @@ class AssignedUserFacet extends AbstractFacet
     public function setPossibleUsers(Collection $users): self
     {
         $this->options = $users
-            ->map(fn ($user) => [
+            ->map(fn ($user): array => [
                 'value' => $user->id,
                 'label' => $user->name,
             ])

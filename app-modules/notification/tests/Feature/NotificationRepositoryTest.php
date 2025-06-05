@@ -25,7 +25,7 @@ test('all method returns collection of notification DTOs', function (): void {
 
     // Create notifications for the user
     $notification1 = DatabaseNotificationFactory::new()->create([
-        'notifiable_type' => get_class($user),
+        'notifiable_type' => $user::class,
         'notifiable_id' => $user->id,
         'data' => [
             'title' => 'Test Notification 1',
@@ -36,7 +36,7 @@ test('all method returns collection of notification DTOs', function (): void {
     ]);
 
     $notification2 = DatabaseNotificationFactory::new()->create([
-        'notifiable_type' => get_class($user),
+        'notifiable_type' => $user::class,
         'notifiable_id' => $user->id,
         'data' => [
             'title' => 'Test Notification 2',

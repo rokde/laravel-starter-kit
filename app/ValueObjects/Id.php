@@ -8,8 +8,9 @@ use InvalidArgumentException;
 use JsonSerializable;
 use ReturnTypeWillChange;
 use Serializable;
+use Stringable;
 
-class Id implements JsonSerializable, Serializable
+class Id implements JsonSerializable, Serializable, Stringable
 {
     private readonly int $id;
 

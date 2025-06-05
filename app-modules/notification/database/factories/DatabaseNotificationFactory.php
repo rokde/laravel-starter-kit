@@ -23,8 +23,8 @@ class DatabaseNotificationFactory extends Factory
     {
         return [
             'id' => $this->faker->uuid(),
-            'type' => 'Modules\Workspace\Notifications\MemberAcceptedNotification',
-            'notifiable_type' => 'App\Models\User',
+            'type' => \Modules\Workspace\Notifications\MemberAcceptedNotification::class,
+            'notifiable_type' => \App\Models\User::class,
             'notifiable_id' => 1,
             'data' => ['test' => true],
             'read_at' => null,

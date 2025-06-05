@@ -9,15 +9,16 @@ arch('Test the domain module boundaries for the workspace module.')
         'Modules\Workspace\Contracts',
         'Modules\Workspace\DataTransferObjects',
         'Modules\Workspace\Events',
-        'Modules\Workspace\Models\Concerns\ManagesWorkspaces',
-        'Modules\Workspace\Models\Workspace',
+        Modules\Workspace\Models\Concerns\ManagesWorkspaces::class,
+        Modules\Workspace\Models\Workspace::class,
+        'Modules\Workspace\Notifications',
     ]);
 
 arch('Test the domain module boundaries for the workspace module (Workspace model).')
-    ->expect('Modules\Workspace\Models\Workspace')
+    ->expect(Modules\Workspace\Models\Workspace::class)
     ->toOnlyBeUsedIn([
         'Modules\Workspace',
-        'Modules\Todo\Database\Factories\TodoFactory',
+        Modules\Todo\Database\Factories\TodoFactory::class,
         'Modules\Todo\Models',
         'Modules\Todo\Policies',
     ]);

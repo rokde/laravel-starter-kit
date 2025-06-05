@@ -33,7 +33,7 @@ test('all method returns collection of notification classes from config', functi
     // Create a mock notification class that implements InAppNotification
     $mockNotificationClass = new TestNotification();
 
-    $mockNotificationClassName = get_class($mockNotificationClass);
+    $mockNotificationClassName = $mockNotificationClass::class;
 
     // Mock the config
     config(['notification.notifications' => [

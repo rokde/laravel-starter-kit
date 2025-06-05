@@ -38,7 +38,7 @@ test('via method returns user preferred channels when set', function (): void {
         use SupportUserPreferredChannel;
     };
 
-    $className = get_class($notificationClass);
+    $className = $notificationClass::class;
 
     $user = User::factory()->create([
         'preferred_notification_channels' => [

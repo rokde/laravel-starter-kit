@@ -17,24 +17,22 @@ class WorkspaceRepository implements WorkspaceRepositoryContract
 
     public function all(): Collection
     {
-        if ($this->user === null) {
+        if (! $this->user instanceof User) {
             return collect();
         }
 
         return $this->user
             ->allWorkspaces()
-            ->map(function (WorkspaceModel $workspace): Workspace {
-                return new Workspace(
-                    id: $workspace->id,
-                    name: $workspace->name,
-                    owner: new Owner(
-                        id: $workspace->owner->id,
-                        name: $workspace->owner->name,
-                        email: $workspace->owner->email,
-                    ),
-                    currentWorkspace: $this->user->isCurrentWorkspace($workspace),
-                );
-            })
+            ->map(fn (WorkspaceModel $workspace): Workspace => new Workspace(
+                id: $workspace->id,
+                name: $workspace->name,
+                owner: new Owner(
+                    id: $workspace->owner->id,
+                    name: $workspace->owner->name,
+                    email: $workspace->owner->email,
+                ),
+                currentWorkspace: $this->user->isCurrentWorkspace($workspace),
+            ))
             ->values();
     }
 }

@@ -50,7 +50,7 @@ class PaginationRequest extends FormRequest
     {
         $sortString = $this->input('sort');
         if (! $sortString) {
-            if (! $field) {
+            if ($field === null || $field === '' || $field === '0') {
                 return [];
             }
 

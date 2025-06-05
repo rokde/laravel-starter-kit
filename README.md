@@ -16,6 +16,8 @@ A customized version with the following things:
 - [x] repository dependency health with dependabot
 - [x] automatic linting and testing on push
 - [x] automatic CHANGELOG.md update on releases
+- [x] [nunomaduro/essentials](https://github.com/nunomaduro/essentials) for laravel settings (see [essentials.php](config/essentials.php))
+- [x] [rector](https://github.com/rectorphp/rector) for instant upgrades and automated refactoring
 
 ### IDE support
 
