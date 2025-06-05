@@ -17,12 +17,12 @@ class NotificationRepository implements NotificationRepositoryContract
 
     public function all(): Collection
     {
-        if ($this->user === null) {
+        if (! $this->user instanceof User) {
             return collect();
         }
 
         return $this->user->notifications
-            ->map(function (DatabaseNotification $notification) {
+            ->map(function (DatabaseNotification $notification): Notification {
                 $data = $notification->data;
 
                 return new Notification(

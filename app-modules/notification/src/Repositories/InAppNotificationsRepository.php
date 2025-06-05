@@ -16,7 +16,7 @@ class InAppNotificationsRepository
     public function all(): Collection
     {
         return collect(config('notification.notifications', []))
-            ->map(function (string $notificationClass) {
+            ->map(function (string $notificationClass): array {
                 $isInAppNotification = $this->implements($notificationClass, InAppNotification::class);
 
                 return [

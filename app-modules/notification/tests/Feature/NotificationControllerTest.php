@@ -21,7 +21,7 @@ test('markAsRead method marks a notification as read', function (): void {
     $user = User::factory()->create();
 
     $notification = DatabaseNotificationFactory::new()->create([
-        'notifiable_type' => get_class($user),
+        'notifiable_type' => $user::class,
         'notifiable_id' => $user->id,
         'read_at' => null,
     ]);
