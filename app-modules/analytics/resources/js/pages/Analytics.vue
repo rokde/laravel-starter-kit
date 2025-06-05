@@ -6,11 +6,11 @@ import { Progress } from '@/components/ui/progress';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { getI18n } from '@/i18n';
 import AppLayout from '@/layouts/AppLayout.vue';
+import { localePercent } from '@/lib/number-functions';
 import type { BreadcrumbItem } from '@/types';
 import { Analytic, Flow } from '@analytics/types';
 import { Head, router } from '@inertiajs/vue3';
 import { ArrowDownAzIcon, ArrowDownUpIcon, ArrowUpZaIcon, XIcon } from 'lucide-vue-next';
-import { localePercent } from '../../../../../resources/js/lib/number-functions';
 
 const { t } = getI18n();
 
@@ -238,7 +238,7 @@ const doSort = (column: string, direction: undefined | 'asc' | 'desc'): void => 
                                             </div>
 
                                             <div class="flex w-1/3 items-center">
-                                                <Progress :model-value="(step.clicks / flow.clicks) * 100" class="w-32 shrink-0" />
+                                                <Progress :model-value="step.clicks ? (step.clicks / flow.clicks) * 100 : 0" class="w-32 shrink-0" />
                                                 <span class="grow text-right slashed-zero tabular-nums">{{ step.clicks }}</span>
                                             </div>
                                         </div>
