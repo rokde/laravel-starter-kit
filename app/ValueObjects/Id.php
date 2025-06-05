@@ -10,7 +10,7 @@ use ReturnTypeWillChange;
 use Serializable;
 use Stringable;
 
-class Id implements Stringable, JsonSerializable, Serializable
+class Id implements JsonSerializable, Serializable, Stringable
 {
     private readonly int $id;
 
