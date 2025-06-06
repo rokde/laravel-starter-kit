@@ -80,6 +80,8 @@ Navigate to the analytics dashboard to view the analytics data. The dashboard di
 
 You can sort the data by any column in ascending or descending order.
 
+It is possible to flush the analytics data as well from the user interface.
+
 **Caution**: The analytics data is accessible for every user at the moment. You should add a policy gate or any other restriction for the `analytics.index` route.
 
 ### Tracking Analytics
