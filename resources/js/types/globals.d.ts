@@ -14,3 +14,9 @@ export type PageProps<T extends Record<string, unknown> | unknown[] = Record<str
 declare module '@inertiajs/core' {
     interface PageProps extends InertiaPageProps, AppPageProps {}
 }
+
+declare module '@vue/runtime-core' {
+    interface ComponentCustomProperties {
+        $t: (key: string, ...args: any[]) => string;
+    }
+}

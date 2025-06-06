@@ -631,6 +631,7 @@ const translations: Translations = {
         'All members of the workspace.': 'Alle Mitglieder des Workspaces.',
         'Configure {name}': '{name} konfigurieren',
         'Copy invitation link to clipboard': 'Einladungslink in die Zwischenablage kopieren',
+        'Create Workspace': 'Workspace erstellen',
         'Current workspace changed.': 'Aktuellen workspace gewechselt.',
         'Get notified when a member accepts the invitation to any of your workspaces.':
             'Lassen Sie sich benachrichtigen, wenn ein Mitglied die Einladung zu einem Ihrer Workspaces annimmt.',

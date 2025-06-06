@@ -9,6 +9,7 @@ import { DropdownMenuItem } from '@/components/ui/dropdown-menu';
 import { Label } from '@/components/ui/label';
 import { getI18n } from '@/i18n';
 import AppLayout from '@/layouts/AppLayout.vue';
+import ContentLayout from '@/layouts/content/ContentLayout.vue';
 import type { BreadcrumbItem } from '@/types';
 import { Head, Link, router } from '@inertiajs/vue3';
 import { Todo } from '../types';
@@ -68,7 +69,7 @@ const toggleComplete = (todo: Todo) => {
     <AppLayout :breadcrumbs="breadcrumbs">
         <Head :title="$t('Todos')" />
 
-        <div class="mx-auto my-8 flex w-full max-w-5xl flex-col">
+        <ContentLayout>
             <Heading :title="$t('Todos')" />
 
             <DataTable
@@ -107,6 +108,6 @@ const toggleComplete = (todo: Todo) => {
                     {{ $t('No todos found. Create your first todo!') }}
                 </template>
             </DataTable>
-        </div>
+        </ContentLayout>
     </AppLayout>
 </template>
