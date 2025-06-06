@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Modules\Analytics\Http\Controllers;
 
 use App\Enums\SortDirection;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -12,7 +13,7 @@ use Pan\Contracts\AnalyticsRepository;
 
 class AnalyticsController
 {
-    public function __invoke(Request $request, AnalyticsRepository $repository): Response
+    public function index(Request $request, AnalyticsRepository $repository): Response
     {
         $analytics = collect($repository->all());
 
@@ -61,5 +62,14 @@ class AnalyticsController
             ],
             'flows' => $resultFlow,
         ]);
+    }
+
+    public function destroy(AnalyticsRepository $repository): RedirectResponse
+    {
+        $repository->flush();
+
+        return redirect()
+            ->back()
+            ->with('message', __('Analytics data has been deleted.'));
     }
 }

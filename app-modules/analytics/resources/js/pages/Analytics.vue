@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import ConfirmButton from '@/components/ConfirmButton.vue';
 import Heading from '@/components/Heading.vue';
 import { Button } from '@/components/ui/button';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
@@ -50,7 +51,17 @@ const doSort = (column: string, direction: undefined | 'asc' | 'desc'): void => 
         <Head :title="$t('Analytics')" />
 
         <ContentLayout>
-            <Heading :title="$t('Analytics')" />
+            <div class="flex items-start justify-between">
+                <Heading :title="$t('Analytics')" />
+
+                <ConfirmButton
+                    as="icon"
+                    :disabled="props.analytics.length < 1"
+                    :title="$t('Flush analytics')"
+                    :confirmation="$t('Do you want to flush all analytics?')"
+                    @confirmed="router.delete(route('analytics.destroy'), { preserveScroll: true, onSuccess: () => router.reload() })"
+                />
+            </div>
 
             <div class="rounded-md border">
                 <Table>
