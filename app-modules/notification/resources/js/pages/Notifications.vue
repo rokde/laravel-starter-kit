@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { getI18n } from '@/i18n';
 import AppLayout from '@/layouts/AppLayout.vue';
+import ContentLayout from '@/layouts/content/ContentLayout.vue';
 import type { BreadcrumbItem } from '@/types';
 import { Head, Link, router } from '@inertiajs/vue3';
 import { useNotifications } from '@notification/composables/useNotifications';
@@ -63,7 +64,7 @@ const deleteNotification = (notification: Notification) => {
     <AppLayout :breadcrumbs="breadcrumbItems">
         <Head :title="$t('Notifications')" />
 
-        <div class="mx-auto my-8 flex w-full max-w-5xl flex-col">
+        <ContentLayout>
             <Heading :title="$t('Notifications')" />
 
             <div class="flex flex-col gap-y-4">
@@ -138,6 +139,6 @@ const deleteNotification = (notification: Notification) => {
                     </Table>
                 </div>
             </div>
-        </div>
+        </ContentLayout>
     </AppLayout>
 </template>
