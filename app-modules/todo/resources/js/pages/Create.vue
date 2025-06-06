@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import Heading from '@/components/Heading.vue';
 import InputError from '@/components/InputError.vue';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -6,6 +7,7 @@ import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { getI18n } from '@/i18n';
 import AppLayout from '@/layouts/AppLayout.vue';
+import ContentLayout from '@/layouts/content/ContentLayout.vue';
 import type { BreadcrumbItem } from '@/types';
 import { Head, useForm } from '@inertiajs/vue3';
 
@@ -55,8 +57,8 @@ const submit = () => {
     <AppLayout :breadcrumbs="breadcrumbs">
         <Head :title="$t('Create Todo')" />
 
-        <div class="mx-auto my-8 flex w-2xl max-w-2xl flex-col">
-            <h1 class="mb-6 text-2xl font-semibold">{{ $t('Create Todo') }}</h1>
+        <ContentLayout type="form">
+            <Heading :title="$t('Create Todo')" />
 
             <form @submit.prevent="submit" class="w-full space-y-6">
                 <div class="grid gap-2">
@@ -101,6 +103,6 @@ const submit = () => {
                     </Transition>
                 </div>
             </form>
-        </div>
+        </ContentLayout>
     </AppLayout>
 </template>
