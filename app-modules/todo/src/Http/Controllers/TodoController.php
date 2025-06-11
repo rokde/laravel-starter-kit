@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Todo\Http\Controllers;
 
+use App\Data\Facets\FacetCollection;
 use App\Enums\SortDirection;
 use App\Http\Requests\PaginationRequest;
 use Illuminate\Database\Eloquent\Builder;
@@ -30,6 +31,13 @@ class TodoController
         $workspace = $request->user()->currentWorkspace;
         abort_if($workspace === null, 404);
 
+        $facets = FacetCollection::make()
+            ->add(new TodoCompletedFacet(__('Completed')))
+            ->add(new AssignedUserFacet(__('Assigned to'), 'user_id')
+                ->setPossibleUsers($workspace->allUsers())
+                ->includeNoUserFilter())
+            ->add(new TodoDueDateFacet(__('Due date')));
+
         /** @var Builder $query */
         $query = Todo::query()
             ->select(['id', 'title', 'completed', 'due_date', 'user_id'])
@@ -45,43 +53,7 @@ class TodoController
             $query->where('title', 'LIKE', "%{$term}%");
         });
 
-        $request->facets()
-            ->each(
-                function (array $values, string $facetKey) use ($query): void {
-                    $relation = null;
-                    $column = $facetKey;
-                    if (mb_substr_count($facetKey, '.') > 0) {
-                        [$relation, $column] = explode('.', $facetKey);
-                    }
-
-                    $query->when($relation, function (Builder $query) use ($relation, $column, $values): void {
-                        $query->whereHas($relation, function (Builder $query) use ($column, $values): void {
-                            $query->whereIn($column, $values);
-                        });
-                    });
-
-                    $query->unless($relation, function (Builder $query) use ($column, $values): void {
-                        $query->where(function (Builder $query) use ($column, $values): void {
-                            $nullValues = array_filter($values, fn ($value): bool => $value === null);
-                            if ($nullValues !== []) {
-                                $query->orWhereNull($column);
-                            }
-
-                            $valueValues = array_filter($values, fn ($value): bool => $value !== null);
-                            if ($valueValues !== []) {
-                                // check bool values
-                                $valueValues = array_map(fn (string $value): mixed => match ($value) {
-                                    'true' => true,
-                                    'false' => false,
-                                    default => $value,
-                                }, $valueValues);
-
-                                $query->orWhereIn($column, $valueValues);
-                            }
-                        });
-                    });
-                }
-            );
+        $facets->filterQuery($request->facets(), $query);
 
         $result = $query->paginate(
             perPage: $request->size(50),
@@ -89,13 +61,6 @@ class TodoController
             pageName: $request->pageName(),
             page: $request->page(),
         )->toArray();
-
-        $todoCompletedFacet = new TodoCompletedFacet(__('Completed'));
-        $assignedUserFacet = new AssignedUserFacet(__('Assigned to'), 'user_id')
-            ->setPossibleUsers($workspace->allUsers())
-            ->includeNoUserFilter();
-
-        $todoDueDateFacet = new TodoDueDateFacet(__('Due date'));
 
         return Inertia::render('todo::Index', [
             'data' => Arr::only($result, ['data'])['data'],
@@ -107,11 +72,7 @@ class TodoController
                     'facets' => $request->filter(),
                 ],
             ],
-            'facets' => [
-                $assignedUserFacet,
-                $todoCompletedFacet,
-                $todoDueDateFacet,
-            ],
+            'facets' => $facets->get()->values(),
         ]);
     }
 
