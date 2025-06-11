@@ -12,5 +12,6 @@ final readonly class User
         public string $email,
         public bool $verified,
         public string $locale,
+        public string $timezone,
     ) {}
 }
