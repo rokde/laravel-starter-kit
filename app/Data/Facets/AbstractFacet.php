@@ -21,7 +21,7 @@ abstract class AbstractFacet implements Arrayable, JsonSerializable
     public function __construct(
         protected readonly string $label,
         protected readonly string $key,
-        string|null $column = null,
+        ?string $column = null,
     ) {
         $this->column = $column ?? $key;
     }
@@ -64,7 +64,7 @@ abstract class AbstractFacet implements Arrayable, JsonSerializable
         return $this->key;
     }
 
-    public function assignConditionToQuery(Builder $query, array $values): void
+    final public function assignConditionToQuery(Builder $query, array $values): void
     {
         $relation = null;
         $column = $this->column;

@@ -8,9 +8,10 @@ use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Modules\Workspace\Models\Workspace;
+use RuntimeException;
 
 /**
- * @property-read \Illuminate\Database\Eloquent\Model $this
+ * @property-read Model $this
  */
 trait HasWorkspaceRelation
 {
@@ -30,8 +31,8 @@ trait HasWorkspaceRelation
     protected function currentWorkspace(Builder $query): void
     {
         $workspace = request()->user()->currentWorkspace;
-        if (!$workspace) {
-            throw new \RuntimeException('Current user has no workspace assigned');
+        if (! $workspace) {
+            throw new RuntimeException('Current user has no workspace assigned');
         }
 
         $query->where('workspace_id', $workspace->id);

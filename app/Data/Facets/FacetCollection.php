@@ -7,7 +7,8 @@ namespace App\Data\Facets;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 
-class FacetCollection {
+class FacetCollection
+{
     private readonly Collection $facets;
 
     private function __construct()
@@ -34,8 +35,8 @@ class FacetCollection {
 
     public function filterQuery(Collection $filters, Builder $query): void
     {
-        $filters->each(function (array $filterValues, string $filterKey) use ($query) {
-            if (!$this->facets->has($filterKey)) {
+        $filters->each(function (array $filterValues, string $filterKey) use ($query): void {
+            if (! $this->facets->has($filterKey)) {
                 return;
             }
 
