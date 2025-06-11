@@ -14,6 +14,7 @@ use Inertia\Inertia;
 use Inertia\Response;
 use Modules\Todo\Data\Facets\AssignedUserFacet;
 use Modules\Todo\Data\Facets\TodoCompletedFacet;
+use Modules\Todo\Data\Facets\TodoDueDateFacet;
 use Modules\Todo\Http\Requests\StoreTodoRequest;
 use Modules\Todo\Http\Requests\UpdateTodoRequest;
 use Modules\Todo\Models\Todo;
@@ -31,7 +32,7 @@ class TodoController
 
         /** @var Builder $query */
         $query = Todo::query()
-            ->select(['id', 'title', 'completed', 'user_id'])
+            ->select(['id', 'title', 'completed', 'due_date', 'user_id'])
             ->with('user:id,name,email')
             ->where('workspace_id', $workspace->id);
 
@@ -94,6 +95,8 @@ class TodoController
             ->setPossibleUsers($workspace->allUsers())
             ->includeNoUserFilter();
 
+        $todoDueDateFacet = new TodoDueDateFacet(__('Due date'));
+
         return Inertia::render('todo::Index', [
             'data' => Arr::only($result, ['data'])['data'],
             'meta' => Arr::except($result, ['first_page_url', 'last_page_url', 'next_page_url', 'prev_page_url', 'data']),
@@ -107,6 +110,7 @@ class TodoController
             'facets' => [
                 $assignedUserFacet,
                 $todoCompletedFacet,
+                $todoDueDateFacet,
             ],
         ]);
     }
@@ -136,6 +140,7 @@ class TodoController
         $todo = new Todo($request->validated());
         $todo->workspace_id = $workspace->id;
         $todo->user_id = $request->validated('user_id');
+        $todo->due_date = $request->validated('due_date');
         $todo->save();
 
         if ($todo->user_id !== $request->user()->id) {

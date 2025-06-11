@@ -35,6 +35,7 @@ class UpdateTodoRequest extends FormRequest
             'title' => ['sometimes', 'string', 'max:255'],
             'user_id' => ['sometimes', 'exists:users,id'],
             'completed' => ['sometimes', 'boolean'],
+            'due_date' => ['nullable', 'date'],
         ];
     }
 }
