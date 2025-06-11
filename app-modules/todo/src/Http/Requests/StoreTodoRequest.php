@@ -39,6 +39,7 @@ class StoreTodoRequest extends FormRequest
             'title' => ['required', 'string', 'max:255'],
             'user_id' => ['required', 'exists:users,id'],
             'completed' => ['boolean'],
+            'due_date' => ['nullable', 'date'],
         ];
     }
 

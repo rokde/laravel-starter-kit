@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Modules\Todo\Data\Facets;
 
 use App\Data\Facets\AbstractFacet;
+use App\Data\Facets\FilterValueEnum;
 use Illuminate\Support\Collection;
 
 class AssignedUserFacet extends AbstractFacet
@@ -29,7 +30,7 @@ class AssignedUserFacet extends AbstractFacet
     public function includeNoUserFilter(): self
     {
         $this->options[] = [
-            'value' => 'none',
+            'value' => FilterValueEnum::NULL->value,
             'label' => __('Unassigned'),
         ];
 

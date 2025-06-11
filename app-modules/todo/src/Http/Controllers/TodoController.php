@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Todo\Http\Controllers;
 
+use App\Data\Facets\FacetCollection;
 use App\Enums\SortDirection;
 use App\Http\Requests\PaginationRequest;
 use Illuminate\Database\Eloquent\Builder;
@@ -14,6 +15,7 @@ use Inertia\Inertia;
 use Inertia\Response;
 use Modules\Todo\Data\Facets\AssignedUserFacet;
 use Modules\Todo\Data\Facets\TodoCompletedFacet;
+use Modules\Todo\Data\Facets\TodoDueDateFacet;
 use Modules\Todo\Http\Requests\StoreTodoRequest;
 use Modules\Todo\Http\Requests\UpdateTodoRequest;
 use Modules\Todo\Models\Todo;
@@ -29,13 +31,20 @@ class TodoController
         $workspace = $request->user()->currentWorkspace;
         abort_if($workspace === null, 404);
 
+        $facets = FacetCollection::make()
+            ->add(new TodoCompletedFacet(__('Completed')))
+            ->add(new AssignedUserFacet(__('Assigned to'), 'user_id')
+                ->setPossibleUsers($workspace->allUsers()))
+            ->add(new TodoDueDateFacet(__('Due date')));
+
         /** @var Builder $query */
         $query = Todo::query()
-            ->select(['id', 'title', 'completed', 'user_id'])
-            ->with('user:id,name,email')
-            ->where('workspace_id', $workspace->id);
+            ->currentWorkspace()
+            ->select(['id', 'title', 'completed', 'due_date', 'user_id'])
+            ->with('user:id,name,email');
 
-        foreach ($request->sort('created_at', SortDirection::DESC) as $sort) {
+        $request->defaultSort('due_date', SortDirection::DESC);
+        foreach ($request->sort() as $sort) {
             $query->orderBy($sort['field'], $sort['direction']->value);
         }
 
@@ -44,43 +53,7 @@ class TodoController
             $query->where('title', 'LIKE', "%{$term}%");
         });
 
-        $request->facets()
-            ->each(
-                function (array $values, string $facetKey) use ($query): void {
-                    $relation = null;
-                    $column = $facetKey;
-                    if (mb_substr_count($facetKey, '.') > 0) {
-                        [$relation, $column] = explode('.', $facetKey);
-                    }
-
-                    $query->when($relation, function (Builder $query) use ($relation, $column, $values): void {
-                        $query->whereHas($relation, function (Builder $query) use ($column, $values): void {
-                            $query->whereIn($column, $values);
-                        });
-                    });
-
-                    $query->unless($relation, function (Builder $query) use ($column, $values): void {
-                        $query->where(function (Builder $query) use ($column, $values): void {
-                            $nullValues = array_filter($values, fn ($value): bool => $value === null);
-                            if ($nullValues !== []) {
-                                $query->orWhereNull($column);
-                            }
-
-                            $valueValues = array_filter($values, fn ($value): bool => $value !== null);
-                            if ($valueValues !== []) {
-                                // check bool values
-                                $valueValues = array_map(fn (string $value): mixed => match ($value) {
-                                    'true' => true,
-                                    'false' => false,
-                                    default => $value,
-                                }, $valueValues);
-
-                                $query->orWhereIn($column, $valueValues);
-                            }
-                        });
-                    });
-                }
-            );
+        $facets->filterQuery($request->facets(), $query);
 
         $result = $query->paginate(
             perPage: $request->size(50),
@@ -88,11 +61,6 @@ class TodoController
             pageName: $request->pageName(),
             page: $request->page(),
         )->toArray();
-
-        $todoCompletedFacet = new TodoCompletedFacet(__('Completed'));
-        $assignedUserFacet = new AssignedUserFacet(__('Assigned to'), 'user_id')
-            ->setPossibleUsers($workspace->allUsers())
-            ->includeNoUserFilter();
 
         return Inertia::render('todo::Index', [
             'data' => Arr::only($result, ['data'])['data'],
@@ -104,10 +72,7 @@ class TodoController
                     'facets' => $request->filter(),
                 ],
             ],
-            'facets' => [
-                $assignedUserFacet,
-                $todoCompletedFacet,
-            ],
+            'facets' => $facets->get()->values(),
         ]);
     }
 
@@ -119,9 +84,20 @@ class TodoController
         $workspace = $request->user()->currentWorkspace;
         abort_if($workspace === null, 404);
 
+        $workspaceUsers = collect($request->user());
+        if (in_array($request->user()->workspaceRole($workspace)->key, ['owner', 'admin', 'editor'])) {
+            $workspaceUsers = $workspace->allUsers();
+        }
+
         return Inertia::render('todo::Create', [
             'workspace' => $workspace->only('id', 'name'),
-            'workspaceUsers' => $workspace->allUsers()->map->only('id', 'name', 'email'),
+            'workspaceUsers' => $workspaceUsers->map->only('id', 'name', 'email'),
+            'presets' => [
+                ['value' => now()->toDateString(), 'label' => __('Today')],
+                ['value' => now()->addDay()->toDateString(), 'label' => __('Tomorrow')],
+                ['value' => now()->addDays(3)->toDateString(), 'label' => __('In :days days', ['days' => 3])],
+                ['value' => now()->addWeek()->toDateString(), 'label' => __('In a week')],
+            ],
         ]);
     }
 
@@ -136,6 +112,7 @@ class TodoController
         $todo = new Todo($request->validated());
         $todo->workspace_id = $workspace->id;
         $todo->user_id = $request->validated('user_id');
+        $todo->due_date = $request->validated('due_date');
         $todo->save();
 
         if ($todo->user_id !== $request->user()->id) {

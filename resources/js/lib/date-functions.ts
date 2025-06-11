@@ -1,7 +1,9 @@
+import { CalendarDate } from '@internationalized/date';
+
 /**
  * returns the localized date
  */
-export function localeDate(date: string | null | undefined, type: 'date' | 'time' | 'datetime' | 'ISO8601' = 'date'): string {
+export function localeDate(date: CalendarDate | string | null | undefined, type: 'date' | 'time' | 'datetime' | 'ISO8601' = 'date'): string {
     if (!date) return '';
 
     if (type === 'ISO8601') {

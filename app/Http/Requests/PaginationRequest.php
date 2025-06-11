@@ -4,12 +4,15 @@ declare(strict_types=1);
 
 namespace App\Http\Requests;
 
+use App\Data\Facets\FilterValueEnum;
 use App\Enums\SortDirection;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Collection;
 
 class PaginationRequest extends FormRequest
 {
+    private array $defaultSortColumns = [];
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -43,23 +46,26 @@ class PaginationRequest extends FormRequest
         return explode(',', (string) $this->input('fields', $default));
     }
 
+    public function defaultSort(string $field, SortDirection $direction = SortDirection::ASC): self
+    {
+        $this->defaultSortColumns = [
+            [
+                'field' => $field,
+                'direction' => $direction,
+            ],
+        ];
+
+        return $this;
+    }
+
     /**
      * @return array<number, array<{field: string, direction: SortDirection}>>
      */
-    public function sort(?string $field = null, SortDirection $direction = SortDirection::ASC): array
+    public function sort(): array
     {
         $sortString = $this->input('sort');
         if (! $sortString) {
-            if ($field === null || $field === '' || $field === '0') {
-                return [];
-            }
-
-            return [
-                [
-                    'field' => $field,
-                    'direction' => $direction,
-                ],
-            ];
+            return $this->defaultSortColumns;
         }
 
         $result = [];
@@ -84,13 +90,7 @@ class PaginationRequest extends FormRequest
         return $this->collect('filter')
             ->map(fn (string $filterValues) => explode(',', $filterValues))
             ->map(fn (array $filterValues) => collect($filterValues)
-                ->map(function (string $value): ?string {
-                    if ($value === 'none') {
-                        return null;
-                    }
-
-                    return $value;
-                })
+                ->map(fn (string $value): mixed => FilterValueEnum::transformFilterValue($value))
                 ->all()
             );
     }

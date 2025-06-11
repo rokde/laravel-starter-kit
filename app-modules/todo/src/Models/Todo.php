@@ -10,12 +10,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Modules\Todo\Database\Factories\TodoFactory;
+use Modules\Workspace\Models\Concerns\HasWorkspaceRelation;
 use Modules\Workspace\Models\Workspace;
 
 #[UseFactory(TodoFactory::class)]
 class Todo extends Model
 {
-    use HasFactory;
+    use HasFactory, HasWorkspaceRelation;
 
     /**
      * The attributes that are mass assignable.
@@ -34,6 +35,7 @@ class Todo extends Model
      */
     protected $casts = [
         'completed' => 'boolean',
+        'due_date' => 'datetime',
     ];
 
     /**
