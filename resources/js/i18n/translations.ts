@@ -426,6 +426,7 @@ const translations: Translations = {
         'Please verify your email address by clicking on the link we just emailed to you.':
             'Bitte bestätigen Sie Ihre E-Mail-Adresse, indem Sie auf den Link klicken, den wir Ihnen gerade per E-Mail gesendet haben.',
         Policy: 'Datenschutz',
+        Presets: 'Voreinstellungen',
         'Profile information': 'Profilinformationen',
         'Profile settings': 'Profileinstellungen',
         Profile: 'Profil',

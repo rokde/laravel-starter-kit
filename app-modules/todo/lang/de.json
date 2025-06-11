@@ -10,6 +10,8 @@
     "Do you want to delete todo?": "Wollen Sie die Aufgabe löschen?",
     "Due date": "Fälligkeitsdatum",
     "Get notified when someone assigns you a todo.": "Lassen Sie sich benachrichtigen, wenn Ihnen einen Aufgabe zugewiesen wurde.",
+    "In :days days": "In :days Tagen",
+    "In a week": "In einer Woche",
     "Incomplete": "Zu erledigen",
     "Mark as Complete": "Als erledigt markieren",
     "Mark as Incomplete": "Als unerledigt markieren",
@@ -20,6 +22,7 @@
     "Saved.": "Gespeichert.",
     "Select a user": "Benutzer auswählen",
     "Title": "Titel",
+    "Today": "Heute",
     "Todo created.": "Aufgabe erstellt.",
     "Todo deleted.": "Aufgabe gelöscht.",
     "Todo marked as completed.": "Aufgabe als erledigt markiert.",
@@ -27,6 +30,7 @@
     "Todo title": "Aufgabentitel",
     "Todo updated.": "Aufgabe aktualisiert.",
     "Todos": "Aufgaben",
+    "Tomorrow": "Morgen",
     "Unassigned": "Nicht zugewiesen",
     "Without due date": "Ohne Fälligkeit"
 }
