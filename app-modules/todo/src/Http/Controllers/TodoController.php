@@ -34,17 +34,17 @@ class TodoController
         $facets = FacetCollection::make()
             ->add(new TodoCompletedFacet(__('Completed')))
             ->add(new AssignedUserFacet(__('Assigned to'), 'user_id')
-                ->setPossibleUsers($workspace->allUsers())
-                ->includeNoUserFilter())
+                ->setPossibleUsers($workspace->allUsers()))
             ->add(new TodoDueDateFacet(__('Due date')));
 
         /** @var Builder $query */
         $query = Todo::query()
+            ->currentWorkspace()
             ->select(['id', 'title', 'completed', 'due_date', 'user_id'])
-            ->with('user:id,name,email')
-            ->where('workspace_id', $workspace->id);
+            ->with('user:id,name,email');
 
-        foreach ($request->sort('created_at', SortDirection::DESC) as $sort) {
+        $request->defaultSort('due_date', SortDirection::DESC);
+        foreach ($request->sort() as $sort) {
             $query->orderBy($sort['field'], $sort['direction']->value);
         }
 
