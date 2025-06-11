@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import DatePicker from '@/components/DatePicker.vue';
 import Heading from '@/components/Heading.vue';
 import InputError from '@/components/InputError.vue';
 import { Button } from '@/components/ui/button';
@@ -44,6 +45,7 @@ const form = useForm({
     title: '',
     user_id: props.workspaceUsers.length > 0 ? props.workspaceUsers[0].id : '',
     completed: false,
+    due_date: '',
 });
 
 const submit = () => {
@@ -88,6 +90,11 @@ const submit = () => {
                         </SelectContent>
                     </Select>
                     <InputError class="mt-2" :message="form.errors.user_id" />
+                </div>
+
+                <div class="grid gap-2">
+                    <Label for="due_date">{{ $t('Due date') }}</Label>
+                    <DatePicker v-model="form.due_date" />
                 </div>
 
                 <div class="flex items-center gap-4">

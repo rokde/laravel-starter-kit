@@ -10,6 +10,7 @@ import { Label } from '@/components/ui/label';
 import { getI18n } from '@/i18n';
 import AppLayout from '@/layouts/AppLayout.vue';
 import ContentLayout from '@/layouts/content/ContentLayout.vue';
+import { localeDate } from '@/lib/date-functions';
 import type { BreadcrumbItem } from '@/types';
 import { Head, Link, router } from '@inertiajs/vue3';
 import { Todo } from '../types';
@@ -49,6 +50,13 @@ const tableOptions: ITableOptions<Todo> = {
             key: 'assignee',
             label: t('Assigned to'),
             value: (row: Todo) => row.user?.name,
+            hideable: true,
+        },
+        {
+            key: 'due_date',
+            label: t('Due date'),
+            value: (row: Todo) => localeDate(row.due_date),
+            sortable: true,
             hideable: true,
         },
     ],
