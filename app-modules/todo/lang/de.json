@@ -8,11 +8,14 @@
     "Delete Todo": "Aufgabe löschen",
     "Delete": "Löschen",
     "Do you want to delete todo?": "Wollen Sie die Aufgabe löschen?",
+    "Due date": "Fälligkeitsdatum",
     "Get notified when someone assigns you a todo.": "Lassen Sie sich benachrichtigen, wenn Ihnen einen Aufgabe zugewiesen wurde.",
     "Incomplete": "Zu erledigen",
     "Mark as Complete": "Als erledigt markieren",
     "Mark as Incomplete": "Als unerledigt markieren",
     "No todos found. Create your first todo!": "Keine Aufgaben gefunden. Erstellen Sie Ihre erste Aufgabe!",
+    "On time": "Pünktlich",
+    "Overdue": "Überfällig",
     "Save": "Speichern",
     "Saved.": "Gespeichert.",
     "Select a user": "Benutzer auswählen",
@@ -24,5 +27,6 @@
     "Todo title": "Aufgabentitel",
     "Todo updated.": "Aufgabe aktualisiert.",
     "Todos": "Aufgaben",
-    "Unassigned": "Nicht zugewiesen"
+    "Unassigned": "Nicht zugewiesen",
+    "Without due date": "Ohne Fälligkeit"
 }
