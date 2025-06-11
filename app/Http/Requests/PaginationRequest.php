@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Requests;
 
+use App\Data\Facets\FilterValueEnum;
 use App\Enums\SortDirection;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Collection;
@@ -84,13 +85,7 @@ class PaginationRequest extends FormRequest
         return $this->collect('filter')
             ->map(fn (string $filterValues) => explode(',', $filterValues))
             ->map(fn (array $filterValues) => collect($filterValues)
-                ->map(function (string $value): ?string {
-                    if ($value === 'none') {
-                        return null;
-                    }
-
-                    return $value;
-                })
+                ->map(fn (string $value): mixed => FilterValueEnum::transformFilterValue($value))
                 ->all()
             );
     }
