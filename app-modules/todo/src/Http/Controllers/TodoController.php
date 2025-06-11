@@ -84,9 +84,14 @@ class TodoController
         $workspace = $request->user()->currentWorkspace;
         abort_if($workspace === null, 404);
 
+        $workspaceUsers = collect($request->user());
+        if (in_array($request->user()->workspaceRole($workspace)->key, ['owner', 'admin', 'editor'])) {
+            $workspaceUsers = $workspace->allUsers();
+        }
+
         return Inertia::render('todo::Create', [
             'workspace' => $workspace->only('id', 'name'),
-            'workspaceUsers' => $workspace->allUsers()->map->only('id', 'name', 'email'),
+            'workspaceUsers' => $workspaceUsers->map->only('id', 'name', 'email'),
             'presets' => [
                 ['value' => now()->toDateString(), 'label' => __('Today')],
                 ['value' => now()->addDay()->toDateString(), 'label' => __('Tomorrow')],
