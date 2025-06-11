@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import HeadingSmall from '@/components/HeadingSmall.vue';
-import { type BreadcrumbItem } from '@/types';
-import { Head, useForm } from '@inertiajs/vue3';
-import { Select, SelectContent, SelectItem, SelectGroup, SelectLabel, SelectSeparator, SelectTrigger, SelectValue } from '@/components/ui/select';
 import LocaleTabs from '@/components/LocaleTabs.vue';
+import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectSeparator, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { getI18n } from '@/i18n';
 import AppLayout from '@/layouts/AppLayout.vue';
 import SettingsLayout from '@/layouts/settings/Layout.vue';
+import { type BreadcrumbItem } from '@/types';
+import { Head, useForm } from '@inertiajs/vue3';
 
 const { t } = getI18n();
 
@@ -18,7 +18,7 @@ interface Props {
         [key: string]: {
             value: string;
             label: string;
-        }
+        };
     };
 }
 
@@ -53,20 +53,36 @@ const submit = () => {
         <SettingsLayout>
             <div class="space-y-6">
                 <HeadingSmall :title="$t('Locale settings')" :description="$t('Update your account\'s locale settings')" />
-                <LocaleTabs :locales="props.locales" :currentLocale="props.locale" @selected="($event) => {form.locale = $event; submit();}" />
+                <LocaleTabs
+                    :locales="props.locales"
+                    :currentLocale="props.locale"
+                    @selected="
+                        ($event) => {
+                            form.locale = $event;
+                            submit();
+                        }
+                    "
+                />
             </div>
             <div class="space-y-6">
                 <Label for="timezone">{{ $t('Timezone') }}</Label>
-                <Select id="timezone" :model-value="form.timezone" @update:model-value="(v: string) => {form.timezone = v; submit();}">
+                <Select
+                    id="timezone"
+                    :model-value="form.timezone"
+                    @update:model-value="
+                        (v: string) => {
+                            form.timezone = v;
+                            submit();
+                        }
+                    "
+                >
                     <SelectTrigger>
                         <SelectValue :placeholder="$t('Timezone')" />
                     </SelectTrigger>
                     <SelectContent>
                         <SelectGroup>
                             <SelectLabel>Generic</SelectLabel>
-                            <SelectItem value="UTC">
-                                UTC
-                            </SelectItem>
+                            <SelectItem value="UTC"> UTC </SelectItem>
                         </SelectGroup>
                         <SelectSeparator />
 

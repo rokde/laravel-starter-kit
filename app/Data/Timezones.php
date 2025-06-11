@@ -10,6 +10,11 @@ use Illuminate\Support\Str;
 
 class Timezones
 {
+    public static function identifiers(): array
+    {
+        return DateTimeZone::listIdentifiers();
+    }
+
     /**
      * @return array<string, array{value: string, label: string}>
      */
@@ -66,10 +71,5 @@ class Timezones
         }
 
         return $result;
-    }
-
-    public static function identifiers(): array
-    {
-        return DateTimeZone::listIdentifiers();
     }
 }
