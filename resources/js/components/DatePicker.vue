@@ -16,6 +16,7 @@ interface Props {
     min?: string | null;
     max?: string | null;
     placeholder?: string;
+    label?: string;
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -52,7 +53,7 @@ const maxValue = computed<CalendarDate | undefined>(() => (props.max ? parseDate
             <Calendar
                 v-model:placeholder="calendarPlaceholder"
                 :model-value="value"
-                calendar-label="Date of birth"
+                :calendar-label="props.label"
                 initial-focus
                 :min-value="minValue"
                 :max-value="maxValue"
