@@ -11,6 +11,8 @@ use Illuminate\Support\Collection;
 
 class PaginationRequest extends FormRequest
 {
+    private array $defaultSortColumns = [];
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -44,23 +46,26 @@ class PaginationRequest extends FormRequest
         return explode(',', (string) $this->input('fields', $default));
     }
 
+    public function defaultSort(string $field, SortDirection $direction = SortDirection::ASC): self
+    {
+        $this->defaultSortColumns = [
+            [
+                'field' => $field,
+                'direction' => $direction,
+            ],
+        ];
+
+        return $this;
+    }
+
     /**
      * @return array<number, array<{field: string, direction: SortDirection}>>
      */
-    public function sort(?string $field = null, SortDirection $direction = SortDirection::ASC): array
+    public function sort(): array
     {
         $sortString = $this->input('sort');
         if (! $sortString) {
-            if ($field === null || $field === '' || $field === '0') {
-                return [];
-            }
-
-            return [
-                [
-                    'field' => $field,
-                    'direction' => $direction,
-                ],
-            ];
+            return $this->defaultSortColumns;
         }
 
         $result = [];
