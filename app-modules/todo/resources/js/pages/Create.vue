@@ -77,7 +77,7 @@ const submit = () => {
                     <InputError class="mt-2" :message="form.errors.title" />
                 </div>
 
-                <div class="grid gap-2">
+                <div v-if="props.workspaceUsers.length > 1" class="grid gap-2">
                     <Label for="user_id">{{ $t('Assign to') }}</Label>
                     <Select v-model="form.user_id">
                         <SelectTrigger class="w-full">
