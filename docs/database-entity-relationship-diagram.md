@@ -125,6 +125,7 @@ erDiagram
         user_id bigint FK "index"
         title string
         completed boolean "default false"
+        due_date timestamp "nullable"
         created_at timestamp
         updated_at timestamp
     }
