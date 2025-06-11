@@ -2,14 +2,11 @@
 import { Button } from '@/components/ui/button';
 import { Calendar } from '@/components/ui/calendar';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
-import { getI18n } from '@/i18n';
 import { localeDate } from '@/lib/date-functions';
 import { cn } from '@/lib/utils';
 import { CalendarDate, parseDate } from '@internationalized/date';
 import { CalendarIcon } from 'lucide-vue-next';
 import { computed, ref } from 'vue';
-
-const { t } = getI18n();
 
 interface Props {
     modelValue: string | null;
@@ -22,7 +19,7 @@ interface Props {
 const props = withDefaults(defineProps<Props>(), {
     min: null,
     max: null,
-    placeholder: t('Pick a date'),
+    placeholder: 'Pick a date',
 });
 
 const emits = defineEmits<{
@@ -44,7 +41,7 @@ const maxValue = computed<CalendarDate | undefined>(() => (props.max ? parseDate
     <Popover>
         <PopoverTrigger as-child>
             <Button variant="outline" :class="cn('w-[240px] ps-3 text-start font-normal', !value && 'text-muted-foreground')">
-                <span>{{ value ? localeDate(value) : props.placeholder }}</span>
+                <span>{{ value ? localeDate(value) : props.placeholder ? $t(props.placeholder) : '' }}</span>
                 <CalendarIcon class="ms-auto h-4 w-4 opacity-50" />
             </Button>
             <input hidden />
