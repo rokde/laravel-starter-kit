@@ -53,6 +53,8 @@ A customized version with the following things:
 - Imprint, Terms and Policy templates supported
 - displaying the password rules on registration and password change
 - reveal passwords on password input elements
+- User has locale and timezone for displaying the dates correct
+  - provide a `inApplicationTimezone` and `inUserTimezone` method for each carbon instance
 
 ### Build with DDD
 
