@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Requests\Settings;
 
+use App\Data\Timezones;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
@@ -19,6 +20,7 @@ class LocaleUpdateRequest extends FormRequest
     {
         return [
             'locale' => ['required', Rule::in(config('app.locales', [config('app.fallback_locale', 'en')]))],
+            'timezone' => ['required', Rule::in(Timezones::identifiers())],
         ];
     }
 }
