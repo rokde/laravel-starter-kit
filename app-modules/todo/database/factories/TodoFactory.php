@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Modules\Todo\Database\Factories;
 
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Modules\Workspace\Models\Workspace;
 
@@ -25,6 +26,7 @@ class TodoFactory extends Factory
             'completed' => $this->faker->boolean(20), // 20% chance of being completed
             'workspace_id' => Workspace::factory(),
             'user_id' => User::factory(),
+            'due_date' => null,
         ];
     }
 
@@ -45,6 +47,13 @@ class TodoFactory extends Factory
     {
         return $this->state(fn (array $attributes): array => [
             'completed' => false,
+        ]);
+    }
+
+    public function due(Carbon $value): self
+    {
+        return $this->state(fn (array $attributes): array => [
+            'due_date' => $value,
         ]);
     }
 }

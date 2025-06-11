@@ -34,6 +34,7 @@ class Todo extends Model
      */
     protected $casts = [
         'completed' => 'boolean',
+        'due_date' => 'datetime',
     ];
 
     /**
