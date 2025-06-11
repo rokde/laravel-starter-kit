@@ -52,11 +52,7 @@ const currentLocale = window.locale;
             <input hidden />
         </PopoverTrigger>
         <PopoverContent :class="{ 'w-auto p-0': props.presets.length <= 0, 'flex w-auto flex-col gap-y-2 p-2': props.presets.length > 0 }">
-            <Select
-                v-if="props.presets.length > 0"
-                :model-value="value?.toString()"
-                @update:model-value="emits('update:modelValue', $event)"
-            >
+            <Select v-if="props.presets.length > 0" :model-value="value?.toString()" @update:model-value="emits('update:modelValue', $event)">
                 <SelectTrigger class="w-full">
                     <SelectValue :placeholder="$t('Presets')" class="p-2" />
                 </SelectTrigger>

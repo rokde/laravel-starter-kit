@@ -26,7 +26,7 @@ interface Props {
         name: string;
     };
     workspaceUsers: User[];
-    presets: Array<{value: string; label: string}>;
+    presets: Array<{ value: string; label: string }>;
 }
 
 const props = defineProps<Props>();
