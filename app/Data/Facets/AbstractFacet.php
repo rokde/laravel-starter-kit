@@ -64,7 +64,7 @@ abstract class AbstractFacet implements Arrayable, JsonSerializable
         return $this->key;
     }
 
-    final public function assignConditionToQuery(Builder $query, array $values): void
+    public function assignConditionToQuery(Builder $query, array $values): void
     {
         $relation = null;
         $column = $this->column;
