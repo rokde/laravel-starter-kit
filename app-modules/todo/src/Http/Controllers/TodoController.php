@@ -87,6 +87,12 @@ class TodoController
         return Inertia::render('todo::Create', [
             'workspace' => $workspace->only('id', 'name'),
             'workspaceUsers' => $workspace->allUsers()->map->only('id', 'name', 'email'),
+            'presets' => [
+                ['value' => now()->toDateString(), 'label' => __('Today')],
+                ['value' => now()->addDay()->toDateString(), 'label' => __('Tomorrow')],
+                ['value' => now()->addDays(3)->toDateString(), 'label' => __('In :days days', ['days' => 3])],
+                ['value' => now()->addWeek()->toDateString(), 'label' => __('In a week')],
+            ],
         ]);
     }
 
