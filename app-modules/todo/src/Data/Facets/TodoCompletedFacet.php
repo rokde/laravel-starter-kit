@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Modules\Todo\Data\Facets;
 
 use App\Data\Facets\AbstractFacet;
+use App\Data\Facets\FilterValueEnum;
 
 class TodoCompletedFacet extends AbstractFacet
 {
@@ -15,11 +16,11 @@ class TodoCompletedFacet extends AbstractFacet
         $this->options = [
             [
                 'label' => __('Completed'),
-                'value' => 'true',
+                'value' => FilterValueEnum::TRUE->value,
             ],
             [
                 'label' => __('Incomplete'),
-                'value' => 'false',
+                'value' => FilterValueEnum::FALSE->value,
             ],
         ];
     }
