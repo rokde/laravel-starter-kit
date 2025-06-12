@@ -43,7 +43,8 @@ export interface User {
     email: string;
     avatar?: string;
     email_verified_at: string | null;
-    locale: 'de' | 'en';
+    locale: string | 'de' | 'en';
+    timezone: string;
     created_at: string;
     updated_at: string;
     workspace_id: number;

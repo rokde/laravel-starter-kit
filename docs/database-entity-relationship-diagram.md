@@ -14,6 +14,7 @@ erDiagram
         password string
         remember_token string
         locale string "default en"
+        timezone string "default UTC"
         preferred_notification_channels longtext
         workspace_id bigint FK
         created_at timestamp
@@ -125,6 +126,7 @@ erDiagram
         user_id bigint FK "index"
         title string
         completed boolean "default false"
+        due_date timestamp "nullable"
         created_at timestamp
         updated_at timestamp
     }

@@ -62,6 +62,7 @@ class User extends Authenticatable implements HasLocalePreference, HasPasskeys, 
             email: $this->email,
             verified: $this->hasVerifiedEmail(),
             locale: $this->preferredLocale(),
+            timezone: $this->timezone,
         );
     }
 

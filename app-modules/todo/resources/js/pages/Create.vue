@@ -95,7 +95,7 @@ const submit = () => {
 
                 <div class="grid gap-2">
                     <Label for="due_date">{{ $t('Due date') }}</Label>
-                    <DatePicker v-model="form.due_date" :presets="props.presets" />
+                    <DatePicker v-model="form.due_date" :presets="props.presets" clearable />
                 </div>
 
                 <div class="flex items-center gap-4">

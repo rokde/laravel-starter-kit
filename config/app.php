@@ -71,6 +71,18 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Display Timezone
+    |--------------------------------------------------------------------------
+    |
+    | Here you may specify the timezone the application should provide times
+    | in the user interface. This is not part of the base laravel app config.
+    |
+    */
+
+    'display_timezone' => 'Europe/Berlin',
+
+    /*
+    |--------------------------------------------------------------------------
     | Application Locale Configuration
     |--------------------------------------------------------------------------
     |
