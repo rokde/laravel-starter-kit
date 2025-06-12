@@ -38,7 +38,10 @@ class MemberAcceptedNotification extends Notification implements InAppNotificati
     {
         return (new MailMessage)
             ->subject('Member accepted the invitation to the workspace')
-            ->line("{$this->member->name} accepted the invitation to the workspace {$this->workspace->name}.}");
+            ->line("{$this->member->name} accepted the invitation to the workspace {$this->workspace->name}.}")
+            ->action('Open your members overview', $this->getUrl())
+            ->line('')
+            ->line('You got this email because you have enabled notifications for this type of event.');
     }
 
     /**
