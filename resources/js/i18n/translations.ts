@@ -764,6 +764,7 @@ const translations: Translations = {
         'The todo {todo} is due today': 'Die Aufgabe «{todo}» ist heute fällig',
         Title: 'Titel',
         Today: 'Heute',
+        Todo: 'Aufgabe',
         'Todo created.': 'Aufgabe erstellt.',
         'Todo deleted.': 'Aufgabe gelöscht.',
         'Todo marked as completed.': 'Aufgabe als erledigt markiert.',
