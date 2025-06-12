@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { getI18n } from '@/i18n';
-import { localeDate, timeAgo } from '@/lib/date-functions';
+import { humanReadable, localeDate } from '@/lib/date-functions';
 import { computed } from 'vue';
 
 const { t } = getI18n();
@@ -17,9 +17,23 @@ const valueLabel = computed<string>(() => {
         return '';
     }
 
-    const ago = timeAgo(props.date);
+    const ago = humanReadable(props.date);
 
-    return t('{interval} {unit} ago', { interval: ago.interval, unit: t('units.' + ago.unit) });
+    if (ago.direction === 'now') {
+        return t('now');
+    }
+
+    if (ago.direction === 'from now') {
+        return t('{interval} {unit} from now', {
+            interval: ago.interval,
+            unit: t('units.' + ago.unit),
+        });
+    }
+
+    return t('{interval} {unit} ago', {
+        interval: ago.interval,
+        unit: t('units.' + ago.unit),
+    });
 });
 </script>
 
