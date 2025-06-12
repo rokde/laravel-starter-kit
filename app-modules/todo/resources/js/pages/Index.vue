@@ -5,7 +5,7 @@ import { IPaginatedMeta, IQuery, ITableFacetFilterOption, ITableOptions } from '
 import Heading from '@/components/Heading.vue';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
-import { DropdownMenuItem } from '@/components/ui/dropdown-menu';
+import { DropdownMenuItem, DropdownMenuSeparator } from '@/components/ui/dropdown-menu';
 import { Label } from '@/components/ui/label';
 import { getI18n } from '@/i18n';
 import AppLayout from '@/layouts/AppLayout.vue';
@@ -95,7 +95,7 @@ const toggleComplete = (todo: Todo) => {
                 </template>
 
                 <template #title="{ row: todo }">
-                    <Label :for="`todo${todo.id}`" class="flex flex-nowrap space-x-2">
+                    <Label :for="`todo${todo.id}`" class="flex flex-nowrap space-x-2 cursor-pointer">
                         <Checkbox :id="`todo${todo.id}`" :model-value="todo.completed" @update:modelValue="toggleComplete(todo)" />
                         <span :class="{ 'text-neutral-400 line-through': todo.completed }">{{ todo.title }}</span>
                     </Label>
@@ -106,6 +106,7 @@ const toggleComplete = (todo: Todo) => {
                         <DropdownMenuItem @click.stop="toggleComplete(todo)">
                             {{ todo.completed ? $t('Mark as Incomplete') : $t('Mark as Complete') }}
                         </DropdownMenuItem>
+                        <DropdownMenuSeparator />
                         <DropdownMenuItem variant="destructive" @click.stop="router.delete(route('todos.destroy', todo.id))">
                             <span class="text-red-500 hover:text-red-600 dark:text-red-700 dark:hover:text-red-600">{{ $t('Delete') }}</span>
                         </DropdownMenuItem>
