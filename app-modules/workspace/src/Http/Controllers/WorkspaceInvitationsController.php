@@ -38,7 +38,7 @@ class WorkspaceInvitationsController
                 id: $invitation->id,
                 email: $invitation->email,
                 role: $invitation->role,
-                created_at: $invitation->created_at->toDateTimeString(),
+                created_at: $invitation->created_at->inUserTimezone()->toDateTimeString(),
                 link: $request->user()->can('addMember', $workspace) ? $invitation->getAcceptUrl() : null,
             )),
             'roles' => RoleRegistry::$roles,
