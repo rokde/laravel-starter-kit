@@ -22,7 +22,7 @@ interface Props {
             class: string;
             description: string;
             group: string;
-        };
+        }[];
     };
     preferred_notification_channels: {
         [key: string]: string[];
@@ -77,12 +77,12 @@ const breadcrumbItems: BreadcrumbItem[] = [
 
                 <form @submit.prevent="submit" class="space-y-6">
                     <div v-for="(notifications, group) of props.notifications" :key="group">
-                        <h3 class="text-md font-bold">{{ $t(group) }}</h3>
+                        <h3 class="text-md font-bold">{{ $t(group as string) }}</h3>
                         <Separator class="my-6" />
                         <div
                             v-for="notification in notifications"
                             :key="notification.class"
-                            class="mb-4 flex justify-between border-b last:border-none"
+                            class="mb-4 flex justify-between border-b pb-4 last:border-none"
                         >
                             <p>{{ $t(notification.description) }}</p>
                             <div class="flex flex-col gap-2">
