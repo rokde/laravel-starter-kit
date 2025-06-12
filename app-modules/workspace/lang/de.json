@@ -8,6 +8,7 @@
     "Create Workspace": "Workspace erstellen",
     "Current workspace changed.": "Aktuellen workspace gewechselt.",
     "Get notified when a member accepts the invitation to any of your workspaces.": "Lassen Sie sich benachrichtigen, wenn ein Mitglied die Einladung zu einem Ihrer Workspaces annimmt.",
+    "Get notified when you got an invitation to another workspace.": "Lassen Sie sich benachrichtigen, wenn Sie eine Einladung zu einem anderen Workspace erhalten haben.",
     "If you remove the member, they will no longer have access to the workspace.": "Wenn Sie das Mitglied entfernen, hat es keinen Zugriff mehr auf den Workspace.",
     "If you revoke the invitation, the user will not be able to access the workspace.": "Wenn Sie die Einladung widerrufen, kann der Benutzer nicht mehr auf den Workspace zugreifen.",
     "Invitations": "Einladungen",
