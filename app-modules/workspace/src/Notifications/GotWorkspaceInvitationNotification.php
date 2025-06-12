@@ -1,9 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\Workspace\Notifications;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Modules\Notification\Contracts\InAppNotification;
@@ -38,7 +39,7 @@ class GotWorkspaceInvitationNotification extends Notification implements InAppNo
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-            ->line('You were invited to workspace ' . $this->workspace . ' as '. $this->invitation->role . '.')
+            ->line('You were invited to workspace '.$this->workspace.' as '.$this->invitation->role.'.')
             ->action('Accept invitation', $this->getUrl())
             ->line('')
             ->line('You got this email because you have enabled notifications for this type of event.');
