@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use Modules\Todo\Notifications\TodoAssignedNotification;
 use Modules\Todo\Notifications\TodoIsDueTodayNotification;
+use Modules\Workspace\Notifications\GotWorkspaceInvitationNotification;
 use Modules\Workspace\Notifications\MemberAcceptedNotification;
 
 /**
@@ -15,6 +16,7 @@ return [
     'notifications' => [
         // workspace
         MemberAcceptedNotification::class,
+        GotWorkspaceInvitationNotification::class,
         // todo
         TodoAssignedNotification::class,
         TodoIsDueTodayNotification::class,
