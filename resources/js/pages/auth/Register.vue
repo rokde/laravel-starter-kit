@@ -11,12 +11,12 @@ import { LoaderCircle } from 'lucide-vue-next';
 import { computed, ref } from 'vue';
 
 const getUserTimeZone = (): string => {
-  try {
-    return Intl.DateTimeFormat().resolvedOptions().timeZone;
-  } catch (error) {
-    return 'UTC';
-  }
-}
+    try {
+        return Intl.DateTimeFormat().resolvedOptions().timeZone;
+    } catch (error) {
+        return 'UTC';
+    }
+};
 
 interface Props {
     appliedRules: {
