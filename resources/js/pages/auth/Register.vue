@@ -13,7 +13,7 @@ import { computed, ref } from 'vue';
 const getUserTimeZone = (): string => {
     try {
         return Intl.DateTimeFormat().resolvedOptions().timeZone;
-    } catch (error) {
+    } catch {
         return 'UTC';
     }
 };
