@@ -4,14 +4,16 @@ declare(strict_types=1);
 
 namespace App\DataTransferObjects;
 
-final readonly class User
+final readonly class User extends NewUser
 {
     public function __construct(
         public int $id,
-        public string $name,
-        public string $email,
+        string $name,
+        string $email,
         public bool $verified,
-        public string $locale,
-        public string $timezone,
-    ) {}
+        string $locale,
+        string $timezone,
+    ) {
+        parent::__construct($name, $email, $locale, $timezone);
+    }
 }

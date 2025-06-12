@@ -4,14 +4,11 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Auth;
 
-use App\Data\Timezones;
+use App\Actions\CreateNewUser;
 use App\Http\Controllers\Controller;
-use App\Models\User;
-use Illuminate\Auth\Events\Registered;
+use App\Http\Requests\Auth\StoreNewUserRequest;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
@@ -34,33 +31,9 @@ class RegisteredUserController extends Controller
      *
      * @throws ValidationException
      */
-    public function store(Request $request): RedirectResponse
+    public function store(StoreNewUserRequest $request, CreateNewUser $createNewUser): RedirectResponse
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|lowercase|email|max:255|unique:'.User::class,
-            'password' => ['required', 'confirmed', Password::defaults()],
-        ]);
-
-        $timezone = $locale = null;
-        $requestLocale = $request->string('locale');
-        if (in_array($requestLocale, config('app.locales', [config('app.fallback_locale', 'en')]))) {
-            $locale = $requestLocale;
-        }
-        $requestTimezone = $request->string('timezone');
-        if (in_array($requestTimezone, Timezones::identifiers())) {
-            $timezone = $requestTimezone;
-        }
-
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'locale' => $locale ?? config('app.locale', 'en'),
-            'timezone' => $timezone ?? 'UTC',
-        ]);
-
-        event(new Registered($user));
+        $user = $createNewUser->handle($request->toDto(), $request->password);
 
         Auth::login($user);
 
