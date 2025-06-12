@@ -33,7 +33,7 @@ class NotificationRepository implements NotificationRepositoryContract
                     url: $data['url'] ?? null,
                     data: Arr::except($data, ['url', 'title']),
                     read: $notification->read(),
-                    created_at: $notification->created_at->toDateTimeString(),
+                    created_at: $notification->created_at->inUserTimezone()->toDateTimeString(),
                 );
             });
     }
