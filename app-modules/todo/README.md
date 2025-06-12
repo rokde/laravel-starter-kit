@@ -10,6 +10,7 @@ This module provides todo functionality for workspaces. It allows users to creat
 - View a list of todos for the current workspace
 - Mark todos as completed or incomplete
 - Delete todos
+- Notify today's due todos
 
 ## Installation
 
