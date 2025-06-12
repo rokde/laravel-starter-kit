@@ -41,7 +41,8 @@ class TodoIsDueTodayNotification extends Notification implements InAppNotificati
         return (new MailMessage)
             ->line('Your task is due today')
             ->action('Open your due todos', $this->getUrl())
-            ->line('Thank you for using our application!');
+            ->line('')
+            ->line('You got this email because you have enabled notifications for this type of event.');
     }
 
     /**
@@ -52,7 +53,7 @@ class TodoIsDueTodayNotification extends Notification implements InAppNotificati
     public function toArray(object $notifiable): array
     {
         return [
-            //
+            'todo' => $this->todo,
         ];
     }
 
