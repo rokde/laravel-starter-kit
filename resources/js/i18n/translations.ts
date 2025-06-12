@@ -180,6 +180,7 @@ const translations: Translations = {
         },
         '{count} selected': '{count} gewählt',
         '{interval} {unit} ago': '{interval} {unit} ago',
+        '{interval} {unit} from now': '{interval} {unit} from now',
         '{selected} of {rows} row(s) selected': '{selected} von {rows} Einträgen ausgewählt',
         'A new verification link has been sent to the email address you provided during registration.':
             'A new verification link has been sent to the email address you provided during registration.',
@@ -359,6 +360,7 @@ const translations: Translations = {
     de: {
         '{count} selected': '{count} gewählt',
         '{interval} {unit} ago': 'vor {interval} {unit}',
+        '{interval} {unit} from now': '{interval} {unit} in der Zukunft',
         '{selected} of {rows} row(s) selected': '{selected} von {rows} Einträgen ausgewählt',
         'A new verification link has been sent to the email address you provided during registration.':
             'Ein neuer Bestätigungslink wurde an die E-Mail-Adresse gesendet, die Sie bei der Registrierung angegeben haben.',
@@ -472,6 +474,7 @@ const translations: Translations = {
         Warning: 'Achtung',
         'Your email address is unverified.': 'Ihre E-Mail-Adresse ist nicht verifiziert.',
         'log in': 'anmelden',
+        now: 'Gerade eben',
         status: 'Status',
         auth: {
             failed: 'Diese Kombination aus Zugangsdaten wurde nicht in unserer Datenbank gefunden.',
