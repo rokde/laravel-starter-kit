@@ -21,16 +21,16 @@ class Timezones
     public function selectableList(): array
     {
         $regions = [
-            'Africa' => DateTimeZone::AFRICA,
-            'Americas' => DateTimeZone::AMERICA,
-            'Antartica' => DateTimeZone::ANTARCTICA,
-            'Arctic' => DateTimeZone::ARCTIC,
-            'Asia' => DateTimeZone::ASIA,
-            'Atlantic' => DateTimeZone::ATLANTIC,
-            'Australia' => DateTimeZone::AUSTRALIA,
-            'Europe' => DateTimeZone::EUROPE,
-            'Indian Ocean' => DateTimeZone::INDIAN,
-            'Pacific' => DateTimeZone::PACIFIC,
+            __('timezones.Africa') => DateTimeZone::AFRICA,
+            __('timezones.Americas') => DateTimeZone::AMERICA,
+            __('timezones.Antartica') => DateTimeZone::ANTARCTICA,
+            __('timezones.Arctic') => DateTimeZone::ARCTIC,
+            __('timezones.Asia') => DateTimeZone::ASIA,
+            __('timezones.Atlantic') => DateTimeZone::ATLANTIC,
+            __('timezones.Australia') => DateTimeZone::AUSTRALIA,
+            __('timezones.Europe') => DateTimeZone::EUROPE,
+            __('timezones.Indian Ocean') => DateTimeZone::INDIAN,
+            __('timezones.Pacific') => DateTimeZone::PACIFIC,
         ];
 
         $regionList = [];
@@ -65,7 +65,8 @@ class Timezones
 
                 $result[$name][] = [
                     'value' => $timezone,
-                    'label' => "({$prettyOffset}) {$label}",
+                    'label' => $label,
+                    'offset' => $prettyOffset,
                 ];
             }
         }
