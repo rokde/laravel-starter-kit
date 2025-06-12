@@ -24,6 +24,7 @@ test('locale settings can be updated', function (): void {
         ->actingAs($user)
         ->patch('/settings/locale', [
             'locale' => 'de',
+            'timezone' => 'Europe/Berlin',
         ]);
 
     $response

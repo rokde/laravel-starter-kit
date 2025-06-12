@@ -10,7 +10,8 @@ test('it can be instantiated with required properties', function (): void {
         name: 'Test User',
         email: 'test@example.com',
         verified: true,
-        locale: 'en'
+        locale: 'en',
+        timezone: 'Europe/Berlin',
     );
 
     expect($user)->toBeInstanceOf(User::class)
@@ -18,5 +19,6 @@ test('it can be instantiated with required properties', function (): void {
         ->and($user->name)->toBe('Test User')
         ->and($user->email)->toBe('test@example.com')
         ->and($user->verified)->toBeTrue()
-        ->and($user->locale)->toBe('en');
+        ->and($user->locale)->toBe('en')
+        ->and($user->timezone)->toBe('Europe/Berlin');
 });
