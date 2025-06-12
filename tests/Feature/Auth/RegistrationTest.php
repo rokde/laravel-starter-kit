@@ -46,3 +46,39 @@ test('new users can register with their preferred locale', function (): void {
         'locale' => 'en',
     ]);
 });
+
+test('new users can register with their current timezone', function (): void {
+    $response = $this->post('/register', [
+        'name' => 'Test User',
+        'email' => 'test2@example.com',
+        'password' => 'password',
+        'password_confirmation' => 'password',
+        'timezone' => 'Europe/Berlin',
+    ]);
+
+    $this->assertAuthenticated();
+    $response->assertRedirect(route('dashboard', absolute: false));
+
+    $this->assertDatabaseHas('users', [
+        'email' => 'test2@example.com',
+        'timezone' => 'Europe/Berlin',
+    ]);
+});
+
+test('new users get UTC on registering with an unknown timezone', function (): void {
+    $response = $this->post('/register', [
+        'name' => 'Test User',
+        'email' => 'test2@example.com',
+        'password' => 'password',
+        'password_confirmation' => 'password',
+        'timezone' => 'Unknown/Timezone',
+    ]);
+
+    $this->assertAuthenticated();
+    $response->assertRedirect(route('dashboard', absolute: false));
+
+    $this->assertDatabaseHas('users', [
+        'email' => 'test2@example.com',
+        'timezone' => 'UTC',
+    ]);
+});

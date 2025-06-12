@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Auth;
 
+use App\Data\Timezones;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
@@ -41,10 +42,14 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Password::defaults()],
         ]);
 
-        $locale = null;
+        $timezone = $locale = null;
         $requestLocale = $request->string('locale');
         if (in_array($requestLocale, config('app.locales', [config('app.fallback_locale', 'en')]))) {
             $locale = $requestLocale;
+        }
+        $requestTimezone = $request->string('timezone');
+        if (in_array($requestTimezone, Timezones::identifiers())) {
+            $timezone = $requestTimezone;
         }
 
         $user = User::create([
@@ -52,6 +57,7 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'locale' => $locale ?? config('app.locale', 'en'),
+            'timezone' => $timezone ?? 'UTC',
         ]);
 
         event(new Registered($user));

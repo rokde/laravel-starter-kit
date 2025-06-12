@@ -10,6 +10,14 @@ import { Head, useForm } from '@inertiajs/vue3';
 import { LoaderCircle } from 'lucide-vue-next';
 import { computed, ref } from 'vue';
 
+const getUserTimeZone = (): string => {
+  try {
+    return Intl.DateTimeFormat().resolvedOptions().timeZone;
+  } catch (error) {
+    return 'UTC';
+  }
+}
+
 interface Props {
     appliedRules: {
         min: number | null;
@@ -34,6 +42,7 @@ const form = useForm({
     password: '',
     password_confirmation: '',
     locale: window.locale,
+    timezone: getUserTimeZone(),
 });
 
 const checkMinRule = computed<boolean>(() => {
