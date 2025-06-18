@@ -3018,7 +3018,7 @@
             "dist": {
                 "type": "path",
                 "url": "app-modules/custom-properties",
-                "reference": "38964b6a5d206c9fae58d0e078772bbcc860533a"
+                "reference": "d2a1ac7448c002955e5d595921e98663b9480c6e"
             },
             "type": "library",
             "extra": {
@@ -3031,9 +3031,7 @@
             "autoload": {
                 "psr-4": {
                     "Modules\\CustomProperties\\": "src/",
-                    "Modules\\CustomProperties\\Tests\\": "tests/",
-                    "Modules\\CustomProperties\\Database\\Factories\\": "database/factories/",
-                    "Modules\\CustomProperties\\Database\\Seeders\\": "database/seeders/"
+                    "Modules\\CustomProperties\\Tests\\": "tests/"
                 }
             },
             "license": [
