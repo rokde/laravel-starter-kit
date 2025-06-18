@@ -1,20 +1,23 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Validation\ValidationException;
+use Modules\CustomProperties\Jobs\CleanupCustomPropertyJob;
 use Modules\Todo\Models\Todo;
 use Modules\Workspace\Models\Workspace;
 use function Pest\Laravel\assertDatabaseHas;
 
 uses(RefreshDatabase::class);
 
-beforeEach(function () {
+beforeEach(function (): void {
     $this->user = User::factory()->create();
     $this->workspace = Workspace::factory()->create(['user_id' => $this->user->id]);
 });
 
-test('a definable model can have a custom field definition', function () {
+test('a definable model can have a custom field definition', function (): void {
     // Arrange: Workspace already exists
 
     // Act: Create definition for the workspace todos
@@ -33,7 +36,7 @@ test('a definable model can have a custom field definition', function () {
     ]);
 });
 
-test('a customizable model can set and get a custom property', function () {
+test('a customizable model can set and get a custom property', function (): void {
     // Arrange: Create todo within the workspace
     $todo = Todo::factory()->create(['workspace_id' => $this->workspace->id]);
 
@@ -51,7 +54,7 @@ test('a customizable model can set and get a custom property', function () {
     );
 });
 
-test('it validates custom properties based on defined rules', function () {
+test('it validates custom properties based on defined rules', function (): void {
     // Arrange: define a field with email rule
     $this->workspace->customPropertyDefinitions()->create([
         'name' => 'reviewer_email',
@@ -62,7 +65,7 @@ test('it validates custom properties based on defined rules', function () {
     $todo = Todo::factory()->create(['workspace_id' => $this->workspace->id]);
 
     // Act & Assert: expect validation exception
-    expect(fn() => $todo->validateCustomProperties(['reviewer_email' => 'invalid-email']))
+    expect(fn () => $todo->validateCustomProperties(['reviewer_email' => 'invalid-email']))
         ->toThrow(ValidationException::class);
 
     // Act & Assert: do not expect validation exception
@@ -70,7 +73,7 @@ test('it validates custom properties based on defined rules', function () {
     expect($validated)->toBe(['reviewer_email' => 'test@example.com']);
 });
 
-test('it does not throw an error if no definable parent exists', function () {
+test('it does not throw an error if no definable parent exists', function (): void {
     // Arrange: create todo without workspace
     $todo = new Todo(); // getDefinableParent() returns null.
 
@@ -81,7 +84,7 @@ test('it does not throw an error if no definable parent exists', function () {
     expect($validated)->toBeEmpty();
 });
 
-test('it can search for a customizable model by a custom property', function () {
+test('it can search for a customizable model by a custom property', function (): void {
     // Arrange: create 2 todos with different customer property values
     $todoToFind = Todo::factory()->create(['workspace_id' => $this->workspace->id]);
     $todoToFind->setCustomProperty('search_key', 'unique_value_123');
