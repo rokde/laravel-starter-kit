@@ -20,6 +20,6 @@ class CustomPropertyDefinitionController
 
         CleanupCustomPropertyJob::dispatch($definable, $propertyName);
 
-        return back()->with('success', 'Custom property values will be deleted.');
+        return back()->with('message', 'Custom property values will be deleted.');
     }
 }
