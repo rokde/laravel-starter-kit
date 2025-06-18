@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "be2160990c989cee5f940dac35c0bfc9",
+    "content-hash": "a94a82f74d13f108dd0aa4caf00ec2d4",
     "packages": [
         {
             "name": "brick/math",
@@ -3007,6 +3007,38 @@
                 "proprietary"
             ],
             "description": "This module handles analytics with panphp as the base.",
+            "transport-options": {
+                "symlink": true,
+                "relative": true
+            }
+        },
+        {
+            "name": "modules/custom-properties",
+            "version": "1.0",
+            "dist": {
+                "type": "path",
+                "url": "app-modules/custom-properties",
+                "reference": "38964b6a5d206c9fae58d0e078772bbcc860533a"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Modules\\CustomProperties\\Providers\\CustomPropertiesServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Modules\\CustomProperties\\": "src/",
+                    "Modules\\CustomProperties\\Tests\\": "tests/",
+                    "Modules\\CustomProperties\\Database\\Factories\\": "database/factories/",
+                    "Modules\\CustomProperties\\Database\\Seeders\\": "database/seeders/"
+                }
+            },
+            "license": [
+                "proprietary"
+            ],
             "transport-options": {
                 "symlink": true,
                 "relative": true

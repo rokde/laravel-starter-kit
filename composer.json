@@ -15,6 +15,7 @@
         "laravel/framework": "^12.0",
         "laravel/tinker": "^2.10.1",
         "modules/analytics": "*",
+        "modules/custom-properties": "*",
         "modules/foundation-layout": "*",
         "modules/notification": "*",
         "modules/passkey": "*",
