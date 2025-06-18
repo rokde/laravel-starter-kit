@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\CustomProperties\Models\Concerns;
 
 use Illuminate\Database\Eloquent\Builder;
@@ -28,6 +30,7 @@ trait HasCustomProperties
         $properties = $this->custom_properties ?? [];
         $properties[$name] = $value;
         $this->custom_properties = $properties;
+
         return $this;
     }
 
@@ -57,7 +60,7 @@ trait HasCustomProperties
             }
         }
 
-        if (empty($rules)) {
+        if ($rules === []) {
             return [];
         }
 

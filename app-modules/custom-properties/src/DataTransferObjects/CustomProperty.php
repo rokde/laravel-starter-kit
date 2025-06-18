@@ -9,7 +9,9 @@ use Modules\CustomProperties\Models\CustomPropertyType;
 final readonly class CustomProperty
 {
     public ?array $rules;
+
     public ?array $options;
+
     public function __construct(
         public string $name,
         public string $label,
