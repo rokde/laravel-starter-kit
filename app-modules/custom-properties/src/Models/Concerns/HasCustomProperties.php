@@ -6,7 +6,6 @@ namespace Modules\CustomProperties\Models\Concerns;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 
@@ -36,7 +35,19 @@ trait HasCustomProperties
 
     public function getCustomProperty(string $name, mixed $default = null): mixed
     {
-        return Arr::get($this->custom_properties, $name, $default);
+        if (isset($this->custom_properties) && array_key_exists($name, $this->custom_properties)) {
+            return $this->custom_properties[$name];
+        }
+
+        if ($parent = $this->getDefinableParent()) {
+            $definition = $parent->customPropertyDefinitions()->where('name', $name)->first();
+
+            if ($definition && ! is_null($definition->default_value)) {
+                return $definition->default_value;
+            }
+        }
+
+        return $default;
     }
 
     /**

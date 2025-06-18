@@ -101,3 +101,34 @@ test('it can search for a customizable model by a custom property', function ():
     expect($results)->toHaveCount(1)
         ->and($results->first()->id)->toBe($todoToFind->id);
 });
+
+test('it dispatches a job to cleanup properties upon definition deletion', function (): void {
+    // Arrange: create a definition
+    $definition = $this->workspace->customPropertyDefinitions()->create(['name' => 'to_delete', 'label' => 'Old', 'type' => 'text']);
+
+    Queue::fake();
+
+    // Act: delete definition
+    $this->actingAs($this->user)
+        ->delete(route('custom-properties.destroy', $definition))
+        ->assertRedirectBack();
+
+    // Assert: check queue job
+    Queue::assertPushed(CleanupCustomPropertyJob::class, fn ($job): bool => $job->definable->id === $this->workspace->id &&
+        $job->propertyName === $definition->name);
+});
+
+test('getter returns definition default value if property is not set on model', function (): void {
+    // Arrange: create definition with default valut
+    $this->workspace->customPropertyDefinitions()->create([
+        'name' => 'team',
+        'label' => 'Team',
+        'type' => 'text',
+        'default_value' => 'Phoenix',
+    ]);
+    // create a todo without setting property value
+    $todo = Todo::factory()->create(['workspace_id' => $this->workspace->id, 'custom_properties' => null]);
+
+    // Act & Assert: getter should return default value
+    expect($todo->getCustomProperty('team'))->toBe('Phoenix');
+});
