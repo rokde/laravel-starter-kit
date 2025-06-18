@@ -10,7 +10,7 @@ use Illuminate\Validation\Rule;
 use Modules\CustomProperties\DataTransferObjects\CustomProperty;
 use Modules\CustomProperties\Models\CustomPropertyType;
 
-class ModifyCustomPropertyRequest extends FormRequest
+class StoreCustomPropertyRequest extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.
