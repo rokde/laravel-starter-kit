@@ -1,0 +1,22 @@
+{
+	"name": "modules/custom-properties",
+	"description": "Provide custom properties to all models",
+	"type": "library",
+	"version": "1.0",
+	"license": "proprietary",
+	"require": {},
+	"autoload": {
+		"psr-4": {
+			"Modules\\CustomProperties\\": "src/",
+			"Modules\\CustomProperties\\Tests\\": "tests/"
+		}
+	},
+	"minimum-stability": "stable",
+	"extra": {
+		"laravel": {
+			"providers": [
+				"Modules\\CustomProperties\\Providers\\CustomPropertiesServiceProvider"
+			]
+		}
+	}
+}
