@@ -32,7 +32,7 @@ class StoreCustomPropertyRequest extends FormRequest
     public function toDto(): CustomProperty
     {
         return new CustomProperty(
-            name: Str::of($this->validated('name'))->trim()->lower()->value(),
+            name: Str::of($this->validated('name'))->trim()->lower()->slug()->value(),
             label: Str::of($this->validated('label'))->trim()->value(),
             type: CustomPropertyType::tryFrom($this->validated('type')),
             rules: $this->has('rules') ? $this->array('rules') : null,
