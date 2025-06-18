@@ -5,6 +5,7 @@ This graph shows the dependencies between modules in the Laravel Starter Kit.
 ```mermaid
 graph TD;
     analytics["Analytics"];
+    customProperties["CustomProperties"];
     foundationLayout["FoundationLayout"];
     notification["Notification"];
     passkey["Passkey"];
@@ -12,7 +13,9 @@ graph TD;
     workspace["Workspace"];
     todo --> workspace;
     todo --> notification;
+    todo --> customProperties;
     workspace --> notification;
+    workspace --> customProperties;
 ```
 
 ## Module Details
@@ -24,6 +27,17 @@ This module provides tracking and visualization of user interactions with elemen
 **No dependencies**
 
 **Not used by other modules**
+
+### CustomProperties
+
+This module provides a generic way to add custom properties to various models within a parent-child (definable - customizable) relationship.
+
+**No dependencies**
+
+**Used by:**
+
+- Todo
+- Workspace
 
 ### FoundationLayout
 

@@ -150,6 +150,20 @@ erDiagram
         clicks unsignedBigInteger "default 0"
     }
 
+    custom_property_definitions {
+        id bigint PK
+        definable_id bigint
+        definable_type string
+        name string
+        label string
+        type string
+        rules json "nullable"
+        default_value text "nullable"
+        options json "nullable"
+        created_at timestamp
+        updated_at timestamp
+    }
+
     users ||--o{ sessions : "has many"
     users ||--o{ notifications : "has many"
     users ||--o{ workspaces : "owns many"
