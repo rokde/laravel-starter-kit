@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Collection;
+use Modules\CustomProperties\Models\Concerns\DefinesCustomProperties;
 use Modules\Workspace\Database\Factories\WorkspaceFactory;
 use Modules\Workspace\DataTransferObjects\Owner as OwnerDto;
 use Modules\Workspace\DataTransferObjects\Workspace as WorkspaceDto;
@@ -22,7 +23,7 @@ use Modules\Workspace\Events\WorkspaceUpdated;
 #[UseFactory(WorkspaceFactory::class)]
 class Workspace extends Model
 {
-    use HasFactory;
+    use DefinesCustomProperties, HasFactory;
 
     /**
      * The attributes that are mass assignable.

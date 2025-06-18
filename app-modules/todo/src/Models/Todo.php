@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Attributes\UseFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Modules\CustomProperties\Models\Concerns\HasCustomProperties;
 use Modules\Todo\Database\Factories\TodoFactory;
 use Modules\Workspace\Models\Concerns\HasWorkspaceRelation;
 use Modules\Workspace\Models\Workspace;
@@ -16,7 +17,7 @@ use Modules\Workspace\Models\Workspace;
 #[UseFactory(TodoFactory::class)]
 class Todo extends Model
 {
-    use HasFactory, HasWorkspaceRelation;
+    use HasCustomProperties, HasFactory, HasWorkspaceRelation;
 
     /**
      * The attributes that are mass assignable.
@@ -44,6 +45,11 @@ class Todo extends Model
     public function workspace(): BelongsTo
     {
         return $this->belongsTo(Workspace::class);
+    }
+
+    public function getDefinableParent(): ?Workspace
+    {
+        return $this->workspace;
     }
 
     /**
