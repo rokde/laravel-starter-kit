@@ -10,5 +10,6 @@ Route::middleware(['web', 'auth', 'verified'])
     ->name('custom-properties.')
     ->group(function (): void {
         Route::delete('/{definition}', [CustomPropertyDefinitionController::class, 'destroy'])
+            ->whereNumber('definition')
             ->name('destroy');
     });
