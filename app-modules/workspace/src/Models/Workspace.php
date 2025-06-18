@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Collection;
 use Modules\CustomProperties\Models\Concerns\DefinesCustomProperties;
+use Modules\Todo\Models\Todo;
 use Modules\Workspace\Database\Factories\WorkspaceFactory;
 use Modules\Workspace\DataTransferObjects\Owner as OwnerDto;
 use Modules\Workspace\DataTransferObjects\Workspace as WorkspaceDto;
@@ -100,5 +101,15 @@ class Workspace extends Model
             ),
             currentWorkspace: false,
         );
+    }
+
+    public function todos(): HasMany
+    {
+        return $this->hasMany(Todo::class);
+    }
+
+    public function getCustomizableItemsRelation(): HasMany
+    {
+        return $this->todos();
     }
 }
