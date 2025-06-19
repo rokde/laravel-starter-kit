@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import ConfirmButton from '@/components/ConfirmButton.vue';
 import DatePicker from '@/components/DatePicker.vue';
+import HeadingSmall from '@/components/HeadingSmall.vue';
 import InputDescription from '@/components/InputDescription.vue';
 import InputError from '@/components/InputError.vue';
 import { Button } from '@/components/ui/button';
@@ -13,7 +14,6 @@ import { slugify } from '@/lib/text-functions';
 import { CustomPropertyDefinition, Definable } from '@customProperties/types';
 import { useForm } from '@inertiajs/vue3';
 import { computed, ref } from 'vue';
-import HeadingSmall from '@/components/HeadingSmall.vue';
 
 const { t } = getI18n();
 
@@ -123,7 +123,7 @@ const removeRule = (ruleToRemove: RuleOption) => {
         </div>
 
         <div class="grid gap-2">
-            <Label for="name">{{ $t('Internal Name') }}</Label>
+            <Label for="name">{{ $t('Internal name') }}</Label>
             <Input id="name" v-model="form.name" type="text" class="block w-full" required pattern="[a-z0-9_]+" />
             <InputDescription
                 :description="
@@ -137,7 +137,7 @@ const removeRule = (ruleToRemove: RuleOption) => {
             <Label for="type">{{ $t('Type') }}</Label>
             <Select v-model="form.type" @update:model-value="resetDefaultValue" id="type">
                 <SelectTrigger class="min-w-48">
-                    <SelectValue :placeholder="$t('Please select')" class="p-2" />
+                    <SelectValue class="p-2" />
                 </SelectTrigger>
                 <SelectContent>
                     <SelectItem v-for="type in types" :key="type.value" :value="type.value">
@@ -145,11 +145,14 @@ const removeRule = (ruleToRemove: RuleOption) => {
                     </SelectItem>
                 </SelectContent>
             </Select>
+            <InputDescription
+                :description="$t('The data type of the field configures the possible input element and a base validation of the provided value.')"
+            />
             <InputError :message="form.errors.type" />
         </div>
 
         <div class="grid gap-2">
-            <Label for="default_value">{{ $t('Default Value') }}</Label>
+            <Label for="default_value">{{ $t('Default value') }}</Label>
 
             <Input v-if="form.type === 'text'" id="default_value" v-model="form.default_value" type="text" class="block w-full" />
             <Input v-if="form.type === 'number'" id="default_value" v-model="form.default_value" type="number" class="block w-48" />
@@ -158,6 +161,11 @@ const removeRule = (ruleToRemove: RuleOption) => {
                 <Checkbox id="default_value" v-model="form.default_value as any" />
                 {{ (form.default_value as any as boolean) ? $t('Checked') : $t('Unchecked') }}
             </Label>
+            <InputDescription
+                :description="
+                    $t('The default value is used for all items that do not have a value set. It will be the pre-set value on creating new items.')
+                "
+            />
 
             <InputError :message="form.errors.default_value" />
         </div>
@@ -206,6 +214,13 @@ const removeRule = (ruleToRemove: RuleOption) => {
                     <Button type="button" @click="addRule(currentRule)" :disabled="!customRuleInput">{{ $t('Add') }}</Button>
                 </div>
             </div>
+            <InputDescription
+                :description="
+                    $t(
+                        'Rules provide form input validation to ensure that the value entered is valid. For example, you can require a value to be numeric or a string with a maximum length of 255 characters.',
+                    )
+                "
+            />
 
             <InputError :message="form.errors.rules" />
         </div>
