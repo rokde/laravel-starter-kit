@@ -11,6 +11,7 @@ const { t } = getI18n();
 
 interface Props {
     workspace: Workspace;
+    type: string;
 }
 
 const props = defineProps<Props>();
@@ -32,7 +33,7 @@ const breadcrumbs: BreadcrumbItem[] = [
         <Head :title="$t('Todo settings')" />
 
         <WorkspaceSettingsLayout>
-            <CustomPropertiesManager :definable="{ id: props.workspace.id, type: 'Modules\\Workspace\\Models\\Workspace' }" />
+            <CustomPropertiesManager :definable="{ id: props.workspace.id, type: props.type }" />
         </WorkspaceSettingsLayout>
     </AppLayout>
 </template>

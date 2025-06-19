@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Route;
+use Modules\Workspace\DataTransferObjects\Workspace;
 use Modules\Workspace\Http\Controllers\WorkspaceController;
 use Modules\Workspace\Http\Controllers\WorkspaceInvitationsController;
 use Modules\Workspace\Http\Controllers\WorkspaceMembersController;
@@ -66,6 +67,7 @@ Route::middleware(['web', 'auth', 'verified'])
                     abort_if($workspace === null, Response::HTTP_NOT_FOUND);
 
                     return Inertia\Inertia::render('workspace::Todos', [
+                        'type' => Workspace::class,
                         'workspace' => $workspace->only('id', 'name'),
                     ]);
                 })
