@@ -13,12 +13,14 @@ import { slugify } from '@/lib/text-functions';
 import { CustomPropertyDefinition, Definable } from '@customProperties/types';
 import { useForm } from '@inertiajs/vue3';
 import { computed, ref } from 'vue';
+import HeadingSmall from '@/components/HeadingSmall.vue';
 
 const { t } = getI18n();
 
 interface RuleOption {
     value: string;
     label: string;
+    display?: 'input';
     input?: string;
 }
 
@@ -77,16 +79,29 @@ const rules: RuleOption[] = [
     { value: 'required', label: t('Required') },
     { value: 'numeric', label: t('Numeric') },
     { value: 'string', label: t('String') },
-    { value: '-', label: t('Custom'), input: '' },
+    { value: '-', label: t('Custom'), display: 'input' },
 ];
 
 const currentRule = ref<RuleOption | null>(null);
+const customRuleInput = ref('');
+
 const selectableRules = computed(() =>
     rules.filter((rule) => rule.value === '-' || !selectedRules.value.some((selected) => selected.value === rule.value)),
 );
 
 const addRule = (rule: RuleOption) => {
-    selectedRules.value.push(rule);
+    if (rule.display === 'input') {
+        if (!customRuleInput.value) return;
+
+        selectedRules.value.push({
+            ...rule,
+            value: customRuleInput.value,
+            label: `${t('Custom')}: ${customRuleInput.value}`,
+        });
+        customRuleInput.value = '';
+    } else {
+        selectedRules.value.push(rule);
+    }
     currentRule.value = null;
 };
 
@@ -98,7 +113,7 @@ const removeRule = (ruleToRemove: RuleOption) => {
 
 <template>
     <form @submit.prevent="createDefinition" class="space-y-6">
-        <h4 class="text-md font-medium text-gray-900 dark:text-gray-100">Neues Feld erstellen</h4>
+        <HeadingSmall :title="$t('Add custom property')" />
 
         <div class="grid gap-2">
             <Label for="label">{{ $t('Label') }}</Label>
@@ -134,7 +149,7 @@ const removeRule = (ruleToRemove: RuleOption) => {
         </div>
 
         <div class="grid gap-2">
-            <Label for="default_value">{{ $t('Default Value (optional)') }}</Label>
+            <Label for="default_value">{{ $t('Default Value') }}</Label>
 
             <Input v-if="form.type === 'text'" id="default_value" v-model="form.default_value" type="text" class="block w-full" />
             <Input v-if="form.type === 'number'" id="default_value" v-model="form.default_value" type="number" class="block w-48" />
@@ -150,27 +165,47 @@ const removeRule = (ruleToRemove: RuleOption) => {
         <div class="grid gap-2">
             <Label for="rules">{{ $t('Rules') }}</Label>
 
-            <dl class="grid grid-cols-2">
-                <template v-for="(rule, index) of selectedRules" :key="index">
-                    <dt v-if="rule.value !== '-'">{{ rule.label }}</dt>
-                    <dt v-else class="flex">
-                        {{ $t('Custom') }}:
-                        <Input v-model="selectedRules[index].input" :key="index" type="text" />
-                    </dt>
-                    <dd><ConfirmButton without-confirmation title="" confirmation="" as="icon" @confirmed="removeRule(rule)" /></dd>
+            <dl class="grid grid-cols-3">
+                <template v-for="rule of selectedRules">
+                    <dt>{{ rule.label }}</dt>
+                    <dd class="font-mono">{{ rule.value }}</dd>
+                    <dd class="text-right">
+                        <ConfirmButton without-confirmation title="" confirmation="" as="icon" @confirmed="removeRule(rule)" />
+                    </dd>
                 </template>
             </dl>
 
-            <Select :model-value="currentRule" @update:model-value="(rule: RuleOption) => addRule(rule)">
-                <SelectTrigger class="min-w-48">
-                    <SelectValue :placeholder="$t('Add a rule')" class="p-2" />
-                </SelectTrigger>
-                <SelectContent>
-                    <SelectItem v-for="rule in selectableRules" :key="rule.value" :value="rule">
-                        {{ rule.label }}
-                    </SelectItem>
-                </SelectContent>
-            </Select>
+            <div class="flex gap-2">
+                <Select
+                    :model-value="currentRule"
+                    @update:model-value="
+                        (rule: RuleOption) => {
+                            currentRule = rule;
+                            if (!rule.display) addRule(rule);
+                        }
+                    "
+                >
+                    <SelectTrigger class="min-w-48">
+                        <SelectValue :placeholder="$t('Add a rule')" class="p-2" />
+                    </SelectTrigger>
+                    <SelectContent>
+                        <SelectItem v-for="rule in selectableRules" :key="rule.value" :value="rule">
+                            {{ rule.label }}
+                        </SelectItem>
+                    </SelectContent>
+                </Select>
+
+                <div v-if="currentRule?.display === 'input'" class="flex gap-2">
+                    <Input
+                        v-model="customRuleInput"
+                        type="text"
+                        :placeholder="$t('Enter custom rule')"
+                        class="w-64"
+                        @keydown.enter.stop="addRule(currentRule)"
+                    />
+                    <Button type="button" @click="addRule(currentRule)" :disabled="!customRuleInput">{{ $t('Add') }}</Button>
+                </div>
+            </div>
 
             <InputError :message="form.errors.rules" />
         </div>
