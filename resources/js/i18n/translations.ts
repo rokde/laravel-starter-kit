@@ -727,14 +727,17 @@ const translations: Translations = {
         'No analytics yet.': 'Es gibt noch keine Analysen.',
         'Add a rule': 'Eine Regel hinzufügen',
         'Add custom property': 'Benutzerdefiniertes Attribut hinzufügen',
+        Boolean: 'Wahrheitswert',
         Checkbox: 'Kontrollkästchen',
-        Checked: 'Ausgewählt',
+        Checked: 'Angehakt',
+        Color: 'Farbe',
         'Custom properties': 'Benutzerdefinierte Attribute',
         Custom: 'Benutzerdefiniert',
         'Default value': 'Standardwert',
         'Delete property': 'Attribut löschen',
         'Do you really want to remove the property? All property values will be removed on all items. This action can not be undone.':
             'Möchten Sie das Attribut wirklich entfernen? Alle Attributwerte werden für alle Ressourcen entfernt. Diese Aktion kann nicht rückgängig gemacht werden.',
+        'Hex Color': 'Hexadezimaler Farbcode',
         'Internal name': 'Interner Name',
         Label: 'Bezeichnung',
         'Manage your custom properties to extend your resources to your needs.':
@@ -756,6 +759,8 @@ const translations: Translations = {
         'The label is used to identify the field in the UI.':
             'Die Bezeichnung wird zur Identifizierung des Attributes in der Benutzeroberfläche verwendet.',
         Type: 'Datentyp',
+        Unchecked: 'Nicht angehakt',
+        Url: 'URL',
         'All notifications': 'Alle Benachrichtigungen',
         'Are you sure you want to delete this notification?': 'Sind Sie sicher, dass Sie diese Benachrichtigung löschen möchten?',
         Date: 'Datum',
