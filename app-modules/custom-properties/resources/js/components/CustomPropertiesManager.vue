@@ -1,10 +1,16 @@
 <script setup lang="ts">
 import ConfirmButton from '@/components/ConfirmButton.vue';
-import HeadingSmall from '@/components/HeadingSmall.vue';
+import DataTable from '@/components/DataTable/DataTable.vue';
+import { ITableOptions } from '@/components/DataTable/types';
+import Heading from '@/components/Heading.vue';
+import { Separator } from '@/components/ui/separator';
+import { getI18n } from '@/i18n';
 import CreateCustomPropertyForDefiner from '@customProperties/components/CreateCustomPropertyForDefiner.vue';
 import { CustomPropertyDefinition, Definable } from '@customProperties/types';
 import { router } from '@inertiajs/vue3';
 import { onMounted, PropType, ref } from 'vue';
+
+const { t } = getI18n();
 
 const props = defineProps({
     definable: {
@@ -42,55 +48,61 @@ const deleteDefinition = (id: number) => {
 };
 
 onMounted(() => fetchDefinitions());
+
+const tableOptions: ITableOptions<CustomPropertyDefinition> = {
+    key: 'id',
+    withRowActions: true,
+    columns: [
+        {
+            key: 'label',
+            label: t('Label'),
+            class: 'w-full',
+        },
+        {
+            key: 'type',
+            label: t('Type'),
+            class: 'w-64',
+        },
+        {
+            key: 'default_value',
+            label: t('Default value'),
+            class: 'w-64 text-right',
+        },
+        {
+            key: 'rules',
+            label: t('Rules'),
+            class: 'w-64',
+            value: (row) => row.rules?.join(', '),
+        },
+    ],
+};
 </script>
 
 <template>
     <div class="flex flex-col space-y-6">
-        <HeadingSmall :title="$t('Custom Properties')" :description="$t('Manage your custom properties to extend your resources to your needs.')" />
+        <Heading :title="$t('Custom properties')" :description="$t('Manage your custom properties to extend your resources to your needs.')" />
 
-        <div class="mt-6 flow-root">
-            <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-                <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-                    <table v-if="definitions.length > 0" class="min-w-full divide-y divide-gray-300 dark:divide-gray-700">
-                        <thead>
-                            <tr>
-                                <th scope="col" class="py-3.5 pr-3 pl-4 text-left text-sm font-semibold text-gray-900 sm:pl-0 dark:text-gray-100">
-                                    Label
-                                </th>
-                                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-gray-100">
-                                    Interner Name
-                                </th>
-                                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-gray-100">Typ</th>
-                                <th scope="col" class="relative py-3.5 pr-4 pl-3 sm:pr-0"><span class="sr-only">Löschen</span></th>
-                            </tr>
-                        </thead>
-                        <tbody class="divide-y divide-gray-200 dark:divide-gray-800">
-                            <tr v-for="definition in definitions" :key="definition.id">
-                                <td class="py-4 pr-3 pl-4 text-sm font-medium whitespace-nowrap text-gray-900 sm:pl-0 dark:text-gray-100">
-                                    {{ definition.label }}
-                                </td>
-                                <td class="px-3 py-4 text-sm whitespace-nowrap text-gray-500 dark:text-gray-400">
-                                    <code>{{ definition.name }}</code>
-                                </td>
-                                <td class="px-3 py-4 text-sm whitespace-nowrap text-gray-500 dark:text-gray-400">{{ definition.type }}</td>
-                                <td class="relative py-4 pr-4 pl-3 text-right text-sm font-medium whitespace-nowrap sm:pr-0">
-                                    <ConfirmButton
-                                        :title="$t('Delete property')"
-                                        :confirmation="
-                                            $t(
-                                                'Do you really want to remove the property? All property values will be removed on all items. This action can not be undone.',
-                                            )
-                                        "
-                                        @confirmed="deleteDefinition(definition.id)"
-                                    />
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <p v-else class="text-sm text-gray-500 dark:text-gray-400">Noch keine benutzerdefinierten Felder angelegt.</p>
-                </div>
-            </div>
-        </div>
+        <DataTable :rows="definitions" :options="tableOptions">
+            <template #label="{ row: definition }">
+                {{ definition.label }}<br />
+                <span class="text-muted-foreground font-mono text-xs">{{ definition.name }}</span>
+            </template>
+
+            <template #rowActions="{ row: definition }">
+                <ConfirmButton
+                    as="icon"
+                    :title="$t('Delete property')"
+                    :confirmation="
+                        $t(
+                            'Do you really want to remove the property? All property values will be removed on all items. This action can not be undone.',
+                        )
+                    "
+                    @confirmed="deleteDefinition(definition.id)"
+                />
+            </template>
+        </DataTable>
+
+        <Separator class="my-6" />
 
         <CreateCustomPropertyForDefiner :definable="props.definable" @created="fetchDefinitions" />
     </div>
