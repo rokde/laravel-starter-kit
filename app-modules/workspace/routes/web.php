@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Route;
 use Modules\Workspace\Http\Controllers\WorkspaceController;
 use Modules\Workspace\Http\Controllers\WorkspaceInvitationsController;
@@ -54,6 +55,21 @@ Route::middleware(['web', 'auth', 'verified'])
                 Route::delete('/{invitation}', [WorkspaceInvitationsController::class, 'destroy'])
                     ->whereNumber('invitation')
                     ->name('revoke');
+            });
+
+        Route::prefix('current/todos')
+            ->name('todos.')
+            ->group(function (): void {
+                Route::get('/', function (Illuminate\Http\Request $request): Inertia\Response {
+                    /** @var Modules\Workspace\Models\Workspace */
+                    $workspace = $request->user()->currentWorkspace;
+                    abort_if($workspace === null, Response::HTTP_NOT_FOUND);
+
+                    return Inertia\Inertia::render('workspace::Todos', [
+                        'workspace' => $workspace->only('id', 'name'),
+                    ]);
+                })
+                    ->name('index');
             });
     });
 
