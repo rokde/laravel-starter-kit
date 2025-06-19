@@ -54,6 +54,8 @@ const createDefinition = () => {
         preserveScroll: true,
         onSuccess: () => {
             form.reset();
+            selectedRules.value = [];
+            customRuleInput.value = '';
             emits('created');
         },
     });
