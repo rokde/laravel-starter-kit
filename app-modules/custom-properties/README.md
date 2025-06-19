@@ -2,7 +2,7 @@
 
 ## Overview
 
-The Custom Properties module provides a generic way to add custom properties to various models within a parent-child (definable - customizable) relationship. This allows for dynamic extension of models without requiring database schema changes.
+The Custom properties module provides a generic way to add custom properties to various models within a parent-child (definable - customizable) relationship. This allows for dynamic extension of models without requiring database schema changes.
 
 ## Features
 
