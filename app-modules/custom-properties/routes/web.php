@@ -9,6 +9,8 @@ Route::middleware(['web', 'auth', 'verified'])
     ->prefix('custom-properties')
     ->name('custom-properties.')
     ->group(function (): void {
+        Route::get('/', [CustomPropertyDefinitionController::class, 'index'])
+            ->name('index');
         Route::post('/', [CustomPropertyDefinitionController::class, 'store'])
             ->name('store');
         Route::delete('/{definition}', [CustomPropertyDefinitionController::class, 'destroy'])
