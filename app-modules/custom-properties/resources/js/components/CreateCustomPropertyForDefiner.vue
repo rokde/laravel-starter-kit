@@ -71,14 +71,20 @@ const types = [
     { value: 'text', label: t('Text') },
     { value: 'date', label: t('Date') },
     { value: 'number', label: t('Number') },
+    { value: 'color', label: t('Color') },
     { value: 'boolean', label: t('Checkbox') },
 ];
 
 const selectedRules = ref<RuleOption[]>([]);
 const rules: RuleOption[] = [
     { value: 'required', label: t('Required') },
-    { value: 'numeric', label: t('Numeric') },
     { value: 'string', label: t('String') },
+    { value: 'email', label: t('Email') },
+    { value: 'url', label: t('Url') },
+    { value: 'hex_color', label: t('Hex Color') },
+    { value: 'numeric', label: t('Numeric') },
+    { value: 'date', label: t('Date') },
+    { value: 'boolean', label: t('Boolean') },
     { value: '-', label: t('Custom'), display: 'input' },
 ];
 
@@ -156,6 +162,7 @@ const removeRule = (ruleToRemove: RuleOption) => {
 
             <Input v-if="form.type === 'text'" id="default_value" v-model="form.default_value" type="text" class="block w-full" />
             <Input v-if="form.type === 'number'" id="default_value" v-model="form.default_value" type="number" class="block w-48" />
+            <Input v-if="form.type === 'color'" id="default_value" v-model="form.default_value" type="color" class="block w-48" />
             <DatePicker v-if="form.type === 'date'" id="default_value" v-model="form.default_value" clearable class="block w-full" />
             <Label v-if="form.type === 'boolean'" class="flex w-full items-center">
                 <Checkbox id="default_value" v-model="form.default_value as any" />
