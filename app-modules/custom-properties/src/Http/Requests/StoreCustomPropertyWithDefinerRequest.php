@@ -32,7 +32,7 @@ class StoreCustomPropertyWithDefinerRequest extends StoreCustomPropertyRequest
             ],
             'definable_id' => ['required', 'integer'],
             'name' => ['required', 'string', 'alpha_dash',
-                Rule::unique('custom_field_definitions')->where(fn ($query) => $query->where('definable_type', $this->definable_type)
+                Rule::unique('custom_property_definitions')->where(fn ($query) => $query->where('definable_type', $this->definable_type)
                     ->where('definable_id', $this->definable_id)),
             ],
 
