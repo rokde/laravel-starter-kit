@@ -25,6 +25,10 @@ const breadcrumbs: BreadcrumbItem[] = [
         title: props.workspace.name,
         href: '/workspaces/current',
     },
+    {
+        title: t('Todo settings'),
+        href: '/workspace/current/todos',
+    },
 ];
 </script>
 
