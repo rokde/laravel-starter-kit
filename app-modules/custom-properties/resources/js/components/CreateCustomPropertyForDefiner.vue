@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import ConfirmButton from '@/components/ConfirmButton.vue';
 import DatePicker from '@/components/DatePicker.vue';
 import InputDescription from '@/components/InputDescription.vue';
 import InputError from '@/components/InputError.vue';
@@ -12,7 +13,6 @@ import { slugify } from '@/lib/text-functions';
 import { CustomPropertyDefinition, Definable } from '@customProperties/types';
 import { useForm } from '@inertiajs/vue3';
 import { computed, ref } from 'vue';
-import ConfirmButton from '@/components/ConfirmButton.vue';
 
 const { t } = getI18n();
 
