@@ -66,7 +66,7 @@ Route::middleware(['web', 'auth', 'verified'])
                     abort_if($workspace === null, Response::HTTP_NOT_FOUND);
 
                     return Inertia\Inertia::render('workspace::Todos', [
-                        'type' => \Modules\Workspace\Models\Workspace::class,
+                        'type' => Modules\Workspace\Models\Workspace::class,
                         'workspace' => $workspace->only('id', 'name'),
                     ]);
                 })
