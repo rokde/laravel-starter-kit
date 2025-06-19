@@ -737,6 +737,7 @@ const translations: Translations = {
         'Delete property': 'Attribut löschen',
         'Do you really want to remove the property? All property values will be removed on all items. This action can not be undone.':
             'Möchten Sie das Attribut wirklich entfernen? Alle Attributwerte werden für alle Ressourcen entfernt. Diese Aktion kann nicht rückgängig gemacht werden.',
+        'Enter custom rule': 'Benutzerdefinierte Regel eingeben',
         'Hex Color': 'Hexadezimaler Farbcode',
         'Internal name': 'Interner Name',
         Label: 'Bezeichnung',

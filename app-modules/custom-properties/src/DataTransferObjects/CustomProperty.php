@@ -19,6 +19,7 @@ final readonly class CustomProperty
         ?array $rules = null,
         public mixed $defaultValue = null,
         ?array $options = null,
+        public ?int $sequence = null,
     ) {
         if (is_array($rules) && count($rules) < 1) {
             $rules = null;
@@ -40,6 +41,7 @@ final readonly class CustomProperty
             'rules' => $this->rules,
             'default_value' => $this->defaultValue,
             'options' => $this->options,
+            'sequence' => $this->sequence,
         ];
     }
 }

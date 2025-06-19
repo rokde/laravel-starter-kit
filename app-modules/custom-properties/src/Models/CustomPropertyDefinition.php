@@ -21,6 +21,7 @@ class CustomPropertyDefinition extends Model
         'rules',
         'default_value',
         'options',
+        'sequence',
     ];
 
     protected $casts = [
