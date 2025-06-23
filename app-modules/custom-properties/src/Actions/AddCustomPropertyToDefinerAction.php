@@ -13,12 +13,7 @@ class AddCustomPropertyToDefinerAction
     public function handle(Model $definer, CustomProperty $customProperty): void
     {
         DB::transaction(function () use ($customProperty, $definer): void {
-            $nextSequence = $customProperty->sequence ?? $definer->customPropertyDefinitions()->count() + 1;
-
-            $definer->customPropertyDefinitions()->create([
-                ...$customProperty->toArray(),
-                'sequence' => $nextSequence,
-            ]);
+            $definer->customPropertyDefinitions()->create($customProperty->toArray());
         });
     }
 }

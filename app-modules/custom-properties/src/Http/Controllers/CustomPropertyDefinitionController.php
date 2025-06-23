@@ -30,10 +30,7 @@ class CustomPropertyDefinitionController
 
         $definable = $validated['definable_type']::findOrFail($validated['definable_id']);
 
-        $definitions = $definable->customPropertyDefinitions()
-            ->orderBy('sequence')
-            ->orderBy('label')
-            ->get();
+        $definitions = $definable->customPropertyDefinitions()->orderBy('label')->get();
 
         return response()->json(['data' => $definitions]);
     }

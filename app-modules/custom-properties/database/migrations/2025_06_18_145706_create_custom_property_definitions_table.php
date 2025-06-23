@@ -23,8 +23,6 @@ return new class() extends Migration
             $table->text('default_value')->nullable()->comment('default value of the property');
             $table->json('options')->nullable()->comment('options for necessary types like select');
 
-            $table->unsignedInteger('sequence')->default(0)->comment('order of the property in the list');
-
             $table->timestamps();
 
             $table->unique(['definable_id', 'definable_type', 'name'], 'definable_name_unique');
