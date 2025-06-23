@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { cn } from '@/lib/utils'
-import { Label, type LabelProps } from 'reka-ui'
-import { computed, type HTMLAttributes } from 'vue'
+import { cn } from '@/lib/utils';
+import { Label, type LabelProps } from 'reka-ui';
+import { computed, type HTMLAttributes } from 'vue';
 
-const props = defineProps<LabelProps & { class?: HTMLAttributes['class'] }>()
+const props = defineProps<LabelProps & { class?: HTMLAttributes['class']; required?: boolean; }>()
 
 const delegatedProps = computed(() => {
   const { class: _, ...delegated } = props
@@ -24,5 +24,7 @@ const delegatedProps = computed(() => {
     "
   >
     <slot />
+    <span v-if="props.required" class="text-red-800 text-lg -ml-2">*</span>
+    <span v-if="$attrs.title" class="rounded-full border border-muted-foreground size-4 text-center text-xs text-muted-foreground">?</span>
   </Label>
 </template>
