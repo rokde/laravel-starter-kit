@@ -6,29 +6,40 @@ namespace Modules\CustomProperties\DataTransferObjects;
 
 use Modules\CustomProperties\Models\CustomPropertyType;
 
-final readonly class CustomProperty
+final class CustomProperty
 {
-    public ?array $rules;
+    public readonly ?array $rules;
 
-    public ?array $options;
+    public readonly ?array $propertyOptions;
+    public readonly ?array $displayOptions;
+
+    public readonly ?array $options;
 
     public function __construct(
-        public string $name,
-        public string $label,
-        public CustomPropertyType $type,
+        public readonly string $name,
+        public readonly string $label,
+        public readonly CustomPropertyType $type,
         ?array $rules = null,
-        public mixed $defaultValue = null,
+        public readonly mixed $defaultValue = null,
+        ?array $propertyOptions = null,
+        ?array $displayOptions = null,
         ?array $options = null,
     ) {
-        if (is_array($rules) && count($rules) < 1) {
-            $rules = null;
+        if ($rules === null) {
+            $rules = [];
         }
-        $this->rules = $rules;
+        $this->rules = [
+            ...$type->defaultRules(),
+            ...$rules,
+        ];
 
         if (is_array($options) && count($options) < 1) {
             $options = null;
         }
         $this->options = $options;
+
+        $this->propertyOptions = $type->resolvePropertyOptions($propertyOptions);
+        $this->displayOptions = $type->resolveDisplayOptions($displayOptions);
     }
 
     public function toArray(): array
@@ -39,6 +50,8 @@ final readonly class CustomProperty
             'type' => $this->type->value,
             'rules' => $this->rules,
             'default_value' => $this->defaultValue,
+            'property_options' => $this->propertyOptions,
+            'display_options' => $this->displayOptions,
             'options' => $this->options,
         ];
     }

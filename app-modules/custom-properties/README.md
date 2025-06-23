@@ -13,6 +13,58 @@ The Custom properties module provides a generic way to add custom properties to 
 - Default values for custom properties
 - Options for select-type properties
 
+### Process to create a new property
+
+1. Select type (composite types with internal datatype and the form input and validation rule to store a value)
+    - text:
+      - type: string
+      - options: none
+      - form input: text input
+      - display: text
+    - number:
+      - type: number
+      - options: format with precision, suffix (currency, percentage)
+      - form input: number input
+      - display: formatted number (currency, precision, ...), progress w/o value, ring w/o value
+    - select:
+      - type: text
+      - options: sort a-z, z-a, no; option items - each has background color and icon
+      - form input: select single option with adding items
+      - display: selected item with background and icon
+    - multiselect:
+      - type: json
+      - options: sort a-z, z-a, no; option items - each has background color and icon
+      - form input: select multiple option with adding items
+      - display: selected items with background and icon in their selected order
+    - date:
+      - type: date
+      - options: format, relative display
+      - form input: date picker
+      - display: formatted date
+    - datetime:
+      - type: datetime
+      - options: format, 12 hour, relative display
+      - form input: date picker with time picker
+      - display: formatted date and time
+    - time:
+      - type: time
+      - options: format, 12 hour, relative display
+      - form input: time picker
+      - display: formatted time
+    - checkbox:
+      - type: boolean
+      - options: none
+      - form input: checkbox
+      - display: checkbox
+    - id:
+      - type: unsigned big increment number
+      - options: prefix
+      - form input: none
+      - display: prefixed-ID
+2. Property got automatically a name
+3. Change settings of the property
+   - name and options
+
 ## Usage
 
 ### Setup

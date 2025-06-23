@@ -20,11 +20,15 @@ class CustomPropertyDefinition extends Model
         'type',
         'rules',
         'default_value',
+        'property_options',
+        'display_options',
         'options',
     ];
 
     protected $casts = [
         'rules' => 'array',
+        'property_options' => 'array',
+        'display_options' => 'array',
         'options' => 'array',
     ];
 

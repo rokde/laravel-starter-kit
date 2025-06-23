@@ -21,6 +21,8 @@ return new class() extends Migration
 
             $table->json('rules')->nullable()->comment('validation rules as array');
             $table->text('default_value')->nullable()->comment('default value of the property');
+            $table->json('property_options')->nullable()->comment('property options');
+            $table->json('display_options')->nullable()->comment('display options');
             $table->json('options')->nullable()->comment('options for necessary types like select');
 
             $table->timestamps();

@@ -5,6 +5,7 @@ export interface CustomPropertyDefinition {
     type: 'text' | 'date' | 'number' | 'boolean';
     rules: string[] | null;
     default_value: string | null;
+    property_options: { [key: string]: string | number | boolean | null };
     options: string[] | null;
 }
 
