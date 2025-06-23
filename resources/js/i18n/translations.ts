@@ -794,6 +794,21 @@ const translations: Translations = {
             passkeys: 'Passkeys',
         },
     },
+    ar: {
+        'passkeys::passkeys': {
+            authenticate_using_passkey: 'المصادقة باستخدام مفتاح المرور',
+            create: 'إنشاء',
+            delete: 'حذف',
+            error_something_went_wrong_generating_the_passkey: 'حدث خطأ أثناء إنشاء مفتاح المرور.',
+            invalid: 'تعذر تسجيل الدخول باستخدام مفتاح المرور المُقدم',
+            last_used: 'آخر استخدام',
+            name: 'الاسم',
+            name_placeholder: 'أدخل اسم مفتاح المرور',
+            no_passkeys_registered: 'لا توجد مفاتيح مرور مسجلة',
+            not_used_yet: 'لم يُستخدم بعد',
+            passkeys: 'مفاتيح المرور',
+        },
+    },
     cz: {
         'passkeys::passkeys': {
             authenticate_using_passkey: 'Ověřit pomocí přístupového klíče',
@@ -897,6 +912,36 @@ const translations: Translations = {
             no_passkeys_registered: 'Žiadne prístupové kľúče nie sú registrované',
             not_used_yet: 'Ešte nepoužité',
             passkeys: 'Prístupové kľúče',
+        },
+    },
+    tr: {
+        'passkeys::passkeys': {
+            authenticate_using_passkey: 'Geçiş Anahtarı Kullanarak Oturum Aç',
+            create: 'Oluştur',
+            delete: 'Sil',
+            error_something_went_wrong_generating_the_passkey: 'Geçiş anahtarı oluşturulurken bir şeyler ters gitti.',
+            invalid: 'Seçilen geçiş anahtarı ile giriş yapılırken bir hata oluştu.',
+            last_used: 'Son Kullanım',
+            name: 'İsim',
+            name_placeholder: 'Geçiş Anahtarına Bir İsim Verin',
+            no_passkeys_registered: 'Sistemde kayıtlı bir geçiş anahtarınız yok',
+            not_used_yet: 'Hiç Kullanılmadı',
+            passkeys: 'Geçiş Anahtarları',
+        },
+    },
+    zh_CN: {
+        'passkeys::passkeys': {
+            authenticate_using_passkey: '使用通行密钥进行验证',
+            create: '创建',
+            delete: '删除',
+            error_something_went_wrong_generating_the_passkey: '生成通行密钥时发生错误',
+            invalid: '无法使用提供的通行密钥登录',
+            last_used: '上次使用',
+            name: '名称',
+            name_placeholder: '输入通行密钥名称',
+            no_passkeys_registered: '未注册通行密钥',
+            not_used_yet: '尚未使用',
+            passkeys: '通行密钥',
         },
     },
 };
