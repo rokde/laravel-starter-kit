@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "be2160990c989cee5f940dac35c0bfc9",
+    "content-hash": "196b5db63d02548fe485c5d91c4c31dc",
     "packages": [
         {
             "name": "brick/math",
@@ -3038,6 +3038,37 @@
                 "proprietary"
             ],
             "description": "The foundation layout domain handles configuration stuff regarding the used layout variant.",
+            "transport-options": {
+                "symlink": true,
+                "relative": true
+            }
+        },
+        {
+            "name": "modules/model-facets",
+            "version": "1.0",
+            "dist": {
+                "type": "path",
+                "url": "app-modules/model-facets",
+                "reference": "457c2201385a3eb5c03b21bcdbea7941d4f1a598"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Modules\\ModelFacets\\Providers\\ModelFacetsServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Modules\\ModelFacets\\": "src/",
+                    "Modules\\ModelFacets\\Tests\\": "tests/"
+                }
+            },
+            "license": [
+                "proprietary"
+            ],
+            "description": "The model facets extends the models with facet functionality",
             "transport-options": {
                 "symlink": true,
                 "relative": true

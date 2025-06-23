@@ -1,0 +1,22 @@
+{
+	"name": "modules/model-facets",
+	"description": "The model facets extends the models with facet functionality",
+	"type": "library",
+	"version": "1.0",
+	"license": "proprietary",
+	"require": {},
+	"autoload": {
+		"psr-4": {
+			"Modules\\ModelFacets\\": "src/",
+			"Modules\\ModelFacets\\Tests\\": "tests/"
+		}
+	},
+	"minimum-stability": "stable",
+	"extra": {
+		"laravel": {
+			"providers": [
+				"Modules\\ModelFacets\\Providers\\ModelFacetsServiceProvider"
+			]
+		}
+	}
+}

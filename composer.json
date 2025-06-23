@@ -16,6 +16,7 @@
         "laravel/tinker": "^2.10.1",
         "modules/analytics": "*",
         "modules/foundation-layout": "*",
+        "modules/model-facets": "*",
         "modules/notification": "*",
         "modules/passkey": "*",
         "modules/todo": "^1.0",
