@@ -6,14 +6,23 @@ import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { getI18n } from '@/i18n';
 import { useForm } from '@inertiajs/vue3';
 import SignInWithPasskey from '@passkey/components/SignInWithPasskey.vue';
 import { LoaderCircle } from 'lucide-vue-next';
 
-defineProps<{
+const { t } = getI18n();
+
+interface Props {
     canResetPassword: boolean;
-    canRegister: boolean;
-}>();
+    canRegister?: boolean;
+    submitLabel?: string;
+}
+
+const props = withDefaults(defineProps<Props>(), {
+    canRegister: false,
+    submitLabel: t('Log in'),
+});
 
 const form = useForm({
     email: '',
@@ -49,7 +58,7 @@ const submit = () => {
             <div class="grid gap-2">
                 <div class="flex items-center justify-between">
                     <Label for="password">{{ $t('Password') }}</Label>
-                    <TextLink v-if="canResetPassword" :href="route('password.request')" class="text-sm" :tabindex="5">
+                    <TextLink v-if="props.canResetPassword" :href="route('password.request')" class="text-sm" :tabindex="5">
                         {{ $t('Forgot password?') }}
                     </TextLink>
                 </div>
@@ -77,13 +86,13 @@ const submit = () => {
 
             <Button type="submit" class="mt-4 w-full" :tabindex="4" :disabled="form.processing" data-pan="login">
                 <LoaderCircle v-if="form.processing" class="h-4 w-4 animate-spin" />
-                {{ $t('Log in') }}
+                {{ props.submitLabel }}
             </Button>
 
             <SignInWithPasskey />
         </div>
 
-        <div v-if="canRegister" class="text-muted-foreground text-center text-sm">
+        <div v-if="props.canRegister" class="text-muted-foreground text-center text-sm">
             {{ $t("Don't have an account?") }}
             <TextLink :href="route('register')" :tabindex="5">{{ $t('Sign up') }}</TextLink>
         </div>
