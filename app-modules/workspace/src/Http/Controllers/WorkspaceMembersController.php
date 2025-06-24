@@ -60,11 +60,11 @@ class WorkspaceMembersController
         $workspace = $request->user()->currentWorkspace;
         abort_if($workspace === null, 404);
 
-        $roleKey = (string)$request->string('role');
+        $roleKey = (string) $request->string('role');
         if ($roleKey === OwnerRole::ROLE_KEY) {
             $transferWorkspaceOwnership->handle($workspace, $request->user(), new Id($request->integer('id')));
         } else {
-            $updateMember->handle($workspace, new Id($request->integer('id')), (string)$request->string('role'));
+            $updateMember->handle($workspace, new Id($request->integer('id')), (string) $request->string('role'));
         }
 
         return redirect()

@@ -115,11 +115,11 @@ class WorkspacePolicy
      */
     public function transferOwnership(User $user, Workspace $workspace, ?User $newOwner = null): bool
     {
-        if (!$user->ownsWorkspace($workspace)) {
+        if (! $user->ownsWorkspace($workspace)) {
             return false;
         }
 
-        if (!$newOwner instanceof User) {
+        if (! $newOwner instanceof User) {
             return true;
         }
 

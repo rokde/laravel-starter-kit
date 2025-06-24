@@ -15,9 +15,7 @@ class WorkspaceTransferredNotification extends Notification implements InAppNoti
 {
     use Queueable, SupportUserPreferredChannel;
 
-    public function __construct(public readonly Workspace $workspace)
-    {
-    }
+    public function __construct(public readonly Workspace $workspace) {}
 
     public static function getDescription(): string
     {

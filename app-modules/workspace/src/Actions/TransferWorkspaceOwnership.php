@@ -22,9 +22,8 @@ class TransferWorkspaceOwnership
         Id|Workspace $workspaceId,
         Id|User $currentOwnerId,
         Id|User $newOwnerId,
-        string  $role = 'admin',
-    ): void
-    {
+        string $role = 'admin',
+    ): void {
         /** @var Workspace $workspace */
         $workspace = $workspaceId;
         if ($workspaceId instanceof Id) {
