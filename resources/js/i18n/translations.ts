@@ -666,6 +666,7 @@ const translations: Translations = {
         'Configure {name}': '{name} konfigurieren',
         'Copy invitation link to clipboard': 'Einladungslink in die Zwischenablage kopieren',
         'Create Workspace': 'Workspace erstellen',
+        'Create account and accept invitation': 'Konto anlegen und Einladung annehmen',
         'Current workspace changed.': 'Aktuellen workspace gewechselt.',
         'Get notified when a member accepts the invitation to any of your workspaces.':
             'Lassen Sie sich benachrichtigen, wenn ein Mitglied die Einladung zu einem Ihrer Workspaces annimmt.',
@@ -678,6 +679,7 @@ const translations: Translations = {
         Invitations: 'Einladungen',
         'Invite members': 'Mitglieder einladen',
         'Invited.': 'Eingeladen.',
+        'Log in and accept invitation': 'Anmelden und Einladung annehmen',
         'Manage your workspace and the acting members': 'Verwalten Sie Ihren Workspace und die handelnden Personen',
         Members: 'Mitglieder',
         'No invitations yet.': 'Noch keine Einladungen.',
