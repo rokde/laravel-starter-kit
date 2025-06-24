@@ -65,3 +65,9 @@ Route::middleware(['web'])
             ->whereNumber('invitation')
             ->name('invitations.accept');
     });
+
+Route::middleware('guest')
+    ->group(function (): void {
+        Route::get('signup-or-login-to-accept-invitation', [WorkspaceInvitationsController::class, 'signupOrLoginToAcceptInvitationForm'])
+            ->name('signup-or-login-to-accept-invitation');
+    });
