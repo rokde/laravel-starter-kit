@@ -21,7 +21,7 @@ const props = withDefaults(
         confirmation: string;
         cancelLabel?: string;
         submitLabel?: string;
-        as?: 'link' | 'icon';
+        as?: 'link' | 'icon' | 'invisible';
         withoutConfirmation?: boolean;
         disabled?: boolean;
     }>(),
@@ -40,6 +40,8 @@ const emits = defineEmits<{
 }>();
 
 const confirming = ref<boolean>(false);
+
+defineExpose({ confirming });
 
 const askForConfirmation = () => {
     if (props.withoutConfirmation) {
