@@ -56,7 +56,7 @@ const submit = () => {
                 <div class="flex items-center justify-between">
                     <Label for="password">{{ $t('Password') }}</Label>
                     <TextLink v-if="props.canResetPassword" :href="route('password.request')" class="text-sm" :tabindex="5">
-                        {{ $t('Forgot password?') }}
+                        {{ $t('Forgot password') }}?
                     </TextLink>
                 </div>
                 <div class="with-revealer">
