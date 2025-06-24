@@ -55,7 +55,7 @@ class WelcomeNewWorkspaceOwnerNotification extends Notification implements InApp
 
     public function getUrl(): ?string
     {
-        return route('workspaces.make-current', ['id' => $this->workspace->id, 'to' => route('workspaces.index')]);
+        return route('workspaces.make-current', ['id' => $this->workspace->id, 'to' => route('workspaces.members.index')]);
     }
 
     public function getTitle(): string

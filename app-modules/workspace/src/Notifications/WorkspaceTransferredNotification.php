@@ -55,7 +55,7 @@ class WorkspaceTransferredNotification extends Notification implements InAppNoti
 
     public function getUrl(): ?string
     {
-        return route('workspaces.make-current', ['id' => $this->workspace->id, 'to' => route('workspaces.index')]);
+        return route('workspaces.make-current', ['id' => $this->workspace->id, 'to' => route('workspaces.members.index')]);
     }
 
     public function getTitle(): string
