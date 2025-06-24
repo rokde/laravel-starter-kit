@@ -119,7 +119,7 @@ class WorkspacePolicy
             return false;
         }
 
-        if ($newOwner === null) {
+        if (!$newOwner instanceof User) {
             return true;
         }
 

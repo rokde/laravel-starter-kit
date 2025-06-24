@@ -20,9 +20,9 @@ class TransferWorkspaceOwnership
      */
     public function handle(
         Id|Workspace $workspaceId,
-        Id|User      $currentOwnerId,
-        Id|User      $newOwnerId,
-        string       $role = 'admin',
+        Id|User $currentOwnerId,
+        Id|User $newOwnerId,
+        string  $role = 'admin',
     ): void
     {
         /** @var Workspace $workspace */
