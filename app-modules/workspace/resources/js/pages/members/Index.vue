@@ -19,6 +19,7 @@ interface Props {
     owner: WorkspaceOwner;
     members: Array<User & { role: string }>;
     roles: { [key: string]: Role };
+    ownerRoleKey: string;
     abilities: {
         'members.create': boolean;
         'members.update': boolean;
@@ -72,6 +73,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                         :roles="props.roles"
                         :remove="props.abilities['members.remove']"
                         :readonly="!props.abilities['members.update']"
+                        :owner-role-key="props.ownerRoleKey"
                     />
                 </div>
             </div>

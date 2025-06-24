@@ -5,10 +5,12 @@ import { Role } from '@workspace/types';
 interface Props {
     modelValue: string;
     roles: { [key: string]: Role };
+    ownerRoleKey?: string;
     disabled?: boolean;
 }
 const props = withDefaults(defineProps<Props>(), {
     disabled: false,
+    ownerRoleKey: 'owner',
 });
 
 const emits = defineEmits<{
