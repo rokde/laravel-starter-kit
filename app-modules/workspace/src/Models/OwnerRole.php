@@ -6,8 +6,10 @@ namespace Modules\Workspace\Models;
 
 class OwnerRole extends Role
 {
+    public const ROLE_KEY = 'owner';
+
     public function __construct()
     {
-        parent::__construct('owner', 'Owner', 'The owner of the workspace.');
+        parent::__construct(self::ROLE_KEY, 'Owner', 'The owner of the workspace.');
     }
 }
