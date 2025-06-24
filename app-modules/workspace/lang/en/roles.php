@@ -11,6 +11,10 @@ return [
         'name' => 'Editor',
         'description' => 'The normal co-working user of the workspace.',
     ],
+    'owner' => [
+        'name' => 'Owner',
+        'description' => 'The owner of the workspace.',
+    ],
     'visitor' => [
         'name' => 'Visitor',
         'description' => 'A readonly user of the workspace.',
