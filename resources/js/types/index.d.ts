@@ -8,6 +8,18 @@ export interface Auth {
     user: User;
 }
 
+export interface AppliedPasswordRules {
+    min: number | null;
+    max: number | null;
+    mixedCase: boolean;
+    letters: boolean;
+    numbers: boolean;
+    symbols: boolean;
+    uncompromised: boolean;
+    compromisedThreshold: number;
+    customRules: unknown[];
+}
+
 export interface BreadcrumbItem {
     title: string;
     href: string;

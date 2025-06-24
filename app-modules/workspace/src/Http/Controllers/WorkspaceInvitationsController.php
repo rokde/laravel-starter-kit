@@ -5,10 +5,14 @@ declare(strict_types=1);
 namespace Modules\Workspace\Http\Controllers;
 
 use Illuminate\Container\Attributes\RouteParameter;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Validation\Rules\Password;
 use Inertia\Inertia;
+use Inertia\Response as InertiaResponse;
 use Modules\Workspace\Actions\AcceptTeamInvitation;
 use Modules\Workspace\Actions\InviteMember;
 use Modules\Workspace\Actions\RevokeTeamInvitation;
@@ -73,10 +77,20 @@ class WorkspaceInvitationsController
         abort_unless($request->hasValidSignature(), Response::HTTP_FORBIDDEN);
 
         if (! $request->user()) {
-            return redirect()->route('login');
+            return redirect()
+                ->setIntendedUrl($request->fullUrl())
+                ->route('signup-or-login-to-accept-invitation');
         }
 
-        $invitation = WorkspaceInvitation::findOrFail($invitationId);
+        try {
+            $invitation = WorkspaceInvitation::findOrFail($invitationId);
+        } catch (ModelNotFoundException $exception) {
+            if ($request->user()) {
+                return redirect()->route('dashboard');
+            }
+
+            throw $exception;
+        }
 
         // if signed in user is here, then accept the invitation and switch to the workspace
         try {
@@ -88,6 +102,14 @@ class WorkspaceInvitationsController
         return redirect()
             ->route('dashboard')
             ->with('message', __('You have been added to the workspace.'));
+    }
+
+    public function signupOrLoginToAcceptInvitationForm(): InertiaResponse
+    {
+        return Inertia::render('workspace::auth/SignupOrLoginToAcceptInvitation', [
+            'canResetPassword' => Route::has('password.request'),
+            'appliedRules' => Password::default()->appliedRules(),
+        ]);
     }
 
     public function destroy(Request $request, WorkspaceInvitation $invitation, RevokeTeamInvitation $revokeTeamInvitation): RedirectResponse
