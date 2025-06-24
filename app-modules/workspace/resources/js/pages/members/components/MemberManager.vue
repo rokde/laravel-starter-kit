@@ -32,6 +32,9 @@ const modifyRoleForMember = (id: number, role: string) => {
 
     form.patch(route('workspaces.members.update'), {
         preserveScroll: true,
+        onSuccess: () => {
+            router.reload();
+        },
     });
 };
 
