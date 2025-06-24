@@ -5,5 +5,7 @@
     "Current workspace changed.": "Current workspace changed.",
     "No workspace selected": "No workspace selected",
     "Workspace created.": "Workspace created.",
-    "Workspaces": "Workspaces"
+    "Workspaces": "Workspaces",
+    "You have successfully transferred workspace :workspace to :member.": "You have successfully transferred workspace :workspace to :member.",
+    "You were made to the owner of workspace :workspace.": "You were made to the owner of workspace :workspace."
 }

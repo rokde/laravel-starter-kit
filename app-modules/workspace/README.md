@@ -40,6 +40,19 @@ Workspace owners can invite other users to join their workspace. Invitations are
 
 Workspace owners can manage the memberships of users in their workspace, including removing users from the workspace.
 
+### Transferring Ownership
+
+Workspace owners can transfer ownership of their workspace to another member of the workspace. When ownership is transferred:
+
+- The new owner becomes the primary owner of the workspace
+- The previous owner remains a member of the workspace with an admin role
+- Both users receive notifications about the ownership transfer
+
+Requirements for transferring ownership:
+- Only the current workspace owner can transfer ownership
+- The new owner must already be a member of the workspace
+- The new owner must be a different user than the current owner
+
 ### Purging Orphaned Invitations
 
 To purge old workspace invitations that have not been accepted, run:

@@ -11,12 +11,14 @@ import { ref } from 'vue';
 interface Props {
     members: Array<User & { role: string; membership: { role: string } }>;
     roles: { [key: string]: Role };
+    ownerRoleKey?: string;
     remove: boolean;
     readonly?: boolean;
 }
 
 const props = withDefaults(defineProps<Props>(), {
     readonly: false,
+    ownerRoleKey: 'owner',
 });
 
 const currentId = ref<number | null>(null);
@@ -32,6 +34,9 @@ const modifyRoleForMember = (id: number, role: string) => {
 
     form.patch(route('workspaces.members.update'), {
         preserveScroll: true,
+        onSuccess: () => {
+            router.reload();
+        },
     });
 };
 
@@ -62,6 +67,7 @@ const removeMember = (member: User) => {
                 @update:model-value="modifyRoleForMember(member.id, $event)"
                 :roles="props.roles"
                 :disabled="props.readonly"
+                :owner-role-key="props.ownerRoleKey"
             />
         </div>
         <ConfirmButton

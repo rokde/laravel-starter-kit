@@ -111,6 +111,26 @@ class WorkspacePolicy
     }
 
     /**
+     * Determine whether the user can transfer the ownership to another member
+     */
+    public function transferOwnership(User $user, Workspace $workspace, ?User $newOwner = null): bool
+    {
+        if (!$user->ownsWorkspace($workspace)) {
+            return false;
+        }
+
+        if (!$newOwner instanceof User) {
+            return true;
+        }
+
+        if ($newOwner->is($user)) {
+            return false;
+        }
+
+        return $newOwner->belongsToWorkspace($workspace);
+    }
+
+    /**
      * Determine whether the user can delete the model.
      */
     public function delete(User $user, Workspace $workspace): bool

@@ -11,17 +11,27 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
 use Modules\Workspace\Actions\RemoveMember;
+use Modules\Workspace\Actions\TransferWorkspaceOwnership;
 use Modules\Workspace\Actions\UpdateMember;
 use Modules\Workspace\DataTransferObjects\Owner;
+use Modules\Workspace\Models\OwnerRole;
 use Modules\Workspace\Models\RoleRegistry;
 
 class WorkspaceMembersController
 {
     public function index(Request $request): Response
     {
+        /** @var User $user */
+        $user = $request->user();
+
         /** @var \Modules\Workspace\Models\Workspace */
-        $workspace = $request->user()->currentWorkspace;
+        $workspace = $user->currentWorkspace;
         abort_if($workspace === null, 404);
+
+        $roles = $user->can('transferOwnership', $workspace)
+            ? [OwnerRole::ROLE_KEY => new OwnerRole]
+            : [];
+        $roles += RoleRegistry::$roles;
 
         return Inertia::render('workspace::members/Index', [
             'workspace' => $workspace->only('id', 'name'),
@@ -31,11 +41,12 @@ class WorkspaceMembersController
                 email: $workspace->owner->email,
             ),
             'members' => $workspace->users,
-            'roles' => RoleRegistry::$roles,
+            'roles' => $roles,
+            'ownerRoleKey' => OwnerRole::ROLE_KEY,
             'abilities' => [
-                'members.create' => $request->user()->can('addMember', $workspace),
-                'members.update' => $request->user()->can('updateMember', $workspace),
-                'members.remove' => $request->user()->can('removeMember', $workspace),
+                'members.create' => $user->can('addMember', $workspace),
+                'members.update' => $user->can('updateMember', $workspace),
+                'members.remove' => $user->can('removeMember', $workspace),
             ],
         ]);
     }
@@ -43,12 +54,18 @@ class WorkspaceMembersController
     public function update(
         Request $request,
         UpdateMember $updateMember,
+        TransferWorkspaceOwnership $transferWorkspaceOwnership,
     ): RedirectResponse {
         /** @var \Modules\Workspace\Models\Workspace */
         $workspace = $request->user()->currentWorkspace;
         abort_if($workspace === null, 404);
 
-        $updateMember->handle($workspace, new Id($request->integer('id')), (string) $request->string('role'));
+        $roleKey = (string)$request->string('role');
+        if ($roleKey === OwnerRole::ROLE_KEY) {
+            $transferWorkspaceOwnership->handle($workspace, $request->user(), new Id($request->integer('id')));
+        } else {
+            $updateMember->handle($workspace, new Id($request->integer('id')), (string)$request->string('role'));
+        }
 
         return redirect()
             ->back()

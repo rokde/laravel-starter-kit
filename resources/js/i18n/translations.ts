@@ -304,6 +304,9 @@ const translations: Translations = {
         'No workspace selected': 'No workspace selected',
         'Workspace created.': 'Workspace created.',
         Workspaces: 'Workspaces',
+        'You have successfully transferred workspace {workspace} to {member}.':
+            'You have successfully transferred workspace {workspace} to {member}.',
+        'You were made to the owner of workspace {workspace}.': 'You were made to the owner of workspace {workspace}.',
         roles: {
             admin: {
                 name: 'Administrator',
@@ -312,6 +315,10 @@ const translations: Translations = {
             editor: {
                 name: 'Editor',
                 description: 'The normal co-working user of the workspace.',
+            },
+            owner: {
+                name: 'Owner',
+                description: 'The owner of the workspace.',
             },
             visitor: {
                 name: 'Visitor',
@@ -665,6 +672,8 @@ const translations: Translations = {
         'Add workspace': 'Workspace anlegen',
         'All invitations of the workspace.': 'Ausstehende Einladungen im Workspace.',
         'All members of the workspace.': 'Alle Mitglieder des Workspaces.',
+        'Are you sure you want to transfer ownership of this workspace? You remain a member of the workspace. This process is irreversible.':
+            'Sind Sie sicher, dass Sie die Eigentümerschaft an diesem Workspace übertragen möchten? Sie bleiben Mitglied des Workspace. Dieser Prozess ist nicht umkehrbar.',
         'Configure {name}': '{name} konfigurieren',
         'Copy invitation link to clipboard': 'Einladungslink in die Zwischenablage kopieren',
         'Create Workspace': 'Workspace erstellen',
@@ -674,6 +683,10 @@ const translations: Translations = {
             'Lassen Sie sich benachrichtigen, wenn ein Mitglied die Einladung zu einem Ihrer Workspaces annimmt.',
         'Get notified when you got an invitation to another workspace.':
             'Lassen Sie sich benachrichtigen, wenn Sie eine Einladung zu einem anderen Workspace erhalten haben.',
+        'Get notified when you have successfully transferred a workspace.':
+            'Lassen Sie sich benachrichtigen, wenn Sie einen Workspace erfolgreich übertragen haben.',
+        'Get notified when you were made the workspace owner.':
+            'Lassen Sie sich benachrichtigen, wenn Sie zum Besitzer des Workspace ernannt wurden.',
         'If you remove the member, they will no longer have access to the workspace.':
             'Wenn Sie das Mitglied entfernen, hat es keinen Zugriff mehr auf den Workspace.',
         'If you revoke the invitation, the user will not be able to access the workspace.':
@@ -696,6 +709,7 @@ const translations: Translations = {
         'The workspace name and owner information.': 'Der Name des Workspaces und die Eigentümerinformationen.',
         'This user already belongs to the workspace.': 'Dieser Benutzer gehört bereits zum Workspace.',
         'This user has already been invited to the workspace.': 'Dieser Benutzer wurde bereits zum Workspace eingeladen.',
+        'Transfer of ownership': 'Übertragung der Eigentümerschaft',
         'Work together with other users by inviting them to your workspace. Invitations can be sent to email addresses. Invitations can be revoked at any time.':
             'Arbeiten Sie mit anderen Benutzern zusammen, indem Sie sie zu Ihrem Workspace einladen. Einladungen können an E-Mail-Adressen gesendet und  jederzeit widerrufen werden.',
         'Workspace created.': 'Workspace erstellt.',
@@ -705,6 +719,9 @@ const translations: Translations = {
         'Workspace updated.': 'Workspace aktualisiert.',
         Workspace: 'Workspace',
         Workspaces: 'Workspaces',
+        'You have successfully transferred workspace {workspace} to {member}.':
+            'Sie haben den Workspace {workspace} erfolgreich nach {member} übertragen.',
+        'You were made to the owner of workspace {workspace}.': 'Sie wurden zum Eigentümer des Workspace {workspace} gemacht.',
         roles: {
             admin: {
                 name: 'Administrator',
@@ -713,6 +730,10 @@ const translations: Translations = {
             editor: {
                 name: 'Bearbeiter',
                 description: 'Der normale Mitarbeiter kann mitarbeiten im Workspace.',
+            },
+            owner: {
+                name: 'Eigentümer',
+                description: 'Der Eigentümer des Workspace.',
             },
             visitor: {
                 name: 'Besucher',
