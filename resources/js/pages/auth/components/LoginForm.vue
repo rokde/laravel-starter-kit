@@ -6,12 +6,9 @@ import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { getI18n } from '@/i18n';
 import { useForm } from '@inertiajs/vue3';
 import SignInWithPasskey from '@passkey/components/SignInWithPasskey.vue';
 import { LoaderCircle } from 'lucide-vue-next';
-
-const { t } = getI18n();
 
 interface Props {
     canResetPassword: boolean;
@@ -21,7 +18,7 @@ interface Props {
 
 const props = withDefaults(defineProps<Props>(), {
     canRegister: false,
-    submitLabel: t('Log in'),
+    submitLabel: 'Log in',
 });
 
 const form = useForm({
@@ -86,7 +83,7 @@ const submit = () => {
 
             <Button type="submit" class="mt-4 w-full" :tabindex="4" :disabled="form.processing" data-pan="login">
                 <LoaderCircle v-if="form.processing" class="h-4 w-4 animate-spin" />
-                {{ props.submitLabel }}
+                {{ $t(props.submitLabel) }}
             </Button>
 
             <SignInWithPasskey />
