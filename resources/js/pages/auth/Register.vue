@@ -1,20 +1,11 @@
 <script setup lang="ts">
 import AuthBase from '@/layouts/AuthLayout.vue';
 import RegisterForm from '@/pages/auth/components/RegisterForm.vue';
+import { AppliedPasswordRules } from '@/types';
 import { Head } from '@inertiajs/vue3';
 
 interface Props {
-    appliedRules: {
-        min: number | null;
-        max: number | null;
-        mixedCase: boolean;
-        letters: boolean;
-        numbers: boolean;
-        symbols: boolean;
-        uncompromised: boolean;
-        compromisedThreshold: number;
-        customRules: unknown[];
-    };
+    appliedRules: AppliedPasswordRules;
 }
 
 const props = defineProps<Props>();

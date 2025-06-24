@@ -3,21 +3,12 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import AuthBase from '@/layouts/AuthLayout.vue';
 import LoginForm from '@/pages/auth/components/LoginForm.vue';
 import RegisterForm from '@/pages/auth/components/RegisterForm.vue';
+import { AppliedPasswordRules } from '@/types';
 import { Head } from '@inertiajs/vue3';
 
 defineProps<{
     canResetPassword: boolean;
-    appliedRules: {
-        min: number | null;
-        max: number | null;
-        mixedCase: boolean;
-        letters: boolean;
-        numbers: boolean;
-        symbols: boolean;
-        uncompromised: boolean;
-        compromisedThreshold: number;
-        customRules: unknown[];
-    };
+    appliedRules: AppliedPasswordRules;
 }>();
 </script>
 

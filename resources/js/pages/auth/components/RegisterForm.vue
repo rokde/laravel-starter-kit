@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { getI18n } from '@/i18n';
+import { AppliedPasswordRules } from '@/types';
 import { useForm } from '@inertiajs/vue3';
 import { LoaderCircle } from 'lucide-vue-next';
 import { computed, ref } from 'vue';
@@ -21,17 +22,7 @@ const getUserTimeZone = (): string => {
 };
 
 interface Props {
-    appliedRules: {
-        min: number | null;
-        max: number | null;
-        mixedCase: boolean;
-        letters: boolean;
-        numbers: boolean;
-        symbols: boolean;
-        uncompromised: boolean;
-        compromisedThreshold: number;
-        customRules: unknown[];
-    };
+    appliedRules: AppliedPasswordRules;
     canLogin?: boolean;
     submitLabel?: string;
 }
