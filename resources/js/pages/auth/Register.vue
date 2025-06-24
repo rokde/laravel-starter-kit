@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import AuthBase from '@/layouts/AuthLayout.vue';
-import { Head } from '@inertiajs/vue3';
 import RegisterForm from '@/pages/auth/components/RegisterForm.vue';
+import { Head } from '@inertiajs/vue3';
 
 interface Props {
     appliedRules: {

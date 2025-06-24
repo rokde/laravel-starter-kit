@@ -5,9 +5,12 @@ import TextLink from '@/components/TextLink.vue';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { getI18n } from '@/i18n';
 import { useForm } from '@inertiajs/vue3';
 import { LoaderCircle } from 'lucide-vue-next';
 import { computed, ref } from 'vue';
+
+const { t } = getI18n();
 
 const getUserTimeZone = (): string => {
     try {
@@ -29,10 +32,14 @@ interface Props {
         compromisedThreshold: number;
         customRules: unknown[];
     };
-    canLogin: boolean;
+    canLogin?: boolean;
+    submitLabel?: string;
 }
 
-const props = defineProps<Props>();
+const props = withDefaults(defineProps<Props>(), {
+    canLogin: false,
+    submitLabel: t('Create account'),
+});
 
 const displayRules = ref<boolean>(false);
 
@@ -161,7 +168,7 @@ const submit = () => {
 
             <Button type="submit" class="mt-2 w-full" tabindex="5" :disabled="form.processing" data-pan="register">
                 <LoaderCircle v-if="form.processing" class="h-4 w-4 animate-spin" />
-                {{ $t('Create account') }}
+                {{ props.submitLabel }}
             </Button>
         </div>
 
