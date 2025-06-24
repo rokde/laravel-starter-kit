@@ -11,6 +11,9 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Illuminate\Translation\FileLoader;
 
+/**
+ * @codeCoverageIgnore
+ */
 class GenerateTranslationsCommand extends Command
 {
     /**
