@@ -304,6 +304,9 @@ const translations: Translations = {
         'No workspace selected': 'No workspace selected',
         'Workspace created.': 'Workspace created.',
         Workspaces: 'Workspaces',
+        'You have successfully transferred workspace {workspace} to {member}.':
+            'You have successfully transferred workspace {workspace} to {member}.',
+        'You were made to the owner of workspace {workspace}.': 'You were made to the owner of workspace {workspace}.',
         roles: {
             admin: {
                 name: 'Administrator',
@@ -674,6 +677,10 @@ const translations: Translations = {
             'Lassen Sie sich benachrichtigen, wenn ein Mitglied die Einladung zu einem Ihrer Workspaces annimmt.',
         'Get notified when you got an invitation to another workspace.':
             'Lassen Sie sich benachrichtigen, wenn Sie eine Einladung zu einem anderen Workspace erhalten haben.',
+        'Get notified when you have successfully transferred a workspace.':
+            'Lassen Sie sich benachrichtigen, wenn Sie einen Arbeitsbereich erfolgreich übertragen haben.',
+        'Get notified when you were made the workspace owner.':
+            'Lassen Sie sich benachrichtigen, wenn Sie zum Besitzer des Arbeitsbereichs ernannt wurden.',
         'If you remove the member, they will no longer have access to the workspace.':
             'Wenn Sie das Mitglied entfernen, hat es keinen Zugriff mehr auf den Workspace.',
         'If you revoke the invitation, the user will not be able to access the workspace.':
@@ -705,6 +712,9 @@ const translations: Translations = {
         'Workspace updated.': 'Workspace aktualisiert.',
         Workspace: 'Workspace',
         Workspaces: 'Workspaces',
+        'You have successfully transferred workspace {workspace} to {member}.':
+            'Sie haben den Arbeitsbereich {workspace} erfolgreich nach {member} übertragen.',
+        'You were made to the owner of workspace {workspace}.': 'Sie wurden zum Eigentümer des Arbeitsbereichs {workspace} gemacht.',
         roles: {
             admin: {
                 name: 'Administrator',
