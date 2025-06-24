@@ -81,7 +81,8 @@
             "@php artisan test --parallel"
         ],
         "test:coverage": [
-            "@php artisan test --coverage"
+            "@php artisan test --coverage",
+            "open tests/coverage/index.html"
         ],
         "test:rector": [
             "rector --dry-run"
