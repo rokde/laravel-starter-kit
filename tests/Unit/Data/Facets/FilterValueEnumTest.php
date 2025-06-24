@@ -41,7 +41,7 @@ test('transformFilterValue returns other values unchanged', function (): void {
     ];
 
     foreach ($testValues as $input => $expected) {
-        $result = FilterValueEnum::transformFilterValue((string)$input);
+        $result = FilterValueEnum::transformFilterValue((string) $input);
         expect($result)->toBe($expected);
     }
 });
