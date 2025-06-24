@@ -176,7 +176,7 @@ test('a guest is redirected to login when accepting an invitation', function ():
     $response = $this->get($acceptUrl);
 
     // Assert
-    $response->assertRedirect(route('login'));
+    $response->assertRedirect(route('signup-or-login-to-accept-invitation'));
 
     // Check that the invitation still exists
     $this->assertDatabaseHas('workspace_member_invitations', [
