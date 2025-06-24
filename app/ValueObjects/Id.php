@@ -56,6 +56,9 @@ class Id implements JsonSerializable, Serializable, Stringable
         return $this->__toString();
     }
 
+    /**
+     * @codeCoverageIgnore
+     */
     public function unserialize(string $data): void
     {
         $this->id = (int) $data;

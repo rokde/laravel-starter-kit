@@ -55,3 +55,11 @@ test('it can be serialized and unserialized using __serialize and __unserialize'
     expect($unserialized)->toBeInstanceOf(Id::class)
         ->and($unserialized->value())->toBe(123);
 });
+
+test('it can be serialized using the serialize method', function (): void {
+    $id = new Id(123);
+
+    $serialized = $id->serialize();
+
+    expect($serialized)->toBe('123');
+});
