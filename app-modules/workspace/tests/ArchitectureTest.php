@@ -22,4 +22,5 @@ arch('Test the domain module boundaries for the workspace module (Workspace mode
         Modules\Todo\Database\Factories\TodoFactory::class,
         'Modules\Todo\Models',
         'Modules\Todo\Policies',
+        'Modules\Todo\Http\Controllers',
     ]);

@@ -3,6 +3,7 @@ import DataTable from '@/components/DataTable/DataTable.vue';
 import DataTableRowActions from '@/components/DataTable/DataTableRowActions.vue';
 import { IPaginatedMeta, IQuery, ITableFacetFilterOption, ITableOptions } from '@/components/DataTable/types';
 import Heading from '@/components/Heading.vue';
+import SidePanel from '@/components/SidePanel.vue';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { DropdownMenuItem, DropdownMenuSeparator } from '@/components/ui/dropdown-menu';
@@ -13,15 +14,26 @@ import ContentLayout from '@/layouts/content/ContentLayout.vue';
 import { localeDate } from '@/lib/date-functions';
 import type { BreadcrumbItem } from '@/types';
 import { Head, Link, router } from '@inertiajs/vue3';
+import TodoForm from '@todo/components/TodoForm.vue';
+import { ref } from 'vue';
 import { Todo } from '../types';
 
 const { t } = getI18n();
+
+interface User {
+    id: number;
+    name: string;
+    email: string;
+}
 
 interface Props {
     data: Todo[];
     meta: IPaginatedMeta;
     query: IQuery;
     facets: ITableFacetFilterOption<Todo>[];
+
+    workspaceUsers: User[];
+    presets: Array<{ value: string; label: string }>;
 }
 
 const props = defineProps<Props>();
@@ -71,6 +83,8 @@ const toggleComplete = (todo: Todo) => {
         },
     );
 };
+
+const open = ref<boolean>(false);
 </script>
 
 <template>
@@ -89,9 +103,15 @@ const toggleComplete = (todo: Todo) => {
                 @reload="router.reload({ data: $event })"
             >
                 <template #primaryAction>
-                    <Link :href="route('todos.create')">
-                        <Button>{{ $t('Create Todo') }}</Button>
-                    </Link>
+                    <SidePanel :label="$t('Create Todo')" as="split-button" v-model:open="open">
+                        <template #button>
+                            <Link :href="route('todos.create')">
+                                <Button class="rounded-r-none">{{ $t('Create Todo') }}</Button>
+                            </Link>
+                        </template>
+
+                        <TodoForm :workspace-users="props.workspaceUsers" :presets="props.presets" class="p-4" @submitted="open = false" />
+                    </SidePanel>
                 </template>
 
                 <template #title="{ row: todo }">
