@@ -10,7 +10,7 @@ const props = withDefaults(
         title?: string;
         description?: string;
         submitLabel?: string;
-        as?: 'button';
+        as?: 'button' | 'split-button';
         disabled?: boolean;
         withFooter?: boolean;
         variant?: ButtonVariants['variant'];
@@ -35,6 +35,18 @@ const open = defineModel('open');
                 >{{ props.label }}
                 <PanelRight class="size-4" />
             </Button>
+            <div class="flex items-center">
+                <slot name="button" />
+                <Button
+                    v-if="props.as === 'split-button'"
+                    :variant="props.variant"
+                    :disabled="props.disabled"
+                    :title="props.label"
+                    class="rounded-l-none"
+                >
+                    <PanelRight class="size-4" />
+                </Button>
+            </div>
         </SheetTrigger>
         <SheetContent>
             <SheetHeader>
