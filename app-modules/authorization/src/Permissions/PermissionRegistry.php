@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Authorization\Permissions;
 
+use BackedEnum;
 use Illuminate\Support\Collection;
 use Modules\Authorization\DataTransferObjects\PermissionEntry;
 use Spatie\Permission\Exceptions\PermissionDoesNotExist;
@@ -19,7 +20,7 @@ class PermissionRegistry
 
     private array $removePermissions = [];
 
-    public function registerPermission(string $resource, string $action, string $description): self
+    public function registerPermission(string|BackedEnum $resource, string|BackedEnum $action, string $description): self
     {
         $permissionEntry = new PermissionEntry($resource, $action, $description);
 
@@ -34,7 +35,7 @@ class PermissionRegistry
     }
 
     /**
-     * @return Collection<PermissionEntry>
+     * @return Collection<PermissionEntry>|array<int, PermissionEntry>
      */
     public function permissions(): Collection
     {
