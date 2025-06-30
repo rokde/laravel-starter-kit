@@ -5,10 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { getI18n } from '@/i18n';
 import { useForm } from '@inertiajs/vue3';
-
-const { t } = getI18n();
 
 interface User {
     id: number;
