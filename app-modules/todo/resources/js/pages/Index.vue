@@ -3,6 +3,7 @@ import DataTable from '@/components/DataTable/DataTable.vue';
 import DataTableRowActions from '@/components/DataTable/DataTableRowActions.vue';
 import { IPaginatedMeta, IQuery, ITableFacetFilterOption, ITableOptions } from '@/components/DataTable/types';
 import Heading from '@/components/Heading.vue';
+import SidePanel from '@/components/SidePanel.vue';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { DropdownMenuItem, DropdownMenuSeparator } from '@/components/ui/dropdown-menu';
@@ -13,10 +14,9 @@ import ContentLayout from '@/layouts/content/ContentLayout.vue';
 import { localeDate } from '@/lib/date-functions';
 import type { BreadcrumbItem } from '@/types';
 import { Head, Link, router } from '@inertiajs/vue3';
-import { Todo } from '../types';
-import SidePanel from '@/components/SidePanel.vue';
-import { ref } from 'vue';
 import TodoForm from '@todo/components/TodoForm.vue';
+import { ref } from 'vue';
+import { Todo } from '../types';
 
 const { t } = getI18n();
 
