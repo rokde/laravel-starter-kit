@@ -17,11 +17,10 @@ class SetWorkspaceForPermissions
     public function handle($request, Closure $next)
     {
         if (config('permission.teams', false) && !empty($request->user())) {
-            $workspaceId = $request->user()->workspace_id;
-            setPermissionsTeamId($workspaceId);
+            setPermissionsTeamId($request->user()->workspace_id);
 
-            Role::addGlobalScope(function (Builder $query) use ($workspaceId) {
-                $query->where(config('permission.column_names.team_foreign_key', 'workspace_id'), $workspaceId);
+            Role::addGlobalScope(function (Builder $query) use ($request) {
+                $query->where(config('permission.column_names.team_foreign_key', 'workspace_id'), $request->user()->workspace_id);
             });
         }
 
