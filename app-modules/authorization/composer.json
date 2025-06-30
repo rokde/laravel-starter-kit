@@ -1,0 +1,26 @@
+{
+    "name": "modules/authorization",
+    "description": "Authorization module for roles and permissions",
+    "type": "library",
+    "version": "1.0",
+    "license": "proprietary",
+    "require": {
+        "spatie/laravel-permission": "^6.20.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\Authorization\\": "src/",
+            "Modules\\Authorization\\Tests\\": "tests/",
+            "Modules\\Authorization\\Database\\Factories\\": "database/factories/",
+            "Modules\\Authorization\\Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "minimum-stability": "stable",
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Modules\\Authorization\\Providers\\AuthorizationServiceProvider"
+            ]
+        }
+    }
+}
