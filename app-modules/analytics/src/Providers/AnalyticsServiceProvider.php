@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Modules\Analytics\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Modules\Authorization\Enums\PermissionActions;
+use Modules\Authorization\Permissions\PermissionRegistry;
 use Pan\PanConfiguration;
 
 class AnalyticsServiceProvider extends ServiceProvider
@@ -21,6 +23,9 @@ class AnalyticsServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->loadJsonTranslationsFrom(__DIR__.'/../../lang');
+
+        app(PermissionRegistry::class)
+            ->registerPermission('analytics', PermissionActions::VIEW, 'View analytics.');
 
         if (! $this->app->runningInConsole()) {
             return;

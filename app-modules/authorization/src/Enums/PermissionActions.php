@@ -6,7 +6,11 @@ namespace Modules\Authorization\Enums;
 
 enum PermissionActions: string
 {
-    case VIEW = 'view';
-    case EDIT = 'edit';
+    case ADD = 'add';
+    case CREATE = 'create';
     case DELETE = 'delete';
+    case EDIT = 'edit';
+    case EXECUTE = 'execute';
+    case UPDATE = 'update';
+    case VIEW = 'view';
 }
