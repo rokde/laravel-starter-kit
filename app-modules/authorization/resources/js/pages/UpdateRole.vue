@@ -88,7 +88,7 @@ const submit = () => {
                     <Label for="permissions">{{ $t('Permissions') }}</Label>
 
                     <template v-for="(permissions, group) of props.permissions" :key="group">
-                        <div>
+                        <div class="mt-2">
                             {{ $t('Resource') }}: <span class="capitalize">{{ group }}</span>
                         </div>
                         <Label v-for="permission of permissions" :key="permission.id">
