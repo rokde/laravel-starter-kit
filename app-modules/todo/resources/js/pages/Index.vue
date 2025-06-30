@@ -14,14 +14,26 @@ import { localeDate } from '@/lib/date-functions';
 import type { BreadcrumbItem } from '@/types';
 import { Head, Link, router } from '@inertiajs/vue3';
 import { Todo } from '../types';
+import SidePanel from '@/components/SidePanel.vue';
+import { ref } from 'vue';
+import TodoForm from '@todo/components/TodoForm.vue';
 
 const { t } = getI18n();
+
+interface User {
+    id: number;
+    name: string;
+    email: string;
+}
 
 interface Props {
     data: Todo[];
     meta: IPaginatedMeta;
     query: IQuery;
     facets: ITableFacetFilterOption<Todo>[];
+
+    workspaceUsers: User[];
+    presets: Array<{ value: string; label: string }>;
 }
 
 const props = defineProps<Props>();
@@ -71,6 +83,8 @@ const toggleComplete = (todo: Todo) => {
         },
     );
 };
+
+const open = ref<boolean>(false);
 </script>
 
 <template>
@@ -89,9 +103,15 @@ const toggleComplete = (todo: Todo) => {
                 @reload="router.reload({ data: $event })"
             >
                 <template #primaryAction>
-                    <Link :href="route('todos.create')">
-                        <Button>{{ $t('Create Todo') }}</Button>
-                    </Link>
+                    <SidePanel :label="$t('Create Todo')" as="split-button" v-model:open="open">
+                        <template #button>
+                            <Link :href="route('todos.create')">
+                                <Button class="rounded-r-none">{{ $t('Create Todo') }}</Button>
+                            </Link>
+                        </template>
+
+                        <TodoForm :workspace-users="props.workspaceUsers" :presets="props.presets" class="p-4" @submitted="open = false" />
+                    </SidePanel>
                 </template>
 
                 <template #title="{ row: todo }">
