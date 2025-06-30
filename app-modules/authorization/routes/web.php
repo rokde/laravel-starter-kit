@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Modules\Authorization\Http\Controllers\RolesController;
 
 Route::middleware(['web', 'auth', 'verified'])

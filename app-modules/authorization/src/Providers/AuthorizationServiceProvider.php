@@ -16,7 +16,7 @@ class AuthorizationServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
-        $this->app->singleton(PermissionRegistry::class, fn() => new PermissionRegistry());
+        $this->app->singleton(PermissionRegistry::class, fn(): PermissionRegistry => new PermissionRegistry());
     }
 
     public function boot(): void

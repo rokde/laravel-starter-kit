@@ -31,9 +31,8 @@ class WorkspaceMembersController
 
         $roles = Role::query()
             ->get()
-            ->map(fn(Role $role) => RoleDto::fromModel($role))
+            ->map(fn(Role $role): RoleDto => RoleDto::fromModel($role))
             ->values();
-
 
         return Inertia::render('workspace::members/Index', [
             'workspace' => $workspace->only('id', 'name'),

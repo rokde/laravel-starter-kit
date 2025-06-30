@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\Authorization\Console\Commands;
 
 use Illuminate\Console\Command;

@@ -40,7 +40,7 @@ class PermissionRegistry
     public function permissions(): Collection
     {
         return collect($this->permissions)
-            ->filter(fn(PermissionEntry $entry, string $permission) => !in_array($permission, $this->removePermissions))->values();
+            ->filter(fn(PermissionEntry $entry, string $permission): bool => !in_array($permission, $this->removePermissions))->values();
     }
 
     public function removePermission(string $resource, string $action): self

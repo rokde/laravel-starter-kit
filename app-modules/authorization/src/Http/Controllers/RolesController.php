@@ -29,7 +29,7 @@ class RolesController
         $roles = Role::query()
             ->with('permissions')
             ->get(['id', 'name'])
-            ->map(fn(Role $role) => ['id' => $role['id'], 'name' => $role['name'], 'permissions' => $role->permissions->pluck('name')->toArray()])
+            ->map(fn(Role $role): array => ['id' => $role['id'], 'name' => $role['name'], 'permissions' => $role->permissions->pluck('name')->toArray()])
             ->values();
 
         return Inertia::render('authorization::Roles', [
