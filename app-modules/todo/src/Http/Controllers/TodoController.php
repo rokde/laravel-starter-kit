@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Collection;
 use Inertia\Inertia;
 use Inertia\Response;
 use Modules\Todo\Data\Facets\AssignedUserFacet;
@@ -20,6 +21,7 @@ use Modules\Todo\Http\Requests\StoreTodoRequest;
 use Modules\Todo\Http\Requests\UpdateTodoRequest;
 use Modules\Todo\Models\Todo;
 use Modules\Todo\Notifications\TodoAssignedNotification;
+use Modules\Workspace\Models\Workspace;
 
 class TodoController
 {
@@ -73,6 +75,9 @@ class TodoController
                 ],
             ],
             'facets' => $facets->get()->values(),
+
+            'workspaceUsers' => $this->getWorkspaceUsers($request, $workspace),
+            'presets' => $this->calendarPresets(),
         ]);
     }
 
@@ -84,20 +89,10 @@ class TodoController
         $workspace = $request->user()->currentWorkspace;
         abort_if($workspace === null, 404);
 
-        $workspaceUsers = collect($request->user());
-        if (in_array($request->user()->workspaceRole($workspace)->key, ['owner', 'admin', 'editor'])) {
-            $workspaceUsers = $workspace->allUsers();
-        }
-
         return Inertia::render('todo::Create', [
             'workspace' => $workspace->only('id', 'name'),
-            'workspaceUsers' => $workspaceUsers->map->only('id', 'name', 'email'),
-            'presets' => [
-                ['value' => now()->toDateString(), 'label' => __('Today')],
-                ['value' => now()->addDay()->toDateString(), 'label' => __('Tomorrow')],
-                ['value' => now()->addDays(3)->toDateString(), 'label' => __('In :days days', ['days' => 3])],
-                ['value' => now()->addWeek()->toDateString(), 'label' => __('In a week')],
-            ],
+            'workspaceUsers' => $this->getWorkspaceUsers($request, $workspace),
+            'presets' => $this->calendarPresets(),
         ]);
     }
 
@@ -182,5 +177,28 @@ class TodoController
         return redirect()
             ->back()
             ->with('message', __('Todo deleted.'));
+    }
+
+    private function calendarPresets(): array
+    {
+        return [
+            ['value' => now()->toDateString(), 'label' => __('Today')],
+            ['value' => now()->addDay()->toDateString(), 'label' => __('Tomorrow')],
+            ['value' => now()->addDays(3)->toDateString(), 'label' => __('In :days days', ['days' => 3])],
+            ['value' => now()->addWeek()->toDateString(), 'label' => __('In a week')],
+        ];
+    }
+
+    /**
+     * @return Collection<int, array{id: int, name: string, email: string,}>
+     */
+    private function getWorkspaceUsers(Request $request, Workspace $workspace): Collection
+    {
+        $workspaceUsers = collect($request->user());
+        if (in_array($request->user()->workspaceRole($workspace)->key, ['owner', 'admin', 'editor'])) {
+            $workspaceUsers = $workspace->allUsers();
+        }
+
+        return $workspaceUsers->map->only('id', 'name', 'email');
     }
 }
