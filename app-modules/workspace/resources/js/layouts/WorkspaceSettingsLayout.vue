@@ -21,6 +21,10 @@ const sidebarNavItems: NavItem[] = [
         title: t('Invitations'),
         href: '/workspaces/current/invitations',
     },
+    {
+        title: t('Roles'),
+        href: '/workspaces/current/roles',
+    },
 ];
 
 const page = usePage();
