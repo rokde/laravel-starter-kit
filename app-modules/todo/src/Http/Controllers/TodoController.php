@@ -199,6 +199,6 @@ class TodoController
             $workspaceUsers = $workspace->allUsers();
         }
 
-        return $workspaceUsers->map->only('id', 'name', 'email');
+        return $workspaceUsers->map->only(['id', 'name', 'email']);
     }
 }
