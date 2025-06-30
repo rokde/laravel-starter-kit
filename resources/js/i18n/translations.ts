@@ -308,21 +308,9 @@ const translations: Translations = {
             'You have successfully transferred workspace {workspace} to {member}.',
         'You were made to the owner of workspace {workspace}.': 'You were made to the owner of workspace {workspace}.',
         roles: {
-            admin: {
-                name: 'Administrator',
-                description: 'The admin of the workspace.',
-            },
-            editor: {
-                name: 'Editor',
-                description: 'The normal co-working user of the workspace.',
-            },
             owner: {
                 name: 'Owner',
                 description: 'The owner of the workspace.',
-            },
-            visitor: {
-                name: 'Visitor',
-                description: 'A readonly user of the workspace.',
             },
         },
         'This is a test translation: {word}.': 'This is a test translation: {word}.',
@@ -724,21 +712,9 @@ const translations: Translations = {
             'Sie haben den Workspace {workspace} erfolgreich nach {member} übertragen.',
         'You were made to the owner of workspace {workspace}.': 'Sie wurden zum Eigentümer des Workspace {workspace} gemacht.',
         roles: {
-            admin: {
-                name: 'Administrator',
-                description: 'Der Administrator hat alle Rechte.',
-            },
-            editor: {
-                name: 'Bearbeiter',
-                description: 'Der normale Mitarbeiter kann mitarbeiten im Workspace.',
-            },
             owner: {
                 name: 'Eigentümer',
                 description: 'Der Eigentümer des Workspace.',
-            },
-            visitor: {
-                name: 'Besucher',
-                description: 'Der Besucher kann nur lesend zugreifen.',
             },
         },
         Analytics: 'Analysen',
