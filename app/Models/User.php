@@ -17,11 +17,12 @@ use Illuminate\Support\Stringable;
 use Modules\Workspace\Models\Concerns\ManagesWorkspaces;
 use Spatie\LaravelPasskeys\Models\Concerns\HasPasskeys;
 use Spatie\LaravelPasskeys\Models\Concerns\InteractsWithPasskeys;
+use Spatie\Permission\Traits\HasRoles;
 
 #[UseFactory(UserFactory::class)]
 class User extends Authenticatable implements HasLocalePreference, HasPasskeys, MustVerifyEmail
 {
-    use HasFactory, InteractsWithPasskeys, ManagesWorkspaces, Notifiable;
+    use HasFactory, HasRoles, InteractsWithPasskeys, ManagesWorkspaces, Notifiable;
 
     /**
      * The attributes that are mass assignable.
