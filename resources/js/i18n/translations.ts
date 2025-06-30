@@ -432,6 +432,7 @@ const translations: Translations = {
         'Manage your profile and account settings': 'Verwalten Sie Ihr Profil und Ihre Kontoeinstellungen',
         Name: 'Name',
         'New password': 'Neues Passwort',
+        'No data available': 'Keine Daten vorhanden',
         'No timezone found.': 'Keine Zeitzone gefunden.',
         'Once your account is deleted, all of its resources and data will also be permanently deleted. Please confirm you would like to permanently delete your account.':
             'Sobald Ihr Konto gelöscht ist, werden auch alle zugehörigen Ressourcen und Daten dauerhaft gelöscht. Bitte bestätigen Sie, dass Sie Ihr Konto dauerhaft löschen möchten.',
@@ -749,6 +750,17 @@ const translations: Translations = {
         Hovers: 'Hovers',
         Impressions: 'Impressionen',
         'No analytics yet.': 'Es gibt noch keine Analysen.',
+        'Are you sure you want to delete this role? This can not be undone. All users with this role will lose access to the appropriate permissions.':
+            'Sind Sie sicher, dass Sie diese Rolle löschen wollen? Dies kann nicht rückgängig gemacht werden. Alle Benutzer mit dieser Rolle verlieren den Zugriff auf die entsprechenden Berechtigungen.',
+        'Create role': 'Rolle erstellen',
+        'Delete role': 'Rolle löschen',
+        'Name of the role': 'Name der Rolle',
+        Permissions: 'Berechtigungen',
+        Resource: 'Ressource',
+        Roles: 'Rollen',
+        'Role settings': 'Konfiguration der Rollen',
+        'These roles exist within the current workspace. You can assign permissions to roles to control access to the workspace. Roles can be assigned to users to grant them access to the workspace.':
+            'Diese Rollen existieren innerhalb des aktuellen Workspaces. Sie können Rollen Berechtigungen zuweisen, um den Zugriff auf den Workspace zu steuern. Rollen können Benutzern zugewiesen werden, um ihnen Zugriff auf den Workspace zu gewähren.',
         'All notifications': 'Alle Benachrichtigungen',
         'Are you sure you want to delete this notification?': 'Sind Sie sicher, dass Sie diese Benachrichtigung löschen möchten?',
         Date: 'Datum',

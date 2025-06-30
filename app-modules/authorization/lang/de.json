@@ -1,0 +1,11 @@
+{
+    "Are you sure you want to delete this role? This can not be undone. All users with this role will lose access to the appropriate permissions.": "Sind Sie sicher, dass Sie diese Rolle löschen wollen? Dies kann nicht rückgängig gemacht werden. Alle Benutzer mit dieser Rolle verlieren den Zugriff auf die entsprechenden Berechtigungen.",
+    "Create role": "Rolle erstellen",
+    "Delete role": "Rolle löschen",
+    "Name of the role": "Name der Rolle",
+    "Permissions": "Berechtigungen",
+    "Resource": "Ressource",
+    "Roles": "Rollen",
+    "Role settings": "Konfiguration der Rollen",
+    "These roles exist within the current workspace. You can assign permissions to roles to control access to the workspace. Roles can be assigned to users to grant them access to the workspace.": "Diese Rollen existieren innerhalb des aktuellen Workspaces. Sie können Rollen Berechtigungen zuweisen, um den Zugriff auf den Workspace zu steuern. Rollen können Benutzern zugewiesen werden, um ihnen Zugriff auf den Workspace zu gewähren."
+}
