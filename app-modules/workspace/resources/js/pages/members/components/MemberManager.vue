@@ -2,11 +2,11 @@
 import ConfirmButton from '@/components/ConfirmButton.vue';
 import UserInfo from '@/components/UserInfo.vue';
 import type { User } from '@/types';
+import { Role } from '@authorization/types/index';
 import { router, useForm } from '@inertiajs/vue3';
 import MemberRoleSelect from '@workspace/components/MemberRoleSelect.vue';
 import { Check } from 'lucide-vue-next';
 import { ref } from 'vue';
-import { Role } from '@authorization/types/index';
 
 interface Props {
     members: Array<User & { role: string; membership: { role: string } }>;

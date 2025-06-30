@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import ConfirmButton from '@/components/ConfirmButton.vue';
 import { Select, SelectContent, SelectGroup, SelectItem, SelectSeparator, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { ref } from 'vue';
 import { Role } from '@authorization/types/index';
+import { ref } from 'vue';
 
 interface Props {
     modelValue: string;

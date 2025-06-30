@@ -6,12 +6,12 @@ import { Separator } from '@/components/ui/separator';
 import { getI18n } from '@/i18n';
 import AppLayout from '@/layouts/AppLayout.vue';
 import type { BreadcrumbItem, User } from '@/types';
+import { Role } from '@authorization/types/index';
 import { Head } from '@inertiajs/vue3';
 import WorkspaceSettingsLayout from '@workspace/layouts/WorkspaceSettingsLayout.vue';
 import InviteMemberForm from '@workspace/pages/members/components/InviteMemberForm.vue';
 import { Workspace, WorkspaceOwner } from '@workspace/types';
 import MemberManager from './components/MemberManager.vue';
-import { Role } from '@authorization/types/index';
 
 const { t } = getI18n();
 
