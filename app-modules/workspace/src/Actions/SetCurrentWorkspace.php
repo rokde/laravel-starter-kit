@@ -22,5 +22,7 @@ class SetCurrentWorkspace
         DB::transaction(function () use ($user, $workspace): void {
             $user->update(['workspace_id' => $workspace->id]);
         });
+
+        setPermissionsTeamId($workspace->id);
     }
 }
