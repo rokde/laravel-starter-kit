@@ -9,8 +9,9 @@ import type { BreadcrumbItem, User } from '@/types';
 import { Head } from '@inertiajs/vue3';
 import WorkspaceSettingsLayout from '@workspace/layouts/WorkspaceSettingsLayout.vue';
 import InviteMemberForm from '@workspace/pages/members/components/InviteMemberForm.vue';
-import { Role, Workspace, WorkspaceOwner } from '@workspace/types';
+import { Workspace, WorkspaceOwner } from '@workspace/types';
 import MemberManager from './components/MemberManager.vue';
+import { Role } from '@authorization/types/index';
 
 const { t } = getI18n();
 
@@ -18,9 +19,9 @@ interface Props {
     workspace: Workspace;
     owner: WorkspaceOwner;
     members: Array<User & { role: string }>;
-    roles: { [key: string]: Role };
-    ownerRoleKey: string;
+    roles: Role[];
     abilities: {
+        'workspace.transferOwnership': boolean;
         'members.create': boolean;
         'members.update': boolean;
         'members.remove': boolean;
@@ -73,7 +74,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                         :roles="props.roles"
                         :remove="props.abilities['members.remove']"
                         :readonly="!props.abilities['members.update']"
-                        :owner-role-key="props.ownerRoleKey"
+                        :transfer-ownership="props.abilities['workspace.transferOwnership']"
                     />
                 </div>
             </div>

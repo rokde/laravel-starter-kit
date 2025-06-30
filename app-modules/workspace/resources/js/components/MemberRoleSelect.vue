@@ -1,28 +1,31 @@
 <script setup lang="ts">
 import ConfirmButton from '@/components/ConfirmButton.vue';
 import { Select, SelectContent, SelectGroup, SelectItem, SelectSeparator, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Role } from '@workspace/types';
-import { computed, ref } from 'vue';
+import { ref } from 'vue';
+import { Role } from '@authorization/types/index';
 
 interface Props {
     modelValue: string;
-    roles: { [key: string]: Role };
-    ownerRoleKey?: string;
+    roles: Role[];
     disabled?: boolean;
+    transferOwnership?: boolean;
 }
 const props = withDefaults(defineProps<Props>(), {
     disabled: false,
-    ownerRoleKey: 'owner',
+    transferOwnership: false,
 });
 
 const emits = defineEmits<{
-    (e: 'update:modelValue', value: string): void;
+    (e: 'update:modelValue', value: number): void;
+    (e: 'transferOwnership'): void;
 }>();
 
 const confirmOwnerRole = ref<typeof ConfirmButton | null>();
 
-const roleUpdated = (role: string): void => {
-    if (role !== props.ownerRoleKey) {
+const OWNER_ROLE_ID = 0;
+
+const roleUpdated = (role: number): void => {
+    if (role !== OWNER_ROLE_ID) {
         emits('update:modelValue', role);
     }
 
@@ -30,13 +33,6 @@ const roleUpdated = (role: string): void => {
         confirmOwnerRole.value.confirming = true;
     }
 };
-
-const hasOwnerRole = computed<boolean>(() => props.roles.hasOwnProperty(props.ownerRoleKey));
-const displayRoles = computed<{ [key: string]: Role }>(() => {
-    const roles = { ...props.roles } as { [key: string]: Role };
-    delete roles.owner;
-    return roles;
-});
 </script>
 
 <template>
@@ -47,27 +43,26 @@ const displayRoles = computed<{ [key: string]: Role }>(() => {
             </SelectValue>
         </SelectTrigger>
         <SelectContent>
-            <SelectGroup v-if="hasOwnerRole">
-                <SelectItem value="owner">
+            <SelectGroup v-if="props.transferOwnership">
+                <SelectItem :value="OWNER_ROLE_ID">
                     <div class="flex flex-col items-start">
-                        <span>{{ $t(`roles.${props.ownerRoleKey}.name`) }}</span>
-                        <span class="text-muted-foreground">{{ $t(`roles.${props.ownerRoleKey}.description`) }}</span>
+                        <span>{{ $t(`roles.owner.name`) }}</span>
+                        <span class="text-muted-foreground">{{ $t(`roles.owner.description`) }}</span>
                     </div>
                 </SelectItem>
             </SelectGroup>
-            <SelectSeparator v-if="hasOwnerRole" />
+            <SelectSeparator v-if="props.transferOwnership" />
             <SelectGroup>
-                <SelectItem v-for="role of displayRoles" :key="role.key" :value="role.key">
+                <SelectItem v-for="role of props.roles" :key="role.id" :value="role.id">
                     <div class="flex flex-col items-start">
-                        <span>{{ $t(`roles.${role.key}.name`) }}</span>
-                        <span class="text-muted-foreground">{{ $t(`roles.${role.key}.description`) }}</span>
+                        <span>{{ role.name }}</span>
                     </div>
                 </SelectItem>
             </SelectGroup>
         </SelectContent>
     </Select>
     <ConfirmButton
-        v-if="hasOwnerRole"
+        v-if="props.transferOwnership"
         as="invisible"
         ref="confirmOwnerRole"
         :title="$t('Transfer of ownership')"
@@ -75,6 +70,6 @@ const displayRoles = computed<{ [key: string]: Role }>(() => {
             $t('Are you sure you want to transfer ownership of this workspace? You remain a member of the workspace. This process is irreversible.')
         "
         :submit-label="$t('Transfer of ownership')"
-        @confirmed="emits('update:modelValue', 'owner')"
+        @confirmed="emits('transferOwnership')"
     />
 </template>

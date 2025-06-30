@@ -10,12 +10,13 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
+use Modules\Authorization\DataTransferObjects\Role as RoleDto;
 use Modules\Workspace\Actions\RemoveMember;
 use Modules\Workspace\Actions\TransferWorkspaceOwnership;
 use Modules\Workspace\Actions\UpdateMember;
 use Modules\Workspace\DataTransferObjects\Owner;
 use Modules\Workspace\Models\OwnerRole;
-use Modules\Workspace\Models\RoleRegistry;
+use Spatie\Permission\Models\Role;
 
 class WorkspaceMembersController
 {
@@ -28,10 +29,11 @@ class WorkspaceMembersController
         $workspace = $user->currentWorkspace;
         abort_if($workspace === null, 404);
 
-        $roles = $user->can('transferOwnership', $workspace)
-            ? [OwnerRole::ROLE_KEY => new OwnerRole]
-            : [];
-        $roles += RoleRegistry::$roles;
+        $roles = Role::query()
+            ->get()
+            ->map(fn(Role $role) => RoleDto::fromModel($role))
+            ->values();
+
 
         return Inertia::render('workspace::members/Index', [
             'workspace' => $workspace->only('id', 'name'),
@@ -42,8 +44,8 @@ class WorkspaceMembersController
             ),
             'members' => $workspace->users,
             'roles' => $roles,
-            'ownerRoleKey' => OwnerRole::ROLE_KEY,
             'abilities' => [
+                'workspace.transferOwnership' => $user->can('transferOwnership', $workspace),
                 'members.create' => $user->can('addMember', $workspace),
                 'members.update' => $user->can('updateMember', $workspace),
                 'members.remove' => $user->can('removeMember', $workspace),
