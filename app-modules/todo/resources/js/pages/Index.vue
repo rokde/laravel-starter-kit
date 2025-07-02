@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import ConfirmButton from '@/components/ConfirmButton.vue';
 import DataTable from '@/components/DataTable/DataTable.vue';
 import DataTableRowActions from '@/components/DataTable/DataTableRowActions.vue';
 import { IPaginatedMeta, IQuery, ITableFacetFilterOption, ITableOptions } from '@/components/DataTable/types';
@@ -17,7 +18,6 @@ import { Head, Link, router } from '@inertiajs/vue3';
 import TodoForm from '@todo/components/TodoForm.vue';
 import { ref } from 'vue';
 import { Todo } from '../types';
-import ConfirmButton from '@/components/ConfirmButton.vue';
 
 const { t } = getI18n();
 
