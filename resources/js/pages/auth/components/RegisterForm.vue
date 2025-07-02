@@ -162,7 +162,7 @@ const submit = () => {
 
         <div v-if="props.canLogin" class="text-muted-foreground text-center text-sm">
             {{ $t('Already have an account?') }}
-            <TextLink :href="route('login')" class="underline underline-offset-4" :tabindex="6">{{ $t('Log in') }}</TextLink>
+            <TextLink :href="route('login')" :tabindex="8">{{ $t('Log in') }}</TextLink>
         </div>
     </form>
 </template>
