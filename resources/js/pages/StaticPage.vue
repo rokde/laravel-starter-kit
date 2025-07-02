@@ -41,8 +41,8 @@ const props = defineProps<Props>();
             </nav>
         </header>
         <div class="flex w-full justify-center opacity-100 transition-opacity duration-750 lg:grow starting:opacity-0">
-            <main class="flex w-full max-w-[335px] flex-col-reverse overflow-hidden rounded-lg lg:max-w-4xl lg:flex-row">
-                <div class="prose dark:prose-invert mt-6 w-full overflow-hidden sm:max-w-2xl dark:bg-gray-800" v-html="props.content" />
+            <main class="flex w-full max-w-[335px] flex-col-reverse overflow-hidden rounded-lg p-4 lg:max-w-4xl lg:flex-row dark:bg-gray-800">
+                <div class="prose dark:prose-invert mt-6 w-full overflow-hidden sm:max-w-2xl" v-html="props.content" />
             </main>
         </div>
         <div class="hidden h-14.5 lg:block"></div>

@@ -3,6 +3,8 @@
 declare(strict_types=1);
 
 use App\Services\StaticPageFileService;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Str;
 use Inertia\Inertia;
 
 collect([
