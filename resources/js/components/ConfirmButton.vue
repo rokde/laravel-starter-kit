@@ -21,7 +21,7 @@ const props = withDefaults(
         confirmation: string;
         cancelLabel?: string;
         submitLabel?: string;
-        as?: 'link' | 'icon' | 'invisible';
+        as?: 'link' | 'icon' | 'dropdown-menu-item' | 'invisible';
         withoutConfirmation?: boolean;
         disabled?: boolean;
     }>(),
@@ -103,6 +103,12 @@ const enterKeyHandler = (event: KeyboardEvent) => {
                 <Trash class="size-4 group-hover:hidden" />
                 <Trash2 class="hidden size-4 group-hover:block" />
             </Button>
+            <div
+                v-if="props.as === 'dropdown-menu-item'"
+                class="text-destructive-foreground hover:bg-destructive/10 dark:hover:bg-destructive/40 focus:bg-destructive/10 dark:focus:bg-destructive/40 focus:text-destructive-foreground *:[svg]:!text-destructive-foreground [&_svg:not([class*='text-'])]:text-muted-foreground relative flex cursor-default items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-hidden select-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50 data-[inset]:pl-8 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4"
+            >
+                <span class="text-red-500 hover:text-red-600 dark:text-red-700 dark:hover:text-red-600">{{ $t(props.label) }}</span>
+            </div>
         </AlertDialogTrigger>
 
         <AlertDialogContent>
@@ -111,7 +117,7 @@ const enterKeyHandler = (event: KeyboardEvent) => {
                 <AlertDialogDescription>{{ props.confirmation }}</AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter>
-                <AlertDialogCancel>{{ $t('Cancel') }}</AlertDialogCancel>
+                <AlertDialogCancel>{{ $t(props.cancelLabel) }}</AlertDialogCancel>
                 <AlertDialogAction @click="confirmed">{{ $t(props.submitLabel) }}</AlertDialogAction>
             </AlertDialogFooter>
         </AlertDialogContent>
