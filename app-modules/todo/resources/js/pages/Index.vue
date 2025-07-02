@@ -17,6 +17,7 @@ import { Head, Link, router } from '@inertiajs/vue3';
 import TodoForm from '@todo/components/TodoForm.vue';
 import { ref } from 'vue';
 import { Todo } from '../types';
+import ConfirmButton from '@/components/ConfirmButton.vue';
 
 const { t } = getI18n();
 
@@ -129,6 +130,14 @@ const open = ref<boolean>(false);
                         <DropdownMenuSeparator />
                         <DropdownMenuItem variant="destructive" @click.stop="router.delete(route('todos.destroy', todo.id))">
                             <span class="text-red-500 hover:text-red-600 dark:text-red-700 dark:hover:text-red-600">{{ $t('Delete') }}</span>
+                        </DropdownMenuItem>
+                        <DropdownMenuItem as-child variant="destructive">
+                            <ConfirmButton
+                                as="dropdown-menu-item"
+                                :title="$t('Delete Todo')"
+                                :confirmation="$t('Do you want to delete todo?')"
+                                @confirmed="router.delete(route('todos.destroy', todo.id))"
+                            />
                         </DropdownMenuItem>
                     </DataTableRowActions>
                 </template>
