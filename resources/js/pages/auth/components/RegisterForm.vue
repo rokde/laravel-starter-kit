@@ -160,6 +160,14 @@ const submit = () => {
             </Button>
         </div>
 
+        <div class="text-muted-foreground text-center text-sm">
+            {{ $t('agreement_start') }}
+            <TextLink :href="route('static.terms')" :tabindex="6">{{ $t('Terms of Service') }}</TextLink>
+            {{ $t('and') }}
+            <TextLink :href="route('static.policy')" :tabindex="7">{{ $t('Privacy Policy') }}</TextLink>
+            {{ $t('agreement_end') }}
+        </div>
+
         <div v-if="props.canLogin" class="text-muted-foreground text-center text-sm">
             {{ $t('Already have an account?') }}
             <TextLink :href="route('login')" :tabindex="8">{{ $t('Log in') }}</TextLink>

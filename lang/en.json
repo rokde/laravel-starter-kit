@@ -81,6 +81,8 @@
     "Update your name and email address": "Update your name and email address",
     "Warning": "Warning",
     "Your email address is unverified.": "Your email address is unverified.",
+    "agreement_end": ".",
+    "agreement_start": "By creating an account you agree to our",
     "log in": "log in",
     "status": "status"
 }
