@@ -12,7 +12,7 @@ interface Props {
 }
 const props = withDefaults(defineProps<Props>(), {
     disabled: false,
-    ownerRoleKey: 'owner',
+    ownerRoleKey: '-',
 });
 
 const emits = defineEmits<{
