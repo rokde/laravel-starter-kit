@@ -28,7 +28,7 @@
         "@tailwindcss/typography": "^0.5.16",
         "@tailwindcss/vite": "^4.1.7",
         "@tanstack/vue-table": "^8.21.3",
-        "@vitejs/plugin-vue": "^5.2.4",
+        "@vitejs/plugin-vue": "^6.0.0",
         "@vueuse/core": "^13.4.0",
         "class-variance-authority": "^0.7.1",
         "clsx": "^2.1.1",
