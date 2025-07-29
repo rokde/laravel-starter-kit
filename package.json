@@ -42,7 +42,7 @@
         "typescript": "^5.8.3",
         "vite": "^6.3.5",
         "vue": "^3.5.17",
-        "vue-i18n": "^11.1.7",
+        "vue-i18n": "^11.1.11",
         "ziggy-js": "^2.5.3"
     },
     "optionalDependencies": {
