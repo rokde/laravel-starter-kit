@@ -88,7 +88,7 @@ class PaginationRequest extends FormRequest
     public function facets(): Collection
     {
         return $this->collect('filter')
-            ->map(fn (string $filterValues) => explode(',', $filterValues))
+            ->map(fn (string $filterValues): array => explode(',', $filterValues))
             ->map(fn (array $filterValues) => collect($filterValues)
                 ->map(fn (string $value): mixed => FilterValueEnum::transformFilterValue($value))
                 ->all()
@@ -98,7 +98,7 @@ class PaginationRequest extends FormRequest
     public function filter(): array
     {
         return $this->collect('filter')
-            ->map(fn (string $filterValues) => explode(',', $filterValues))
+            ->map(fn (string $filterValues): array => explode(',', $filterValues))
             ->map(fn (array $filterValues) => collect($filterValues)->all())
             ->all();
     }

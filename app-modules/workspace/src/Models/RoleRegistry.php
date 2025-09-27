@@ -35,7 +35,7 @@ final class RoleRegistry
     public static function role(string $key, string $name, string $description = ''): Role
     {
         return tap(new Role($key, $name, $description), function ($role) use ($key): void {
-            static::$roles[$key] = $role;
+            self::$roles[$key] = $role;
         });
     }
 

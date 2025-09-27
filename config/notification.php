@@ -11,7 +11,7 @@ use Modules\Workspace\Notifications\WorkspaceTransferredNotification;
 
 /**
  * @return array{
- *   notifications: class-string<\Modules\Notification\Contracts\InAppNotification>[]
+ *   notifications: class-string<Modules\Notification\Contracts\InAppNotification>[]
  * }
  */
 return [

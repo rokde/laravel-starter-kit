@@ -147,7 +147,7 @@ class GenerateTranslationsCommand extends Command
     private function convertTranslations(Collection $lines): array
     {
         return $lines
-            ->mapWithKeys(fn ($translation, $key) => [
+            ->mapWithKeys(fn ($translation, $key): array => [
                 $this->convertTranslation($key) => $this->convertTranslation($translation),
             ])
             ->all();

@@ -60,7 +60,6 @@ test('it can set counts for options', function (): void {
     // Set options using reflection since there's no public method to set options
     $reflection = new ReflectionClass($facet);
     $optionsProperty = $reflection->getProperty('options');
-    $optionsProperty->setAccessible(true);
     $optionsProperty->setValue($facet, [
         ['label' => 'Option 1', 'value' => 'option1'],
         ['label' => 'Option 2', 'value' => 'option2'],

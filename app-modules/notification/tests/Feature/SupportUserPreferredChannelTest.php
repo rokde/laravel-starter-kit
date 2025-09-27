@@ -69,7 +69,7 @@ test('toDatabase method adds url and title for InAppNotification', function (): 
             return ['data' => 'test'];
         }
 
-        public function getUrl(): ?string
+        public function getUrl(): string
         {
             return 'https://example.com';
         }
