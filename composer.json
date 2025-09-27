@@ -20,7 +20,7 @@
         "modules/passkey": "*",
         "modules/todo": "^1.0",
         "modules/workspace": "*",
-        "nunomaduro/essentials": "^0.1.0",
+        "nunomaduro/essentials": "^1.0",
         "tightenco/ziggy": "^2.4"
     },
     "require-dev": {
