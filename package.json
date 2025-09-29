@@ -24,7 +24,7 @@
         "vue-tsc": "^3.0.8"
     },
     "dependencies": {
-        "@inertiajs/vue3": "^2.2.0",
+        "@inertiajs/vue3": "^2.2.3",
         "@simplewebauthn/browser": "^13.2.0",
         "@tailwindcss/typography": "^0.5.19",
         "@tailwindcss/vite": "^4.1.13",
