@@ -8,17 +8,19 @@ use App\Models\FrontMatter;
 use App\Models\StaticPage;
 use InvalidArgumentException;
 use Symfony\Component\Yaml\Yaml;
+use Throwable;
 
 class StaticPageFileService
 {
     public const PATTERN = '/^[\s\r\n]?---[\s\r\n]?$/sm';
 
+    /**
+     * @throws Throwable when file not found
+     */
     public function parseFile(string $path): StaticPage
     {
         $content = file_get_contents($path);
-        if ($content === false) {
-            throw new InvalidArgumentException('File not found: '.$path);
-        }
+        throw_if($content === false, new InvalidArgumentException('File not found: '.$path));
 
         return $this->parse($content);
     }
