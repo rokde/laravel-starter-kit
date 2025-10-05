@@ -13,27 +13,27 @@
         "inertiajs/inertia-laravel": "^2.0",
         "internachi/modular": "^2.3",
         "laravel/framework": "^12.0",
-        "laravel/tinker": "^2.10.1",
-        "modules/analytics": "*",
-        "modules/foundation-layout": "*",
-        "modules/notification": "*",
-        "modules/passkey": "*",
+        "laravel/tinker": "^2.10",
+        "modules/analytics": ">=1",
+        "modules/foundation-layout": ">=1",
+        "modules/notification": ">=1",
+        "modules/passkey": ">=1",
         "modules/todo": "^1.0",
-        "modules/workspace": "*",
+        "modules/workspace": ">=1",
         "nunomaduro/essentials": "^1.0",
-        "tightenco/ziggy": "^2.4"
+        "tightenco/ziggy": "^2.6"
     },
     "require-dev": {
-        "barryvdh/laravel-ide-helper": "^3.5",
-        "fakerphp/faker": "^1.23",
-        "laravel/pail": "^1.2.2",
-        "laravel/pint": "^1.18",
-        "laravel/sail": "^1.41",
-        "mockery/mockery": "^1.6",
-        "nunomaduro/collision": "^8.6",
-        "pestphp/pest": "^4.0",
+        "barryvdh/laravel-ide-helper": "^3.6",
+        "fakerphp/faker": "^1.24",
+        "laravel/pail": "^1.2",
+        "laravel/pint": "^1.25",
+        "laravel/sail": "^1.46",
+        "mockery/mockery": "^1.6.12",
+        "nunomaduro/collision": "^8.8",
+        "pestphp/pest": "^4.1",
         "pestphp/pest-plugin-laravel": "^4.0",
-        "rector/rector": "^2.0"
+        "rector/rector": "^2.1"
     },
     "autoload": {
         "psr-4": {
