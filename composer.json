@@ -10,35 +10,35 @@
     "license": "MIT",
     "require": {
         "php": "^8.4",
-        "inertiajs/inertia-laravel": "^2.0",
+        "inertiajs/inertia-laravel": "^2.0.10",
         "internachi/modular": "^2.3",
-        "laravel/framework": "^12.31",
-        "laravel/tinker": "^2.10",
+        "laravel/framework": "^12.32.5",
+        "laravel/tinker": "^2.10.1",
         "modules/analytics": ">=1",
         "modules/foundation-layout": ">=1",
         "modules/notification": ">=1",
         "modules/passkey": ">=1",
         "modules/todo": "^1.0",
         "modules/workspace": ">=1",
-        "nunomaduro/essentials": "^1.0",
+        "nunomaduro/essentials": "^1.0.1",
         "tightenco/ziggy": "^2.6"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^3.6",
-        "driftingly/rector-laravel": "^2.0",
-        "fakerphp/faker": "^1.24",
-        "larastan/larastan": "^3.7",
+        "driftingly/rector-laravel": "^2.0.7",
+        "fakerphp/faker": "^1.24.1",
+        "larastan/larastan": "^3.7.2",
         "laravel/boost": "^1.3",
-        "laravel/pail": "^1.2",
-        "laravel/pint": "^1.25",
+        "laravel/pail": "^1.2.3",
+        "laravel/pint": "^1.25.1",
         "laravel/sail": "^1.46",
         "mockery/mockery": "^1.6.12",
-        "nunomaduro/collision": "^8.8",
-        "pestphp/pest": "^4.1",
-        "pestphp/pest-plugin-browser": "^4.1",
+        "nunomaduro/collision": "^8.8.2",
+        "pestphp/pest": "^4.1.1",
+        "pestphp/pest-plugin-browser": "^4.1.1",
         "pestphp/pest-plugin-laravel": "^4.0",
-        "pestphp/pest-plugin-type-coverage": "^4.0",
-        "rector/rector": "^2.1"
+        "pestphp/pest-plugin-type-coverage": "^4.0.2",
+        "rector/rector": "^2.1.7"
     },
     "autoload": {
         "psr-4": {
@@ -59,7 +59,9 @@
             "@php artisan modules:sync"
         ],
         "post-update-cmd": [
-            "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
+            "@php artisan vendor:publish --tag=laravel-assets --ansi --force",
+            "@php artisan clear",
+            "@update:requirements"
         ],
         "post-root-package-install": [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
@@ -69,32 +71,41 @@
             "@php -r \"file_exists('database/database.sqlite') || touch('database/database.sqlite');\"",
             "@php artisan migrate --graceful --ansi"
         ],
+        "update:requirements": [
+            "composer bump",
+            "npx npm-check-updates -u"
+        ],
         "dev": [
             "Composer\\Config::disableProcessTimeout",
-            "npx concurrently -c \"#93c5fd,#c4b5fd,#fb7185,#fdba74\" \"php artisan serve\" \"php artisan queue:listen --tries=1\" \"php artisan pail --timeout=0\" \"npm run dev\" --names=server,queue,logs,vite"
+            "npx concurrently -c \"#93c5fd,#c4b5fd,#fb7185,#fdba74\" \"php artisan serve\" \"php artisan queue:listen --tries=1\" \"php artisan pail --timeout=0\" \"npm run dev\" --names=server,queue,logs,vite --kill-others"
         ],
         "dev:ssr": [
             "npm run build:ssr",
             "Composer\\Config::disableProcessTimeout",
-            "npx concurrently -c \"#93c5fd,#c4b5fd,#fb7185,#fdba74\" \"php artisan serve\" \"php artisan queue:listen --tries=1\" \"php artisan pail --timeout=0\" \"php artisan inertia:start-ssr\" --names=server,queue,logs,ssr"
+            "npx concurrently -c \"#93c5fd,#c4b5fd,#fb7185,#fdba74\" \"php artisan serve\" \"php artisan queue:listen --tries=1\" \"php artisan pail --timeout=0\" \"php artisan inertia:start-ssr\" --names=server,queue,logs,ssr --kill-others"
         ],
-        "rector": [
-            "rector"
+        "lint": [
+            "rector",
+            "pint --parallel",
+            "npm run lint"
         ],
+        "test:type-coverage": "pest --type-coverage --min=100",
+        "test:lint": [
+            "pint --parallel --test",
+            "rector --dry-run",
+            "npm run test:lint"
+        ],
+        "test:unit": "pest --parallel --coverage --exactly=100.0",
+        "test:types": "phpstan",
         "test": [
-            "@php artisan config:clear --ansi",
-            "@php artisan test --parallel"
+            "@test:type-coverage",
+            "@test:unit",
+            "@test:lint",
+            "@test:types"
         ],
-        "test:coverage": [
+        "DEPRECATED_test:coverage": [
             "@php artisan test --coverage",
             "open tests/coverage/index.html"
-        ],
-        "test:rector": [
-            "rector --dry-run"
-        ],
-        "format": [
-            "rector",
-            "@php vendor/bin/pint"
         ],
         "ide-helper": [
             "@php artisan ide-helper:generate",
@@ -108,6 +119,7 @@
         }
     },
     "config": {
+        "bump-after-update": true,
         "optimize-autoloader": true,
         "preferred-install": "dist",
         "sort-packages": true,
