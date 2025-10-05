@@ -205,7 +205,7 @@ test('a user cannot invite the same email twice', function (): void {
     $role = current(RoleRegistry::roleKeys());
 
     // Create an existing invitation
-    WorkspaceInvitation::create([
+    WorkspaceInvitation::query()->create([
         'workspace_id' => $workspace->id,
         'email' => $email,
         'role' => $role,
@@ -223,7 +223,7 @@ test('a user cannot invite the same email twice', function (): void {
     $response->assertSessionHasErrors(['email']);
 
     // Check that only one invitation exists
-    $this->assertEquals(1, WorkspaceInvitation::where('workspace_id', $workspace->id)
+    $this->assertEquals(1, WorkspaceInvitation::query()->where('workspace_id', $workspace->id)
         ->where('email', $email)
         ->count());
 
