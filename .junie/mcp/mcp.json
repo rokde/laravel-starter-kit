@@ -1,0 +1,20 @@
+{
+    "mcpServers": {
+        "laravel-boost": {
+            "command": "/Users/rok/Library/Application Support/Herd/bin/php84",
+            "args": [
+                "/Users/rok/workspace/rokde/laravel-starter-kit/artisan",
+                "boost:mcp"
+            ]
+        },
+        "herd": {
+            "command": "/Users/rok/Library/Application Support/Herd/bin/php84",
+            "args": [
+                "/Applications/Herd.app/Contents/Resources/herd-mcp.phar"
+            ],
+            "env": {
+                "SITE_PATH": "/Users/rok/workspace/rokde/laravel-starter-kit"
+            }
+        }
+    }
+}

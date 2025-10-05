@@ -1,5 +1,6 @@
-===
-
+---
+alwaysApply: true
+---
 <laravel-boost-guidelines>
 === foundation rules ===
 
@@ -255,7 +256,7 @@ Route::get('/users', function () {
 - All tests must be written using Pest. Use `php artisan make:test --pest <name>`.
 - You must not remove any tests or test files from the tests directory without approval. These are not temporary or helper files - these are core to the application.
 - Tests should test all of the happy paths, failure paths, and weird paths.
-- Tests live in the `tests/Feature` and `tests/Unit` directories. Module-specific tests live in the `app-modules/*/tests/` directories.
+- Tests live in the `tests/Feature` and `tests/Unit` directories.
 - Pest tests look and behave like this:
 <code-snippet name="Basic Pest Test Example" lang="php">
 it('is true', function () {
@@ -466,111 +467,3 @@ $pages->assertNoJavascriptErrors()->assertNoConsoleLogs();
 - Every change must be programmatically tested. Write a new test or update an existing test, then run the affected tests to make sure they pass.
 - Run the minimum number of tests needed to ensure code quality and speed. Use `php artisan test` with a specific filename or filter.
 </laravel-boost-guidelines>
-
-
-=== Project specific rule ===
-
-## Additional Development Information
-
-### Modular Structure
-The project uses a modular structure with modules in the `app-modules` directory. Each module can have its own:
-- Controllers
-- Models
-- Views
-- Routes
-- Tests
-- Migrations
-- Factories
-
-### Database Entity Relationship Diagrams
-The project maintains a database entity relationship diagram (ERD) to visualize the database schema. The diagram is created using Mermaid syntax and is stored in `docs/database-entity-relationship-diagram.md`.
-
-#### Mermaid ERD Syntax
-The ERD is created using Mermaid's entity-relationship diagram syntax. Here's an example of the syntax:
-
-```mermaid
-erDiagram
-    TABLE_NAME {
-        column_name data_type PK "optional comment"
-        another_column data_type FK "optional comment"
-    }
-
-    ANOTHER_TABLE {
-        id bigint PK
-        name string
-        foreign_key bigint FK
-    }
-
-    TABLE_NAME ||--o{ ANOTHER_TABLE : "relationship description"
-```
-
-Key points about the syntax:
-- Each table is defined with its name followed by columns in curly braces
-- Columns include name, data type, and optional attributes (PK, FK)
-- Comments can be added in quotes after the column definition
-- Relationships are defined using crow's foot notation
-- Avoid using "NULL" in attribute definitions as it causes parsing errors
-
-#### Updating the ERD
-When making changes to the database schema (adding tables, columns, or relationships), follow these steps to update the ERD:
-
-1. Open `docs/database-entity-relationship-diagram.md`
-2. Update the Mermaid diagram to reflect the changes
-3. Add or modify table descriptions as needed
-4. Update the relationships section if necessary
-
-The ERD should be kept in sync with the migration files to ensure it accurately represents the current database schema.
-
-### Internationalization
-The project supports multiple languages using Vue I18n. Translation files are located in:
-- `lang/` directory for PHP translations
-- `app-modules/*/lang/` directories for module-specific translations
-
-Always create translation files for both English and German:
-- `en.json` - English translations
-- `de.json` - German translations
-
-This ensures that the application is fully accessible to users in both languages.
-
-## Module Development
-
-A comprehensive guide for creating new modules is available in `docs/module-development-guide.md`. This section provides a summary of the key points.
-
-### Module Structure
-Each module should follow this directory structure:
-
-```
-app-modules/
-└── your-module/
-    ├── README.md
-    ├── composer.json
-    ├── database/
-    │   ├── factories/
-    │   ├── migrations/
-    │   └── seeders/
-    ├── lang/
-    ├── resources/
-    │   ├── js/
-    │   │   ├── pages/
-    │   │   └── types.ts
-    │   └── views/
-    ├── routes/
-    │   └── web.php
-    ├── src/
-    │   ├── Http/
-    │   │   ├── Controllers/
-    │   │   └── Requests/
-    │   ├── Models/
-    │   └── Providers/
-    └── tests/
-        ├── Feature/
-        └── Unit/
-```
-
-### Creating a New Module
-1. Create the module directory structure
-2. Create a `composer.json` file with the module's namespace and service provider
-3. Implement the backend components (models, controllers, requests, routes, migrations)
-4. Create Vue.js frontend components
-5. Write Pest tests for the module
-6. Document the module in a README.md file
