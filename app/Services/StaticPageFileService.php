@@ -6,6 +6,7 @@ namespace App\Services;
 
 use App\Models\FrontMatter;
 use App\Models\StaticPage;
+use InvalidArgumentException;
 use Symfony\Component\Yaml\Yaml;
 
 class StaticPageFileService
@@ -14,7 +15,12 @@ class StaticPageFileService
 
     public function parseFile(string $path): StaticPage
     {
-        return $this->parse(file_get_contents($path));
+        $content = file_get_contents($path);
+        if ($content === false) {
+            throw new InvalidArgumentException('File not found: '.$path);
+        }
+
+        return $this->parse($content);
     }
 
     public function parse(string $content): StaticPage
