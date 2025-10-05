@@ -29,7 +29,7 @@ test('workspace can be retrieved by id', function (): void {
     $workspace = Workspace::factory()->create();
 
     // Act
-    $found = Workspace::find($workspace->id);
+    $found = Workspace::query()->find($workspace->id);
 
     // Assert
     expect($found)->not()->toBeNull();
