@@ -3,11 +3,9 @@ name: tests
 on:
   push:
     branches:
-      - develop
       - main
   pull_request:
     branches:
-      - develop
       - main
 
 jobs:
@@ -34,6 +32,12 @@ jobs:
       - name: Install Node Dependencies
         run: npm ci
 
+      - name: Build Assets
+        run: npm run build
+
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+
       - name: Install Dependencies
         run: composer install --no-interaction --prefer-dist --optimize-autoloader
 
@@ -43,11 +47,24 @@ jobs:
       - name: Generate Application Key
         run: php artisan key:generate
 
+      - name: Rector Cache
+        uses: actions/cache@v4
+        with:
+          path: /tmp/rector
+          key: ${{ runner.os }}-rector-${{ hashFiles('composer.lock') }}
+          restore-keys: ${{ runner.os }}-rector-
+      - run: mkdir -p /tmp/rector
+
+      - name: PHPStan Cache
+        uses: actions/cache@v4
+        with:
+          path: /tmp/phpstan
+          key: ${{ runner.os }}-phpstan-${{ hashFiles('composer.lock') }}
+          restore-keys: ${{ runner.os }}-phpstan-
+      - run: mkdir -p /tmp/phpstan
+
       - name: Publish Ziggy Configuration
         run: php artisan ziggy:generate
 
-      - name: Build Assets
-        run: npm run build
-
       - name: Tests
-        run: ./vendor/bin/pest --parallel
+        run: composer test
