@@ -104,6 +104,11 @@
             "@test:lint",
             "@test:types"
         ],
+        "ci:test": [
+            "@test:type-coverage",
+            "@test:unit",
+            "@test:lint"
+        ],
         "DEPRECATED_test:coverage": [
             "@php artisan test --coverage",
             "open tests/coverage/index.html"

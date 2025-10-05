@@ -67,4 +67,4 @@ jobs:
         run: php artisan ziggy:generate
 
       - name: Tests
-        run: composer test
+        run: composer ci:test
