@@ -28,7 +28,7 @@ class UpdateMember
             ]);
         });
 
-        $member = User::find($memberUserId->value());
+        $member = User::query()->find($memberUserId->value());
         MemberUpdated::dispatch($workspace, $member);
 
         return $workspace;
