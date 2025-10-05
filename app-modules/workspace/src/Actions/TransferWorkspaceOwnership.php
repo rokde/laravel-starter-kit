@@ -27,19 +27,19 @@ class TransferWorkspaceOwnership
         /** @var Workspace $workspace */
         $workspace = $workspaceId;
         if ($workspaceId instanceof Id) {
-            $workspace = User::findOrFail($workspaceId->value());
+            $workspace = User::query()->findOrFail($workspaceId->value());
         }
 
         /** @var User $currentOwner */
         $currentOwner = $currentOwnerId;
         if ($currentOwnerId instanceof Id) {
-            $currentOwner = User::findOrFail($currentOwnerId->value());
+            $currentOwner = User::query()->findOrFail($currentOwnerId->value());
         }
 
         /** @var User $newOwner */
         $newOwner = $newOwnerId;
         if ($newOwnerId instanceof Id) {
-            $newOwner = User::findOrFail($newOwnerId->value());
+            $newOwner = User::query()->findOrFail($newOwnerId->value());
         }
 
         throw_unless($currentOwner->can('transferOwnership', [$workspace, $newOwner]), AuthorizationException::class);
