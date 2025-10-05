@@ -20,21 +20,19 @@ class AcceptTeamInvitation
         /** @var WorkspaceInvitation $workspaceInvitation */
         $workspaceInvitation = $invitationId;
         if ($invitationId instanceof Id) {
-            $workspaceInvitation = WorkspaceInvitation::findOrFail($invitationId->value());
+            $workspaceInvitation = WorkspaceInvitation::query()->findOrFail($invitationId->value());
         }
 
         /** @var User $user */
         $user = $userId;
         if ($userId instanceof Id) {
-            $user = User::findOrFail($userId->value());
+            $user = User::query()->findOrFail($userId->value());
         }
 
         $workspace = DB::transaction(function () use ($workspaceInvitation, $user): Workspace {
             $workspace = $workspaceInvitation->workspace;
 
-            if ($user->getAuthIdentifier() === $workspace->owner->getAuthIdentifier()) {
-                throw new Exception('The owner can not be added with another role too.');
-            }
+            throw_if($user->getAuthIdentifier() === $workspace->owner->getAuthIdentifier(), new Exception('The owner can not be added with another role too.'));
 
             // attach user
             $workspace->users()->attach($user, [
