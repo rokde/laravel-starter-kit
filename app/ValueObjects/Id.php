@@ -9,9 +9,9 @@ use JsonSerializable;
 use ReturnTypeWillChange;
 use Stringable;
 
-class Id implements JsonSerializable, Stringable
+readonly class Id implements JsonSerializable, Stringable
 {
-    private readonly int $id;
+    private int $id;
 
     public function __construct(int|string|null $id)
     {
@@ -31,11 +31,11 @@ class Id implements JsonSerializable, Stringable
     }
 
     /**
-     * @param array{id: int} $data
+     * @param  array{id: int}  $data
      */
     public function __unserialize(array $data): void
     {
-        $this->id = intval($data['id']);
+        $this->id = (int) ($data['id']);
     }
 
     public function value(): int
