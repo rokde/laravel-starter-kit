@@ -51,9 +51,7 @@ class LayoutService
 
     public function configureAuthenticationLayout(string $variant): void
     {
-        if (! array_key_exists($variant, $this->authenticationLayoutVariants)) {
-            throw new InvalidArgumentException('Invalid variant');
-        }
+        throw_unless(array_key_exists($variant, $this->authenticationLayoutVariants), new InvalidArgumentException('Invalid variant'));
 
         $this->authenticationLayoutVariants[$variant]->proceed();
     }
@@ -73,9 +71,7 @@ class LayoutService
 
     public function configureApplicationLayout(string $variant): void
     {
-        if (! array_key_exists($variant, $this->applicationLayoutVariants)) {
-            throw new InvalidArgumentException('Invalid variant');
-        }
+        throw_unless(array_key_exists($variant, $this->applicationLayoutVariants), new InvalidArgumentException('Invalid variant'));
 
         $this->applicationLayoutVariants[$variant]->proceed();
     }
