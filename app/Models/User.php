@@ -21,6 +21,7 @@ use Spatie\LaravelPasskeys\Models\Concerns\InteractsWithPasskeys;
 #[UseFactory(UserFactory::class)]
 class User extends Authenticatable implements HasLocalePreference, HasPasskeys, MustVerifyEmail
 {
+    /** @use HasFactory<UserFactory> */
     use HasFactory, InteractsWithPasskeys, ManagesWorkspaces, Notifiable;
 
     /**
@@ -48,7 +49,7 @@ class User extends Authenticatable implements HasLocalePreference, HasPasskeys, 
     public function preferredLocale(): string
     {
         if ($this->locale instanceof Stringable) {
-            return $this->locale->toString();
+            return (string) $this->locale->toString();
         }
 
         return $this->locale ?? config('app.fallback_locale', 'en');
