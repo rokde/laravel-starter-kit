@@ -16,9 +16,7 @@ class Id implements JsonSerializable, Serializable, Stringable
 
     public function __construct(int|string|null $id)
     {
-        if (is_null($id)) {
-            throw new InvalidArgumentException('Id cannot be null');
-        }
+        throw_if(is_null($id), new InvalidArgumentException('Id cannot be null'));
 
         $this->id = (int) $id;
     }
