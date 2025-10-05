@@ -38,7 +38,7 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->bind('inertia.testing.view-finder', function (Application $app): FileViewFinder {
             $fileViewFinder = new FileViewFinder(
-                $app['files'],
+                $app->make(\Illuminate\Filesystem\Filesystem::class),
                 [resource_path('js/pages')],
                 ['vue']
             );
