@@ -7,10 +7,9 @@ namespace App\ValueObjects;
 use InvalidArgumentException;
 use JsonSerializable;
 use ReturnTypeWillChange;
-use Serializable;
 use Stringable;
 
-class Id implements JsonSerializable, Serializable, Stringable
+class Id implements JsonSerializable, Stringable
 {
     private readonly int $id;
 
@@ -31,9 +30,12 @@ class Id implements JsonSerializable, Serializable, Stringable
         return $this->jsonSerialize();
     }
 
+    /**
+     * @param array{id: int} $data
+     */
     public function __unserialize(array $data): void
     {
-        $this->id = (int) $data['id'];
+        $this->id = intval($data['id']);
     }
 
     public function value(): int
@@ -41,24 +43,14 @@ class Id implements JsonSerializable, Serializable, Stringable
         return $this->id;
     }
 
+    /**
+     * @return array{id: int}
+     */
     #[ReturnTypeWillChange]
     public function jsonSerialize(): array
     {
         return [
             'id' => $this->id,
         ];
-    }
-
-    public function serialize(): string
-    {
-        return $this->__toString();
-    }
-
-    /**
-     * @codeCoverageIgnore
-     */
-    public function unserialize(string $data): void
-    {
-        $this->id = (int) $data;
     }
 }
