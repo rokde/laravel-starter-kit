@@ -14,7 +14,7 @@ class RevokeTeamInvitation
         /** @var WorkspaceInvitation $workspaceInvitation */
         $workspaceInvitation = $invitationId;
         if ($invitationId instanceof Id) {
-            $workspaceInvitation = WorkspaceInvitation::findOrFail($invitationId->value());
+            $workspaceInvitation = WorkspaceInvitation::query()->findOrFail($invitationId->value());
         }
 
         // delete invitation
