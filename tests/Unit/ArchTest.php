@@ -8,7 +8,7 @@ arch('Test the application architecture.')
     ->toUseStrictEquality();
 
 arch()->preset()->php();
-//arch()->preset()->strict();
+// arch()->preset()->strict();
 arch()->preset()->security();
 
 // arch()->preset()->laravel()
