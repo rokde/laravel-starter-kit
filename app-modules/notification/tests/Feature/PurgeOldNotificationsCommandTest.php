@@ -39,13 +39,13 @@ test('purge old notifications command deletes read notifications older than spec
         ->assertSuccessful();
 
     // Assert old read notification was deleted
-    expect(DatabaseNotification::find($oldReadNotification->id))->toBeNull();
+    expect(DatabaseNotification::query()->find($oldReadNotification->id))->toBeNull();
 
     // Assert recent read notification was not deleted
-    expect(DatabaseNotification::find($recentReadNotification->id))->not->toBeNull();
+    expect(DatabaseNotification::query()->find($recentReadNotification->id))->not->toBeNull();
 
     // Assert old unread notification was not deleted
-    expect(DatabaseNotification::find($oldUnreadNotification->id))->not->toBeNull();
+    expect(DatabaseNotification::query()->find($oldUnreadNotification->id))->not->toBeNull();
 });
 
 test('purge old notifications command deletes all notifications older than specified age when include-unread option is used', function (): void {
@@ -73,13 +73,13 @@ test('purge old notifications command deletes all notifications older than speci
         ->assertSuccessful();
 
     // Assert old read notification was deleted
-    expect(DatabaseNotification::find($oldReadNotification->id))->toBeNull();
+    expect(DatabaseNotification::query()->find($oldReadNotification->id))->toBeNull();
 
     // Assert old unread notification was deleted
-    expect(DatabaseNotification::find($oldUnreadNotification->id))->toBeNull();
+    expect(DatabaseNotification::query()->find($oldUnreadNotification->id))->toBeNull();
 
     // Assert recent unread notification was not deleted
-    expect(DatabaseNotification::find($recentUnreadNotification->id))->not->toBeNull();
+    expect(DatabaseNotification::query()->find($recentUnreadNotification->id))->not->toBeNull();
 });
 
 test('purge old notifications command respects custom age parameter', function (): void {
@@ -101,10 +101,10 @@ test('purge old notifications command respects custom age parameter', function (
         ->assertSuccessful();
 
     // Assert notification older than 30 days was deleted
-    expect(DatabaseNotification::find($olderThan30Days->id))->toBeNull();
+    expect(DatabaseNotification::query()->find($olderThan30Days->id))->toBeNull();
 
     // Assert notification newer than 30 days was not deleted
-    expect(DatabaseNotification::find($newerThan30Days->id))->not->toBeNull();
+    expect(DatabaseNotification::query()->find($newerThan30Days->id))->not->toBeNull();
 });
 
 uses(Illuminate\Foundation\Testing\RefreshDatabase::class);
