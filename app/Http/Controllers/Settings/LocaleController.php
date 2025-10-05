@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Settings;
 
 use App\Data\Timezones;
-use App\Http\Controllers\Controller;
 use App\Http\Requests\Settings\LocaleUpdateRequest;
 use Illuminate\Contracts\Translation\HasLocalePreference;
 use Illuminate\Http\RedirectResponse;
@@ -13,7 +12,7 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
 
-class LocaleController extends Controller
+final class LocaleController
 {
     public function edit(Request $request, Timezones $timezones): Response
     {
