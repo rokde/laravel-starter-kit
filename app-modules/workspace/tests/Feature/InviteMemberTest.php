@@ -52,7 +52,7 @@ test('a user can be invited to a workspace', function (): void {
     $user = User::factory()->create();
     $user->switchWorkspace(Workspace::factory()->create(['user_id' => $user->id]));
 
-    $email = fake()->safeEmail;
+    $email = fake()->safeEmail();
     $role = current(RoleRegistry::roleKeys());
     $response = $this
         ->actingAs($user)
@@ -123,7 +123,7 @@ test('a user cannot accept an invitation with an invalid signature', function ()
     $role = current(RoleRegistry::roleKeys());
 
     // Create invitation
-    $invitation = WorkspaceInvitation::create([
+    $invitation = WorkspaceInvitation::query()->create([
         'workspace_id' => $workspace->id,
         'email' => $email,
         'role' => $role,
@@ -162,13 +162,13 @@ test('a guest is redirected to login when accepting an invitation', function ():
     $role = current(RoleRegistry::roleKeys());
 
     // Create invitation
-    $invitation = WorkspaceInvitation::create([
+    $invitation = WorkspaceInvitation::query()->create([
         'workspace_id' => $workspace->id,
         'email' => $email,
         'role' => $role,
     ]);
 
-    $acceptUrl = URL::signedRoute('public.api.invitations.accept', [
+    $acceptUrl = Illuminate\Support\Facades\URL::signedRoute('public.api.invitations.accept', [
         'invitation' => $invitation->id,
     ]);
 
@@ -193,13 +193,13 @@ test('a workspace owner cannot accept an invitation to their own workspace', fun
     $role = 'member'; // Different role than owner
 
     // Create invitation
-    $invitation = WorkspaceInvitation::create([
+    $invitation = WorkspaceInvitation::query()->create([
         'workspace_id' => $workspace->id,
         'email' => $email,
         'role' => $role,
     ]);
 
-    $acceptUrl = URL::signedRoute('public.api.invitations.accept', [
+    $acceptUrl = Illuminate\Support\Facades\URL::signedRoute('public.api.invitations.accept', [
         'invitation' => $invitation->id,
     ]);
 
@@ -226,7 +226,7 @@ test('an invitation can be accepted by a user with a different email', function 
     $role = current(RoleRegistry::roleKeys());
 
     // Create invitation
-    $invitation = WorkspaceInvitation::create([
+    $invitation = WorkspaceInvitation::query()->create([
         'workspace_id' => $workspace->id,
         'email' => $email,
         'role' => $role,
@@ -235,7 +235,7 @@ test('an invitation can be accepted by a user with a different email', function 
     // User with different email
     $user = User::factory()->create(['email' => 'different@example.com']);
 
-    $acceptUrl = URL::signedRoute('public.api.invitations.accept', [
+    $acceptUrl = Illuminate\Support\Facades\URL::signedRoute('public.api.invitations.accept', [
         'invitation' => $invitation->id,
     ]);
 
