@@ -83,7 +83,7 @@ class WorkspaceInvitationsController
         }
 
         try {
-            $invitation = WorkspaceInvitation::findOrFail($invitationId);
+            $invitation = WorkspaceInvitation::query()->findOrFail($invitationId);
         } catch (ModelNotFoundException $exception) {
             if ($request->user()) {
                 return redirect()->route('dashboard');
