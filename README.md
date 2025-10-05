@@ -10,13 +10,20 @@ A customized version with the following things:
 
 ### Repository
 - [x] PHP 8.4
+- [x] Laravel 12 (latest minor)
 - [x] [laravel/vue-starter-kit](https://github.com/laravel/vue-starter-kit)
-  - using [Inertia](https://inertiajs.com/) and [shadcn-vue](https://www.shadcn-vue.com/) components
+  - using [Inertia v2](https://inertiajs.com/) and [shadcn-vue](https://www.shadcn-vue.com/) components
+- [x] Vue 3 + Vite 7
+- [x] Tailwind CSS v4
+- [x] Ziggy v2
+- [x] Pest v4 (incl. browser + type-coverage plugins)
+- [x] Rector v2 + Larastan v3
+- [x] Node 22 compatible toolchain
 - [x] pint.json with strict rules
-- [x] repository dependency health with dependabot
-- [x] automatic linting and testing on push
+- [x] repository dependency health with Dependabot (weekly)
+- [x] automatic linting and testing on push (CI)
 - [x] automatic CHANGELOG.md update on releases
-- [x] [nunomaduro/essentials](https://github.com/nunomaduro/essentials) for laravel settings (see [essentials.php](config/essentials.php))
+- [x] [nunomaduro/essentials](https://github.com/nunomaduro/essentials) for Laravel defaults (see [essentials.php](config/essentials.php))
 - [x] [rector](https://github.com/rectorphp/rector) for instant upgrades and automated refactoring
 
 ### IDE support
@@ -46,7 +53,7 @@ A customized version with the following things:
 - Register a user
 - Login a user
 - [User must verify email](https://laravel.com/docs/verification#model-preparation)
-- various settings configured in the [AppServiceProvider::boot()](./blob/main/app/Providers/AppServiceProvider.php#L20) method
+- various settings configured in the [AppServiceProvider::boot()](app/Providers/AppServiceProvider.php) method
 - Localized views in english and german
 - [database notifications](https://laravel.com/docs/notifications#database-prerequisites) already set up
 - Profile settings including locale settings
@@ -100,8 +107,8 @@ With `php artisan translations:generate` the php stored translations get transfe
 
 ### Format your code
 
-- during github workflows a new commit will handle this
-- or: `composer run format` and `npm run format`
+- during GitHub workflows a new commit will handle this
+- or run locally: `composer run lint` and `npm run lint`
 
 ### Run the test suite
 
@@ -109,13 +116,29 @@ With `php artisan translations:generate` the php stored translations get transfe
 
 ### Code Coverage
 
-To generate a code coverage report, run:
+- The default test suite enforces coverage and type-coverage thresholds: `composer run test`.
+- To generate an HTML coverage report locally, run:
 
 ```bash
-composer test:coverage
+vendor/bin/pest --coverage --coverage-html tests/coverage
 ```
 
-After the tests complete, you can view the coverage report by opening `./tests/coverage/index.html` in your browser.
+Then open `tests/coverage/index.html` in your browser.
+
+### Browser testing
+
+Pest v4 browser tests are included (Playwright). CI installs the browsers automatically. Locally, you can install them with:
+
+```bash
+npx playwright install --with-deps
+```
+
+Run browser tests as part of the full suite via `composer run test`, or filter specific tests with Pest.
+
+### Development tips
+
+- Regular dev: `composer run dev`
+- With SSR: `composer run dev:ssr`
 
 ### Dependabot
 
