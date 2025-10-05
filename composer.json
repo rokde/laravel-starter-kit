@@ -109,7 +109,7 @@
             "@test:unit",
             "@test:lint"
         ],
-        "DEPRECATED_test:coverage": [
+        "test:coverage": [
             "@php artisan test --coverage",
             "open tests/coverage/index.html"
         ],
