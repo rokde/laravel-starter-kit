@@ -11,7 +11,7 @@ use Modules\Notification\Contracts\NotificationRepository;
 use Modules\Workspace\Contracts\WorkspaceRepository;
 use Tighten\Ziggy\Ziggy;
 
-class HandleInertiaRequests extends Middleware
+final class HandleInertiaRequests extends Middleware
 {
     /**
      * The root template that's loaded on the first page visit.

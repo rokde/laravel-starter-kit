@@ -19,7 +19,7 @@ use Spatie\LaravelPasskeys\Models\Concerns\HasPasskeys;
 use Spatie\LaravelPasskeys\Models\Concerns\InteractsWithPasskeys;
 
 #[UseFactory(UserFactory::class)]
-class User extends Authenticatable implements HasLocalePreference, HasPasskeys, MustVerifyEmail
+final class User extends Authenticatable implements HasLocalePreference, HasPasskeys, MustVerifyEmail
 {
     /** @use HasFactory<UserFactory> */
     use HasFactory, InteractsWithPasskeys, ManagesWorkspaces, Notifiable;

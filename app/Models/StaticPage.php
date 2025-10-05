@@ -6,11 +6,11 @@ namespace App\Models;
 
 use Illuminate\Support\Str;
 
-class StaticPage
+final readonly class StaticPage
 {
     public function __construct(
-        private readonly string $content,
-        private readonly FrontMatter $data,
+        private string $content,
+        private FrontMatter $data,
     ) {}
 
     public function get(string $key, mixed $default = null): mixed

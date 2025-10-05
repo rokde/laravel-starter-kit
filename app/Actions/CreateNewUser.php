@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use SensitiveParameter;
 
-class CreateNewUser
+final class CreateNewUser
 {
     public function handle(
         NewUser $user,

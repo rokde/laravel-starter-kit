@@ -6,7 +6,7 @@ namespace App\Models;
 
 use ArrayAccess;
 
-class FrontMatter implements ArrayAccess
+final class FrontMatter implements ArrayAccess
 {
     public function __construct(private array $data = []) {}
 

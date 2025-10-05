@@ -9,7 +9,7 @@ use App\Enums\SortDirection;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Collection;
 
-class PaginationRequest extends FormRequest
+final class PaginationRequest extends FormRequest
 {
     private array $defaultSortColumns = [];
 
