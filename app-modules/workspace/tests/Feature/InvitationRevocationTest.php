@@ -16,7 +16,7 @@ test('a workspace owner can revoke an invitation', function (): void {
     $owner->switchWorkspace($workspace);
 
     // Create an invitation
-    $invitation = WorkspaceInvitation::create([
+    $invitation = WorkspaceInvitation::query()->create([
         'workspace_id' => $workspace->id,
         'email' => 'test@example.com',
         'role' => 'member',
@@ -48,7 +48,7 @@ test('an admin can revoke an invitation', function (): void {
     $admin->switchWorkspace($workspace);
 
     // Create an invitation
-    $invitation = WorkspaceInvitation::create([
+    $invitation = WorkspaceInvitation::query()->create([
         'workspace_id' => $workspace->id,
         'email' => 'test@example.com',
         'role' => 'member',
@@ -80,7 +80,7 @@ test('a regular member cannot revoke an invitation', function (): void {
     $member->switchWorkspace($workspace);
 
     // Create an invitation
-    $invitation = WorkspaceInvitation::create([
+    $invitation = WorkspaceInvitation::query()->create([
         'workspace_id' => $workspace->id,
         'email' => 'test@example.com',
         'role' => 'member',
@@ -106,7 +106,7 @@ test('a user cannot revoke an invitation for a workspace they do not belong to',
     $workspace = Workspace::factory()->create(['user_id' => $owner->id]);
 
     // Create an invitation
-    $invitation = WorkspaceInvitation::create([
+    $invitation = WorkspaceInvitation::query()->create([
         'workspace_id' => $workspace->id,
         'email' => 'test@example.com',
         'role' => 'member',
@@ -136,7 +136,7 @@ test('a user cannot revoke an invitation to the workspace owner', function (): v
     $owner->switchWorkspace($workspace);
 
     // Create an invitation to the owner's email
-    $invitation = WorkspaceInvitation::create([
+    $invitation = WorkspaceInvitation::query()->create([
         'workspace_id' => $workspace->id,
         'email' => $owner->email,
         'role' => 'member', // This would be strange in practice, but we're testing the policy
