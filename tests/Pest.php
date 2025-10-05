@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Illuminate\Support\Sleep;
 use Tests\TestCase;
 
 /*
@@ -16,8 +17,16 @@ use Tests\TestCase;
 */
 
 pest()->extend(TestCase::class)
- // ->use(Illuminate\Foundation\Testing\RefreshDatabase::class)
-    ->in('Feature', 'Unit', '../app-modules/*/tests');
+    ->use(Illuminate\Foundation\Testing\RefreshDatabase::class)
+    ->beforeEach(function (): void {
+        Illuminate\Support\Str::createRandomStringsNormally();
+        Illuminate\Support\Str::createUuidsNormally();
+        Illuminate\Support\Facades\Http::preventStrayRequests();
+        Sleep::fake();
+
+        $this->freezeTime();
+    })
+    ->in('Feature', 'Unit', 'Browser', '../app-modules/*/tests');
 
 /*
 |--------------------------------------------------------------------------
