@@ -17,7 +17,7 @@ class CreateNewUser
         NewUser $user,
         #[SensitiveParameter] string $password,
     ): User {
-        $user = DB::transaction(fn (): User => User::create([
+        $user = DB::transaction(fn (): User => User::query()->create([
             'name' => $user->name,
             'email' => $user->email,
             'password' => Hash::make($password),
