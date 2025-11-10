@@ -34,7 +34,7 @@
         "clsx": "^2.1.1",
         "concurrently": "^9.2.1",
         "laravel-vite-plugin": "^2.0.1",
-        "lucide-vue-next": "^0.548.0",
+        "lucide-vue-next": "^0.553.0",
         "playwright": "^1.56.1",
         "reka-ui": "^2.6.0",
         "tailwind-merge": "^3.3.1",
