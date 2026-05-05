@@ -48,7 +48,7 @@ jobs:
         run: php artisan key:generate
 
       - name: Rector Cache
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: /tmp/rector
           key: ${{ runner.os }}-rector-${{ hashFiles('composer.lock') }}
@@ -56,7 +56,7 @@ jobs:
       - run: mkdir -p /tmp/rector
 
       - name: PHPStan Cache
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: /tmp/phpstan
           key: ${{ runner.os }}-phpstan-${{ hashFiles('composer.lock') }}
