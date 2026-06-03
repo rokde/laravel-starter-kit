@@ -21,7 +21,7 @@ import { getI18n } from '@/i18n';
 import type { BreadcrumbItem, NavItem, PageActionItemType } from '@/types';
 import { Link, usePage } from '@inertiajs/vue3';
 import WorkspaceSwitcher from '@workspace/components/WorkspaceSwitcher.vue';
-import { BookOpen, CheckCheck, Folder, Funnel, LayoutGrid, Menu, Search } from 'lucide-vue-next';
+import { BookOpen, CheckCheck, Folder, Funnel, LayoutGrid, Menu, Search } from '@lucide/vue';
 import { computed } from 'vue';
 
 const { t } = getI18n();

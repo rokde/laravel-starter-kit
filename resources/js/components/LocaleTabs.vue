@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Check, Globe } from 'lucide-vue-next';
+import { Check, Globe } from '@lucide/vue';
 
 interface Props {
     modelValue: string;

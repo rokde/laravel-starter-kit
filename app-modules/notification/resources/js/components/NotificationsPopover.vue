@@ -16,7 +16,7 @@ import {
 import { Link, router } from '@inertiajs/vue3';
 import { useNotifications } from '@notification/composables/useNotifications';
 import { Notification } from '@notification/types';
-import { Bell, Check } from 'lucide-vue-next';
+import { Bell, Check } from '@lucide/vue';
 import { computed, ref } from 'vue';
 
 const notifications = useNotifications();

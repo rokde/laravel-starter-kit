@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Button } from '@/components/ui/button';
-import { ClipboardCheck, ClipboardCopy } from 'lucide-vue-next';
+import { ClipboardCheck, ClipboardCopy } from '@lucide/vue';
 import { ref } from 'vue';
 
 interface Props {

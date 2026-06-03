@@ -1,17 +1,17 @@
 <script setup lang="ts">
-import type { HTMLAttributes } from 'vue'
-import { reactiveOmit } from '@vueuse/core'
-import { X } from 'lucide-vue-next'
+import type { HTMLAttributes } from 'vue';
+import { reactiveOmit } from '@vueuse/core';
+import { X } from '@lucide/vue';
 import {
-  DialogClose,
-  DialogContent,
-  type DialogContentEmits,
-  type DialogContentProps,
-  DialogOverlay,
-  DialogPortal,
-  useForwardPropsEmits,
-} from 'reka-ui'
-import { cn } from '@/lib/utils'
+    DialogClose,
+    DialogContent,
+    type DialogContentEmits,
+    type DialogContentProps,
+    DialogOverlay,
+    DialogPortal,
+    useForwardPropsEmits
+} from 'reka-ui';
+import { cn } from '@/lib/utils';
 
 const props = defineProps<DialogContentProps & { class?: HTMLAttributes['class'] }>()
 const emits = defineEmits<DialogContentEmits>()

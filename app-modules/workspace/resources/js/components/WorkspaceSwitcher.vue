@@ -12,7 +12,7 @@ import { useInitials } from '@/composables/useInitials';
 import { Link, router } from '@inertiajs/vue3';
 import { useKnownWorkspaces } from '@workspace/composables/useKnownWorkspaces';
 import type { WorkspaceInfo } from '@workspace/types';
-import { ChevronDown, Cog, Plus } from 'lucide-vue-next';
+import { ChevronDown, Cog, Plus } from '@lucide/vue';
 import { computed } from 'vue';
 
 interface Props {

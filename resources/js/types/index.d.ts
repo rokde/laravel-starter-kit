@@ -1,7 +1,7 @@
 import type { PageProps } from '@inertiajs/core';
+import type { LucideIcon } from '@lucide/vue';
 import { Notification } from '@notification/resources/js/types';
 import { WorkspaceInfo } from '@workspace/resources/js/types';
-import type { LucideIcon } from 'lucide-vue-next';
 import type { Config } from 'ziggy-js';
 
 export interface Auth {

@@ -5,7 +5,7 @@ import { IQuery, ITableFacetFilterOption, ITableOptions } from '@/components/Dat
 import { createDebounce } from '@/components/DataTable/utils';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { SearchIcon, XIcon } from 'lucide-vue-next';
+import { SearchIcon, XIcon } from '@lucide/vue';
 import { ref } from 'vue';
 
 interface DataTableViewOptionsProps {

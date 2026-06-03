@@ -5,7 +5,7 @@ import type { User } from '@/types';
 import { router, useForm } from '@inertiajs/vue3';
 import MemberRoleSelect from '@workspace/components/MemberRoleSelect.vue';
 import { Role } from '@workspace/types';
-import { Check } from 'lucide-vue-next';
+import { Check } from '@lucide/vue';
 import { ref } from 'vue';
 
 interface Props {

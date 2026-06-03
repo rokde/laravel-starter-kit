@@ -3,7 +3,7 @@ import { ISortEntry, ITableColumnOption } from '@/components/DataTable/types';
 import { Button } from '@/components/ui/button';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { cn } from '@/lib/utils';
-import { ArrowDownAzIcon, ArrowDownUpIcon, ArrowUpZaIcon, XIcon } from 'lucide-vue-next';
+import { ArrowDownAzIcon, ArrowDownUpIcon, ArrowUpZaIcon, XIcon } from '@lucide/vue';
 import { computed } from 'vue';
 
 interface Props {

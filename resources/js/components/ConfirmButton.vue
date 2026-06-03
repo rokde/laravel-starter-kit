@@ -11,7 +11,7 @@ import {
     AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
 import { Button } from '@/components/ui/button';
-import { Trash, Trash2 } from 'lucide-vue-next';
+import { Trash, Trash2 } from '@lucide/vue';
 import { ref } from 'vue';
 
 const props = withDefaults(

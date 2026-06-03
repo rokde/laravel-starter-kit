@@ -6,7 +6,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { localeDate } from '@/lib/date-functions';
 import { cn } from '@/lib/utils';
 import { CalendarDate, parseDate } from '@internationalized/date';
-import { CalendarIcon, XIcon } from 'lucide-vue-next';
+import { CalendarIcon, XIcon } from '@lucide/vue';
 import { computed, ref } from 'vue';
 
 interface Props {

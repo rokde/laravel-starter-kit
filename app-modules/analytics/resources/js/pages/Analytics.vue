@@ -12,7 +12,7 @@ import { localePercent } from '@/lib/number-functions';
 import type { BreadcrumbItem } from '@/types';
 import { Analytic, Flow } from '@analytics/types';
 import { Head, router } from '@inertiajs/vue3';
-import { ArrowDownAzIcon, ArrowDownUpIcon, ArrowUpZaIcon, XIcon } from 'lucide-vue-next';
+import { ArrowDownAzIcon, ArrowDownUpIcon, ArrowUpZaIcon, XIcon } from '@lucide/vue';
 
 const { t } = getI18n();
 

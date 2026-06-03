@@ -11,7 +11,7 @@ import SettingsLayout from '@/layouts/settings/Layout.vue';
 import { cn } from '@/lib/utils';
 import { type BreadcrumbItem } from '@/types';
 import { Head, useForm } from '@inertiajs/vue3';
-import { Check, ChevronsUpDown } from 'lucide-vue-next';
+import { Check, ChevronsUpDown } from '@lucide/vue';
 import { ref } from 'vue';
 
 const { t } = getI18n();

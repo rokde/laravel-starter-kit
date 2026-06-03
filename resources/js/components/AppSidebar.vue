@@ -7,7 +7,7 @@ import { getI18n } from '@/i18n';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/vue3';
 import WorkspaceSwitcher from '@workspace/components/WorkspaceSwitcher.vue';
-import { BookOpen, CheckCheck, Folder, Funnel, LayoutGrid } from 'lucide-vue-next';
+import { BookOpen, CheckCheck, Folder, Funnel, LayoutGrid } from '@lucide/vue';
 import AppLogo from './AppLogo.vue';
 
 const { t } = getI18n();

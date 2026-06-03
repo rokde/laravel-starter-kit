@@ -9,7 +9,7 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { Settings2Icon } from 'lucide-vue-next';
+import { Settings2Icon } from '@lucide/vue';
 import { computed } from 'vue';
 
 interface DataTableViewOptionsProps {

@@ -12,7 +12,7 @@ import type { BreadcrumbItem } from '@/types';
 import { Head, Link, router } from '@inertiajs/vue3';
 import { useNotifications } from '@notification/composables/useNotifications';
 import { Notification } from '@notification/types';
-import { ArrowRight, Check, Mail } from 'lucide-vue-next';
+import { ArrowRight, Check, Mail } from '@lucide/vue';
 
 const { t } = getI18n();
 

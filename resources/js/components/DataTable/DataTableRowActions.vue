@@ -1,7 +1,7 @@
 <script setup lang="ts" generic="TData">
 import { Button } from '@/components/ui/button';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuShortcut, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
-import { EllipsisIcon } from 'lucide-vue-next';
+import { EllipsisIcon } from '@lucide/vue';
 
 interface Props {
     row: TData;

@@ -2,7 +2,7 @@
 import { Button, type ButtonVariants } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Sheet, SheetClose, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
-import { PanelRight } from 'lucide-vue-next';
+import { PanelRight } from '@lucide/vue';
 
 const props = withDefaults(
     defineProps<{
