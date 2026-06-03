@@ -12,7 +12,7 @@
         "php": "^8.5",
         "ext-pdo": "*",
         "inertiajs/inertia-laravel": "^3.1.0",
-        "internachi/modular": "^2.3",
+        "internachi/modular": "^3.0",
         "laravel/framework": "^12.61.0",
         "laravel/tinker": "^2.11.1",
         "modules/analytics": ">=1",

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fb77d7739db4785c3f73262088666f33",
+    "content-hash": "928d59955dd97ea88d382e09954ac91d",
     "packages": [
         {
             "name": "brick/math",
@@ -1802,32 +1802,32 @@
         },
         {
             "name": "internachi/modular",
-            "version": "2.3.0",
+            "version": "3.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/InterNACHI/modular.git",
-                "reference": "e7ff4074001d3df50d9ce877385c55d88e254484"
+                "reference": "939a341079c9cc79ff916663cb93f846da1c6456"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/InterNACHI/modular/zipball/e7ff4074001d3df50d9ce877385c55d88e254484",
-                "reference": "e7ff4074001d3df50d9ce877385c55d88e254484",
+                "url": "https://api.github.com/repos/InterNACHI/modular/zipball/939a341079c9cc79ff916663cb93f846da1c6456",
+                "reference": "939a341079c9cc79ff916663cb93f846da1c6456",
                 "shasum": ""
             },
             "require": {
                 "composer/composer": "^2.1",
                 "ext-dom": "*",
                 "ext-simplexml": "*",
-                "illuminate/support": "^9|^10|^11|^12|13.x-dev|dev-master|dev-main",
-                "php": ">=8.0"
+                "illuminate/support": "^11|^12|^13|14.x-dev|dev-master|dev-main",
+                "internachi/modularize": "^1.1.0",
+                "php": ">=8.3"
             },
             "require-dev": {
                 "ext-json": "*",
                 "friendsofphp/php-cs-fixer": "^3.14",
-                "livewire/livewire": "^2.5|^3.0",
                 "mockery/mockery": "^1.5",
-                "orchestra/testbench": "^7.52|^8.33|^9.11|^10.0|dev-master|dev-main",
-                "phpunit/phpunit": "^9.5|^10.5|^11.5"
+                "orchestra/testbench": "^9.11|^10.0|^11.0|dev-master|dev-main",
+                "phpunit/phpunit": "^10.5|^11.5|^12.5|^13.0"
             },
             "type": "library",
             "extra": {
@@ -1837,8 +1837,7 @@
                     },
                     "providers": [
                         "InterNACHI\\Modular\\Support\\ModularServiceProvider",
-                        "InterNACHI\\Modular\\Support\\ModularizedCommandsServiceProvider",
-                        "InterNACHI\\Modular\\Support\\ModularEventServiceProvider"
+                        "InterNACHI\\Modular\\Support\\ModularizedCommandsServiceProvider"
                     ]
                 }
             },
@@ -1866,9 +1865,60 @@
             ],
             "support": {
                 "issues": "https://github.com/InterNACHI/modular/issues",
-                "source": "https://github.com/InterNACHI/modular/tree/2.3.0"
+                "source": "https://github.com/InterNACHI/modular/tree/3.0.2"
             },
-            "time": "2025-02-28T22:15:39+00:00"
+            "time": "2026-03-23T15:21:38+00:00"
+        },
+        {
+            "name": "internachi/modularize",
+            "version": "1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/InterNACHI/modularize.git",
+                "reference": "09965fcea17de5f5f84e6e1aae45f0973753be1a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/InterNACHI/modularize/zipball/09965fcea17de5f5f84e6e1aae45f0973753be1a",
+                "reference": "09965fcea17de5f5f84e6e1aae45f0973753be1a",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "illuminate/support": "^10|^11|^12|^13|dev-main|dev-master"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.71",
+                "internachi/modular": "*",
+                "orchestra/testbench": "^8.34.0|^9.12.0|^10.1.0|^11.0.0|12.x-dev|dev-main|dev-master",
+                "phpunit/phpunit": "^10.5|^11.5|^12.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "InterNACHI\\Modularize\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Chris Morrell",
+                    "homepage": "https://www.cmorrell.com"
+                }
+            ],
+            "keywords": [
+                "InterNACHI",
+                "laravel",
+                "modular"
+            ],
+            "support": {
+                "issues": "https://github.com/InterNACHI/modularize/issues",
+                "source": "https://github.com/InterNACHI/modularize/tree/1.1.1"
+            },
+            "time": "2026-03-23T14:50:10+00:00"
         },
         {
             "name": "justinrainbow/json-schema",
