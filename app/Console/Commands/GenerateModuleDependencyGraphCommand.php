@@ -42,7 +42,7 @@ class GenerateModuleDependencyGraphCommand extends Command
         foreach ($directories as $directory) {
             $moduleName = basename((string) $directory);
             $this->modules[] = $moduleName;
-            $this->info("Discovered module: {$moduleName}");
+            $this->info('Discovered module: '.$moduleName);
         }
     }
 
@@ -52,7 +52,7 @@ class GenerateModuleDependencyGraphCommand extends Command
             $this->dependencies[$module] = [];
 
             // Check composer.json dependencies
-            $composerJsonPath = base_path("app-modules/{$module}/composer.json");
+            $composerJsonPath = base_path(sprintf('app-modules/%s/composer.json', $module));
             if (File::exists($composerJsonPath)) {
                 $composerJson = json_decode(File::get($composerJsonPath), true);
                 if (isset($composerJson['require'])) {
@@ -61,7 +61,7 @@ class GenerateModuleDependencyGraphCommand extends Command
                             $dependencyModule = Str::after($dependency, 'modules/');
                             if (in_array($dependencyModule, $this->modules)) {
                                 $this->dependencies[$module][] = $dependencyModule;
-                                $this->info("Found dependency: {$module} -> {$dependencyModule} (from composer.json)");
+                                $this->info(sprintf('Found dependency: %s -> %s (from composer.json)', $module, $dependencyModule));
                             }
                         }
                     }
@@ -75,7 +75,7 @@ class GenerateModuleDependencyGraphCommand extends Command
 
     private function analyzePhpFiles(string $module): void
     {
-        $srcPath = base_path("app-modules/{$module}/src");
+        $srcPath = base_path(sprintf('app-modules/%s/src', $module));
         if (! File::exists($srcPath)) {
             return;
         }
@@ -97,7 +97,7 @@ class GenerateModuleDependencyGraphCommand extends Command
                 $moduleNamespace = $this->getModuleNamespace($otherModule);
                 if (preg_match('/use\s+'.preg_quote($moduleNamespace, '/').'\\\\/', $content) && ! in_array($otherModule, $this->dependencies[$module])) {
                     $this->dependencies[$module][] = $otherModule;
-                    $this->info("Found dependency: {$module} -> {$otherModule} (from PHP imports)");
+                    $this->info(sprintf('Found dependency: %s -> %s (from PHP imports)', $module, $otherModule));
                 }
             }
         }
@@ -142,11 +142,13 @@ class GenerateModuleDependencyGraphCommand extends Command
             $markdown .= "### {$moduleName}\n\n";
 
             // Add module description from composer.json
-            $composerJsonPath = base_path("app-modules/{$module}/composer.json");
+            $composerJsonPath = base_path(sprintf('app-modules/%s/composer.json', $module));
             if (File::exists($composerJsonPath)) {
                 $composerJson = json_decode(File::get($composerJsonPath), true);
                 if (isset($composerJson['description'])) {
-                    $markdown .= "{$composerJson['description']}\n\n";
+                    $markdown .= $composerJson['description'].'
+
+';
                 }
             }
 
@@ -155,8 +157,9 @@ class GenerateModuleDependencyGraphCommand extends Command
                 $markdown .= "**Dependencies:**\n\n";
                 foreach ($this->dependencies[$module] as $dependency) {
                     $dependencyName = Str::studly($dependency);
-                    $markdown .= "- {$dependencyName}\n";
+                    $markdown .= sprintf('- %s%s', $dependencyName, PHP_EOL);
                 }
+
                 $markdown .= "\n";
             } else {
                 $markdown .= "**No dependencies**\n\n";
@@ -174,8 +177,9 @@ class GenerateModuleDependencyGraphCommand extends Command
                 $markdown .= "**Used by:**\n\n";
                 foreach ($dependents as $dependent) {
                     $dependentName = Str::studly($dependent);
-                    $markdown .= "- {$dependentName}\n";
+                    $markdown .= sprintf('- %s%s', $dependentName, PHP_EOL);
                 }
+
                 $markdown .= "\n";
             } else {
                 $markdown .= "**Not used by other modules**\n\n";
@@ -183,6 +187,6 @@ class GenerateModuleDependencyGraphCommand extends Command
         }
 
         File::put(base_path($outputPath), $markdown);
-        $this->info("Graph written to {$outputPath}");
+        $this->info('Graph written to '.$outputPath);
     }
 }

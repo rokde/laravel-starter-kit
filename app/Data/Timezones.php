@@ -55,12 +55,13 @@ class Timezones
             foreach ($timezones as $timezone => $offset) {
                 $offsetPrefix = $offset < 0 ? '-' : '+';
                 $offsetFormatted = gmdate('H:i', abs($offset));
-                $prettyOffset = "{$offsetPrefix}{$offsetFormatted}";
+                $prettyOffset = $offsetPrefix.$offsetFormatted;
 
                 $label = $timezone;
                 if (mb_substr_count($timezone, '/') > 0) {
                     [,$label] = explode('/', $timezone, 2);
                 }
+
                 $label = Str::of($label)->replace('_', ' ')->value();
 
                 $result[$name][] = [

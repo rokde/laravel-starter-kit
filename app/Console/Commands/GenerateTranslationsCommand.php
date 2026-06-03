@@ -10,6 +10,7 @@ use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Illuminate\Translation\FileLoader;
+use Illuminate\Translation\Translator;
 
 /**
  * @codeCoverageIgnore
@@ -21,6 +22,7 @@ class GenerateTranslationsCommand extends Command
      *
      * @var string
      */
+    #[Override]
     protected $signature = 'translations:generate
                             {--output= : vue-i18n output file (defaults to resources/js/i18n/translations.js)}
                             {--type=typescript : The type of the output (typescript or javascript)}';
@@ -42,7 +44,7 @@ class GenerateTranslationsCommand extends Command
      */
     public function handle(): int
     {
-        /** @var \Illuminate\Translation\Translator */
+        /** @var Translator */
         $translator = trans();
         $loader = $translator->getLoader();
         foreach ($loader->namespaces() as $namespace => $hintFolder) {
@@ -79,7 +81,7 @@ class GenerateTranslationsCommand extends Command
             )
         );
 
-        $this->line("<fg=yellow>{$outputFile}</fg=yellow> generated (<fg=green>{$size} bytes</fg=green>).");
+        $this->line(sprintf('<fg=yellow>%s</fg=yellow> generated (<fg=green>%s bytes</fg=green>).', $outputFile, $size));
 
         return self::SUCCESS;
     }
@@ -92,10 +94,10 @@ class GenerateTranslationsCommand extends Command
     private function getTranslations(array $paths): array
     {
         return Collection::make($paths)
-            ->flatMap(fn ($path): array|false => $this->findTranslationFiles($path))
-            ->groupBy(fn ($paths): string => $this->getTranslationLanguage($paths))
-            ->map(fn (Collection $files) => $files->flatMap(fn ($file): array => $this->readTranslationFile($file)))
-            ->map(fn ($content): array => $this->convertTranslations($content))
+            ->flatMap(fn (string $path): array|false => $this->findTranslationFiles($path))
+            ->groupBy(fn (string $paths): string => $this->getTranslationLanguage($paths))
+            ->map(fn (Collection $files) => $files->flatMap(fn (string $file): array => $this->readTranslationFile($file)))
+            ->map(fn (Collection $content): array => $this->convertTranslations($content))
             ->all();
     }
 
@@ -147,7 +149,7 @@ class GenerateTranslationsCommand extends Command
     private function convertTranslations(Collection $lines): array
     {
         return $lines
-            ->mapWithKeys(fn ($translation, $key): array => [
+            ->mapWithKeys(fn (string|array $translation, string|array $key): array => [
                 $this->convertTranslation($key) => $this->convertTranslation($translation),
             ])
             ->all();
@@ -162,7 +164,7 @@ class GenerateTranslationsCommand extends Command
         if (is_array($content)) {
             return array_combine(
                 array_keys($content),
-                array_map(fn ($value): string|array => $this->convertTranslation($value), $content)
+                array_map($this->convertTranslation(...), $content)
             );
         }
 
@@ -181,7 +183,7 @@ class GenerateTranslationsCommand extends Command
     {
         return preg_replace_callback(
             "/\{0\}\s(.*)\|\{1\}(.*)\|\[2,\*\](.*)/",
-            fn ($matches): string => "{$matches[1]}|{$matches[2]}|{$matches[3]}",
+            fn ($matches): string => sprintf('%s|%s|%s', $matches[1], $matches[2], $matches[3]),
             $line
         );
     }
@@ -245,12 +247,12 @@ class GenerateTranslationsCommand extends Command
             $output = 'type TranslationValue = string | { [key: string]: string | TranslationValue } | [];'.PHP_EOL;
             $output .= 'type Translations = { [language: string]: { [key: string]: TranslationValue; }; };'.PHP_EOL.PHP_EOL;
 
-            $output .= "const translations: Translations = {$json}".PHP_EOL;
+            $output .= 'const translations: Translations = '.$json.PHP_EOL;
 
             return $output.('export default translations;'.PHP_EOL);
         }
 
-        return "export default {$json}".PHP_EOL;
+        return 'export default '.$json.PHP_EOL;
     }
 
     /**
