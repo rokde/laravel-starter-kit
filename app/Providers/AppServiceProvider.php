@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
+use Illuminate\Filesystem\Filesystem;
 use Illuminate\Foundation\Application;
-use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\View\FileViewFinder;
@@ -25,9 +26,9 @@ final class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Carbon::macro('inApplicationTimezone', fn () => $this->tz(config('app.timezone_display', 'UTC')));
+        Date::macro('inApplicationTimezone', fn () => $this->tz(config('app.timezone_display', 'UTC')));
 
-        Carbon::macro('inUserTimezone', fn () => $this->tz(auth()->user()?->timezone ?? config('app.timezone_display', 'UTC')));
+        Date::macro('inUserTimezone', fn () => $this->tz(auth()->user()?->timezone ?? config('app.timezone_display', 'UTC')));
     }
 
     private function registerTestingInertiaWithModuleSupport(): void
@@ -38,7 +39,7 @@ final class AppServiceProvider extends ServiceProvider
 
         $this->app->bind('inertia.testing.view-finder', function (Application $app): FileViewFinder {
             $fileViewFinder = new FileViewFinder(
-                $app->make(\Illuminate\Filesystem\Filesystem::class),
+                $app->make(Filesystem::class),
                 [resource_path('js/pages')],
                 ['vue']
             );
