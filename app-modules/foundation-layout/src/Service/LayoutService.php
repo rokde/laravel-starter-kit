@@ -12,16 +12,17 @@ use Modules\FoundationLayout\Variants\ApplicationSidebarInsetLayout;
 use Modules\FoundationLayout\Variants\ApplicationSidebarSidebarLayout;
 use Modules\FoundationLayout\Variants\AuthenticationSimpleLayout;
 use Modules\FoundationLayout\Variants\AuthenticationSplitLayout;
+use Modules\FoundationLayout\Variants\Variant;
 
 class LayoutService
 {
     /**
-     * @var array<string, \Modules\FoundationLayout\Variants\Variant>
+     * @var array<string, Variant>
      */
     private array $authenticationLayoutVariants;
 
     /**
-     * @var array<string, \Modules\FoundationLayout\Variants\Variant>
+     * @var array<string, Variant>
      */
     private array $applicationLayoutVariants;
 

@@ -6,7 +6,6 @@ namespace Modules\Workspace\Models\Concerns;
 
 use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Model;
 use Modules\Workspace\Models\Workspace;
 use RuntimeException;
 

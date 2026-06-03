@@ -20,7 +20,7 @@ class StaticPageFileService
     public function parseFile(string $path): StaticPage
     {
         $content = file_get_contents($path);
-        throw_if($content === false, new InvalidArgumentException('File not found: '.$path));
+        throw_if($content === false, InvalidArgumentException::class, 'File not found: '.$path);
 
         return $this->parse($content);
     }

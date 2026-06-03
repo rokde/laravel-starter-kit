@@ -15,7 +15,7 @@ readonly class Id implements JsonSerializable, Stringable
 
     public function __construct(int|string|null $id)
     {
-        throw_if(is_null($id), new InvalidArgumentException('Id cannot be null'));
+        throw_if(is_null($id), InvalidArgumentException::class, 'Id cannot be null');
 
         $this->id = (int) $id;
     }
