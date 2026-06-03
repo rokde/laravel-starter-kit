@@ -32,7 +32,7 @@ return [
         'numeric' => ':attribute muss zwischen :min & :max liegen.',
         'string' => ':attribute muss zwischen :min & :max Zeichen lang sein.',
     ],
-    'boolean' => ':attribute muss entweder \'true\' oder \'false\' sein.',
+    'boolean' => ":attribute muss entweder 'true' oder 'false' sein.",
     'confirmed' => ':attribute stimmt nicht mit der Bestätigung überein.',
     'current_password' => 'Das Passwort ist falsch.',
     'date' => ':attribute muss ein gültiges Datum sein.',
