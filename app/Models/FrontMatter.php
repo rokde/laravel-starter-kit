@@ -17,7 +17,7 @@ final class FrontMatter implements ArrayAccess
 
     public function offsetExists(mixed $offset): bool
     {
-        return array_key_exists($offset, $this->data);
+        return array_key_exists((string) $offset, $this->data);
     }
 
     public function offsetGet(mixed $offset): mixed
@@ -32,7 +32,7 @@ final class FrontMatter implements ArrayAccess
 
     public function offsetUnset(mixed $offset): void
     {
-        if (array_key_exists($offset, $this->data)) {
+        if (array_key_exists((string) $offset, $this->data)) {
             unset($this->data[$offset]);
         }
     }
