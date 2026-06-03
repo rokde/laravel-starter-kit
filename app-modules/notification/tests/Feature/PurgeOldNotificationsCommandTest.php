@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Illuminate\Console\Command;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Notifications\DatabaseNotification;
 use Modules\Notification\Console\Commands\PurgeOldNotificationsCommand;
 use Modules\Notification\Database\Factories\DatabaseNotificationFactory;
@@ -107,4 +108,4 @@ test('purge old notifications command respects custom age parameter', function (
     expect(DatabaseNotification::query()->find($newerThan30Days->id))->not->toBeNull();
 });
 
-uses(Illuminate\Foundation\Testing\RefreshDatabase::class);
+uses(RefreshDatabase::class);

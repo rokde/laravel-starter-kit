@@ -2,6 +2,11 @@
 
 declare(strict_types=1);
 
+use Modules\Todo\Database\Factories\TodoFactory;
+use Modules\Workspace\Models\Concerns\HasWorkspaceRelation;
+use Modules\Workspace\Models\Concerns\ManagesWorkspaces;
+use Modules\Workspace\Models\Workspace;
+
 arch('Test the domain module boundaries for the workspace module.')
     ->expect('Modules\Workspace')
     ->toOnlyBeUsedIn('Modules\Workspace')
@@ -9,17 +14,17 @@ arch('Test the domain module boundaries for the workspace module.')
         'Modules\Workspace\Contracts',
         'Modules\Workspace\DataTransferObjects',
         'Modules\Workspace\Events',
-        Modules\Workspace\Models\Concerns\ManagesWorkspaces::class,
-        Modules\Workspace\Models\Concerns\HasWorkspaceRelation::class,
-        Modules\Workspace\Models\Workspace::class,
+        ManagesWorkspaces::class,
+        HasWorkspaceRelation::class,
+        Workspace::class,
         'Modules\Workspace\Notifications',
     ]);
 
 arch('Test the domain module boundaries for the workspace module (Workspace model).')
-    ->expect(Modules\Workspace\Models\Workspace::class)
+    ->expect(Workspace::class)
     ->toOnlyBeUsedIn([
         'Modules\Workspace',
-        Modules\Todo\Database\Factories\TodoFactory::class,
+        TodoFactory::class,
         'Modules\Todo\Models',
         'Modules\Todo\Policies',
         'Modules\Todo\Http\Controllers',

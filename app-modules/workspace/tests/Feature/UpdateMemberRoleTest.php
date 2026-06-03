@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Event;
 use Modules\Workspace\Events\MemberUpdated;
 use Modules\Workspace\Models\Workspace;
 
@@ -19,7 +20,7 @@ test('member roles can be updated', function (): void {
     $otherUser->switchWorkspace($workspace);
 
     $eventWasCalled = false;
-    Illuminate\Support\Facades\Event::listen(MemberUpdated::class, function (MemberUpdated $event) use ($otherUser, &$eventWasCalled): void {
+    Event::listen(MemberUpdated::class, function (MemberUpdated $event) use ($otherUser, &$eventWasCalled): void {
         $this->assertTrue($event->user->id === $otherUser->id);
         $eventWasCalled = true;
     });

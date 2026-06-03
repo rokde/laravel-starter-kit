@@ -21,7 +21,7 @@ test('a workspace owner can remove a member', function (): void {
     // Act
     $response = $this
         ->actingAs($owner)
-        ->delete("/workspaces/current/members/{$member->id}");
+        ->delete('/workspaces/current/members/'.$member->id);
 
     // Assert
     $response->assertRedirect();
@@ -51,7 +51,7 @@ test('an admin can remove a member', function (): void {
     // Act
     $response = $this
         ->actingAs($admin)
-        ->delete("/workspaces/current/members/{$member->id}");
+        ->delete('/workspaces/current/members/'.$member->id);
 
     // Assert
     $response->assertRedirect();
@@ -81,7 +81,7 @@ test('a regular member cannot remove another member', function (): void {
     // Act
     $response = $this
         ->actingAs($member1)
-        ->delete("/workspaces/current/members/{$member2->id}");
+        ->delete('/workspaces/current/members/'.$member2->id);
 
     // Assert
     $response->assertForbidden();
@@ -110,7 +110,7 @@ test('a user cannot remove a member from a workspace they do not belong to', fun
     // Act
     $response = $this
         ->actingAs($otherUser)
-        ->delete("/workspaces/current/members/{$member->id}");
+        ->delete('/workspaces/current/members/'.$member->id);
 
     // Assert
     $response->assertForbidden();
@@ -135,7 +135,7 @@ test('a user cannot remove the workspace owner', function (): void {
     // Act
     $response = $this
         ->actingAs($admin)
-        ->delete("/workspaces/current/members/{$owner->id}");
+        ->delete('/workspaces/current/members/'.$owner->id);
 
     // Assert
     $response->assertForbidden();
@@ -179,7 +179,7 @@ test('removing a member updates their current workspace if needed', function ():
     // Act
     $response = $this
         ->actingAs($owner)
-        ->delete("/workspaces/current/members/{$member->id}");
+        ->delete('/workspaces/current/members/'.$member->id);
 
     // Assert
     $response->assertRedirect();

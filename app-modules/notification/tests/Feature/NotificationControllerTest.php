@@ -27,7 +27,7 @@ test('markAsRead method marks a notification as read', function (): void {
     ]);
 
     $response = $this->actingAs($user)
-        ->patch("/notifications/{$notification->id}");
+        ->patch('/notifications/'.$notification->id);
 
     $response->assertRedirect()
         ->assertSessionHas('message', 'Notification marked as read.');

@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 use App\DataTransferObjects\User as UserDto;
 use App\Models\User;
+use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Stringable;
 
 uses(RefreshDatabase::class);
 
@@ -32,12 +34,13 @@ test('it returns preferred locale', function (): void {
 
     // User with stringable locale
     $user = User::factory()->make();
-    $user->locale = new Illuminate\Support\Stringable('de');
+    $user->locale = new Stringable('de');
+
     expect($user->preferredLocale())->toBe('de');
 });
 
 test('it can not set users locale to null', function (): void {
-    $this->expectException(Illuminate\Database\QueryException::class);
+    $this->expectException(QueryException::class);
     // User with null locale (should use fallback)
     $user = User::factory()->create(['locale' => null]);
 });

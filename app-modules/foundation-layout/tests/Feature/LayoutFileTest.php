@@ -6,7 +6,7 @@ use Modules\FoundationLayout\Data\LayoutFile;
 
 beforeEach(function (): void {
     $this->tempFile = tempnam(sys_get_temp_dir(), 'layout_test_');
-    file_put_contents($this->tempFile, 'import AuthLayout from \'@/layouts/auth/AuthSplitLayout.vue\';');
+    file_put_contents($this->tempFile, "import AuthLayout from '@/layouts/auth/AuthSplitLayout.vue';");
 });
 
 afterEach(function (): void {

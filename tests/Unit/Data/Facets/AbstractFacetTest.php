@@ -7,13 +7,7 @@ use App\Data\Facets\DataTransferObjects\FacetOption;
 use Illuminate\Database\Eloquent\Builder;
 
 // Create a concrete implementation of AbstractFacet for testing
-class TestFacet extends AbstractFacet
-{
-    public function __construct(string $label, string $key, ?string $column = null)
-    {
-        parent::__construct($label, $key, $column);
-    }
-}
+class TestFacet extends AbstractFacet {}
 
 test('it can be instantiated with required properties', function (): void {
     $facet = new TestFacet('Test Label', 'test_key', 'test_column');

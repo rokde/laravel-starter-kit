@@ -9,13 +9,7 @@ use Illuminate\Support\Collection;
 use Mockery as m;
 
 // Create a mock implementation of AbstractFacet for testing
-class CollectionTestFacet extends AbstractFacet
-{
-    public function __construct(string $label, string $key, ?string $column = null)
-    {
-        parent::__construct($label, $key, $column);
-    }
-}
+class CollectionTestFacet extends AbstractFacet {}
 
 test('it can be instantiated using make method', function (): void {
     $collection = FacetCollection::make();

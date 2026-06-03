@@ -57,6 +57,7 @@ test('user can store todo', function (): void {
     ]);
 
     $response->assertRedirect(route('todos.index'));
+
     expect(Todo::query()->where([
         'title' => 'New Todo',
         'user_id' => $user->id,
@@ -80,6 +81,7 @@ test('user can update todo', function (): void {
     ]);
 
     $response->assertRedirectBack();
+
     expect(Todo::query()->where([
         'id' => $todo->id,
         'title' => 'Updated Title',
@@ -100,6 +102,7 @@ test('user can toggle todo completion', function (): void {
     $response = $this->actingAs($user)->patch(route('todos.toggle-complete', $todo));
 
     $response->assertRedirectBack();
+
     expect(Todo::query()->where([
         'id' => $todo->id,
         'completed' => true,
@@ -119,5 +122,6 @@ test('user can delete todo', function (): void {
     $response = $this->actingAs($user)->delete(route('todos.destroy', $todo));
 
     $response->assertRedirectBack();
+
     expect(Todo::query()->where('id', $todo->id)->exists())->toBeFalse();
 });

@@ -25,7 +25,7 @@ test('a workspace owner can revoke an invitation', function (): void {
     // Act
     $response = $this
         ->actingAs($owner)
-        ->delete("/workspaces/current/invitations/{$invitation->id}");
+        ->delete('/workspaces/current/invitations/'.$invitation->id);
 
     // Assert
     $response->assertRedirect();
@@ -57,7 +57,7 @@ test('an admin can revoke an invitation', function (): void {
     // Act
     $response = $this
         ->actingAs($admin)
-        ->delete("/workspaces/current/invitations/{$invitation->id}");
+        ->delete('/workspaces/current/invitations/'.$invitation->id);
 
     // Assert
     $response->assertRedirect();
@@ -89,7 +89,7 @@ test('a regular member cannot revoke an invitation', function (): void {
     // Act
     $response = $this
         ->actingAs($member)
-        ->delete("/workspaces/current/invitations/{$invitation->id}");
+        ->delete('/workspaces/current/invitations/'.$invitation->id);
 
     // Assert
     $response->assertForbidden();
@@ -118,7 +118,7 @@ test('a user cannot revoke an invitation for a workspace they do not belong to',
     // Act
     $response = $this
         ->actingAs($otherUser)
-        ->delete("/workspaces/current/invitations/{$invitation->id}");
+        ->delete('/workspaces/current/invitations/'.$invitation->id);
 
     // Assert
     $response->assertForbidden();
@@ -145,7 +145,7 @@ test('a user cannot revoke an invitation to the workspace owner', function (): v
     // Act
     $response = $this
         ->actingAs($owner)
-        ->delete("/workspaces/current/invitations/{$invitation->id}");
+        ->delete('/workspaces/current/invitations/'.$invitation->id);
 
     // Assert
     $response->assertForbidden();

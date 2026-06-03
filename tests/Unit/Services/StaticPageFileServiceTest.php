@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 use App\Models\StaticPage;
 use App\Services\StaticPageFileService;
-use Illuminate\Support\Facades\File;
 
 beforeEach(function (): void {
     $this->service = new StaticPageFileService();

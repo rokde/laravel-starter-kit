@@ -5,6 +5,7 @@ declare(strict_types=1);
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\URL;
 use Modules\Workspace\Models\RoleRegistry;
 use Modules\Workspace\Models\Workspace;
 use Modules\Workspace\Models\WorkspaceInvitation;
@@ -168,7 +169,7 @@ test('a guest is redirected to login when accepting an invitation', function ():
         'role' => $role,
     ]);
 
-    $acceptUrl = Illuminate\Support\Facades\URL::signedRoute('public.api.invitations.accept', [
+    $acceptUrl = URL::signedRoute('public.api.invitations.accept', [
         'invitation' => $invitation->id,
     ]);
 
@@ -199,7 +200,7 @@ test('a workspace owner cannot accept an invitation to their own workspace', fun
         'role' => $role,
     ]);
 
-    $acceptUrl = Illuminate\Support\Facades\URL::signedRoute('public.api.invitations.accept', [
+    $acceptUrl = URL::signedRoute('public.api.invitations.accept', [
         'invitation' => $invitation->id,
     ]);
 
@@ -235,7 +236,7 @@ test('an invitation can be accepted by a user with a different email', function 
     // User with different email
     $user = User::factory()->create(['email' => 'different@example.com']);
 
-    $acceptUrl = Illuminate\Support\Facades\URL::signedRoute('public.api.invitations.accept', [
+    $acceptUrl = URL::signedRoute('public.api.invitations.accept', [
         'invitation' => $invitation->id,
     ]);
 
