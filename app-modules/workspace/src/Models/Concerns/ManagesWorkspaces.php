@@ -157,8 +157,8 @@ trait ManagesWorkspaces
             return true;
         }
 
-        return $this->belongsToWorkspace($workspace) && optional(RoleRegistry::findRole($workspace->users->where(
+        return $this->belongsToWorkspace($workspace) && RoleRegistry::findRole($workspace->users->where(
             'id', $this->id
-        )->first()->membership->role))->key === $role;
+        )->first()->membership->role)?->key === $role;
     }
 }

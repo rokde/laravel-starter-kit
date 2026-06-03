@@ -6,12 +6,14 @@ namespace Modules\Notification\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Notifications\DatabaseNotification;
+use Override;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\Illuminate\Notifications\DatabaseNotification>
  */
 class DatabaseNotificationFactory extends Factory
 {
+    #[Override]
     protected $model = DatabaseNotification::class;
 
     /**

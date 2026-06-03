@@ -39,6 +39,6 @@ class RemoveMember
             $workspace->users()->detach($member);
         });
 
-        MemberRemoved::dispatch($workspace, $member);
+        event(new MemberRemoved($workspace, $member));
     }
 }

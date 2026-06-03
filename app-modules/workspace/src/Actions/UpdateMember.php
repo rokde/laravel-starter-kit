@@ -29,7 +29,7 @@ class UpdateMember
         });
 
         $member = User::query()->find($memberUserId->value());
-        MemberUpdated::dispatch($workspace, $member);
+        event(new MemberUpdated($workspace, $member));
 
         return $workspace;
     }

@@ -36,6 +36,6 @@ class NotificationSettingsController
             'preferred_notification_channels' => $request->all(),
         ]);
 
-        return redirect()->back()->with('message', 'Settings saved.');
+        return back()->with('message', 'Settings saved.');
     }
 }

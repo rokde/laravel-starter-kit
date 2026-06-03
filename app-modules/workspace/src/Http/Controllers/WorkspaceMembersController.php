@@ -67,8 +67,7 @@ class WorkspaceMembersController
             $updateMember->handle($workspace, new Id($request->integer('id')), (string) $request->string('role'));
         }
 
-        return redirect()
-            ->back()
+        return back()
             ->with('message', __('Member updated.'));
     }
 
@@ -83,8 +82,7 @@ class WorkspaceMembersController
 
         $removeMember->handle($workspace, $member);
 
-        return redirect()
-            ->back()
+        return back()
             ->with('message', __('Member removed.'));
     }
 }

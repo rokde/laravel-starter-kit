@@ -63,8 +63,7 @@ class WorkspaceInvitationsController
 
         $inviteMember->handle($workspace, $request->getEmail(), $request->validated('role'));
 
-        return redirect()
-            ->back()
+        return back()
             ->with('message', __('Invitation sent.'));
     }
 
@@ -86,7 +85,7 @@ class WorkspaceInvitationsController
             $invitation = WorkspaceInvitation::query()->findOrFail($invitationId);
         } catch (ModelNotFoundException $exception) {
             if ($request->user()) {
-                return redirect()->route('dashboard');
+                return to_route('dashboard');
             }
 
             throw $exception;
@@ -99,8 +98,7 @@ class WorkspaceInvitationsController
             abort(Response::HTTP_FORBIDDEN);
         }
 
-        return redirect()
-            ->route('dashboard')
+        return to_route('dashboard')
             ->with('message', __('You have been added to the workspace.'));
     }
 
@@ -118,8 +116,7 @@ class WorkspaceInvitationsController
 
         $revokeTeamInvitation->handle($invitation);
 
-        return redirect()
-            ->back()
+        return back()
             ->with('message', __('Team invitation revoked.'));
     }
 }

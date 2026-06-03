@@ -22,7 +22,7 @@ class AssignedUserFacet extends AbstractFacet
             ])
             ->sortBy('label')
             ->values()
-            ->toArray();
+            ->all();
 
         return $this;
     }

@@ -31,7 +31,7 @@ trait HasWorkspaceRelation
     protected function currentWorkspace(Builder $query): void
     {
         $workspace = request()->user()->currentWorkspace;
-        throw_unless($workspace, new RuntimeException('Current user has no workspace assigned'));
+        throw_unless($workspace, RuntimeException::class, 'Current user has no workspace assigned');
 
         $query->where('workspace_id', $workspace->id);
     }

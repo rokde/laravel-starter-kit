@@ -6,6 +6,7 @@ namespace Modules\Workspace\Console\Commands;
 
 use Illuminate\Console\Command;
 use Modules\Workspace\Models\WorkspaceInvitation;
+use Override;
 
 class PurgeOrphanedInvitationsCommand extends Command
 {
@@ -14,6 +15,7 @@ class PurgeOrphanedInvitationsCommand extends Command
      *
      * @var string
      */
+    #[Override]
     protected $signature = 'workspace:purge-orphaned-invitations {--age=60 : Age in days}';
 
     /**
@@ -21,6 +23,7 @@ class PurgeOrphanedInvitationsCommand extends Command
      *
      * @var string
      */
+    #[Override]
     protected $description = 'Purge orphaned invitations';
 
     /**

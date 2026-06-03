@@ -32,7 +32,7 @@ class AcceptTeamInvitation
         $workspace = DB::transaction(function () use ($workspaceInvitation, $user): Workspace {
             $workspace = $workspaceInvitation->workspace;
 
-            throw_if($user->getAuthIdentifier() === $workspace->owner->getAuthIdentifier(), new Exception('The owner can not be added with another role too.'));
+            throw_if($user->getAuthIdentifier() === $workspace->owner->getAuthIdentifier(), Exception::class, 'The owner can not be added with another role too.');
 
             // attach user
             $workspace->users()->attach($user, [
@@ -45,7 +45,7 @@ class AcceptTeamInvitation
             // switch user to workspace
             $user->switchWorkspace($workspace);
 
-            MemberAttached::dispatch($workspace, $user);
+            event(new MemberAttached($workspace, $user));
 
             return $workspace;
         });

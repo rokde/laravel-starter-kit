@@ -24,7 +24,7 @@ class AnalyticsController
             $sortDirection = SortDirection::fromString($request->get('sort'));
         }
 
-        if ($sortColumn !== null && $sortColumn !== '' && $sortColumn !== '0') {
+        if (! in_array($sortColumn, [null, '', '0'], true)) {
             $analytics = $analytics->sortBy($sortColumn, descending: $sortDirection === SortDirection::DESC);
         }
 
@@ -68,8 +68,7 @@ class AnalyticsController
     {
         $repository->flush();
 
-        return redirect()
-            ->back()
+        return back()
             ->with('message', __('Analytics data has been deleted.'));
     }
 }

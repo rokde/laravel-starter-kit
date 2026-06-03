@@ -18,6 +18,7 @@ use Modules\Workspace\DataTransferObjects\Workspace as WorkspaceDto;
 use Modules\Workspace\Events\WorkspaceCreated;
 use Modules\Workspace\Events\WorkspaceDeleted;
 use Modules\Workspace\Events\WorkspaceUpdated;
+use Override;
 
 #[UseFactory(WorkspaceFactory::class)]
 class Workspace extends Model
@@ -29,6 +30,7 @@ class Workspace extends Model
      *
      * @var array<int, string>
      */
+    #[Override]
     protected $fillable = [
         'name',
     ];
@@ -38,6 +40,7 @@ class Workspace extends Model
      *
      * @var array<string, class-string>
      */
+    #[Override]
     protected $dispatchesEvents = [
         'created' => WorkspaceCreated::class,
         'updated' => WorkspaceUpdated::class,

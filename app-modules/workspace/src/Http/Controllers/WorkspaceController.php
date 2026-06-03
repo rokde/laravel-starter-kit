@@ -40,8 +40,7 @@ class WorkspaceController
 
         $setCurrentWorkspace->handle($request->userId(), $workspaceId);
 
-        return redirect()
-            ->route('workspaces.show')
+        return to_route('workspaces.show')
             ->with('message', __('workspace::Workspace created.'));
     }
 
@@ -74,8 +73,7 @@ class WorkspaceController
 
         $updateWorkspaceName->handle($workspace, $request->validated('name'));
 
-        return redirect()
-            ->back()
+        return back()
             ->with('message', __('workspace::Workspace updated.'));
     }
 
@@ -85,8 +83,7 @@ class WorkspaceController
     ): RedirectResponse {
         $setCurrentWorkspace->handle($request->userId(), $request->workspaceId());
 
-        return redirect()
-            ->back()
+        return back()
             ->with('message', __('workspace::Current workspace changed.'));
     }
 

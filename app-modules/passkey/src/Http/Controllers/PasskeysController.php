@@ -55,8 +55,7 @@ class PasskeysController
             ]);
         }
 
-        return redirect()
-            ->back()
+        return back()
             ->with('message', 'Passkey created');
     }
 
@@ -67,8 +66,7 @@ class PasskeysController
             ->where('id', $passkey->id)
             ->delete();
 
-        return redirect()
-            ->back()
+        return back()
             ->with('message', 'Passkey removed');
     }
 

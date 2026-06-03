@@ -117,8 +117,7 @@ class TodoController
             ));
         }
 
-        return redirect()
-            ->route('todos.index')
+        return to_route('todos.index')
             ->with('message', __('Todo created.'));
     }
 
@@ -135,8 +134,7 @@ class TodoController
 
         $todo->update($request->validated());
 
-        return redirect()
-            ->back()
+        return back()
             ->with('message', __('Todo updated.'));
     }
 
@@ -154,8 +152,7 @@ class TodoController
         $todo->completed = ! $todo->completed;
         $todo->save();
 
-        return redirect()
-            ->back()
+        return back()
             ->with('message', $todo->completed
                 ? __('Todo marked as completed.')
                 : __('Todo marked as incomplete.'));
@@ -174,8 +171,7 @@ class TodoController
 
         $todo->delete();
 
-        return redirect()
-            ->back()
+        return back()
             ->with('message', __('Todo deleted.'));
     }
 

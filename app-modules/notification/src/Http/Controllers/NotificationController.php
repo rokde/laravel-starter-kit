@@ -22,12 +22,12 @@ class NotificationController
         $notification = $request->user()->notifications()->find($id);
 
         if (! $notification) {
-            return redirect()->back();
+            return back();
         }
 
         $notification->markAsRead();
 
-        return redirect()->back()->with('message', 'Notification marked as read.');
+        return back()->with('message', 'Notification marked as read.');
     }
 
     public function markAsUnread(Request $request, $id): RedirectResponse
@@ -36,12 +36,12 @@ class NotificationController
         $notification = $request->user()->notifications()->find($id);
 
         if (! $notification) {
-            return redirect()->back();
+            return back();
         }
 
         $notification->markAsUnread();
 
-        return redirect()->back()->with('message', 'Notification marked as unread.');
+        return back()->with('message', 'Notification marked as unread.');
     }
 
     public function destroy(Request $request, $id): RedirectResponse
@@ -50,11 +50,11 @@ class NotificationController
         $notification = $request->user()->notifications()->find($id);
 
         if (! $notification) {
-            return redirect()->back();
+            return back();
         }
 
         $notification->delete();
 
-        return redirect()->back()->with('message', 'Notification deleted.');
+        return back()->with('message', 'Notification deleted.');
     }
 }
