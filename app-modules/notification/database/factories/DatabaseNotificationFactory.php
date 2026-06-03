@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 namespace Modules\Notification\Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Notifications\DatabaseNotification;
-use Override;
+use Modules\Workspace\Notifications\MemberAcceptedNotification;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\Illuminate\Notifications\DatabaseNotification>
+ * @extends Factory<DatabaseNotification>
  */
 class DatabaseNotificationFactory extends Factory
 {
-    #[Override]
     protected $model = DatabaseNotification::class;
 
     /**
@@ -25,8 +25,8 @@ class DatabaseNotificationFactory extends Factory
     {
         return [
             'id' => $this->faker->uuid(),
-            'type' => \Modules\Workspace\Notifications\MemberAcceptedNotification::class,
-            'notifiable_type' => \App\Models\User::class,
+            'type' => MemberAcceptedNotification::class,
+            'notifiable_type' => User::class,
             'notifiable_id' => 1,
             'data' => ['test' => true],
             'read_at' => null,
