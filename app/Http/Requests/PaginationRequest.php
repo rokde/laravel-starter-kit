@@ -6,6 +6,7 @@ namespace App\Http\Requests;
 
 use App\Data\Facets\FilterValueEnum;
 use App\Enums\SortDirection;
+use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Collection;
 
@@ -16,18 +17,18 @@ final class PaginationRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     * @return array<string, ValidationRule|array<mixed>|string>
      */
     public function rules(): array
     {
         return [
-            'page' => 'integer|min:1',
-            'size' => 'sometimes|integer|between:1,100',
-            'fields' => 'sometimes|string',
-            'sort' => 'sometimes|string',
-            'term' => 'sometimes|string',
-            'filter' => 'sometimes|array',
-            'filter.*' => 'required|string',
+            'page' => ['integer', 'min:1'],
+            'size' => ['sometimes', 'integer', 'between:1,100'],
+            'fields' => ['sometimes', 'string'],
+            'sort' => ['sometimes', 'string'],
+            'term' => ['sometimes', 'string'],
+            'filter' => ['sometimes', 'array'],
+            'filter.*' => ['required', 'string'],
         ];
     }
 
