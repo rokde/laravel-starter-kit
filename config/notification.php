@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Modules\Notification\Contracts\InAppNotification;
 use Modules\Todo\Notifications\TodoAssignedNotification;
 use Modules\Todo\Notifications\TodoIsDueTodayNotification;
 use Modules\Workspace\Notifications\GotWorkspaceInvitationNotification;
@@ -10,9 +11,7 @@ use Modules\Workspace\Notifications\WelcomeNewWorkspaceOwnerNotification;
 use Modules\Workspace\Notifications\WorkspaceTransferredNotification;
 
 /**
- * @return array{
- *   notifications: class-string<Modules\Notification\Contracts\InAppNotification>[]
- * }
+ * @return array{notifications: class-string<InAppNotification>[]}
  */
 return [
     'notifications' => [
