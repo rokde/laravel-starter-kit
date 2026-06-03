@@ -6,9 +6,10 @@ namespace Modules\Workspace\Database\Factories;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Modules\Workspace\Models\Workspace;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\Modules\Workspace\Models\Workspace>
+ * @extends Factory<Workspace>
  */
 class WorkspaceFactory extends Factory
 {

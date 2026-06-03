@@ -7,10 +7,11 @@ namespace Modules\Todo\Database\Factories;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Modules\Todo\Models\Todo;
 use Modules\Workspace\Models\Workspace;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\Modules\Todo\Models\Todo>
+ * @extends Factory<Todo>
  */
 class TodoFactory extends Factory
 {

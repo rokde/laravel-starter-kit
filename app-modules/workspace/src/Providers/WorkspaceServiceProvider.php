@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Workspace\Providers;
 
+use Illuminate\Contracts\Auth\Factory;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
 use Modules\Workspace\Contracts\WorkspaceRepository as WorkspaceRepositoryContract;
@@ -14,7 +15,7 @@ class WorkspaceServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
-        $this->app->bind(WorkspaceRepositoryContract::class, fn (Application $app): WorkspaceRepository => new WorkspaceRepository($app->make(\Illuminate\Contracts\Auth\Factory::class)->user()));
+        $this->app->bind(WorkspaceRepositoryContract::class, fn (Application $app): WorkspaceRepository => new WorkspaceRepository($app->make(Factory::class)->user()));
     }
 
     public function boot(): void

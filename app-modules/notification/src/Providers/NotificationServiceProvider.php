@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Notification\Providers;
 
+use Illuminate\Contracts\Auth\Factory;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
 use Modules\Notification\Contracts\NotificationRepository as NotificationRepositoryContract;
@@ -15,7 +16,7 @@ class NotificationServiceProvider extends ServiceProvider
     {
         $this->mergeConfigFrom(__DIR__.'/../../config/notification.php', 'notification');
 
-        $this->app->bind(NotificationRepositoryContract::class, fn (Application $app): NotificationRepository => new NotificationRepository($app->make(\Illuminate\Contracts\Auth\Factory::class)->user()));
+        $this->app->bind(NotificationRepositoryContract::class, fn (Application $app): NotificationRepository => new NotificationRepository($app->make(Factory::class)->user()));
     }
 
     public function boot(): void

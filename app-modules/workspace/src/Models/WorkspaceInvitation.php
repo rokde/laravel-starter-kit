@@ -4,19 +4,18 @@ declare(strict_types=1);
 
 namespace Modules\Workspace\Models;
 
+use Database\Factories\WorkspaceInvitationFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Str;
-use Override;
 
 class WorkspaceInvitation extends Model
 {
-    /** @use HasFactory<\Database\Factories\WorkspaceInvitationFactory> */
+    /** @use HasFactory<WorkspaceInvitationFactory> */
     use HasFactory;
 
-    #[Override]
     protected $table = 'workspace_member_invitations';
 
     /**
@@ -24,7 +23,6 @@ class WorkspaceInvitation extends Model
      *
      * @var array
      */
-    #[Override]
     protected $fillable = [
         'email',
         'role',

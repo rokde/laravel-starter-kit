@@ -5,11 +5,12 @@ declare(strict_types=1);
 namespace Modules\Workspace\Contracts;
 
 use Illuminate\Support\Collection;
+use Modules\Workspace\DataTransferObjects\Workspace;
 
 interface WorkspaceRepository
 {
     /**
-     * @return Collection<\Modules\Workspace\DataTransferObjects\Workspace>|\Modules\Workspace\DataTransferObjects\Workspace[]
+     * @return Collection<Workspace>|Workspace[]
      */
     public function all(): Collection;
 }

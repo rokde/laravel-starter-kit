@@ -6,12 +6,13 @@ namespace Modules\Todo\Data\Facets;
 
 use App\Data\Facets\AbstractFacet;
 use App\Data\Facets\FilterValueEnum;
+use App\Models\User;
 use Illuminate\Support\Collection;
 
 class AssignedUserFacet extends AbstractFacet
 {
     /**
-     * @param  Collection<\App\Models\User>  $users
+     * @param  Collection<User>  $users
      */
     public function setPossibleUsers(Collection $users): self
     {
