@@ -21,8 +21,10 @@ use Spatie\LaravelPasskeys\Models\Concerns\InteractsWithPasskeys;
 #[UseFactory(UserFactory::class)]
 final class User extends Authenticatable implements HasLocalePreference, HasPasskeys, MustVerifyEmail
 {
-    /** @use HasFactory<UserFactory> */
-    use HasFactory, InteractsWithPasskeys, ManagesWorkspaces, Notifiable;
+    use HasFactory;
+    use InteractsWithPasskeys;
+    use ManagesWorkspaces;
+    use Notifiable;
 
     /**
      * The attributes that are mass assignable.

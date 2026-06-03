@@ -12,19 +12,18 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Modules\Todo\Database\Factories\TodoFactory;
 use Modules\Workspace\Models\Concerns\HasWorkspaceRelation;
 use Modules\Workspace\Models\Workspace;
-use Override;
 
 #[UseFactory(TodoFactory::class)]
 class Todo extends Model
 {
-    use HasFactory, HasWorkspaceRelation;
+    use HasFactory;
+    use HasWorkspaceRelation;
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
-    #[Override]
     protected $fillable = [
         'title',
         'completed',
@@ -35,7 +34,6 @@ class Todo extends Model
      *
      * @var array<string, string>
      */
-    #[Override]
     protected $casts = [
         'completed' => 'boolean',
         'due_date' => 'datetime',

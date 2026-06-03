@@ -13,7 +13,8 @@ use Modules\Workspace\DataTransferObjects\Workspace;
 
 class WelcomeNewWorkspaceOwnerNotification extends Notification implements InAppNotification
 {
-    use Queueable, SupportUserPreferredChannel;
+    use Queueable;
+    use SupportUserPreferredChannel;
 
     public function __construct(public readonly Workspace $workspace) {}
 

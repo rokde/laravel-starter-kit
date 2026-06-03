@@ -11,7 +11,9 @@ use Modules\Workspace\Models\Workspace;
 
 abstract class WorkspaceEvent
 {
-    use Dispatchable, InteractsWithSockets, SerializesModels;
+    use Dispatchable;
+    use InteractsWithSockets;
+    use SerializesModels;
 
     public function __construct(public readonly Workspace $workspace) {}
 }

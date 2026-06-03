@@ -14,7 +14,8 @@ use Modules\Todo\Models\Todo;
 
 class TodoAssignedNotification extends Notification implements InAppNotification
 {
-    use Queueable, SupportUserPreferredChannel;
+    use Queueable;
+    use SupportUserPreferredChannel;
 
     /**
      * Create a new notification instance.
@@ -41,7 +42,7 @@ class TodoAssignedNotification extends Notification implements InAppNotification
     {
         return (new MailMessage)
             ->subject('A user assigned you a task')
-            ->line("{$this->user->name} assigned you the task {$this->todo->title}.")
+            ->line(sprintf('%s assigned you the task %s.', $this->user->name, $this->todo->title))
             ->action('Open your todos', $this->getUrl())
             ->line('')
             ->line('You got this email because you have enabled notifications for this type of event.');

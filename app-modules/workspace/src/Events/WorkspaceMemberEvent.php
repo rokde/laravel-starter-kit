@@ -13,7 +13,9 @@ use Modules\Workspace\Models\Workspace;
 
 abstract class WorkspaceMemberEvent implements ShouldQueue
 {
-    use Dispatchable, InteractsWithSockets, SerializesModels;
+    use Dispatchable;
+    use InteractsWithSockets;
+    use SerializesModels;
 
     public function __construct(public readonly Workspace $workspace, public readonly User $user) {}
 }

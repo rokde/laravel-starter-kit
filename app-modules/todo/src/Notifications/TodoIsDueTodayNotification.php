@@ -13,7 +13,8 @@ use Modules\Todo\Models\Todo;
 
 class TodoIsDueTodayNotification extends Notification implements InAppNotification
 {
-    use Queueable, SupportUserPreferredChannel;
+    use Queueable;
+    use SupportUserPreferredChannel;
 
     /**
      * Create a new notification instance.

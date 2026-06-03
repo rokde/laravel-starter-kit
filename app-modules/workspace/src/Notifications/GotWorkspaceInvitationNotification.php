@@ -13,7 +13,8 @@ use Modules\Workspace\Models\WorkspaceInvitation;
 
 class GotWorkspaceInvitationNotification extends Notification implements InAppNotification
 {
-    use Queueable, SupportUserPreferredChannel;
+    use Queueable;
+    use SupportUserPreferredChannel;
 
     /**
      * Create a new notification instance.
