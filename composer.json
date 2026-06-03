@@ -14,7 +14,7 @@
         "inertiajs/inertia-laravel": "^3.1.0",
         "internachi/modular": "^2.3",
         "laravel/framework": "^12.61.0",
-        "laravel/tinker": "^2.11.1",
+        "laravel/tinker": "^3.0.2",
         "modules/analytics": ">=1",
         "modules/foundation-layout": ">=1",
         "modules/notification": ">=1",
