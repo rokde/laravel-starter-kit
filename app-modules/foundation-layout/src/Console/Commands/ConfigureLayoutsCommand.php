@@ -6,7 +6,6 @@ namespace Modules\FoundationLayout\Console\Commands;
 
 use Illuminate\Console\Command;
 use Modules\FoundationLayout\Service\LayoutService;
-use Override;
 
 class ConfigureLayoutsCommand extends Command
 {
@@ -15,7 +14,6 @@ class ConfigureLayoutsCommand extends Command
      *
      * @var string
      */
-    #[Override]
     protected $signature = 'app:configure-layouts';
 
     /**
@@ -23,7 +21,6 @@ class ConfigureLayoutsCommand extends Command
      *
      * @var string
      */
-    #[Override]
     protected $description = 'Configures used layouts';
 
     /**

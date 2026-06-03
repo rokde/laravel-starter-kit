@@ -6,7 +6,6 @@ namespace Modules\Notification\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Notifications\DatabaseNotification;
-use Override;
 
 class PurgeOldNotificationsCommand extends Command
 {
@@ -15,7 +14,6 @@ class PurgeOldNotificationsCommand extends Command
      *
      * @var string
      */
-    #[Override]
     protected $signature = 'notifications:purge {--age=60 : Age in days} {--include-unread : Include unread notifications}';
 
     /**
@@ -23,7 +21,6 @@ class PurgeOldNotificationsCommand extends Command
      *
      * @var string
      */
-    #[Override]
     protected $description = 'Purge old read notifications';
 
     /**
