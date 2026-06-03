@@ -119,6 +119,7 @@ trait ManagesWorkspaces
         if (is_null($workspace)) {
             return false;
         }
+
         if ($this->ownsWorkspace($workspace)) {
             return true;
         }

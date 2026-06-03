@@ -27,10 +27,12 @@ class TodoPolicy
         if ($user->id === $forUserId) {
             return true;
         }
+
         // If the user is the owner of the workspace or has admin role, allow creating todos for other users
         if ($user->ownsWorkspace($workspace)) {
             return true;
         }
+
         if ($user->hasWorkspaceRole($workspace, 'admin')) {
             return true;
         }

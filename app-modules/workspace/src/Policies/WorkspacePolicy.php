@@ -91,6 +91,7 @@ class WorkspacePolicy
         if ($member && ! $member->belongsToWorkspace($workspace)) {
             return false;
         }
+
         if ($user->ownsWorkspace($workspace)) {
             return true;
         }
@@ -103,6 +104,7 @@ class WorkspacePolicy
         if ($invitation && $invitation->email === $workspace->owner->email) {
             return false;
         }
+
         if ($user->ownsWorkspace($workspace)) {
             return true;
         }

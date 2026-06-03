@@ -44,6 +44,7 @@ class TodoDueDateFacet extends AbstractFacet
                 if ($value === 'past') {
                     $query->orWhereNowOrPast($column);
                 }
+
                 if ($value === 'future') {
                     $query->orWhereNowOrFuture($column);
                 }
