@@ -6,6 +6,7 @@ namespace Modules\Notification\Http\Controllers;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Notifications\DatabaseNotification;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -18,7 +19,7 @@ class NotificationController
 
     public function markAsRead(Request $request, $id): RedirectResponse
     {
-        /** @var \Illuminate\Notifications\DatabaseNotification $notification */
+        /** @var DatabaseNotification $notification */
         $notification = $request->user()->notifications()->find($id);
 
         if (! $notification) {
@@ -32,7 +33,7 @@ class NotificationController
 
     public function markAsUnread(Request $request, $id): RedirectResponse
     {
-        /** @var \Illuminate\Notifications\DatabaseNotification $notification */
+        /** @var DatabaseNotification $notification */
         $notification = $request->user()->notifications()->find($id);
 
         if (! $notification) {
@@ -46,7 +47,7 @@ class NotificationController
 
     public function destroy(Request $request, $id): RedirectResponse
     {
-        /** @var \Illuminate\Notifications\DatabaseNotification $notification */
+        /** @var DatabaseNotification $notification */
         $notification = $request->user()->notifications()->find($id);
 
         if (! $notification) {

@@ -52,7 +52,7 @@ class TodoController
 
         $term = $request->term();
         $query->when($term, function (Builder $query, string $term): void {
-            $query->where('title', 'LIKE', "%{$term}%");
+            $query->where('title', 'LIKE', sprintf('%%%s%%', $term));
         });
 
         $facets->filterQuery($request->facets(), $query);

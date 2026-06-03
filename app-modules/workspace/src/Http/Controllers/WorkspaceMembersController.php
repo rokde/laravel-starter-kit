@@ -16,6 +16,7 @@ use Modules\Workspace\Actions\UpdateMember;
 use Modules\Workspace\DataTransferObjects\Owner;
 use Modules\Workspace\Models\OwnerRole;
 use Modules\Workspace\Models\RoleRegistry;
+use Modules\Workspace\Models\Workspace;
 
 class WorkspaceMembersController
 {
@@ -24,7 +25,7 @@ class WorkspaceMembersController
         /** @var User $user */
         $user = $request->user();
 
-        /** @var \Modules\Workspace\Models\Workspace */
+        /** @var Workspace */
         $workspace = $user->currentWorkspace;
         abort_if($workspace === null, 404);
 
@@ -56,7 +57,7 @@ class WorkspaceMembersController
         UpdateMember $updateMember,
         TransferWorkspaceOwnership $transferWorkspaceOwnership,
     ): RedirectResponse {
-        /** @var \Modules\Workspace\Models\Workspace */
+        /** @var Workspace */
         $workspace = $request->user()->currentWorkspace;
         abort_if($workspace === null, 404);
 
@@ -76,7 +77,7 @@ class WorkspaceMembersController
         User $member,
         RemoveMember $removeMember,
     ): RedirectResponse {
-        /** @var \Modules\Workspace\Models\Workspace */
+        /** @var Workspace */
         $workspace = $request->user()->currentWorkspace;
         abort_if($workspace === null, 404);
 

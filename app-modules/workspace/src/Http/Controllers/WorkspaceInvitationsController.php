@@ -20,6 +20,7 @@ use Modules\Workspace\DataTransferObjects\Invitation;
 use Modules\Workspace\DataTransferObjects\Owner;
 use Modules\Workspace\Http\Requests\StoreInvitationRequest;
 use Modules\Workspace\Models\RoleRegistry;
+use Modules\Workspace\Models\Workspace;
 use Modules\Workspace\Models\WorkspaceInvitation;
 use Throwable;
 
@@ -27,7 +28,7 @@ class WorkspaceInvitationsController
 {
     public function index(Request $request)
     {
-        /** @var \Modules\Workspace\Models\Workspace */
+        /** @var Workspace */
         $workspace = $request->user()->currentWorkspace;
         abort_if($workspace === null, Response::HTTP_NOT_FOUND);
 
@@ -57,7 +58,7 @@ class WorkspaceInvitationsController
         StoreInvitationRequest $request,
         InviteMember $inviteMember,
     ): RedirectResponse {
-        /** @var \Modules\Workspace\Models\Workspace */
+        /** @var Workspace */
         $workspace = $request->user()->currentWorkspace;
         abort_if($workspace === null, Response::HTTP_FORBIDDEN);
 
@@ -83,12 +84,12 @@ class WorkspaceInvitationsController
 
         try {
             $invitation = WorkspaceInvitation::query()->findOrFail($invitationId);
-        } catch (ModelNotFoundException $exception) {
+        } catch (ModelNotFoundException $modelNotFoundException) {
             if ($request->user()) {
                 return to_route('dashboard');
             }
 
-            throw $exception;
+            throw $modelNotFoundException;
         }
 
         // if signed in user is here, then accept the invitation and switch to the workspace
