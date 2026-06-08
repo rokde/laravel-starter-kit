@@ -23,7 +23,7 @@
         "vue-tsc": "^3.3.3"
     },
     "dependencies": {
-        "@inertiajs/vue3": "^3.3.0",
+        "@inertiajs/vue3": "^3.3.1",
         "@lucide/vue": "^1.17.0",
         "@simplewebauthn/browser": "^13.3.0",
         "@tailwindcss/typography": "^0.5.19",
