@@ -20,7 +20,7 @@
         "prettier-plugin-organize-imports": "^4.3.0",
         "prettier-plugin-tailwindcss": "^0.8.1",
         "typescript-eslint": "^8.65.0",
-        "vue-tsc": "^3.3.7"
+        "vue-tsc": "^3.3.9"
     },
     "dependencies": {
         "@inertiajs/vue3": "^3.6.1",
